@@ -1,9 +1,21 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule,MatGridListModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatIconModule, 
+   } from '@angular/material';
 
 const material = [
   MatButtonModule,
   MatToolbarModule,
+  MatGridListModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatIconModule,
 ];
 @NgModule({
   imports: [
