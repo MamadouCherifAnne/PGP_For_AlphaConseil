@@ -14,6 +14,7 @@ import { RoleService } from './services/role.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
+import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
 
 const appRoutes:Routes =[
  
@@ -25,7 +26,8 @@ const appRoutes:Routes =[
     HeaderComponent,
     AjoutUtilisateurComponent,
     AddRoleComponent,
-    AddProfessionComponent
+    AddProfessionComponent,
+    ListeUtilisateurComponent
     
     
   ],

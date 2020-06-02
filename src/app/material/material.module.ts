@@ -8,7 +8,7 @@ import { MatButtonModule,
   MatFormFieldModule,
   MatGridList
  } from '@angular/material';
- import { MatGridListModule, MatCheckboxModule } from '@angular/material';
+ import { MatGridListModule, MatCheckboxModule} from '@angular/material';
 
 
 
