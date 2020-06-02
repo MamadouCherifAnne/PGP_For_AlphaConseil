@@ -1,0 +1,70 @@
+
+<p>{{roles}}</p>
+
+    <form [formGroup]="addUserForm" class="mon-form"  >
+        <mat-grid-list cols="2" rowHeight="300px">
+            <mat-grid-tile>
+                <div class="controles-container">
+                    <mat-form-field>
+                        <input formControlName="username"  [(ngModel)]="user.nom" matInput placeholder="Nom">
+                    </mat-form-field>
+
+            
+                    <mat-form-field>
+                        <input formControlName="prenom"  [(ngModel)]="user.prenom" matInput placeholder="Prenom">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <input formControlName="email"  [(ngModel)]="user.email" matInput placeholder="Email">
+                    </mat-form-field>
+                        
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <div class="controles-container">
+                    
+                <mat-form-field>
+                    <input formControlName="password" [(ngModel)]="user.password" matInput placeholder="Password">
+                </mat-form-field>
+                        
+                <mat-form-field>
+                    <input formControlName="adresse" [(ngModel)]="user.adresse" matInput placeholder="Addresse">
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <input formControlName="telephone" [(ngModel)]="user.telephone" matInput placeholder="Telephone">
+                </mat-form-field>
+        </div>
+    </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+
+                <mat-form-field>
+                    <mat-select formControlName="profession" matInput placeholder="Profession">
+                        <mat-option value="profession">
+                            profession
+                        </mat-option>
+                        
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select formControlName="role" [(ngModel)]="idRol" matInput placeholder="Role">
+                        <ng-container *ngFor="let rol of roles">
+                        <mat-option value="{{rol.idRole}}">
+                            {{rol.idRole}}
+                        </mat-option>
+                    </ng-container>
+                        
+                    </mat-select>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="addUserForm.invalid" (click)="addNewUser()">Submit</button>
+                </div>
+
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+    </form>
+    
