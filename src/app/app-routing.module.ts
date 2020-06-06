@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {AjoutUtilisateurComponent} from './Utilisateur/ajout-utilisateur/ajout-utilisateur.component'
 import { AppComponent } from './app.component';
 import { AddRoleComponent } from './Role/add-role/add-role.component';
+import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
 
 
 
 const routes: Routes = [
   {path: 'utilisateur', component: AjoutUtilisateurComponent},
-  {path: 'role', component: AddRoleComponent}
+  {path: 'utilisateur/all', component: ListeUtilisateurComponent}
 ];
 
 @NgModule({

@@ -15,7 +15,7 @@ export class AjoutUtilisateurComponent implements OnInit {
    message:any;
    idRol:number;
 
-  roles: any;
+  public roles=[];
   constructor(private userService: UtilisateurService, private roleService: RoleService,
      private formBuilder: FormBuilder) { }
 
@@ -34,8 +34,8 @@ export class AjoutUtilisateurComponent implements OnInit {
     });
     
     //
-    let roleList = this.roleService.getRoles()
-    roleList.subscribe((data)=>this.roles=data);
+     this.roleService.getRoles()
+      .subscribe((data)=> this.roles=data);
     
 
   }

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,8 +17,7 @@ import { RoleService } from './services/role.service';
 import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { AjoutProjetComponent } from './Projet/ajout-projet/ajout-projet.component';
-
-
+import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
 
 const appRoutes:Routes =[
  
@@ -34,6 +32,7 @@ const appRoutes:Routes =[
     AddRoleComponent,
     AddProfessionComponent,
     AjoutProjetComponent,
+    ListeUtilisateurComponent
     
   ],
   imports: [
