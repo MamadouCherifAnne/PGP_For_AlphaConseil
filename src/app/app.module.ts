@@ -7,16 +7,34 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material/material.module";
-import { ProjetComponent } from './projet/projet.component';
 import { ProjetService } from "./services/projet.service";
 import { ReactiveFormsModule } from "@angular/forms";
+import { AjoutUtilisateurComponent } from './Utilisateur/ajout-utilisateur/ajout-utilisateur.component';
+import { UtilisateurService } from './services/utilisateur.service';
+
+import { AddRoleComponent } from './Role/add-role/add-role.component'
+import { RoleService } from './services/role.service';
+
+import { Routes, RouterModule } from '@angular/router';
+import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
+import { AjoutProjetComponent } from './Projet/ajout-projet/ajout-projet.component';
+
+
+
+const appRoutes:Routes =[
+ 
+];
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ProjetComponent
+    AjoutUtilisateurComponent,
+    AddRoleComponent,
+    AddProfessionComponent,
+    AjoutProjetComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -25,10 +43,11 @@ import { ReactiveFormsModule } from "@angular/forms";
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+
   ],
-  providers: [
-    ProjetService,
-  ],
+  
+
+  providers: [ProjetService, UtilisateurService, RoleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

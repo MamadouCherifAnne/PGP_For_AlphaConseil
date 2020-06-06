@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjetService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  form: FormGroup = new FormGroup({
-     nomProjet: new FormControl(''),
-     description: new FormControl(''),
-	   debutProjet: new FormControl(''),
-		 finProjet: new FormControl(''),
-	   zoneRealisation: new FormControl('')
-		
-  });
+  public add(projet){
+    return this.http.post("http://localhost:8080/projet/add", projet, {'responseType': 'text'});
+  }
+
 }

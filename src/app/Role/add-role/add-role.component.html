@@ -1,0 +1,21 @@
+<form [formGroup]="addRoleForm" class="mon-form">
+    <mat-grid-list cols="2" rowHeight="200px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="role" [(ngModel)]="role.role" matInput placeholder="Role">
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" (click)="addRole()">Submit</button>
+                </div>
+
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</form>
+
+<p >
+    {{roles}}
+</p>
