@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material/material.module";
 import { AjoutUtilisateurComponent } from './Utilisateur/ajout-utilisateur/ajout-utilisateur.component';
 import { UtilisateurService } from './services/utilisateur.service';
+import { ProfessionService } from './services/profession.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AddRoleComponent } from './Role/add-role/add-role.component'
 import { RoleService } from './services/role.service';
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
+import { UpdateUtilisateurComponent } from './Utilisateur/update-utilisateur/update-utilisateur.component';
 
 const appRoutes:Routes =[
  
@@ -27,7 +29,8 @@ const appRoutes:Routes =[
     AjoutUtilisateurComponent,
     AddRoleComponent,
     AddProfessionComponent,
-    ListeUtilisateurComponent
+    ListeUtilisateurComponent,
+    UpdateUtilisateurComponent
     
     
   ],
@@ -40,7 +43,7 @@ const appRoutes:Routes =[
     HttpClientModule,
     
   ],
-  providers: [UtilisateurService,RoleService],
+  providers: [UtilisateurService,RoleService, ProfessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

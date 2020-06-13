@@ -1,4 +1,5 @@
 import { Role } from '../Role/Role';
+import { IProfession } from '../Profession/IProfession';
 
 export class Utilisateur{
     
@@ -8,9 +9,10 @@ export class Utilisateur{
         password:string;
         adresse:string;
         actif:boolean;
+        role:object;
         telephone:string;
         ptojet:object;
-        profession:object;
+        professions:any[];
     
 
 

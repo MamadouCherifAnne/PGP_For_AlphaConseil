@@ -12,11 +12,26 @@ export class UtilisateurService {
   constructor(private http:HttpClient) { }
 
 
-  public addUser(user,idRole){
-    return this.http.post("http://localhost:8080/utilisateur/new/"+idRole,user, {responseType:'text'})
+  public addUser(user){
+    return this.http.post("http://localhost:8080/utilisateur/new/",user,{responseType:'text'})
   }
+
+  public updateUser(user, idUser){
+    return this.http.post("http://localhost:8080/utilisateur/update/"+idUser,user,{responseType:'text'})
+  }
+
+  // Delete un utilisateur
+  public deleteUser(idUser){
+
+    return this.http.post("http://localhost:8080/utilisateur/delete/"+idUser,{responseType:'text'});
+  }
+  
 
   public getUsers() : Observable<IUtilisateur[]>{
     return this.http.get<IUtilisateur[]>("http://localhost:8080/utilisateur/all");
+  }
+  // find user by name
+  public getUserByIdUser(idUser) {
+    return this.http.get("http://localhost:8080/utilisateur/findUser/"+idUser);
   }
 }

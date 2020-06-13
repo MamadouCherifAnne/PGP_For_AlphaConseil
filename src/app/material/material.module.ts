@@ -6,10 +6,10 @@ import { MatButtonModule,
   MatSelectModule, 
   MatOptionModule,
   MatFormFieldModule,
-  MatGridList,
+  
   MatCardModule
  } from '@angular/material';
- import { MatGridListModule, MatCheckboxModule} from '@angular/material';
+ import { MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
 
 
 
@@ -20,6 +20,7 @@ const material = [
   MatInputModule,
   MatTableModule,
   MatFormFieldModule,
+  MatIconModule,
   MatSelectModule,
   MatOptionModule,
   MatGridListModule,
