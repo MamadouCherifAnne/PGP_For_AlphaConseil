@@ -1,0 +1,22 @@
+
+.card{
+    width: 25%;
+}
+
+li .borderless {
+    border-top: 0 none;
+    border-bottom: 0 none;
+  }
+
+.separe{
+    padding: 1em;
+}
+
+.card{
+    width: 25%;
+}
+
+.thebt{
+    float: right;
+}
+

@@ -18,7 +18,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { AjoutProjetComponent } from './Projet/ajout-projet/ajout-projet.component';
 import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
-
+import { TableauDeBordComponent } from './tableau-de-bord/tableau-de-bord.component';
+import { AllProjetsComponent } from './Projet/all-projets/all-projets.component';
+import { AddTacheComponent } from './Tache/add-tache/add-tache.component';
+import { AjoutPhaseComponent } from './Phase/ajout-phase/ajout-phase.component';
+import { FormsModule} from '@angular/forms';
 const appRoutes:Routes =[
  
 ];
@@ -32,12 +36,17 @@ const appRoutes:Routes =[
     AddRoleComponent,
     AddProfessionComponent,
     AjoutProjetComponent,
-    ListeUtilisateurComponent
+    ListeUtilisateurComponent,
+    TableauDeBordComponent,
+    AllProjetsComponent,
+    AddTacheComponent,
+    AjoutPhaseComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
@@ -47,6 +56,7 @@ const appRoutes:Routes =[
   
 
   providers: [ProjetService, UtilisateurService, RoleService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AjoutProjetComponent]
 })
 export class AppModule { }
