@@ -10,10 +10,8 @@ import { ProjetService } from "./services/projet.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AjoutUtilisateurComponent } from './Utilisateur/ajout-utilisateur/ajout-utilisateur.component';
 import { UtilisateurService } from './services/utilisateur.service';
-
 import { AddRoleComponent } from './Role/add-role/add-role.component'
 import { RoleService } from './services/role.service';
-
 import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { AjoutProjetComponent } from './Projet/ajout-projet/ajout-projet.component';
@@ -22,7 +20,12 @@ import { TableauDeBordComponent } from './tableau-de-bord/tableau-de-bord.compon
 import { AllProjetsComponent } from './Projet/all-projets/all-projets.component';
 import { AddTacheComponent } from './Tache/add-tache/add-tache.component';
 import { AjoutPhaseComponent } from './Phase/ajout-phase/ajout-phase.component';
+import {UpdateUtilisateurComponent} from './Utilisateur/update-utilisateur/update-utilisateur.component';
 import { FormsModule} from '@angular/forms';
+import { UpdateProjetComponent } from './projet/update-projet/update-projet.component';
+import { ResumeProjetComponent } from './projet/resume-projet/resume-projet.component';
+import { EnsembleVueProjetComponent } from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
+
 const appRoutes:Routes =[
  
 ];
@@ -40,8 +43,11 @@ const appRoutes:Routes =[
     TableauDeBordComponent,
     AllProjetsComponent,
     AddTacheComponent,
-    AjoutPhaseComponent
-    
+    AjoutPhaseComponent,
+    UpdateUtilisateurComponent,
+    UpdateProjetComponent,
+    ResumeProjetComponent,
+    EnsembleVueProjetComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +63,6 @@ const appRoutes:Routes =[
 
   providers: [ProjetService, UtilisateurService, RoleService],
   bootstrap: [AppComponent],
-  entryComponents: [AjoutProjetComponent]
+  entryComponents: [AjoutProjetComponent, AjoutPhaseComponent]
 })
 export class AppModule { }

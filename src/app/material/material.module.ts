@@ -16,15 +16,19 @@ import { MatButtonModule,
   MatExpansionModule,
   MatIconModule,
   MatDividerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressBarModule,
+  MatSliderModule
  } from '@angular/material';
  
+
 const material = [
   MatButtonModule,
   MatToolbarModule,
   MatInputModule,
   MatTableModule,
   MatFormFieldModule,
+  MatIconModule,
   MatSelectModule,
   MatOptionModule,
   MatGridListModule,
@@ -36,7 +40,9 @@ const material = [
   MatListModule,
   MatExpansionModule,
   MatDividerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressBarModule,
+  MatSliderModule
 ];
 @NgModule({
   imports: [

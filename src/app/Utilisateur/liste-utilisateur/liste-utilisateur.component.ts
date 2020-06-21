@@ -9,8 +9,9 @@ import {IUtilisateur} from '../IUtilisateur'
 export class ListeUtilisateurComponent implements OnInit {
 
   public users: IUtilisateur[]= [];
+  message:any;
 
-  displayedColumns: string [] = ['username', 'prenom', 'email', 'adresse','telephone', 'role', 'profession'];
+  displayedColumns: string [] = ['username', 'prenom', 'email', 'adresse', 'telephone', 'role', 'profession','Action'];
     
   constructor(private userService:UtilisateurService) { }
 
@@ -20,7 +21,9 @@ export class ListeUtilisateurComponent implements OnInit {
       .subscribe((data)=>this.users=data);
   }
 
-  public afficherAllUser(){
+  public deleteUser(){
+
+    this.userService.deleteUser(32).subscribe((data)=>this.message=data);
    
   }
 

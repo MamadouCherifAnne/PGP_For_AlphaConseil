@@ -1,3 +1,6 @@
+<router-outlet></router-outlet>
+
+
 <div class="col-xs-12">
     <h1>
        Liste des utilisateurs
@@ -5,10 +8,10 @@
     </div>
 
     
-    <div class="container">
+    
         
           
-        <a mat-button routerLink= "utilisateur" >ajouter un utilisateur</a>
+        <a mat-button routerLink= "add" >ajouter un utilisateur</a>
 <mat-table [dataSource]="users" class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="username" >
@@ -52,8 +55,19 @@
         <mat-cell *matCellDef="let element"> {{element.profession}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <a mat-button routerLink= "update" >
+            <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+        </a>
+        <button (click)="deleteUser()">
+            <mat-icon  color="warn" aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+        </button>
+         </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-</div>
+{{message}}
