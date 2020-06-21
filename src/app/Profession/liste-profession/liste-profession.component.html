@@ -1,0 +1,30 @@
+<div>
+  <p> Liste profession</p>
+</div>
+
+<button mat-raised-button color="primary" (click)="goToAddProfession()">+ ajouter Profession</button>
+<mat-table [dataSource]="professions" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="Profession" >
+    <mat-header-cell *matHeaderCellDef> Profession </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.titreProfession}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <button mat-raised-button color="primary" (click)="goToUpdateProfession(element)" > 
+          <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+      </button>
+      <button  (click)="goToDeleteProfession(element.numProfession)" >
+          <mat-icon  color="warn" aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </button>
+       </mat-cell>
+  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  {{message}}

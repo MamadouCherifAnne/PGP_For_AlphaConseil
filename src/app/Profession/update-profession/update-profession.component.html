@@ -1,13 +1,13 @@
-<form [formGroup]="addProfessionForm" class="mon-form">
+<form [formGroup]="updateProfessionForm" class="mon-form">
     <mat-grid-list cols="2" rowHeight="200px">
         <mat-grid-tile>
             <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="titreProfession" [(ngModel)]="profession.titreProfession" matInput placeholder="profession">
+                    <input formControlName="titreProfession"  matInput placeholder="profession">
                 </mat-form-field>
 
                 <div class="button-row">
-                    <button mat-raised-button color="primary" type="submit" (click)="addProfession()">Ajouter</button>
+                    <button mat-raised-button color="primary" type="submit" (click)="updateProfession()">Modifier</button>
                     <button mat-raised-button  type="submit" (click)="onFermer()">Annuler</button>
                     
                 </div>

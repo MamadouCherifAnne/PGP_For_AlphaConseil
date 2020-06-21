@@ -5,36 +5,37 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatDialogRef} from '@angular/material'
 
 @Component({
-  selector: 'app-add-role',
-  templateUrl: './add-role.component.html',
-  styleUrls: ['./add-role.component.css']
+  selector: 'app-update-role',
+  templateUrl: './update-role.component.html',
+  styleUrls: ['./update-role.component.css']
 })
-export class AddRoleComponent implements OnInit {
+export class UpdateRoleComponent implements OnInit {
   
   role: Role = new Role() ;
-  addRoleForm:FormGroup;
+  updateForm:FormGroup;
   roles: any;
   message:any;
   constructor(private roleService:RoleService, private formBuilder:FormBuilder,
-    public fenetreRef:MatDialogRef<AddRoleComponent>) { }
+    public fenetreRef:MatDialogRef<UpdateRoleComponent>) { }
 
   ngOnInit() {
     // creation du formulaire dajout de role
-    this.addRoleForm=this.formBuilder.group({
+    this.updateForm=this.formBuilder.group({
       'role':[this.role.role, [Validators.required]]});
 
   }
-  public addRole(){
-   
-    this.role.role=this.addRoleForm.get('role').value;
+  public updateRole(){
+    
 
-     this.roleService.addRoleService(this.role)
+    this.role.role=this.updateForm.get('role').value;
+
+     this.roleService.updateRole(this.role.role)
     .subscribe((data)=>this.message=data);
     this.onFermer();
   }
   
   public onFermer(){
-    this.addRoleForm.reset();
+    this.updateForm.reset();
     this.fenetreRef.close();
 
   }

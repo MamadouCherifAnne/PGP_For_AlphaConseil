@@ -13,6 +13,10 @@ export class ProfessionService {
   public addProfession(profession){
     return this.http.post("http://localhost:8080/profession/add",profession);
   }
+
+  public updateProfession(profession, idProfession){
+    return this.http.post("http://localhost:8080/profession/update/"+idProfession,profession,{responseType:'text'});
+  }
   // La liste Des role
   public getProfession() : Observable<IProfession[]>{
     return this.http.get<IProfession[]>("http://localhost:8080/profession/all");

@@ -1,0 +1,35 @@
+<span>Liste Des Roles</span>
+      
+<button mat-raised-button color="primary" (click)="goToAddRole()">+ Nouveau Role</button>
+<mat-table [dataSource]="roles" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="numRole" >
+    <mat-header-cell *matHeaderCellDef> Numero </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.idRole}} </mat-cell>
+    </ng-container>
+
+    
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="role">
+    <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.role}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <button mat-raised-button color="primary" (click)="goToUpdateRole()" > 
+          <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+      </button>
+      <button  (click)="goToDeleteRole(element.idRole)" >
+          <mat-icon  color="warn" aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      </button>
+       </mat-cell>
+  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  {{message}}

@@ -8,17 +8,19 @@
         <mat-grid-tile>
             <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="username" [(ngModel)]="user.nom" matInput placeholder="Nom" >
+                    <input formControlName="username"  matInput placeholder="Nom" >
                 </mat-form-field>
 
         
                 <mat-form-field>
-                    <input formControlName="prenom"  [(ngModel)]="user.prenom" matInput placeholder="Prenom" >
+                    <input formControlName="prenom"  matInput placeholder="Prenom" >
                 </mat-form-field>
                 
                 <mat-form-field>
-                    <input formControlName="email"  [(ngModel)]="user.email" matInput placeholder="Email">
+                    <input formControlName="email"   matInput placeholder="Email">
                 </mat-form-field>
+
+                
                     
         </div>
     </mat-grid-tile>
@@ -27,15 +29,15 @@
         <div class="controles-container">
                 
             <mat-form-field>
-                <input formControlName="password" [(ngModel)]="user.password" matInput placeholder="Password">
+                <input formControlName="password" matInput placeholder="Password">
             </mat-form-field>
                     
             <mat-form-field>
-                <input formControlName="adresse" [(ngModel)]="user.adresse" matInput placeholder="Addresse" >
+                <input formControlName="adresse"  matInput placeholder="Addresse" >
             </mat-form-field>
             
             <mat-form-field>
-                <input formControlName="telephone" [(ngModel)]="user.telephone" matInput placeholder="Telephone" >
+                <input formControlName="telephone"  matInput placeholder="Telephone" >
             </mat-form-field>
     </div>
 </mat-grid-tile>
@@ -44,7 +46,7 @@
 
             <mat-form-field>
                 <mat-label>Professions</mat-label>
-                <mat-select formControlName="profession" [(ngModel)]="idProfession"  multiple>
+                <mat-select formControlName="profession"   multiple>
                     <ng-container *ngFor="let prof of professions">
                   <mat-option  [value]="prof">{{prof.titreProfession}}</mat-option>
                 </ng-container>
@@ -52,7 +54,7 @@
             
         </mat-form-field>
             <div class="button-row">
-                <button mat-raised-button color="primary" type="submit" [disabled]="updateUserForm.invalid" (click)="userUpdate()">Submit</button>
+                <button mat-raised-button color="primary" type="submit"  (click)="userUpdate()">Submit</button>
             </div>
 
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {UtilisateurService} from 'src/app/services/utilisateur.service'
 import { RoleService } from 'src/app/services/role.service';
 import { Utilisateur } from 'src/app/Utilisateur/Utilisateur';
@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ProfessionService } from 'src/app/services/profession.service';
 import { IRole } from 'src/app/Role/IRole';
 import { IUtilisateur } from '../IUtilisateur';
+import {MatDialogRef}  from '@angular/material';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-utilisateur',
@@ -28,9 +30,14 @@ export class UpdateUtilisateurComponent implements OnInit {
 
   constructor(private userService: UtilisateurService, private roleService: RoleService,
     private professionService: ProfessionService,
-     private formBuilder: FormBuilder) { }
+     private formBuilder: FormBuilder,
+     public fenetereRef: MatDialogRef<UpdateUtilisateurComponent>,
+     @Inject(MAT_DIALOG_DATA) public data:any) {
+      }
 
   ngOnInit() {
+    // get User
+    
 
     this.professionService.getProfession()
     .subscribe((data)=> this.professions=data)
@@ -44,25 +51,59 @@ export class UpdateUtilisateurComponent implements OnInit {
       'password':[this.user.password, [Validators.required]],
       'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8)]],
       'adresse':[this.user.adresse, [Validators.required]],
-      
+      'role':[this.user.role, [Validators.required]],
       'profession':[this.idProfession]
   });
+  
+    this.updatingUser =this.data;
+    console.log(this.updatingUser.user.role);
+  
 //+++++++++++++++++++ REmplissage du form par les valeurs anciennes desirable a la modification
-    let name:number = 20;
-     this.userService.getUserByIdUser(name)
-    .subscribe((data)=> this.updatingUser=data);
+
+  this.chargerFormulaire();
+    
      
 }
 
+
 public userUpdate(){
-  console.log(this.user)
-  this.user.actif=true;
-  this.user.role = this.idRol;
-  this.user.ptojet=null
-  this.user.professions= this.idProfession;
+  //console.log(this.oldUser)
+
+ this.user.actif=true;
+  this.user.nom =this.updateUserForm.get("username").value;
+  this.user.prenom =this.updateUserForm.get("prenom").value;
+  this.user.email=this.updateUserForm.get("email").value;
+  this.user.adresse =this.updateUserForm.get("adresse").value;
+  this.user.telephone =this.updateUserForm.get("telephone").value;
+  let id=Number.parseFloat(this.updatingUser.user.idUser);
   
-  let res=this.userService.updateUser(this.user,this.updatingUser.idUser);
+  this.user.role = this.updatingUser.user.role;
+  this.user.ptojet=null
+  this.user.professions=this.updateUserForm.get("profession").value
+  
+  let res=this.userService.updateUser(this.user,id);
   res.subscribe((data)=>this.message=data);
+  
+
+  this.onFermer();
+}
+
+
+public onFermer(){
+  this.updateUserForm.reset();
+  this.fenetereRef.close();
+}
+
+public chargerFormulaire(){
+  
+  this.updateUserForm.get("username").setValue(this.updatingUser.user.nom);
+  this.updateUserForm.get("prenom").setValue(this.updatingUser.user.prenom);
+  this.updateUserForm.get("email").setValue(this.updatingUser.user.email);
+  this.updateUserForm.get("telephone").setValue(this.updatingUser.user.telephone);
+  this.updateUserForm.get("adresse").setValue(this.updatingUser.user.adresse);
+  this.updateUserForm.get("profession").setValue(this.updatingUser.user.professions);
+  this.updateUserForm.get("role").setValue(this.updatingUser.user.role);
+
 }
 
 

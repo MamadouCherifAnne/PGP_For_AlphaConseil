@@ -7,6 +7,7 @@ import { IProfession } from 'src/app/Profession/IProfession';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ProfessionService } from 'src/app/services/profession.service';
 import { IRole } from 'src/app/Role/IRole';
+import {MatDialogRef} from '@angular/material'
 
 @Component({
   selector: 'app-ajout-utilisateur',
@@ -28,7 +29,9 @@ export class AjoutUtilisateurComponent implements OnInit {
    roles:IRole[];
   constructor(private userService: UtilisateurService, private roleService: RoleService,
     private professionService: ProfessionService,
-     private formBuilder: FormBuilder) { }
+     private formBuilder: FormBuilder,
+     public fenetreReference: MatDialogRef<AjoutUtilisateurComponent>
+     ) { }
 
   ngOnInit() {
 
@@ -57,7 +60,7 @@ export class AjoutUtilisateurComponent implements OnInit {
 
   /** APPEL DU SERVICE DE L'AJOUT DES UTILISATEUR................................*/
   public addNewUser(){
-    console.log(this.user)
+  //  console.log(this.user)
     this.user.actif=true;
     this.user.role = this.idRol;
     this.user.ptojet=null
@@ -65,7 +68,14 @@ export class AjoutUtilisateurComponent implements OnInit {
     
     let res=this.userService.addUser(this.user);
     res.subscribe((data)=>this.message=data);
+    this.onFermer();
+    
   }
   /* FIN DE PROCESSS D'AJOUT --------------*/
+
+  public onFermer(){
+    this.addUserForm.reset();
+    this.fenetreReference.close();
+  }
 
 }

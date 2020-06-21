@@ -17,6 +17,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
 import { UpdateUtilisateurComponent } from './Utilisateur/update-utilisateur/update-utilisateur.component';
+import { DetailUtilisateurComponent } from './Utilisateur/detail-utilisateur/detail-utilisateur.component';
+import { ListeRoleComponent } from './Role/liste-role/liste-role.component';
+import { UpdateRoleComponent } from './Role/update-role/update-role.component';
+import { ListeProfessionComponent } from './Profession/liste-profession/liste-profession.component';
+import { UpdateProfessionComponent } from './Profession/update-profession/update-profession.component';
 
 const appRoutes:Routes =[
  
@@ -30,7 +35,12 @@ const appRoutes:Routes =[
     AddRoleComponent,
     AddProfessionComponent,
     ListeUtilisateurComponent,
-    UpdateUtilisateurComponent
+    UpdateUtilisateurComponent,
+    DetailUtilisateurComponent,
+    ListeRoleComponent,
+    UpdateRoleComponent,
+    ListeProfessionComponent,
+    UpdateProfessionComponent
     
     
   ],
@@ -44,6 +54,11 @@ const appRoutes:Routes =[
     
   ],
   providers: [UtilisateurService,RoleService, ProfessionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AjoutUtilisateurComponent,UpdateUtilisateurComponent,
+    AddRoleComponent,
+    AddProfessionComponent,
+    UpdateProfessionComponent,
+    UpdateRoleComponent]
 })
 export class AppModule { }

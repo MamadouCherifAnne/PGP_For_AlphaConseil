@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http'
 import { IUtilisateur } from '../Utilisateur/IUtilisateur';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class UtilisateurService {
 
   constructor(private http:HttpClient) { }
 
+  
 
   public addUser(user){
     return this.http.post("http://localhost:8080/utilisateur/new/",user,{responseType:'text'})
@@ -23,7 +25,7 @@ export class UtilisateurService {
   // Delete un utilisateur
   public deleteUser(idUser){
 
-    return this.http.post("http://localhost:8080/utilisateur/delete/"+idUser,{responseType:'text'});
+    return this.http.post("http://localhost:8080/utilisateur/delete/"+idUser,[]);
   }
   
 
@@ -31,7 +33,7 @@ export class UtilisateurService {
     return this.http.get<IUtilisateur[]>("http://localhost:8080/utilisateur/all");
   }
   // find user by name
-  public getUserByIdUser(idUser) {
-    return this.http.get("http://localhost:8080/utilisateur/findUser/"+idUser);
+  public getUserByIdUser(idUser): Observable<void> {
+    return this.http.get<void>("http://localhost:8080/utilisateur/findUser/"+idUser);
   }
 }
