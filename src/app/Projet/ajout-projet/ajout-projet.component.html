@@ -1,0 +1,39 @@
+<form [formGroup]="ajoutProjetForm" class="normal-form">
+    <mat-grid-list cols="2" rorHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
+           
+                <mat-form-field>
+                    <input formControlName="nomProjet" [(ngModel)]="projet.nomProjet" matInput placeholder="Nom du Projet">
+                    <mat-error>Le nom du projet est obligatoire.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea class="textarea" formControlName="description"  [(ngModel)]="projet.description" matInput  placeholder="Description"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="zoneRealisation"  [(ngModel)]="projet.zoneRealisation" matInput placeholder="Lieu de réalisation du projet">
+            </mat-form-field>
+            
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+             <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="debutProjet"  [(ngModel)]="projet.debutProjet" matInput [matDatepicker]="picker1" placeholder="Date de debut du projet">
+                    <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="finProjet"  [(ngModel)]="projet.finProjet" matInput [matDatepicker]="picker2" placeholder="Date de fin du projet">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 ></mat-datepicker>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" (click)="addProjet()"
+                    [disabled]="ajoutProjetForm.invalid">Ajouter</button>
+                    <button mat-raised-button color="warn" type="submit" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

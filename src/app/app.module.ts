@@ -1,20 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material/material.module";
+import { ProjetService } from "./services/projet.service";
+import { ReactiveFormsModule } from "@angular/forms";
 import { AjoutUtilisateurComponent } from './Utilisateur/ajout-utilisateur/ajout-utilisateur.component';
 import { UtilisateurService } from './services/utilisateur.service';
 import { ProfessionService } from './services/profession.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms'
 import { AddRoleComponent } from './Role/add-role/add-role.component'
 import { RoleService } from './services/role.service';
-import { HttpClientModule } from '@angular/common/http';
+
 import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
+import { AjoutProjetComponent } from './Projet/ajout-projet/ajout-projet.component';
 import { ListeUtilisateurComponent } from './Utilisateur/liste-utilisateur/liste-utilisateur.component';
 import { UpdateUtilisateurComponent } from './Utilisateur/update-utilisateur/update-utilisateur.component';
 import { DetailUtilisateurComponent } from './Utilisateur/detail-utilisateur/detail-utilisateur.component';
@@ -26,6 +29,7 @@ import { UpdateProfessionComponent } from './Profession/update-profession/update
 const appRoutes:Routes =[
  
 ];
+
 
 @NgModule({
   declarations: [
@@ -47,11 +51,12 @@ const appRoutes:Routes =[
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+
   ],
   providers: [UtilisateurService,RoleService, ProfessionService],
   bootstrap: [AppComponent],

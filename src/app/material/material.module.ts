@@ -7,6 +7,12 @@ import { MatButtonModule,
   MatOptionModule,
   MatFormFieldModule,
   MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule ,
+  MatSidenavModule,
+  MatListModule,
+  MatDividerModule,
+  MatExpansionModule,
   
   MatCardModule
  } from '@angular/material';
@@ -27,7 +33,14 @@ const material = [
   MatOptionModule,
   MatGridListModule,
   MatCheckboxModule,
-  MatCardModule
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatListModule,
+  MatExpansionModule,
+  MatDividerModule,
+  MatDialogModule
 ];
 @NgModule({
   imports: [
