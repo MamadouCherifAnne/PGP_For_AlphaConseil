@@ -1,1 +1,42 @@
-<p>add-tache works!</p>
+<form [formGroup]="ajoutTacheForm" class="normal-form">
+    <mat-grid-list cols="2" rorHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
+           
+                <mat-form-field>
+                    <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom de la tache">
+                    <mat-error></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput placeholder="Charge de la tache">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="niveauPriorite"  [(ngModel)]="tache.niveauPriorite" matInput placeholder="niveau de priorité">
+                </mat-form-field>
+                
+                <label class="example-margin">Lavencement de la tache:</label>
+                <mat-slider class="example-margin" formControlName="tauxAvancement" [(ngModel)]="bufferValue"></mat-slider>   
+                
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+             <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
+                    <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="finTache"  [(ngModel)]="tache.finTache" matInput [matDatepicker]="picker2" placeholder="Date de fin de la tache">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 ></mat-datepicker>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" (click)="ajoutTache()"
+                    >Ajouter</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+b 

@@ -13,7 +13,8 @@ import { MatButtonModule,
   MatListModule,
   MatDividerModule,
   MatExpansionModule,
-  
+  MatProgressBarModule,
+  MatSliderModule,
   MatCardModule
  } from '@angular/material';
  import { MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
@@ -40,7 +41,9 @@ const material = [
   MatListModule,
   MatExpansionModule,
   MatDividerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressBarModule,
+  MatSliderModule
 ];
 @NgModule({
   imports: [

@@ -18,6 +18,13 @@ export class ProjetService {
     return this.http.get<IProjet[]>("http://localhost:8080/projet/findAll");
   }
 
+  public getById(idProjet){
+    return this.http.get("http://localhost:8080/projet/findById/"+idProjet);
+  }
+
+  public update(projet, idProjet){
+    return this.http.post("http://localhost:8080/projet/update"+idProjet,projet, {'responseType': 'text'});
+  }
   public delete(){
     return this.http.delete("");
   }

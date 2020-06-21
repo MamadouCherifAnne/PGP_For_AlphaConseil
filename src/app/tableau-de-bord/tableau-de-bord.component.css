@@ -6,7 +6,7 @@ mat-sidenav-container {
 mat-sidenav{
     height: 100%;
     padding: 16px;
-    width: 300px;
+    width: 250px;
     background-color: #F8F8FF;
 }
 
