@@ -9,20 +9,21 @@ import { MatButtonModule,
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule ,
+  MatRadioModule,
   MatSidenavModule,
   MatListModule,
   MatDividerModule,
   MatExpansionModule,
   MatProgressBarModule,
   MatSliderModule,
-  MatCardModule
- } from '@angular/material';
- import { MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+  MatCardModule,
+  MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
 
 
 
 
 const material = [
+  MatRadioModule,
   MatButtonModule,
   MatToolbarModule,
   MatInputModule,
@@ -43,7 +44,8 @@ const material = [
   MatDividerModule,
   MatDialogModule,
   MatProgressBarModule,
-  MatSliderModule
+  MatSliderModule,
+  MatCheckboxModule
 ];
 @NgModule({
   imports: [

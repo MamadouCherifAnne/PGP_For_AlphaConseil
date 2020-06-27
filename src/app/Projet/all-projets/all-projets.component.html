@@ -1,5 +1,5 @@
 <div class="container">
-<div >
+<div>
 <h3>Mes projets</h3>
 <button class="btn btn-success thebt" (click)="onCreate()">Ajouter un projet</button>
 </div>
@@ -9,21 +9,26 @@
 <div class="container">
     <div class="row" *ngFor="let projet of projets">
         <div class="col">
-            <div class="card" class="card">
+            <div class="card horizontal" >
                 <div class="card-body">
+                    <div class="thebt">
+                        <button mat-icon-button (click)="edit(projet)"><mat-icon>launch</mat-icon></button>
+                        <button  mat-icon-button (click)="delete(projet.numProjet)"><mat-icon>delete_outline</mat-icon></button>
+                    </div>
+                <div>
                 <h5 class="card-title" >{{projet.nomProjet}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Panel subtitle</h6>
+                </div>
+                <h6 class="card-subtitle mb-2 text-muted">Entreprise name ici</h6>
                 <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-                <a href="#!" class="card-link">Card link</a>
-                <a href="#!" class="card-link">Another link</a>
-                <button (click)="onSelect(projet)">click</button>
+                
+                <button (click)="onSelect(projet)">Voir Detail</button>
                 </div>
             </div>
             <br>     
         </div>
     </div>
 </div>
-
+<router-outlet></router-outlet>
 
 <!--<div class="separe">
     <h3>Mes projets</h3>
