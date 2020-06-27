@@ -1,7 +1,11 @@
+<div class="container">
+    <div class="row">
+    <span>Ajout d'Utilisateurs</span>
+</div>
+</div>
 
-
-    <form [formGroup]="addUserForm" class="mon-form"  >
-        <mat-grid-list cols="2" rowHeight="300px">
+    <form [formGroup]="addUserForm" class="normal-form"  >
+        <mat-grid-list cols="2" rowHeight="195px">
             <mat-grid-tile>
                 <div class="controles-container">
                     <mat-form-field>
@@ -49,6 +53,10 @@
                   
                 
             </mat-form-field>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
                 <mat-form-field>
                     <mat-select formControlName="role" [(ngModel)]="idRol" matInput placeholder="Role">
                         <ng-container *ngFor="let rol of roles">
@@ -59,13 +67,15 @@
                         
                     </mat-select>
                 </mat-form-field>
-                <div class="button-row">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="addUserForm.invalid" (click)="addNewUser()">Submit</button>
-                </div>
-
             </div>
+
+            
         </mat-grid-tile>
 
     </mat-grid-list>
+    <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="addUserForm.invalid" (click)="addNewUser()">Submit</button>
+        <button mat-raised-button  type="submit" (click)="onFermer()">Annuler</button>
+    </div>
     </form>
     

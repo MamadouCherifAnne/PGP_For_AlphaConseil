@@ -8,7 +8,7 @@
         
           
        <button mat-raised-button color="primary" (click)="goToAddUser()"> Nouveau utilisateurs</button>
-<mat-table [dataSource]="users" class="mat-elevation-z8">
+<mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="username" >
     <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>

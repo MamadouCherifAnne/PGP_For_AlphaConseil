@@ -23,7 +23,8 @@ export class UpdateUtilisateurComponent implements OnInit {
   ;
   idRol:IRole;
   updatingUser:any;
-  professions: IProfession[]
+  professions: IProfession[];
+  roles:any;
   idProfession:IProfession[];
   updateUserForm: FormGroup;
   message:any;
@@ -36,7 +37,9 @@ export class UpdateUtilisateurComponent implements OnInit {
       }
 
   ngOnInit() {
-    // get User
+    // get roles
+    this.roleService.getRoles()
+      .subscribe((data)=> this.roles=data);
     
 
     this.professionService.getProfession()
@@ -80,6 +83,7 @@ public userUpdate(){
   this.user.role = this.updatingUser.user.role;
   this.user.ptojet=null
   this.user.professions=this.updateUserForm.get("profession").value
+  this.user.role=this.updateUserForm.get("role").value
   
   let res=this.userService.updateUser(this.user,id);
   res.subscribe((data)=>this.message=data);
@@ -102,7 +106,7 @@ public chargerFormulaire(){
   this.updateUserForm.get("telephone").setValue(this.updatingUser.user.telephone);
   this.updateUserForm.get("adresse").setValue(this.updatingUser.user.adresse);
   this.updateUserForm.get("profession").setValue(this.updatingUser.user.professions);
-  this.updateUserForm.get("role").setValue(this.updatingUser.user.role);
+  this.updateUserForm.get("role").setValue(this.updatingUser.user.role) ;
 
 }
 

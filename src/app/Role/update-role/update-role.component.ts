@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { RoleService } from 'src/app/services/role.service';
 import { Role } from '../Role';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {MatDialogRef} from '@angular/material'
+import {MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog'
 
 @Component({
   selector: 'app-update-role',
@@ -16,6 +17,7 @@ export class UpdateRoleComponent implements OnInit {
   roles: any;
   message:any;
   constructor(private roleService:RoleService, private formBuilder:FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public fenetreRef:MatDialogRef<UpdateRoleComponent>) { }
 
   ngOnInit() {
@@ -28,8 +30,8 @@ export class UpdateRoleComponent implements OnInit {
     
 
     this.role.role=this.updateForm.get('role').value;
-
-     this.roleService.updateRole(this.role.role)
+    let idRole =Number.parseFloat(this.data.role.idRole);
+     this.roleService.updateRole(this.role,idRole)
     .subscribe((data)=>this.message=data);
     this.onFermer();
   }
