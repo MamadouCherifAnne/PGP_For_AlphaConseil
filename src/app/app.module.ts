@@ -11,9 +11,13 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AjoutUtilisateurComponent } from './Utilisateur/ajout-utilisateur/ajout-utilisateur.component';
 import { UtilisateurService } from './services/utilisateur.service';
 import { ProfessionService } from './services/profession.service';
+
 import {FormsModule} from '@angular/forms'
-import { AddRoleComponent } from './Role/add-role/add-role.component'
+import { AddRoleComponent } from './Role/add-role/add-role.component';
+
 import { RoleService } from './services/role.service';
+import {  PhaseService } from './services/phase.service';
+import {TacheService} from './services/tache.service';
 import { Routes, RouterModule } from '@angular/router';
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { AjoutProjetComponent } from './Projet/ajout-projet/ajout-projet.component';
@@ -28,9 +32,11 @@ import { TableauDeBordComponent } from './tableau-de-bord/tableau-de-bord.compon
 import { AddTacheComponent } from './Tache/add-tache/add-tache.component';
 import { AjoutPhaseComponent } from './Phase/ajout-phase/ajout-phase.component';
 
-const appRoutes:Routes =[
- 
-];
+import { ResumeProjetComponent } from './projet/resume-projet/resume-projet.component';
+import { EnsembleVueProjetComponent } from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
+import { EditProjetComponent } from './Projet/edit-projet/edit-projet.component';
+import { AllProjetsComponent } from './Projet/all-projets/all-projets.component';
+
 
 
 @NgModule({
@@ -47,12 +53,16 @@ const appRoutes:Routes =[
     UpdateRoleComponent,
     ListeProfessionComponent,
     UpdateProfessionComponent,
+    AllProjetsComponent,
+    AjoutProjetComponent,
+
     TableauDeBordComponent,
     AddTacheComponent,
     AjoutPhaseComponent,
-    
-    
-    
+    ResumeProjetComponent,
+    EnsembleVueProjetComponent,
+    EditProjetComponent
+
   ],
   imports: [
     BrowserModule,
@@ -62,15 +72,20 @@ const appRoutes:Routes =[
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-
   ],
-  providers: [UtilisateurService,RoleService, ProfessionService],
+
+  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService],
   bootstrap: [AppComponent],
   entryComponents: [AjoutUtilisateurComponent,UpdateUtilisateurComponent,
     AddRoleComponent,
     AddProfessionComponent,
     AjoutPhaseComponent,
     UpdateProfessionComponent,
-    UpdateRoleComponent]
+
+    AjoutProjetComponent,
+    AjoutPhaseComponent,
+    AddTacheComponent,
+    EditProjetComponent,
+    UpdateRoleComponent],
 })
 export class AppModule { }

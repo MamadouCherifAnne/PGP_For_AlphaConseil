@@ -9,6 +9,10 @@ import { UpdateUtilisateurComponent } from './Utilisateur/update-utilisateur/upd
 import { AddProfessionComponent } from './Profession/add-profession/add-profession.component';
 import { ListeProfessionComponent } from './Profession/liste-profession/liste-profession.component';
 
+import {AllProjetsComponent} from './Projet/all-projets/all-projets.component';
+import {AjoutPhaseComponent} from './Phase/ajout-phase/ajout-phase.component';
+import {EnsembleVueProjetComponent} from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
+
 
 
 const routes: Routes = [
@@ -17,8 +21,12 @@ const routes: Routes = [
     {path: 'update',component: UpdateUtilisateurComponent}
   ]},
   {path:'role', component:ListeRoleComponent},
-  {path:'profession', component:ListeProfessionComponent}
-  
+
+  {path:'profession', component:ListeProfessionComponent},
+
+  {path: 'projet', component: AllProjetsComponent},
+  {path: 'projet/:id', component: EnsembleVueProjetComponent}
+
 ];
 
 @NgModule({

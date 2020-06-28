@@ -9,28 +9,33 @@ import { IProjet } from "../Projet/IProjet";
 export class ProjetService {
 
   constructor(private http: HttpClient) { }
-
+  //...............................................................................................
   public add(projet){
     return this.http.post("http://localhost:8080/projet/add", projet, {'responseType': 'text'});
   }
 
+  //...............................................................................................
   public getAllProjet(): Observable<IProjet[]>{
     return this.http.get<IProjet[]>("http://localhost:8080/projet/findAll");
   }
-
+//...............................................................................................
   public getById(idProjet){
     return this.http.get("http://localhost:8080/projet/findById/"+idProjet);
   }
-
+//...............................................................................................
   public update(projet, idProjet){
-    return this.http.post("http://localhost:8080/projet/update"+idProjet,projet, {'responseType': 'text'});
+    return this.http.post("http://localhost:8080/projet/update/"+idProjet,projet, {'responseType': 'text'});
   }
-  public delete(){
-    return this.http.delete("");
+//...............................................................................................
+  public delete(idProjet){
+    return this.http.delete("http://localhost:8080/projet/delete/"+idProjet,{'responseType': 'text'});
   }
-
+//...............................................................................................
   public getByDateDebut(){
-    return this.http.get("");
+    return this.http.get(""); 
   }
-
+//................................................................................................
+  public AllphaseDeProjet(idProjet){
+    return this.http.get("http://localhost:8080/projet/AllphaseDeProjet/"+idProjet);
+  }
 }

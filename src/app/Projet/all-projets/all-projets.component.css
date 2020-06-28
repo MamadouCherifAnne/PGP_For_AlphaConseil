@@ -3,6 +3,9 @@
     width: 25%;
 }
 
+h3{
+    padding: 10px;;
+}
 li .borderless {
     border-top: 0 none;
     border-bottom: 0 none;

@@ -18,3 +18,7 @@ textarea .textarea{
 .button-row button{
     margin: 5px;
 }
+
+.btnFermer{
+    float: right;
+}

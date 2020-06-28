@@ -10,17 +10,35 @@
                 <mat-form-field>
                     <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput placeholder="Charge de la tache">
                 </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="niveauPriorite"  [(ngModel)]="tache.niveauPriorite" matInput placeholder="niveau de priorité">
-                </mat-form-field>
                 
-                <label class="example-margin">Lavencement de la tache:</label>
-                <mat-slider class="example-margin" formControlName="tauxAvancement" [(ngModel)]="bufferValue"></mat-slider>   
+                <label id="matgp"> Niveau de priorité: </label>
+                <mat-radio-group class="matgp" aria-labelledby="matgp" formControlName="niveauPriorite" [(ngModel)]="tache.niveauPriorite"> 
+                     <mat-radio-button value="Faible">Faible</mat-radio-button>
+                     <mat-radio-button value="Moyen">Moyen</mat-radio-button>
+                     <mat-radio-button value="Fort">Fort</mat-radio-button>
+                </mat-radio-group>
+
+                <label id="matgp">Avencement de la tache:</label>
+                <mat-slider 
+                aria-labelledby="matgp"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="100"
+                min="1"
+                max="100" formControlName="tauxAvancement" [(ngModel)]="tache.tauxAvancement"></mat-slider>   
                 
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
              <div class="controles-container">
+                <mat-form-field>
+                    <mat-label>Ajouter une Phase</mat-label>
+                    <mat-select formControlName="phase" [(ngModel)]="tache.phase" >
+                        <ng-container *ngFor="let phase of allPhases">
+                        <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
+                        </ng-container> 
+                    </mat-select>  
+                </mat-form-field>
                 <mat-form-field>
                     <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
                     <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
@@ -39,4 +57,3 @@
         </mat-grid-tile>
     </mat-grid-list>
 </form>
-b 
