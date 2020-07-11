@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http'
 import { IUtilisateur } from '../Utilisateur/IUtilisateur';
 import { Observable } from 'rxjs';
+import { ITache } from '../Tache/ITache';
 
 
 @Injectable({
@@ -35,5 +36,14 @@ export class UtilisateurService {
   // find user by name
   public getUserByIdUser(idUser): Observable<void> {
     return this.http.get<void>("http://localhost:8080/utilisateur/findUser/"+idUser);
+  }
+
+  // Affecter un utilisateur a une tache
+  public affectToTask(userAffect){
+    return this.http.post("http://localhost:8080/affectation/add/",userAffect,{responseType:'text'})
+  }
+  // Afficher toutes les taches a realise de l'utilisateur
+  public getTaskToRealise(idUser): Observable<any>{
+  return this.http.get("http://localhost:8080/utilisateur/tacheToRealise/"+idUser);
   }
 }

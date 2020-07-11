@@ -1,5 +1,6 @@
-export class Tache{
-	nomTache: String;
+export interface ITache{
+	numTache:number;
+    nomTache: String;
 	debutTache: Date;
 	finTache: Date;
 	tauxAvancement: number;
@@ -11,5 +12,5 @@ export class Tache{
 	depenses: object;
 	fichiers: object;
 	tachePrecedente:object;
-	
+	ressources:number[]
 }

@@ -12,14 +12,20 @@ import { ListeProfessionComponent } from './Profession/liste-profession/liste-pr
 import {AllProjetsComponent} from './Projet/all-projets/all-projets.component';
 import {AjoutPhaseComponent} from './Phase/ajout-phase/ajout-phase.component';
 import {EnsembleVueProjetComponent} from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
+import { DetailUtilisateurComponent } from './Utilisateur/detail-utilisateur/detail-utilisateur.component';
+import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
+import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
 
 
 const routes: Routes = [
-  {path: 'utilisateur', component: ListeUtilisateurComponent, children:[
-    {path: 'add', component: AjoutUtilisateurComponent},
-    {path: 'update',component: UpdateUtilisateurComponent}
-  ]},
+  {path: 'utilisateur', component: ListeUtilisateurComponent},
+  {path: 'add', component: AjoutUtilisateurComponent},
+  {path: 'update',component: UpdateUtilisateurComponent},
+  
+
+  {path: 'utilisateur/affect', component: AffectationUserComponent},
+  {path: 'utilisateur/gantt/:iduser', component: UtilisateurGanttComponent},
   {path:'role', component:ListeRoleComponent},
 
   {path:'profession', component:ListeProfessionComponent},

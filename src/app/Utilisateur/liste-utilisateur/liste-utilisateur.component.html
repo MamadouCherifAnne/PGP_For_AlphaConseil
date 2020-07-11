@@ -17,13 +17,13 @@
 
     
 
-    <!-- Weight Column -->
+    <!-- Prenom -->
     <ng-container matColumnDef="prenom">
     <mat-header-cell *matHeaderCellDef> Prenom </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.prenom}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!--EMAIL -->
     <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
@@ -54,12 +54,26 @@
     <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
-            <button mat-raised-button color="primary" (click)="goToUpdateUser(element)"> 
-            <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
-        </button>
-       <button (click)="deleteUser(element.idUser)">
-            <mat-icon  color="warn" aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
-        </button> 
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+
+              <mat-menu #menu="matMenu">
+
+                <button mat-menu-item color="primary" (click)="goToUpdateUser(element)"> 
+                    Modifier 
+                </button>
+               <button  mat-menu-item (click)="deleteUser(element.idUser)">
+                    <span>Supprimer</span>
+                </button> 
+                <!-- Gantt Utilisateur -->
+                <button  mat-menu-item (click)="goToGanttUser(element.idUser)">
+                    <span>voir Gantt</span>
+                </button> 
+
+              </mat-menu>
+
+          
          </mat-cell>
     </ng-container>
 

@@ -17,7 +17,7 @@ import { MatButtonModule,
   MatProgressBarModule,
   MatSliderModule,
   MatCardModule,
-  MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+  MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule} from '@angular/material';
 
 
 
@@ -45,7 +45,8 @@ const material = [
   MatDialogModule,
   MatProgressBarModule,
   MatSliderModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatMenuModule
 ];
 @NgModule({
   imports: [
