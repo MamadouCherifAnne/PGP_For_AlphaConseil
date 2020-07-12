@@ -17,9 +17,13 @@ import { MatButtonModule,
   MatProgressBarModule,
   MatSliderModule,
   MatCardModule,
+<<<<<<< HEAD
   MatMenuModule,
   MatTabsModule,
   MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+=======
+  MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule} from '@angular/material';
+>>>>>>> 1ce35799d665e0b69d64707b5208a3a024c13fad
 
 
 
@@ -49,7 +53,8 @@ const material = [
   MatDialogModule,
   MatProgressBarModule,
   MatSliderModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatMenuModule
 ];
 @NgModule({
   imports: [

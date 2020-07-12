@@ -36,6 +36,13 @@ import { ResumeProjetComponent } from './projet/resume-projet/resume-projet.comp
 import { EnsembleVueProjetComponent } from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
 import { EditProjetComponent } from './Projet/edit-projet/edit-projet.component';
 import { AllProjetsComponent } from './Projet/all-projets/all-projets.component';
+import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
+// Importation de la librairies de visualisation du diagramm de Gantt
+import {GanttModule} from '@syncfusion/ej2-angular-gantt';
+
+import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
+
+
 
 
 
@@ -61,7 +68,10 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
     AjoutPhaseComponent,
     ResumeProjetComponent,
     EnsembleVueProjetComponent,
-    EditProjetComponent
+    EditProjetComponent,
+    AffectationUserComponent,
+    
+    UtilisateurGanttComponent
 
   ],
   imports: [
@@ -72,6 +82,7 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    GanttModule
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService],

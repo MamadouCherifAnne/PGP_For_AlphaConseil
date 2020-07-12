@@ -51,4 +51,6 @@ export class AllProjetsComponent implements OnInit {
   onSelect(projet){
     this.router.navigate(["/projet", projet.numProjet]);
   }
+
+
 }

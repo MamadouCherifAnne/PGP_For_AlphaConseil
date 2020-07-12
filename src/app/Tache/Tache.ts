@@ -9,8 +9,15 @@ export class Tache{
 	duree : number;
 	phase: object;
 	facture: object;
+<<<<<<< HEAD
 	depenses: object[];
 	fichiers: object[];
 	//..................
 	predecesseurs: object[];
+=======
+	depenses: object;
+	fichiers: object;
+	tachePrecedente:object;
+	
+>>>>>>> 1ce35799d665e0b69d64707b5208a3a024c13fad
 }

@@ -5,59 +5,7 @@ mat-sidenav-container{
 mat-sidenav, mat-sidenav-content{
     padding: 16px;
 }
-mat-sidenav-container {
-    height: 100%;
-}
-
 
 mat-sidenav{
-    height: 100%;
-    width: 250px;
+    width: 300px;
 }
-
-mat-menu{
-    display: inline;
-    .ajoutPhase{
-        float: right;
-    }
-    
-}
-
-.mat-menu-item {
-    width: unset;
-    height: unset;
-    line-height: unset;
-    padding: 0 10px;
-    float: left;
-  }
-
-div{
-    max-height: 100px;
-    height: 80%;
-    border-bottom: 1px solid #ccc;
- }
-span{
-    margin-left: 25px; 
-}
-
-ul li{
-    font-size: 15px;
-    margin: 2em;
-    text-decoration: none;
-   
-}
-
-li a{
-    color: #A9A9A9;
-    text-decoration: none;
-}
-
-.ligne2{
-    text-decoration: none;
-}
-
-.btnAjout{
-    display: inline-flex;
-    float: left;
-}
-

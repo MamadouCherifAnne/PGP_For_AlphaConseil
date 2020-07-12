@@ -1,0 +1,141 @@
+<mat-accordion class="example-headers-align">
+  <form [formGroup]="ajoutTacheForm" class="normal-form">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Information de la tache
+      </mat-panel-title>
+      <mat-panel-description>
+        Entrer les information sous dessous
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="2" rorHeight="100px">
+      <mat-grid-tile>
+          <div class="controles-container">
+    <mat-form-field>
+      <input formControlName="nomTache" matInput placeholder="Nom de la tache">
+      <mat-error></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="chargeTache"  matInput placeholder="Charge de la tache">
+</mat-form-field>
+<label id="matgp"> Niveau de priorité: </label>
+                <mat-radio-group class="matgp" aria-labelledby="matgp" formControlName="niveauPriorite" [(ngModel)]="tache.niveauPriorite"> 
+                     <mat-radio-button value="Faible">Faible</mat-radio-button>
+                     <mat-radio-button value="Moyen">Moyen</mat-radio-button>
+                     <mat-radio-button value="Fort">Fort</mat-radio-button>
+                </mat-radio-group>
+
+                <label id="matgp">Avencement de la tache:</label>
+                <mat-slider 
+                aria-labelledby="matgp"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="100"
+                min="1"
+                max="100" formControlName="tauxAvancement" [(ngModel)]="tache.tauxAvancement"></mat-slider>  
+
+          </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+    <!-- Information sur le Deroulement-------------------------------------------------------------- -->
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Deroulement de la tache
+        </mat-panel-title>
+        <mat-panel-description>
+          Renseigner  les dates debut et fin de la tache
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="2" rorHeight="100px">
+      <mat-grid-tile>
+        <div class="controles-container">
+           <mat-form-field>
+               <mat-label>Ajouter une Phase</mat-label>
+               <mat-select formControlName="phase" [(ngModel)]="tache.phase" >
+                   <ng-container *ngFor="let phase of allPhases">
+                   <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
+                   </ng-container> 
+               </mat-select>  
+           </mat-form-field>
+           <mat-form-field>
+               <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
+               <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+               <mat-datepicker #picker1 ></mat-datepicker>
+           </mat-form-field>
+           <mat-form-field>
+               <input formControlName="finTache"  [(ngModel)]="tache.finTache" matInput [matDatepicker]="picker2" placeholder="Date de fin de la tache">
+               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+               <mat-datepicker #picker2 ></mat-datepicker>
+           </mat-form-field>
+
+           <mat-form-field>
+            <mat-label>Tache Precedente</mat-label>
+            <mat-select formControlName="ressources"  >
+                <ng-container *ngFor="let user of allUsers">
+                <mat-option  [value]="user.idUser">{{user.nom}}</mat-option>
+                </ng-container> 
+            </mat-select>  
+        </mat-form-field>
+       </div>
+   </mat-grid-tile>
+      </mat-grid-list>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="ajoutTache()">sauvegarder</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+
+    <!--   fin de la section --------------------------------------------------------------- -->
+    <!--  les Ressources concerne --------------------------------------------------------- -->
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Ressources concerne par la tache
+        </mat-panel-title>
+        <mat-panel-description>
+          Renseigner  les utilisateurs amene a realiser cette tache
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="2" rorHeight="100px">
+      <mat-grid-tile>
+        <div class="controles-container">
+
+          <mat-form-field>
+            <mat-label>Ajouter une ressource</mat-label>
+            <mat-select formControlName="ressources"  >
+                <ng-container *ngFor="let user of allUsers">
+                <mat-option  [value]="user.idUser">{{user.nom}}</mat-option>
+                </ng-container> 
+            </mat-select>  
+        </mat-form-field>
+
+        <mat-form-field>
+          <input formControlName="tempsPasser"  matInput placeholder="Temps a passer">
+      </mat-form-field>
+
+        </div>
+      </mat-grid-tile>
+      </mat-grid-list> 
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="affecterRessource()">sauvegarder</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!--  Fin de la Section   -->
+
+
+</form>
+</mat-accordion>
+{{message}}

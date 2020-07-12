@@ -75,4 +75,9 @@ export class ListeUtilisateurComponent implements OnInit {
       this.userDataSource.data=allUsers;
     })
   }
+
+  // Aller sur le Gantt de l'utilisateur
+  goToGanttUser(user){
+    this.router.navigate(["/utilisateur/gantt", user]);
+  }
 }
