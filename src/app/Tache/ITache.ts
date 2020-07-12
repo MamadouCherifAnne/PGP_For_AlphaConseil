@@ -1,4 +1,4 @@
-export class Tache{
+export interface ITache{
 	nomTache: String;
 	description : String;
 	debutTache: Date;
@@ -9,7 +9,7 @@ export class Tache{
 	duree : number;
 	phase: object;
 	facture: object;
-	depenses: object[];
+	depenses: object[ ];
 	fichiers: object[];
 	//..................
 	predecesseurs: object[];

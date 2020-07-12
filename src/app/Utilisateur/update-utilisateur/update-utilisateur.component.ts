@@ -14,7 +14,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-update-utilisateur',
   templateUrl: './update-utilisateur.component.html',
-  styleUrls: ['./update-utilisateur.component.css']
+  styleUrls: ['./update-utilisateur.component.scss']
 })
 export class UpdateUtilisateurComponent implements OnInit {
 

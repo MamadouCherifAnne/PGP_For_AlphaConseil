@@ -1,15 +1,16 @@
 <div class="container">
-<div>
-<h3>Mes projets</h3>
-<button class="btn btn-success thebt" (click)="onCreate()">Ajouter un projet</button>
+
+<div class="headline">
+<h2>Mes projets</h2>
+<p><button class="btn btn-success" (click)="onCreate()">Ajouter un projet</button></p>
 </div>
 <br>
 <br>
 <hr>
 <div class="container">
-    <div class="row" *ngFor="let projet of projets">
-        <div class="col">
-            <div class="card horizontal" >
+    <div class="row" >
+        <div class="col-3 card"  *ngFor="let projet of projets">
+           
                 <div class="card-body">
                     <div class="thebt">
                         <button mat-icon-button (click)="edit(projet)"><mat-icon>launch</mat-icon></button>
@@ -23,33 +24,12 @@
                 
                 <button (click)="onSelect(projet)">Voir Detail</button>
                 </div>
-            </div>
-            <br>     
+              
         </div>
     </div>
+    <br>
 </div>
 <router-outlet></router-outlet>
-
-<!--<div class="separe">
-    <h3>Mes projets</h3>
-    <button class="btn btn-success thebt">Ajouter un projet</button>
-    </div>
-    <br>
-    <ul class="list-group">
-        <li class="list-group-item border-top-0 border-bottom-0"  *ngFor="let projet of projets">
-            <div class="card" class="card">
-                <div class="card-body">
-                <h5 class="card-title">{{projet.nomProjet}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Panel subtitle</h6>
-                <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-                <a href="#!" class="card-link">Card link</a>
-                <a href="#!" class="card-link">Another link</a>
-                </div>
-            </div>
-                
-        </li>
-    </ul> -->
-
 
 
 

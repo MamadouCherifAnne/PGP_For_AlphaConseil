@@ -17,6 +17,8 @@ import { MatButtonModule,
   MatProgressBarModule,
   MatSliderModule,
   MatCardModule,
+  MatMenuModule,
+  MatTabsModule,
   MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
 
 
@@ -24,6 +26,8 @@ import { MatButtonModule,
 
 const material = [
   MatRadioModule,
+  MatMenuModule,
+  MatTabsModule,
   MatButtonModule,
   MatToolbarModule,
   MatInputModule,

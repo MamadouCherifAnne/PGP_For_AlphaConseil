@@ -8,7 +8,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog'
 @Component({
   selector: 'app-update-role',
   templateUrl: './update-role.component.html',
-  styleUrls: ['./update-role.component.css']
+  styleUrls: ['./update-role.component.scss']
 })
 export class UpdateRoleComponent implements OnInit {
   

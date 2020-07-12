@@ -1,4 +1,43 @@
+<br>
+<div class="container-fluid bordure">
+    <h3 *ngIf=projet >      
+        <span>{{nomProjet()}}</span>
+    </h3>
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <a href="#">Tout le Projet</a></li>
+        <li class="list-inline-item">
+            <a  href="#">Taches</a></li>
+        <li class="list-inline-item">
+            <a  href="#">Fichiers</a></li>
+        <li class="list-inline-item">
+            <a  href="#">Commentaires</a></li>
+        <li class="list-inline-item">
+            <a  href="#"> Riques</a></li>
+        <li class="list-inline-item">
+            <a  href="#">Fichiers </a></li>
+        <li class="list-inline-item">
+            <a  href="#">Utilisateurs</a></li>
+    </ul>
+</div>
+<br>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
 
-<button class="btn btn-danger"  (click)="onAjoutPhase()">Ajout Phase</button>
-<button class="btn btn-success" (click)="onAjoutTahce()">Ajout tache </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        
+        <h3>Vue d'ensemble</h3>
+     
+        <p style="float: right;"><button class="btn btn-success btnAjout" mat-button [matMenuTriggerFor]="menu" >
+            <mat-icon>add</mat-icon>Ajouter
+        </button></p> 
+          <mat-menu #menu="matMenu">
+                <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajout Phase</button>
+                <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajout tache </button>
+        </mat-menu>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+  
 

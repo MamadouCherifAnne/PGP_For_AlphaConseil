@@ -7,7 +7,7 @@ import { UpdateProfessionComponent } from '../update-profession/update-professio
 @Component({
   selector: 'app-liste-profession',
   templateUrl: './liste-profession.component.html',
-  styleUrls: ['./liste-profession.component.css']
+  styleUrls: ['./liste-profession.component.scss']
 })
 export class ListeProfessionComponent implements OnInit {
 

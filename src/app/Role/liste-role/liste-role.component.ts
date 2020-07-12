@@ -9,7 +9,7 @@ import { UpdateRoleComponent } from '../update-role/update-role.component';
 @Component({
   selector: 'app-liste-role',
   templateUrl: './liste-role.component.html',
-  styleUrls: ['./liste-role.component.css']
+  styleUrls: ['./liste-role.component.scss']
 })
 export class ListeRoleComponent implements OnInit {
   displayedColumns: string [] = ['numRole', 'role', 'Action'];

@@ -1,6 +1,13 @@
+
+.li{
+   
+    float: right;;
+}
+
+
 .spacer{
     align-self: right;
     flex: 1 1 auto;
     float: right;
+    display: flex;
 }
-

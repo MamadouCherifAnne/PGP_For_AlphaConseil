@@ -12,7 +12,7 @@ import {MatDialogRef} from '@angular/material'
 @Component({
   selector: 'app-ajout-utilisateur',
   templateUrl: './ajout-utilisateur.component.html',
-  styleUrls: ['./ajout-utilisateur.component.css']
+  styleUrls: ['./ajout-utilisateur.component.scss']
 })
 export class AjoutUtilisateurComponent implements OnInit {
    user:Utilisateur = new Utilisateur()

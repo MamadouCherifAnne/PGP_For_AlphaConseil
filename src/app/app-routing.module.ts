@@ -12,10 +12,14 @@ import { ListeProfessionComponent } from './Profession/liste-profession/liste-pr
 import {AllProjetsComponent} from './Projet/all-projets/all-projets.component';
 import {AjoutPhaseComponent} from './Phase/ajout-phase/ajout-phase.component';
 import {EnsembleVueProjetComponent} from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
-
+import {TableauDeBordComponent} from './tableau-de-bord/tableau-de-bord.component';
 
 
 const routes: Routes = [
+  {path : 'tableaudebord', component: TableauDeBordComponent, children:[
+    {path: '', redirectTo: 'projet', pathMatch: 'full'},
+    {path: 'projet', component: AllProjetsComponent},
+  ]},
   {path: 'utilisateur', component: ListeUtilisateurComponent, children:[
     {path: 'add', component: AjoutUtilisateurComponent},
     {path: 'update',component: UpdateUtilisateurComponent}
@@ -24,9 +28,8 @@ const routes: Routes = [
 
   {path:'profession', component:ListeProfessionComponent},
 
-  {path: 'projet', component: AllProjetsComponent},
   {path: 'projet/:id', component: EnsembleVueProjetComponent}
-
+  
 ];
 
 @NgModule({

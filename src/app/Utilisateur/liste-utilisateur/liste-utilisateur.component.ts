@@ -8,7 +8,7 @@ import { UpdateUtilisateurComponent } from '../update-utilisateur/update-utilisa
 @Component({
   selector: 'app-liste-utilisateur',
   templateUrl: './liste-utilisateur.component.html',
-  styleUrls: ['./liste-utilisateur.component.css']
+  styleUrls: ['./liste-utilisateur.component.scss']
 })
 export class ListeUtilisateurComponent implements OnInit {
 

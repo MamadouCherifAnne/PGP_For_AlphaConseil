@@ -9,7 +9,7 @@ import { Projet } from 'src/app/Projet/Projet';
 @Component({
   selector: 'app-ajout-phase',
   templateUrl: './ajout-phase.component.html',
-  styleUrls: ['./ajout-phase.component.css']
+  styleUrls: ['./ajout-phase.component.scss']
 })
 export class AjoutPhaseComponent implements OnInit {
 
