@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-ensemble-vue-projet',
   templateUrl: './ensemble-vue-projet.component.html',
-  styleUrls: ['./ensemble-vue-projet.component.css']
+  styleUrls: ['./ensemble-vue-projet.component.scss']
 })
 export class EnsembleVueProjetComponent implements OnInit {
   projetId: any;

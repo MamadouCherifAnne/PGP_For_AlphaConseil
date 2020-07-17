@@ -41,6 +41,8 @@ import { AffectationUserComponent } from './Utilisateur/affectation-user/affecta
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
 
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
+import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
+import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 
 
 
@@ -70,8 +72,9 @@ import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utili
     EnsembleVueProjetComponent,
     EditProjetComponent,
     AffectationUserComponent,
-    
-    UtilisateurGanttComponent
+    GanttProjectComponent,
+    UtilisateurGanttComponent,
+    AddEntrepriseComponent
 
   ],
   imports: [

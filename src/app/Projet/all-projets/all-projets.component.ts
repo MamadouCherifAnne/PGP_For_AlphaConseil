@@ -8,7 +8,7 @@ import {Router, RouterState} from '@angular/router';
 @Component({
   selector: 'app-all-projets',
   templateUrl: './all-projets.component.html',
-  styleUrls: ['./all-projets.component.css']
+  styleUrls: ['./all-projets.component.scss']
 })
 export class AllProjetsComponent implements OnInit {
   projets : any;

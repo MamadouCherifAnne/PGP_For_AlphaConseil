@@ -11,6 +11,7 @@ export interface ITache{
 	facture: object;
 	depenses: object;
 	fichiers: object;
-	tachePrecedente:object;
-	ressources:number[]
+	tachePrecedente:object[];
+	predecesseur:string
+	ressources:any [];
 }

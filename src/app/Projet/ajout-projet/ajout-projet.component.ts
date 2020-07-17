@@ -7,7 +7,7 @@ import { MatDialogRef, MatDialog } from "@angular/material";
 @Component({
   selector: 'app-ajout-projet',
   templateUrl: './ajout-projet.component.html',
-  styleUrls: ['./ajout-projet.component.css']
+  styleUrls: ['./ajout-projet.component.scss']
 })
 export class AjoutProjetComponent implements OnInit {
   projet: Projet = new Projet();

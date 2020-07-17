@@ -7,7 +7,7 @@ import { ProfessionService } from 'src/app/services/profession.service';
 @Component({
   selector: 'app-add-profession',
   templateUrl: './add-profession.component.html',
-  styleUrls: ['./add-profession.component.css']
+  styleUrls: ['./add-profession.component.scss']
 })
 export class AddProfessionComponent implements OnInit {
   addProfessionForm: FormGroup;

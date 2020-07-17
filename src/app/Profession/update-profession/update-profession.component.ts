@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-update-profession',
   templateUrl: './update-profession.component.html',
-  styleUrls: ['./update-profession.component.css']
+  styleUrls: ['./update-profession.component.scss']
 })
 export class UpdateProfessionComponent implements OnInit {
 

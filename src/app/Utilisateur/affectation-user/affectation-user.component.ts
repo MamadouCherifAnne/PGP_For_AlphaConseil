@@ -12,7 +12,7 @@ import { UtilisateurAffectation } from '../UtilisateurAffectation';
 @Component({
   selector: 'app-affectation-user',
   templateUrl: './affectation-user.component.html',
-  styleUrls: ['./affectation-user.component.css']
+  styleUrls: ['./affectation-user.component.scss']
 })
 export class AffectationUserComponent implements OnInit {
 

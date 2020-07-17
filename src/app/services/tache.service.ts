@@ -20,4 +20,9 @@ export class TacheService {
     public getRessoucesForTask(idTache):Observable<any>{
       return this.http.get("http://localhost:8080/tache/ressourcesForTache/"+idTache)
     }
+    // Recuperer la liste des taches precedents d'une tache ayant de predecesseur
+
+    public getPredecesseurTask(idTache):Observable<any>{
+      return this.http.get<any>("http://localhost:8080/tache/predecesseurs/"+idTache);
+    }
 }

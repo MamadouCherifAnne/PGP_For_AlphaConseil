@@ -7,7 +7,7 @@ import {MatDialogRef} from '@angular/material'
 @Component({
   selector: 'app-add-role',
   templateUrl: './add-role.component.html',
-  styleUrls: ['./add-role.component.css']
+  styleUrls: ['./add-role.component.scss']
 })
 export class AddRoleComponent implements OnInit {
   

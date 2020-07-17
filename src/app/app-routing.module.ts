@@ -15,6 +15,8 @@ import {EnsembleVueProjetComponent} from './Projet/ensemble-vue-projet/ensemble-
 import { DetailUtilisateurComponent } from './Utilisateur/detail-utilisateur/detail-utilisateur.component';
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
+import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
+import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 
 
 
@@ -31,7 +33,12 @@ const routes: Routes = [
   {path:'profession', component:ListeProfessionComponent},
 
   {path: 'projet', component: AllProjetsComponent},
-  {path: 'projet/:id', component: EnsembleVueProjetComponent}
+  {path: 'projet/:id', component: EnsembleVueProjetComponent},
+  {path: 'projet/gantt/:iduser', component: GanttProjectComponent},
+
+
+  // les liens concernant entreprise
+  {path: 'workspace/new', component:AddEntrepriseComponent}
 
 ];
 

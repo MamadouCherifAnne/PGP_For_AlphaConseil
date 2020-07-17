@@ -38,4 +38,9 @@ export class ProjetService {
   public AllphaseDeProjet(idProjet){
     return this.http.get("http://localhost:8080/projet/AllphaseDeProjet/"+idProjet);
   }
+
+  //...............................................................................................
+  public projectAllTasks(idProject):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/projet/projectAllTask/"+idProject);
+  }
 }

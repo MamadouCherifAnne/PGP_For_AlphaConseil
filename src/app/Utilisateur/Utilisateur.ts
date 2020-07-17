@@ -7,11 +7,13 @@ export class Utilisateur{
         prenom:string;
         email:string;
         password:string;
+        confirmPassword:string;
         adresse:string;
         actif:boolean;
         role:object;
         telephone:string;
         ptojet:object;
+        entreprise: object;
         professions:any[];
     
 

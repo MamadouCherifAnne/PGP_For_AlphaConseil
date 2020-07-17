@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-add-tache',
   templateUrl: './add-tache.component.html',
-  styleUrls: ['./add-tache.component.css']
+  styleUrls: ['./add-tache.component.scss']
 })
 export class AddTacheComponent implements OnInit {
   niveauPriorite = {"faible": 'faible', "moyen": 'Moyen', "fort": 'Fort'};

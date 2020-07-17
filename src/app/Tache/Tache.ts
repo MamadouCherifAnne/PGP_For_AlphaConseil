@@ -11,5 +11,6 @@ export class Tache{
 	depenses: object;
 	fichiers: object;
 	tachePrecedente:object;
+	ressources:object[];
 	
 }

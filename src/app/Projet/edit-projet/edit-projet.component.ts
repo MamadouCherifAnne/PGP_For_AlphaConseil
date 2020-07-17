@@ -8,7 +8,7 @@ import { MatDialogRef} from "@angular/material";
 @Component({
   selector: 'app-edit-projet',
   templateUrl: './edit-projet.component.html',
-  styleUrls: ['./edit-projet.component.css']
+  styleUrls: ['./edit-projet.component.scss']
 })
 export class EditProjetComponent implements OnInit {
   editProjetForm: FormGroup;
