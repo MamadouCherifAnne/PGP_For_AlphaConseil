@@ -19,6 +19,7 @@ export class AllProjetsComponent implements OnInit {
   ngOnInit() {
     let resp = this.projetService.getAllProjet();
     resp.subscribe((data)=>this.projets=data);
+    this. refresh();
   }
 
   onCreate(){
@@ -26,7 +27,10 @@ export class AllProjetsComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(AjoutProjetComponent, dialogConfig);
+    this.dialog.open(AjoutProjetComponent, dialogConfig).afterClosed()
+    .subscribe(result => {
+      this.refresh();
+    });
   }
 
 
@@ -36,13 +40,21 @@ export class AllProjetsComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     dialogConfig.data = {projet: element};
-    this.dialog.open(EditProjetComponent, dialogConfig);
+    this.dialog.open(EditProjetComponent, dialogConfig)
+    .afterClosed()
+    .subscribe(result => {
+      this.refresh();
+    });
   }
 
   delete(idProjet){
     if(confirm('Etes vous sur de vouloir supprimer ?')){
       let theValue = this.projetService.delete(idProjet);
-      theValue.subscribe((data)=>this.delateMessage=data); 
+      theValue.subscribe((data)=>{this.delateMessage=data;
+      
+    }); 
+    this.refresh()
+      
     }
     
   }
@@ -52,5 +64,9 @@ export class AllProjetsComponent implements OnInit {
     this.router.navigate(["/projet", projet.numProjet]);
   }
 
+  refresh() {
+    let resp = this.projetService.getAllProjet();
+    resp.subscribe((data)=>this.projets=data);
+  }
 
 }

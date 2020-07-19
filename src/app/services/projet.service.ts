@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { IProjet } from "../Projet/IProjet";
+import { Iphase } from "../Phase/Iphase";
+import { ITache } from '../Tache/ITache';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,8 @@ export class ProjetService {
     return this.http.get<IProjet[]>("http://localhost:8080/projet/findAll");
   }
 //...............................................................................................
-  public getById(idProjet){
-    return this.http.get("http://localhost:8080/projet/findById/"+idProjet);
+  public getById(idProjet): Observable<IProjet[]>{
+    return this.http.get<IProjet[]>("http://localhost:8080/projet/findById/"+idProjet);
   }
 //...............................................................................................
   public update(projet, idProjet){
@@ -35,8 +37,13 @@ export class ProjetService {
     return this.http.get(""); 
   }
 //................................................................................................
-  public AllphaseDeProjet(idProjet){
-    return this.http.get("http://localhost:8080/projet/AllphaseDeProjet/"+idProjet);
+  public AllphaseDeProjet(idProjet): Observable<Iphase[]>{
+    return this.http.get<Iphase[]>("http://localhost:8080/projet/AllphaseDeProjet/"+idProjet);
+  }
+
+//................................................................................................
+  public projectAllTask(idProjet): Observable<ITache[]>{
+    return this.http.get<ITache[]>("http://localhost:8080/projet/projectAllTask/"+idProjet);
   }
 
   //...............................................................................................

@@ -29,6 +29,7 @@ export class GanttProjectComponent implements OnInit {
   taskfield: object;
   projectId:number;
   projet:any;
+  projetName:String;
   personnes:object[]
 
   constructor(private userService:UtilisateurService,
@@ -39,9 +40,10 @@ export class GanttProjectComponent implements OnInit {
 
     ngOnInit(){
       this.projectId = parseInt(this.route.snapshot.paramMap.get('idProjet'));
-      this.projectId=6;
+     // this.projectId=6;
+   
         //recuperation des taches a travers la bdd
-       this.projetService.projectAllTasks(6).subscribe((data)=>{
+       this.projetService.projectAllTasks(this.projectId).subscribe((data)=>{
           if(data){
             
             this.tacheRealisable =data;
@@ -141,5 +143,7 @@ export class GanttProjectComponent implements OnInit {
     gantt.appendTo("#GanttContainer");
   
 }
+
+
 
 }

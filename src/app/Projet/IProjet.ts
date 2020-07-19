@@ -4,7 +4,7 @@ export interface IProjet{
     debutProjet: Date;
     finProjet: Date;
     zoneRealisation: String;
-    risque: Object;
-    phase: Object;
-    responsables: Object;
+    risque: object[];
+    phase: object[];
+    responsables: object[];
 }

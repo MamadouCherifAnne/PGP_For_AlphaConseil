@@ -1,5 +1,6 @@
 export class Tache{
 	nomTache: String;
+	description : String;
 	debutTache: Date;
 	finTache: Date;
 	tauxAvancement: number;
@@ -8,9 +9,13 @@ export class Tache{
 	duree : number;
 	phase: object;
 	facture: object;
-	depenses: object;
-	fichiers: object;
+
+	depenses: object[];
+	fichiers: object[];
+	//..................
+	predecesseurs: object[];
 	tachePrecedente:object;
 	ressources:object[];
 	
+
 }

@@ -43,6 +43,8 @@ import {GanttModule} from '@syncfusion/ej2-angular-gantt';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 
 
@@ -74,7 +76,9 @@ import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entrepri
     AffectationUserComponent,
     GanttProjectComponent,
     UtilisateurGanttComponent,
-    AddEntrepriseComponent
+    AddEntrepriseComponent,
+    AffecterRessourcesComponent,
+    SideNavComponent
 
   ],
   imports: [

@@ -1,6 +1,10 @@
 export interface ITache{
+
+	
+
 	numTache:number;
-    nomTache: String;
+	nomTache: String;
+	description : String;
 	debutTache: Date;
 	finTache: Date;
 	tauxAvancement: number;
@@ -9,9 +13,11 @@ export interface ITache{
 	duree : number;
 	phase: object;
 	facture: object;
+
 	depenses: object;
 	fichiers: object;
 	tachePrecedente:object[];
 	predecesseur:string
 	ressources:any [];
 }
+

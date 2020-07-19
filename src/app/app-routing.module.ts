@@ -12,6 +12,8 @@ import { ListeProfessionComponent } from './Profession/liste-profession/liste-pr
 import {AllProjetsComponent} from './Projet/all-projets/all-projets.component';
 import {AjoutPhaseComponent} from './Phase/ajout-phase/ajout-phase.component';
 import {EnsembleVueProjetComponent} from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
+
+import {TableauDeBordComponent} from './tableau-de-bord/tableau-de-bord.component';
 import { DetailUtilisateurComponent } from './Utilisateur/detail-utilisateur/detail-utilisateur.component';
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
@@ -21,6 +23,10 @@ import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entrepri
 
 
 const routes: Routes = [
+  {path : 'tableaudebord', component: TableauDeBordComponent, children:[
+    {path: '', redirectTo: 'projet', pathMatch: 'full'},
+    {path: 'projet', component: AllProjetsComponent},
+  ]},
   {path: 'utilisateur', component: ListeUtilisateurComponent},
   {path: 'add', component: AjoutUtilisateurComponent},
   {path: 'update',component: UpdateUtilisateurComponent},
@@ -34,12 +40,11 @@ const routes: Routes = [
 
   {path: 'projet', component: AllProjetsComponent},
   {path: 'projet/:id', component: EnsembleVueProjetComponent},
-  {path: 'projet/gantt/:iduser', component: GanttProjectComponent},
+  {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
 
 
   // les liens concernant entreprise
   {path: 'workspace/new', component:AddEntrepriseComponent}
-
 ];
 
 @NgModule({

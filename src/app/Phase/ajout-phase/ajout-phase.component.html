@@ -6,6 +6,8 @@
     <div class="form-group">  
         <input class="form-control" type="text" [(ngModel)]="phase.description" [ngModelOptions]="{standalone: true}" placeholder="Ajouter une Description">
     </div>
+    
     <button type="submit" class="btn btn-success lebutton" (click)="ajoutPhase()">Ajouter</button>
+    <button mat-raised-button  type="submit" (click)="onFermer()">Annuler</button>
     </div>
 </form>

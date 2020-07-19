@@ -1,61 +1,85 @@
 <mat-accordion class="example-headers-align">
 <form [formGroup]="ajoutTacheForm" class="normal-form">
     <mat-grid-list cols="2" rorHeight="300px">
-        <mat-grid-tile>
+        
             <div class="controles-container">
-           
                 <mat-form-field>
                     <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom de la tache">
                     <mat-error></mat-error>
                 </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput placeholder="Charge de la tache">
-                </mat-form-field>
-                
-                <label id="matgp"> Niveau de priorité: </label>
-                <mat-radio-group class="matgp" aria-labelledby="matgp" formControlName="niveauPriorite" [(ngModel)]="tache.niveauPriorite"> 
-                     <mat-radio-button value="Faible">Faible</mat-radio-button>
-                     <mat-radio-button value="Moyen">Moyen</mat-radio-button>
-                     <mat-radio-button value="Fort">Fort</mat-radio-button>
-                </mat-radio-group>
 
-                <label id="matgp">Avencement de la tache:</label>
-                <mat-slider 
-                aria-labelledby="matgp"
-                thumbLabel
-                [displayWith]="formatLabel"
-                tickInterval="100"
-                min="1"
-                max="100" formControlName="tauxAvancement" [(ngModel)]="tache.tauxAvancement"></mat-slider>   
-                
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-             <div class="controles-container">
+                <mat-form-field>
+                    <textarea formControlName="description" [(ngModel)]="tache.description" matInput placeholder="description"></textarea>
+                </mat-form-field>
+
+                              
                 <mat-form-field>
                     <mat-label>Ajouter une Phase</mat-label>
-                    <mat-select formControlName="phase" [(ngModel)]="tache.phase" >
-                        <ng-container *ngFor="let phase of allPhases">
+                    <mat-select formControlName="phase" [(ngModel)]="tache.phase">
+                        <ng-container  *ngFor="let phase of allPhases"> 
                         <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
                         </ng-container> 
                     </mat-select>  
                 </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
-                    <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
-                    <mat-datepicker #picker1 ></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="finTache"  [(ngModel)]="tache.finTache" matInput [matDatepicker]="picker2" placeholder="Date de fin de la tache">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 ></mat-datepicker>
-                </mat-form-field>
+
+
+                <mat-tab-group>
+                <br>
+                <mat-tab label="chargeTache">
+                    <mat-form-field>
+                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput placeholder="Charge de la tache">
+                    </mat-form-field>
+                </mat-tab>
+                 <mat-tab label="priorité">
+                    <label id="matgp"> Niveau de priorité: </label>
+                    <mat-radio-group class="matgp" aria-labelledby="matgp" formControlName="niveauPriorite" [(ngModel)]="tache.niveauPriorite"> 
+                        <mat-radio-button value="Faible">Faible</mat-radio-button>
+                        <mat-radio-button value="Moyen">Moyen</mat-radio-button>
+                        <mat-radio-button value="Fort">Fort</mat-radio-button>
+                    </mat-radio-group>
+                </mat-tab>
+                <mat-tab label="Avencement"> 
+                    <br>
+                    <label id="matgp">Avencement de la tache:</label>
+                    <mat-slider 
+                    aria-labelledby="matgp"
+                    thumbLabel
+                    [displayWith]="formatLabel"
+                    tickInterval="100"
+                    min="1"
+                    max="100" formControlName="tauxAvancement" [(ngModel)]="tache.tauxAvancement"></mat-slider>   
+                </mat-tab>    
+                               
+               <mat-tab label="Prédecesseurs">         
+                    <mat-form-field>
+                        <mat-label>prédecesseur</mat-label>
+                        <mat-select formControlName="predecesseurs" [(ngModel)]="tache.predecesseur" multiple>
+                            <ng-container *ngFor="let tache of allTaches">
+                            <mat-option  [value]="tache">{{tache.nomTache}}</mat-option>
+                            </ng-container> 
+                        </mat-select>  
+                    </mat-form-field>
+                </mat-tab>
+
+                <mat-tab label="Dates"> 
+                    <mat-form-field>
+                        <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
+                        <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #picker1 ></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="finTache"  [(ngModel)]="tache.finTache" matInput [matDatepicker]="picker2" placeholder="Date de fin de la tache">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 ></mat-datepicker>
+                    </mat-form-field>
+                </mat-tab>
+                </mat-tab-group>
                 <div class="button-row">
                     <button mat-raised-button color="primary" type="submit" (click)="ajoutTache()"
                     >Ajouter</button>
                 </div>
             </div>
-        </mat-grid-tile>
+   
     </mat-grid-list>
 </form>
 </mat-accordion>

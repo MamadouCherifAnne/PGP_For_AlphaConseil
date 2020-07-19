@@ -3,7 +3,7 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import { Phase } from '../Phase';
 import { ProjetService } from 'src/app/services/projet.service';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Projet } from 'src/app/Projet/Projet';
 
 @Component({
@@ -19,7 +19,8 @@ export class AjoutPhaseComponent implements OnInit {
   projet: Projet;
 
   constructor(private phaseService: PhaseService, private formBuilder: FormBuilder,
-    private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any) { }
+    private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any,
+    public fenetreReference: MatDialogRef<AjoutPhaseComponent>) { }
 
   ngOnInit() {
     this.addPhaseForm = this.formBuilder.group({
@@ -37,5 +38,10 @@ export class AjoutPhaseComponent implements OnInit {
    valeur.subscribe((data)=>this.message=data);
   
  } 
+ // FERMER
+ public onFermer(){
+
+  this.fenetreReference.close();
+}
 
 } 

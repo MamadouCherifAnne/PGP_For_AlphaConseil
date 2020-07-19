@@ -1,11 +1,20 @@
+.headline h2, 
+.headline p {
+    display: inline-block;
+    padding: 25px;
 
+}
+
+.headline p{
+    
+    float:right;
+}
 .card{
     width: 25%;
+    margin-right: 20px;
+    margin-bottom: 10px;
 }
 
-h3{
-    padding: 10px;;
-}
 li .borderless {
     border-top: 0 none;
     border-bottom: 0 none;
@@ -15,9 +24,7 @@ li .borderless {
     padding: 1em;
 }
 
-.card{
-    width: 25%;
-}
+
 
 .thebt{
     float: right;

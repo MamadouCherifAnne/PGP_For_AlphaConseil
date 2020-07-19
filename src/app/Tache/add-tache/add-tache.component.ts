@@ -17,27 +17,33 @@ export class AddTacheComponent implements OnInit {
   ajoutTacheForm: FormGroup;
   message: any;
   allPhases: any;
+  allTaches: any;
 
   constructor(private tacheService: TacheService ,private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.allPhases = this.data.listPhase;
+    this.allPhases = this.data.listPhases;
+    this.allTaches = this.data.listTaches;
 
     this.ajoutTacheForm = this.formBuilder.group({
       "nomTache": [this.tache.nomTache,Validators.required],
+      "description": this.tache.description,
       "chargeTache": this.tache.chargeTache,
       "niveauPriorite": this.tache.niveauPriorite,
       "duree": [this.tache.duree, Validators.required],
       "debutTache": [this.tache.debutTache,Validators.required],
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
-      "phase": [this.tache.phase]
+      "phase": this.tache.phase,
+      "predecesseurs": this.tache.predecesseurs,
     })
   }
 
   
   ajoutTache(){
+    console.log(this.allPhases);
+    console.log(this.allTaches);
     console.log("tout va bien");
     let val = this.tacheService.ajoutTache(this.tache);
     val.subscribe((data)=>this.message=data);

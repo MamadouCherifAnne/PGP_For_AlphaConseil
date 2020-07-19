@@ -1,18 +1,29 @@
-<div class="col-xs-12">
-    <h1>
-       Liste des utilisateurs
-    </h1>
+<app-side-nav></app-side-nav>
+<div class="container">
+
+    <div class="headline">
+    <h2>Utilisateurs</h2>
+    <p><button class="btn btn-success" (click)="goToAddUser()">Nouvel Utilisateur</button></p>
     </div>
 
+    <br>
+<br>
+<hr>
+<div class="container">
+   
+       
+<mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="icon" >
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let element"><mat-icon>account_circle</mat-icon> </mat-cell>
+        </ng-container>
     
         
-          
-       <button mat-raised-button color="primary" (click)="goToAddUser()"> Nouveau utilisateurs</button>
-<mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
+    <!-- Username Column -->
     <ng-container matColumnDef="username" >
     <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.nom}} </mat-cell>
+    <mat-cell *matCellDef="let element">{{element.nom}}</mat-cell>
     </ng-container>
 
     
@@ -39,18 +50,17 @@
         <mat-cell *matCellDef="let element"> {{element.telephone}} </mat-cell>
     </ng-container>
 
-        <!-- Symbol Column -->
+        <!-- 
     <ng-container matColumnDef="role">
         <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.role.role}} </mat-cell>
     </ng-container>
-
-        <!-- Symbol Column -->
+   Symbol Column 
     <ng-container matColumnDef="profession">
         <mat-header-cell *matHeaderCellDef> Profession </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
     </ng-container>
-
+-->
     <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
@@ -80,3 +90,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+</div>

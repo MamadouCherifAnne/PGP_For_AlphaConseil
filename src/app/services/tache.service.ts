@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +11,9 @@ export class TacheService {
   constructor(private http: HttpClient) { }
 
   ajoutTache(tache){
-    return this.http.post("http://localhost:8080/tache/add",tache,{responseType:'text'});
+    return this.http.post("http://localhost:8080/tache/add",tache);
   }
+
 
   public getAllTasks(): Observable<any>{
     return this.http.get("http://localhost:8080/tache/all");
@@ -25,4 +27,5 @@ export class TacheService {
     public getPredecesseurTask(idTache):Observable<any>{
       return this.http.get<any>("http://localhost:8080/tache/predecesseurs/"+idTache);
     }
+
 }

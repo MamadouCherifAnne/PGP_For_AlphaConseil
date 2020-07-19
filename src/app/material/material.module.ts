@@ -17,13 +17,19 @@ import { MatButtonModule,
   MatProgressBarModule,
   MatSliderModule,
   MatCardModule,
-  MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule} from '@angular/material';
+  
+  MatMenuModule,
+  MatTabsModule,
+  MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+
 
 
 
 
 const material = [
   MatRadioModule,
+  MatMenuModule,
+  MatTabsModule,
   MatButtonModule,
   MatToolbarModule,
   MatInputModule,
