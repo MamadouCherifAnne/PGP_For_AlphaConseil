@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+
 import { Observable } from "rxjs";
 import {ITache} from '../Tache/ITache';
 
@@ -20,12 +21,14 @@ export class TacheService {
    return this.http.get<ITache[]>("http://localhost:8080/tache/findAll");
   } 
 
+
   public getAllTasks(): Observable<any>{
     return this.http.get("http://localhost:8080/tache/all");
   }
 //...........................les ressources d'une tache.................................................................
   public getRessoucesForTask(idTache):Observable<any>{
       return this.http.get("http://localhost:8080/tache/ressourcesForTache/"+idTache)
+
   }
 
   //................supprimer une tache.......................................;
@@ -36,5 +39,13 @@ export class TacheService {
   public updateTask(idtache, tache){
     return this.http.post("http://localhost:8080/tache/update/"+idtache, tache,  {'responseType': 'text'});
   }
+
+    
+    // Recuperer la liste des taches precedents d'une tache ayant de predecesseur
+
+  public getPredecesseurTask(idTache):Observable<any>{
+      return this.http.get<any>("http://localhost:8080/tache/predecesseurs/"+idTache);
+  }
+
 
 }

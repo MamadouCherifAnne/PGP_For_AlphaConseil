@@ -45,4 +45,9 @@ export class ProjetService {
   public projectAllTask(idProjet): Observable<ITache[]>{
     return this.http.get<ITache[]>("http://localhost:8080/projet/projectAllTask/"+idProjet);
   }
+
+  //...............................................................................................
+  public projectAllTasks(idProject):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/projet/projectAllTask/"+idProject);
+  }
 }

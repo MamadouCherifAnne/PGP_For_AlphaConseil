@@ -19,8 +19,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class UpdateUtilisateurComponent implements OnInit {
 
   user:Utilisateur = new Utilisateur()
-  oldUser:any
-  ;
+  oldUser:any;
   idRol:IRole;
   updatingUser:any;
   professions: IProfession[];

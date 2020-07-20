@@ -20,7 +20,7 @@ export class UtilisateurGanttComponent implements OnInit {
   allTask:any;
   ressources:IUtilisateur[]= [];
   tasks:Tache
-  datas:object[];
+  preced:object[];
   taskfield: object;
   userId:number;
 
@@ -39,9 +39,19 @@ export class UtilisateurGanttComponent implements OnInit {
             this.tacheRealisable =data;
             console.log(data)
             for(let i=0 ;i<data.length;i++){
-              if(this.tacheRealisable[i].tachePrecedente){
-              this.tacheRealisable[i].tachePrecedente=data[i].tachePrecedente.numTache
+                /**  Conversion des taches precedentes pour le rendre compatible avec 
+               * la logique de dependence entre les taches
+              */
+          /*   if(this.tacheRealisable[i].tachePrecedente){
+              this.preced=[];
+              for(let p=0; p<this.tacheRealisable[i].tachePrecedente.length;p++){
+                this.preced.push(data[i].tachePrecedente[p].numTache);
+
               }
+              this.tacheRealisable[i].predecesseur=this.preced.toString();
+              console.log(this.tacheRealisable[i].predecesseur);
+              
+            }*/
               // alimenter la liste des ressources de chaque tache
               this.taskService.getRessoucesForTask(this.tacheRealisable[i].numTache)
               .subscribe(resource=>{
@@ -79,12 +89,15 @@ export class UtilisateurGanttComponent implements OnInit {
         startDate: 'debutTache',
         endDate: 'finTache',
         duration:'duree',
-        dependency:'tachePrecedente',
+        
         resourceInfo:'ressources'
     },
     resources:rsource,
     resourceIDMapping:'idUser',
-    resourceNameMapping:'nom'
+    resourceNameMapping:'nom',
+    labelSettings:{
+      rightLabel:'nomTache'
+    },
 
     
 

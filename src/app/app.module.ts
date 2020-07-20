@@ -39,13 +39,19 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
-import { GanttProjectComponent} from  './Projet/gantt-project/gantt-project.component'
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
+
 import { AltachesComponent } from './altaches/altaches.component';
 import { UpdateTacheComponent } from './Tache/update-tache/update-tache.component';
 import { EditTacheComponent } from './Tache/edit-tache/edit-tache.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
+
+import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
+import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+
 
 
 
@@ -74,15 +80,20 @@ import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.co
     EditProjetComponent,
     AffectationUserComponent,
     
-    UtilisateurGanttComponent,
-    
+   
     AltachesComponent,
     
     UpdateTacheComponent,
     
     EditTacheComponent,
     
-    ToutLeProjetComponent
+    ToutLeProjetComponent,
+
+    GanttProjectComponent,
+    UtilisateurGanttComponent,
+    AddEntrepriseComponent,
+    AffecterRessourcesComponent,
+    SideNavComponent,
 
   ],
   imports: [

@@ -1,5 +1,5 @@
 export interface IUtilisateur{
-    
+    idUser:number;
     nom:string;
     prenom:string;
     email:string;

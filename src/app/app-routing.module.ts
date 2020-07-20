@@ -22,12 +22,14 @@ import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component'
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 import{ToutLeProjetComponent} from './Projet/tout-le-projet/tout-le-projet.component';
 
+import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
     {path: 'projet', component: AllProjetsComponent},
   ]},
-  
+
   {path: 'utilisateur', component: ListeUtilisateurComponent},
   {path: 'add', component: AjoutUtilisateurComponent},
   {path: 'update',component: UpdateUtilisateurComponent},
@@ -47,7 +49,13 @@ const routes: Routes = [
   
 
   {path: 'modifier/:id', component: UpdateTacheComponent},
-  {path: 'MesTache', component: EditTacheComponent}
+  {path: 'MesTache', component: EditTacheComponent},
+
+ 
+  {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
+
+  // les liens concernant entreprise
+  {path: 'workspace/new', component:AddEntrepriseComponent}
 
 ];
 

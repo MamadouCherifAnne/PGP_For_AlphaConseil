@@ -5,18 +5,17 @@
 </mat-toolbar>
 <br>
 <form [formGroup]="addPhaseForm" class="normal-form">
-            <div class="controles-container">
-           
-                <mat-form-field>
-                    <input formControlName="titrePhase" [(ngModel)]="phase.titrePhase" matInput placeholder="Nom de la phase">
-                </mat-form-field>
-                <mat-form-field>
-                    <textarea class="textarea" formControlName="description"  [(ngModel)]="phase.description" matInput  placeholder="Ajouter une Description"></textarea>
-                </mat-form-field>
-            </div>
-           
-        <div class="bton">
-            <button class="btn btn-success" type="submit" (click)="ajoutPhase()">Ajouter</button>
-            <button mat-raised-button color="war"  type="submit" (click)="onClose()">Annuler</button>
-        </div>
+
+    <div class="controles-container">
+    <div class="form-group">
+        <input class="form-control" type="text"  [(ngModel)]="phase.titrePhase" [ngModelOptions]="{standalone: true}" placeholder="Nom de la phase">
+    </div>
+    <div class="form-group">  
+        <input class="form-control" type="text" [(ngModel)]="phase.description" [ngModelOptions]="{standalone: true}" placeholder="Ajouter une Description">
+    </div>
+    
+    <button type="submit" class="btn btn-success lebutton" (click)="ajoutPhase()">Ajouter</button>
+    <button mat-raised-button  type="submit" (click)="onFermer()">Annuler</button>
+    </div>
 </form>
+

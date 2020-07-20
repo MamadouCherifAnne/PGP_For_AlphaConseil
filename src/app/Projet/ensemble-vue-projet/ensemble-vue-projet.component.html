@@ -37,12 +37,12 @@
     <mat-sidenav-content>
         <div class="headline">
         <h3>Vue d'ensemble</h3>
+       
      
         <p ><button class="btn btn-success btnAjout" mat-button [matMenuTriggerFor]="menu" >
             <mat-icon>add</mat-icon>Ajouter
         </button></p> 
-        </div>
-        <mat-menu #menu="matMenu">
+
                 <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajout Phase</button>
                 <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajout tache </button>
         </mat-menu>

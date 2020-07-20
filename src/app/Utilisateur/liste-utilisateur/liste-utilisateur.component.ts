@@ -16,7 +16,7 @@ export class ListeUtilisateurComponent implements OnInit {
   message:any;
   userDataSource =new MatTableDataSource<any>();
 
-  displayedColumns: string [] = ['username', 'prenom', 'email', 'adresse', 'telephone', 'role', 'profession','Action'];
+  displayedColumns: string [] = ['icon','username', 'prenom', 'email', 'adresse', 'telephone','Action'];
     
   constructor(private userService:UtilisateurService,
      private router:Router, 

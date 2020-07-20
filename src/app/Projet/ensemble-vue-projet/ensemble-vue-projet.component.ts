@@ -3,7 +3,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {AjoutPhaseComponent} from 'src/app/Phase/ajout-phase/ajout-phase.component';
 import {AddTacheComponent} from 'src/app/Tache/add-tache/add-tache.component';
 import { ProjetService } from 'src/app/services/projet.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute,Router} from '@angular/router';
 
 @Component({
   selector: 'app-ensemble-vue-projet',
@@ -18,7 +18,9 @@ export class EnsembleVueProjetComponent implements OnInit {
  
 
 
+
   constructor(private route: ActivatedRoute, private projetService: ProjetService) { }
+
 
   ngOnInit() {
     
@@ -33,5 +35,8 @@ export class EnsembleVueProjetComponent implements OnInit {
     return this.projet.nomProjet;
   }
   
+
+
+
 
 }

@@ -3,9 +3,9 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import { Phase } from '../Phase';
 import { ProjetService } from 'src/app/services/projet.service';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Projet } from 'src/app/Projet/Projet';
-import { MatDialogRef, MatDialog } from "@angular/material";
+import {  MatDialog } from "@angular/material";
 
 @Component({
   selector: 'app-ajout-phase',
@@ -20,8 +20,10 @@ export class AjoutPhaseComponent implements OnInit {
   projet: Projet;
 
   constructor(private phaseService: PhaseService, private formBuilder: FormBuilder,
-    private dialogRef : MatDialogRef<AjoutPhaseComponent>,
-    private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+    private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any,
+    public fenetreReference: MatDialogRef<AjoutPhaseComponent>) { }
+
 
   ngOnInit() {
     this.addPhaseForm = this.formBuilder.group({
@@ -37,12 +39,13 @@ export class AjoutPhaseComponent implements OnInit {
    this.phase.projet = this.projet;
    let valeur = this.phaseService.addPhase(this.phase);
    valeur.subscribe((data)=>this.message=data);
-  this.onClose();
  } 
+ // FERMER
+ public onFermer(){
 
- onClose(){
-  this.addPhaseForm.reset();
-  this.dialogRef.close();
+  this.fenetreReference.close();
 }
+
+
 
 } 
