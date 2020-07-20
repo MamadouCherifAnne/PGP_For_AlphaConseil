@@ -26,10 +26,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-<<<<<<< HEAD
               "node_modules/jquery/dist/jquery.min.js",
-=======
->>>>>>> 1ce35799d665e0b69d64707b5208a3a024c13fad
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []

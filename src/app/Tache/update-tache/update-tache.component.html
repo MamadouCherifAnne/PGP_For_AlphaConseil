@@ -1,7 +1,7 @@
 <mat-toolbar>
-    <span>Nouvelle Tache</span>
+    <span>Modifier une tache</span>
 </mat-toolbar>
-<form [formGroup]="ajoutTacheForm" class="normal-form">
+<form [formGroup]="updateTacheForm" class="normal-form">
     <mat-grid-list cols="2" rorHeight="300px">
         
             <div class="controles-container">
@@ -15,16 +15,6 @@
                 </mat-form-field>
 
                               
-                <mat-form-field>
-                    <mat-label>Ajouter une Phase</mat-label>
-                    <mat-select formControlName="phase" [(ngModel)]="tache.phase">
-                        <ng-container  *ngFor="let phase of allPhases"> 
-                        <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
-                        </ng-container> 
-                    </mat-select>  
-                </mat-form-field>
-
-
                 <mat-tab-group>
                 <br>
                 <mat-tab label="chargeTache">
@@ -81,7 +71,6 @@
             </div>
     </mat-grid-list>
     <div class="bton">
-        <button class="btn btn-success" type="submit" (click)="ajoutTache()">Ajouter</button>
-        <button mat-raised-button color="war"  type="submit" (click)="onClose()">Annuler</button>
+        <button class="btn btn-success" type="submit" (click)="updateTache()">Sauvegarder</button>
     </div>
 </form>

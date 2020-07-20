@@ -39,10 +39,13 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
-
+import { GanttProjectComponent} from  './Projet/gantt-project/gantt-project.component'
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
-
-
+import { AltachesComponent } from './altaches/altaches.component';
+import { UpdateTacheComponent } from './Tache/update-tache/update-tache.component';
+import { EditTacheComponent } from './Tache/edit-tache/edit-tache.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
 
 
 
@@ -62,7 +65,7 @@ import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utili
     UpdateProfessionComponent,
     AllProjetsComponent,
     AjoutProjetComponent,
-
+    GanttProjectComponent,
     TableauDeBordComponent,
     AddTacheComponent,
     AjoutPhaseComponent,
@@ -71,7 +74,15 @@ import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utili
     EditProjetComponent,
     AffectationUserComponent,
     
-    UtilisateurGanttComponent
+    UtilisateurGanttComponent,
+    
+    AltachesComponent,
+    
+    UpdateTacheComponent,
+    
+    EditTacheComponent,
+    
+    ToutLeProjetComponent
 
   ],
   imports: [
@@ -82,7 +93,8 @@ import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utili
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    GanttModule
+    GanttModule,
+    FieldsetModule
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService],
@@ -93,6 +105,8 @@ import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utili
     AjoutPhaseComponent,
     UpdateProfessionComponent,
 
+    UpdateTacheComponent,
+    
     AjoutProjetComponent,
     AjoutPhaseComponent,
     AddTacheComponent,

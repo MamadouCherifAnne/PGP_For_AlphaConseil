@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-utilisateur-gantt',
   templateUrl: './utilisateur-gantt.component.html',
-  styleUrls: ['./utilisateur-gantt.component.css']
+  styleUrls: ['./utilisateur-gantt.component.scss']
 })
 export class UtilisateurGanttComponent implements OnInit {
   tacheRealisable: ITache[] ;

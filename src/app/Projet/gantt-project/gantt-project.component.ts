@@ -6,7 +6,7 @@ import { ProjetService} from 'src/app/services/projet.service';
 @Component({
   selector: 'app-gantt-project',
   templateUrl: './gantt-project.component.html',
-  styleUrls: ['./gantt-project.component.css']
+  styleUrls: ['./gantt-project.component.scss']
 })
 export class GanttProjectComponent implements OnInit {
 

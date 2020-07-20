@@ -5,6 +5,7 @@ import { Phase } from '../Phase';
 import { ProjetService } from 'src/app/services/projet.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Projet } from 'src/app/Projet/Projet';
+import { MatDialogRef, MatDialog } from "@angular/material";
 
 @Component({
   selector: 'app-ajout-phase',
@@ -19,6 +20,7 @@ export class AjoutPhaseComponent implements OnInit {
   projet: Projet;
 
   constructor(private phaseService: PhaseService, private formBuilder: FormBuilder,
+    private dialogRef : MatDialogRef<AjoutPhaseComponent>,
     private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -35,7 +37,12 @@ export class AjoutPhaseComponent implements OnInit {
    this.phase.projet = this.projet;
    let valeur = this.phaseService.addPhase(this.phase);
    valeur.subscribe((data)=>this.message=data);
-  
+  this.onClose();
  } 
+
+ onClose(){
+  this.addPhaseForm.reset();
+  this.dialogRef.close();
+}
 
 } 

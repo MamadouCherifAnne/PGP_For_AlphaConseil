@@ -1,30 +1,5 @@
-<br>
-<div class="container-fluid border-bottom">
-    <h3 *ngIf=projet >      
-        <span>{{nomProjet()}}</span>
-    </h3>
-    <br>  
-    <ul class="list-inline">
-        <li class="list-inline-item">
-            <a  [routerLink]="['toutleprojet/', projetId]">Vue d'ensemble</a></li>
-        <li class="list-inline-item">
-            <a  [routerLink]="['Taches/', projetId]">Taches</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Fichiers</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Commentaires</a></li>
-        <li class="list-inline-item">
-            <a  href="#"> Riques</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Fichiers </a></li>
-        <li class="list-inline-item">
-            <a  href="#">Utilisateurs</a></li>
-    </ul>
-</div>
-<br>
-<router-outlet></router-outlet>
 
-<!--<mat-sidenav-container>
+<mat-sidenav-container>
     <mat-sidenav mode="side" opened>
         <p><strong>Desciption</strong><br>
         Ajouter une Desciption</p>
@@ -47,7 +22,4 @@
                 <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajout tache </button>
         </mat-menu>
     </mat-sidenav-content>
-</mat-sidenav-container> -->
-
-
-
+</mat-sidenav-container>
