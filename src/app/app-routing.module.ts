@@ -19,6 +19,7 @@ import { AffectationUserComponent } from './Utilisateur/affectation-user/affecta
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+import { JalonComponent } from './Projet/jalon/jalon.component';
 
 
 

@@ -1,6 +1,10 @@
+import {Tache} from "src/app/Tache/Tache"
 export interface Iphase{
-    titrePhase: String;
+    numTache:number;
+    nomTache: String;
+    debutTache:Date;
+    finTache:Date
     description: String;
     projet: object;
-    tache: object[];
+    taches: Tache[];
 }

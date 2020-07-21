@@ -98,7 +98,13 @@ export class UtilisateurGanttComponent implements OnInit {
     labelSettings:{
       rightLabel:'nomTache'
     },
-
+    timelineSettings:{
+      timelineViewMode:'Year',
+      timelineUnitSize:200,
+      topTier:{
+        unit:'Week'
+      },
+    }
     
 
     });

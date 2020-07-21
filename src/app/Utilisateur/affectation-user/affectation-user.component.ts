@@ -50,7 +50,9 @@ export class AffectationUserComponent implements OnInit {
 
     // Charger tous les utilisateurs 
     this.userServcie.getUsers()
-    .subscribe(data=>this.allUsers=data);
+    .subscribe(data=>{
+      if(data){this.allUsers=data
+    }});
     //charger les phases
     this.phaseService.getAllPhase().subscribe(data=>{
       if(data){

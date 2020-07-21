@@ -1,7 +1,8 @@
-import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import {DatePipe} from "@angular/common";
 import { ITache } from 'src/app/Tache/ITache';
+import { Iphase } from 'src/app/Phase/Iphase';
 import{IUtilisateur} from 'src/app/Utilisateur/IUtilisateur';
 import { Tache } from 'src/app/Tache/Tache';
 import { Subscription } from 'rxjs';
@@ -13,15 +14,14 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { ProjetService} from 'src/app/services/projet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from '../Projet';
-import { Iphase } from 'src/app/Phase/Iphase';
+
 
 @Component({
-  selector: 'app-gantt-project',
-  templateUrl: './gantt-project.component.html',
-  styleUrls: ['./gantt-project.component.scss']
+  selector: 'app-jalon',
+  templateUrl: './jalon.component.html',
+  styleUrls: ['./jalon.component.scss']
 })
-export class GanttProjectComponent implements OnInit {
-
+export class JalonComponent implements OnInit {
 
   tacheRealisable: ITache[] ;
   allTask:any;
@@ -90,17 +90,16 @@ export class GanttProjectComponent implements OnInit {
           // get the current project
        
         this.personnes=users;
-      
-        
-        }
         this.projetService.getById(this.projectId).subscribe(project=>{
           if(project){
             this.projet=project;
             console.log(project)
-            this.ChargerGanttDiagramm()
+           
           }
         });
         
+        }
+        this.ChargerGanttDiagramm()
       });
             
           
@@ -111,7 +110,6 @@ export class GanttProjectComponent implements OnInit {
      
      
     }
-  
   
   /*ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
@@ -126,8 +124,8 @@ export class GanttProjectComponent implements OnInit {
         name: 'nomTache',
         startDate: 'debutTache',
         endDate: 'finTache',
-        child:'taches',
         duration:'duree',
+        child:'taches',
       dependency:'predecesseurs',
         resourceInfo:'ressources'
     },
@@ -141,14 +139,13 @@ export class GanttProjectComponent implements OnInit {
     },
     
     
-    projectStartDate:this.projet.debutProjet,
-    projectEndDate:this.projet.finProjet,
+   /* projectStartDate:this.projet.debutProjet,
+    projectEndDate:this.projet.finProjet,*/
    timelineSettings:{
-      timelineViewMode:'Year',
-      timelineUnitSize:100,
-      topTier:{
-        unit:'Week'
-      }
+      
+      timelineUnitSize:50
+      
+      
     }
     // AJouter les options de modifications
    
@@ -157,7 +154,5 @@ export class GanttProjectComponent implements OnInit {
     gantt.appendTo("#GanttContainer");
   
 }
-
-
 
 }

@@ -64,7 +64,11 @@ export class EnsembleVueProjetComponent implements OnInit {
     dialogConfig.width = "60%";
      //...........ici.....................
     dialogConfig.data= {listPhases: this.listPhase, listTaches: this.listTache};
-    this.dialog.open(AddTacheComponent, dialogConfig);
+    this.dialog.open(AddTacheComponent, dialogConfig).afterClosed()
+    .subscribe(result => {
+      this.refresh();
+    });
+    ;
   } 
 
   //................... Aller vers le diagreamme de gantt du projet .............
@@ -73,5 +77,8 @@ export class EnsembleVueProjetComponent implements OnInit {
     
   }
 
-
+  refresh(){
+    let valeur = this.projetService.getById(this.projetId);
+    valeur.subscribe((data)=>this.projet=data);
+  }
 }

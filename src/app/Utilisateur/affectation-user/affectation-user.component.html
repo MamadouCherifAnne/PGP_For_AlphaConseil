@@ -62,7 +62,7 @@
                <mat-label>Ajouter une Phase</mat-label>
                <mat-select formControlName="phase" [(ngModel)]="tache.phase" >
                    <ng-container *ngFor="let phase of allPhases">
-                   <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
+                   <mat-option  [value]="phase">{{phase.nomTache}}</mat-option>
                    </ng-container> 
                </mat-select>  
            </mat-form-field>
@@ -78,7 +78,7 @@
            </mat-form-field>
 
            <mat-form-field>
-            <mat-label>Tache Precedente</mat-label>
+            <mat-label>Ressources</mat-label>
             <mat-select formControlName="ressources"  >
                 <ng-container *ngFor="let user of allUsers">
                 <mat-option  [value]="user.idUser">{{user.nom}}</mat-option>

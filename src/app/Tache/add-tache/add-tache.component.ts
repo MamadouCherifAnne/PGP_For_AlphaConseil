@@ -20,7 +20,8 @@ export class AddTacheComponent implements OnInit {
   allTaches: any;
 
   constructor(private tacheService: TacheService ,private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public fenetreReference: MatDialogRef<AddTacheComponent>) { }
 
   ngOnInit() {
     this.allPhases = this.data.listPhases;
@@ -36,7 +37,7 @@ export class AddTacheComponent implements OnInit {
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
       "phase": this.tache.phase,
-      "predecesseurs": this.tache.predecesseurs,
+      "predecesseurs": this.tache.tachePrecedente,
     })
   }
 
@@ -46,12 +47,22 @@ export class AddTacheComponent implements OnInit {
     console.log(this.allTaches);
     console.log("tout va bien");
     let val = this.tacheService.ajoutTache(this.tache);
-    val.subscribe((data)=>this.message=data);
+    val.subscribe((data)=>{
+      if(data){
+      this.message=data;
+    this.onFermer();
+      }
+    });
   }
 
   formatLabel(value: number) {
     return value + '%';
   }
 
+  public onFermer(){
+    this.ajoutTacheForm.reset();
+ 
+   this.fenetreReference.close();
+ }
 
 }

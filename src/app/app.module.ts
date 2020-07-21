@@ -45,6 +45,7 @@ import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.comp
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { JalonComponent } from './Projet/jalon/jalon.component';
 
 
 
@@ -78,7 +79,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     UtilisateurGanttComponent,
     AddEntrepriseComponent,
     AffecterRessourcesComponent,
-    SideNavComponent
+    SideNavComponent,
+    JalonComponent
 
   ],
   imports: [
