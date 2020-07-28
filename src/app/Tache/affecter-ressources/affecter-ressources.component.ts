@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Utilisateur } from 'src/app/Utilisateur/Utilisateur';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TacheService } from 'src/app/services/tache.service';
@@ -7,7 +7,7 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { Tache } from 'src/app/Tache/Tache';
 import { UserToTask } from 'src/app/Utilisateur//UserToTask';
 import { UtilisateurAffectation } from 'src/app/Utilisateur/UtilisateurAffectation';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -26,9 +26,10 @@ export class AffecterRessourcesComponent implements OnInit {
   allUsers:any;
 
   constructor(private tacheService: TacheService ,
-    private userServcie:UtilisateurService,
+    private userService:UtilisateurService,
     private phaseService:PhaseService,
     private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public fenetreReference: MatDialogRef<AffecterRessourcesComponent>
    ) { }
 
@@ -38,16 +39,22 @@ export class AffecterRessourcesComponent implements OnInit {
     "ressources": [this.ressource.idUser, [Validators.required]],
     "tempsPasser": [this.affectation.tempsPasser, [Validators.required]]
     })
+    this.idTache=this.data.tache.numTache
+    this.userService.getUsers().subscribe((data)=>{
+      if(data){
+      this.allUsers=data;
+      }
+    });
   }
 
   affecterRessource(){
-    this.idTache=9;
+    this.idTache=this.data.tache.numTache
     this.ressource.idUser=this.affectationForm.get("ressources").value;
     this.ressource.idTache=this.idTache;
     this.affectation.tempsPasser= this.affectationForm.get("tempsPasser").value
     this.affectation.user_task =this.ressource;
     console.log(this.affectation)
-    this.userServcie.affectToTask(this.affectation)
+    this.userService.affectToTask(this.affectation)
     .subscribe()
     this.affectationForm.reset()
     

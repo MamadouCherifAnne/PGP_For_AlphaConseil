@@ -1,13 +1,14 @@
 <br>
-<div class="container-fluid bordure">
+<div class="container-fluid border-bottom">
     <h3 *ngIf=projet >      
         <span>{{nomProjet()}}</span>
     </h3>
+    <br>  
     <ul class="list-inline">
         <li class="list-inline-item">
-            <a href="#">Tout le Projet</a></li>
+            <a  [routerLink]="['toutleprojet/', projetId]">Vue d'ensemble</a></li>
         <li class="list-inline-item">
-            <a  href="#">Taches</a></li>
+            <a  [routerLink]="['Taches/', projetId]">Taches</a></li>
         <li class="list-inline-item">
             <a  href="#">Fichiers</a></li>
         <li class="list-inline-item">
@@ -21,27 +22,32 @@
     </ul>
 </div>
 <br>
-<mat-sidenav-container>
-    <mat-sidenav mode="side" opened>
+<router-outlet></router-outlet>
 
+<!--<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <p><strong>Desciption</strong><br>
+        Ajouter une Desciption</p>
+        <p><i class='far fa-calendar-alt'></i>Dattes</p>
+        <div *ngIf="projet" class="divdate">
+             <span>Début: {{projet.debutProjet}}</span>
+             <span class="spandate">Fin: {{projet.finProjet}}</span>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content>
-        
+        <div class="headline">
         <h3>Vue d'ensemble</h3>
        
      
-        <p style="float: right;"><button class="btn btn-success btnAjout" mat-button [matMenuTriggerFor]="menu" >
+        <p ><button class="btn btn-success btnAjout" mat-button [matMenuTriggerFor]="menu" >
             <mat-icon>add</mat-icon>Ajouter
         </button></p> 
-        <p style="float: right;"><button (click)="goToProjectGantt()" mat-button>
-            Vue Gantt
-        </button></p>
-          <mat-menu #menu="matMenu">
+
                 <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajout Phase</button>
                 <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajout tache </button>
         </mat-menu>
     </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 
-  
+
 

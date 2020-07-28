@@ -42,7 +42,7 @@ export class GanttProjectComponent implements OnInit {
     ){}
 
     ngOnInit(){
-      this.projectId = parseInt(this.route.snapshot.paramMap.get('idProjet'));
+      this.projectId = parseInt(this.route.snapshot.paramMap.get('id'));
      // this.projectId=6;
    
         //recuperation des taches a travers la bdd

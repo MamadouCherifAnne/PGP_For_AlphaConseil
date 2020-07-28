@@ -34,8 +34,8 @@ export class UtilisateurService {
     return this.http.get<IUtilisateur[]>("http://localhost:8080/utilisateur/all");
   }
   // find user by name
-  public getUserByIdUser(idUser): Observable<void> {
-    return this.http.get<void>("http://localhost:8080/utilisateur/findUser/"+idUser);
+  public getUserByIdUser(idUser){
+    return this.http.get("http://localhost:8080/utilisateur/findUser/"+idUser);
   }
 
   // Affecter un utilisateur a une tache

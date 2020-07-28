@@ -12,25 +12,31 @@ import { ListeProfessionComponent } from './Profession/liste-profession/liste-pr
 import {AllProjetsComponent} from './Projet/all-projets/all-projets.component';
 import {AjoutPhaseComponent} from './Phase/ajout-phase/ajout-phase.component';
 import {EnsembleVueProjetComponent} from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
-
 import {TableauDeBordComponent} from './tableau-de-bord/tableau-de-bord.component';
 import { DetailUtilisateurComponent } from './Utilisateur/detail-utilisateur/detail-utilisateur.component';
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
-import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
+import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component'
+import {AltachesComponent} from './altaches/altaches.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
+
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
 
 
+import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component';
+import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
+import{ToutLeProjetComponent} from './Projet/tout-le-projet/tout-le-projet.component';
 
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
     {path: 'projet', component: AllProjetsComponent},
   ]},
+
   {path: 'utilisateur', component: ListeUtilisateurComponent},
   {path: 'add', component: AjoutUtilisateurComponent},
   {path: 'update',component: UpdateUtilisateurComponent},
+  {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent},
   
 
   {path: 'utilisateur/affect', component: AffectationUserComponent},
@@ -38,14 +44,23 @@ const routes: Routes = [
   {path:'role', component:ListeRoleComponent},
 
   {path:'profession', component:ListeProfessionComponent},
+  {path: 'projet/gantt/:id', component: GanttProjectComponent},
 
-  {path: 'projet', component: AllProjetsComponent},
-  {path: 'projet/:id', component: EnsembleVueProjetComponent},
+  {path: 'projet/:id', component: EnsembleVueProjetComponent, children:[
+    {path: 'Taches/:id', component: AltachesComponent},
+    {path: 'toutleprojet/:id', component: ToutLeProjetComponent},
+  ] },
+  
+
+  {path: 'modifier/:id', component: UpdateTacheComponent},
+  {path: 'MesTache', component: EditTacheComponent},
+
+ 
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
-
 
   // les liens concernant entreprise
   {path: 'workspace/new', component:AddEntrepriseComponent}
+
 ];
 
 @NgModule({

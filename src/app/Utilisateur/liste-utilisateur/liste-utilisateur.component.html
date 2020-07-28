@@ -69,6 +69,10 @@
               </button>
 
               <mat-menu #menu="matMenu">
+                    <!-- Gantt Utilisateur -->
+                <button  mat-menu-item (click)="goToUserDetails(element.idUser)">
+                    <span>Details</span>
+                </button> 
 
                 <button mat-menu-item color="primary" (click)="goToUpdateUser(element)"> 
                     Modifier 
@@ -78,7 +82,7 @@
                 </button> 
                 <!-- Gantt Utilisateur -->
                 <button  mat-menu-item (click)="goToGanttUser(element.idUser)">
-                    <span>voir Gantt</span>
+                    <span>Planning Tache</span>
                 </button> 
 
               </mat-menu>

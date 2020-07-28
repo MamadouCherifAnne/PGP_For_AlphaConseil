@@ -3,14 +3,15 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {AjoutPhaseComponent} from 'src/app/Phase/ajout-phase/ajout-phase.component';
 import {AddTacheComponent} from 'src/app/Tache/add-tache/add-tache.component';
 import { ProjetService } from 'src/app/services/projet.service';
-import {ActivatedRoute,Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-ensemble-vue-projet',
-  templateUrl: './ensemble-vue-projet.component.html',
-  styleUrls: ['./ensemble-vue-projet.component.scss']
+  selector: 'app-tout-le-projet',
+  templateUrl: './tout-le-projet.component.html',
+  styleUrls: ['./tout-le-projet.component.scss']
 })
-export class EnsembleVueProjetComponent implements OnInit {
+export class ToutLeProjetComponent implements OnInit {
+
   projetId: any;
   projet: any;
   listPhase : any;
@@ -18,10 +19,10 @@ export class EnsembleVueProjetComponent implements OnInit {
  
 
 
-
-  constructor(private route: ActivatedRoute, private projetService: ProjetService,
-    private dialog:MatDialog) { }
-
+  constructor(private dialog : MatDialog, private router:Router, 
+    private route:ActivatedRoute,
+     private projetService: ProjetService
+    ) { }
 
   ngOnInit() {
     
@@ -30,13 +31,21 @@ export class EnsembleVueProjetComponent implements OnInit {
 
     let valeur = this.projetService.getById(this.projetId);
     valeur.subscribe((data)=>this.projet=data);
+
+    //...................Recuperation de la liste de phase d'un projet....................
+    let element = this.projetService.AllphaseDeProjet(this.projetId);
+    element.subscribe((data)=>this.listPhase=data);
+
+    //...................Recuperation de la liste de tache d'un projet....................
+    let variable = this.projetService.projectAllTask(this.projetId);
+    variable.subscribe((data)=>this.listTache=data);
+    
   }
 
   nomProjet(){
     return this.projet.nomProjet;
   }
   
-
  //............................................................................................... 
   onAjoutPhase(){ 
     console.log(this.projet.nomProjet);
@@ -56,18 +65,12 @@ export class EnsembleVueProjetComponent implements OnInit {
     dialogConfig.width = "60%";
      //...........ici.....................
     dialogConfig.data= {listPhases: this.listPhase, listTaches: this.listTache};
-    this.dialog.open(AddTacheComponent, dialogConfig).afterClosed()
-    .subscribe(result => {
-      this.refresh();
-    });
-    ;
+    this.dialog.open(AddTacheComponent, dialogConfig);
   } 
 
-
-
-
-  refresh(){
-    let valeur = this.projetService.getById(this.projetId);
-    valeur.subscribe((data)=>this.projet=data);
+  goToGanttProject(){
+    this.router.navigate(["/projet/gantt", this.projetId ]);
   }
+
+
 }

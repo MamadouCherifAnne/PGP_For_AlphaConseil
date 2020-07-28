@@ -1,8 +1,8 @@
 export interface ITache{
 
-	
 
 	numTache:number;
+
 	nomTache: String;
 	description : String;
 	debutTache: Date;

@@ -43,7 +43,7 @@ export class AffectationUserComponent implements OnInit {
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
       "phase": [this.tache.phase],
-      "Predecesseur":[this.tache.tachePrecedente],
+      //"Predecesseur":[this.tache.tachePrecedente],
       "ressources": [this.ressource.idUser, [Validators.required]],
       "tempsPasser": [this.affectation.tempsPasser, [Validators.required]]
     })

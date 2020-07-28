@@ -39,14 +39,19 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
-
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
+
+import { AltachesComponent } from './altaches/altaches.component';
+import { UpdateTacheComponent } from './Tache/update-tache/update-tache.component';
+import { EditTacheComponent } from './Tache/edit-tache/edit-tache.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
+
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
-
 
 
 
@@ -67,7 +72,7 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     UpdateProfessionComponent,
     AllProjetsComponent,
     AjoutProjetComponent,
-
+    GanttProjectComponent,
     TableauDeBordComponent,
     AddTacheComponent,
     AjoutPhaseComponent,
@@ -75,12 +80,24 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     EnsembleVueProjetComponent,
     EditProjetComponent,
     AffectationUserComponent,
+    
+   
+    AltachesComponent,
+    
+    UpdateTacheComponent,
+    
+    EditTacheComponent,
+    
+    ToutLeProjetComponent,
+
     GanttProjectComponent,
     UtilisateurGanttComponent,
     AddEntrepriseComponent,
     AffecterRessourcesComponent,
     SideNavComponent,
+
     JalonComponent
+
 
   ],
   imports: [
@@ -91,7 +108,8 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    GanttModule
+    GanttModule,
+    FieldsetModule
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService],
@@ -101,7 +119,10 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     AddProfessionComponent,
     AjoutPhaseComponent,
     UpdateProfessionComponent,
+    AffecterRessourcesComponent,
 
+    UpdateTacheComponent,
+    
     AjoutProjetComponent,
     AjoutPhaseComponent,
     AddTacheComponent,

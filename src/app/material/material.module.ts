@@ -17,11 +17,10 @@ import { MatButtonModule,
   MatProgressBarModule,
   MatSliderModule,
   MatCardModule,
-  
-  MatMenuModule,
   MatTabsModule,
-  MatGridListModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+  MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule} from '@angular/material';
 
+  
 
 
 

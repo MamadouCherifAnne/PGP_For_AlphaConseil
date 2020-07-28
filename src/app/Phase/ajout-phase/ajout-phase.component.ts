@@ -5,6 +5,7 @@ import { Phase } from '../Phase';
 import { ProjetService } from 'src/app/services/projet.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Projet } from 'src/app/Projet/Projet';
+import {  MatDialog } from "@angular/material";
 
 @Component({
   selector: 'app-ajout-phase',
@@ -19,8 +20,10 @@ export class AjoutPhaseComponent implements OnInit {
   projet: Projet;
 
   constructor(private phaseService: PhaseService, private formBuilder: FormBuilder,
+
     private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any,
     public fenetreReference: MatDialogRef<AjoutPhaseComponent>) { }
+
 
   ngOnInit() {
     this.addPhaseForm = this.formBuilder.group({
@@ -35,6 +38,7 @@ export class AjoutPhaseComponent implements OnInit {
    console.log(this.projet);
    this.phase.projet = this.projet;
    let valeur = this.phaseService.addPhase(this.phase);
+
    valeur.subscribe((data)=>{
      if(data){
      this.message=data;
@@ -43,6 +47,7 @@ export class AjoutPhaseComponent implements OnInit {
 
   });
   
+
  } 
  // FERMER
  public onFermer(){
@@ -50,5 +55,7 @@ export class AjoutPhaseComponent implements OnInit {
 
   this.fenetreReference.close();
 }
+
+
 
 } 

@@ -1,0 +1,88 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <div class="container-flud">
+        <br>
+        <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Liste des phases</h6>
+        <br>
+        <ul class="list-group" *ngFor="let phase of allphase">
+            <li class="list-group-item  breadcrumb" style="border: none">
+                <dl >{{phase.nomTache}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
+               
+            </li>
+        </ul>
+    </div>
+    </mat-sidenav>
+    <mat-sidenav-content> 
+       <div class="container-flud headline">
+            <h5>Taches</h5>
+         
+            <p><button class="btn btn-success btn-sm btnAjout" type="submit">Ajouter phase</button></p>
+            <br>
+            <br>
+        </div>
+   
+        <!-- Affichage des ridos pour les phases ----------------------------------------> 
+        <mat-accordion class="example-headers-align"  *ngFor="let phase of allphase">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{phase.nomTache}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+               
+                <ul  *ngFor="let tache of phase.taches">
+                    <li  *ngIf="tache">
+                       
+                       <div>
+                        <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
+                            <mat-icon>more_horiz</mat-icon>
+                         </button>
+                         {{tache.nomTache}} 
+                         
+                        
+                       </div> 
+                      
+               
+                        <mat-menu #menu="matMenu">
+                                
+                                <button mat-menu-item  (click)="modifier(tache)"><span>modifier</span></button>
+                                <button mat-menu-item class="ajoutPhase" ><span>supprimer</span></button>
+                                <button mat-menu-item class="ajoutPhase" (click)="affecterRessources(tache)" ><span>Ajout Ressources</span>
+                                </button>
+                        </mat-menu>
+                        <button (click)="togleDisplay()">click</button>
+                        <div  [hidden]="display">
+                         
+                             <div>
+                              <app-edit-tache></app-edit-tache>
+                             </div>
+                         
+                        </div>
+                    </li>
+                </ul>
+            </mat-expansion-panel>       
+
+        </mat-accordion> 
+ <!--- ------------------------------fin------------------------------------------------ -->
+ <!--<div id="accordion" >
+    <div class="card" *ngFor="let phase of allphase">
+      <div class="card-header">
+        <span >
+        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+            {{phase.titrePhase}}
+        </a>
+        </span>
+      </div>
+      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+        <div class="card-body">
+          Lorem ipsum..
+        </div>
+      </div>
+    </div>
+</div>    -->
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+ 
