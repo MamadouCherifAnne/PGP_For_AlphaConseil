@@ -37,7 +37,7 @@ export class AddTacheComponent implements OnInit {
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
       "phase": this.tache.phase,
-     // "tachePrecedente": this.tache.tachePrecedente,
+     "predecesseurs": this.tache.predecesseurs,
     })
   }
 

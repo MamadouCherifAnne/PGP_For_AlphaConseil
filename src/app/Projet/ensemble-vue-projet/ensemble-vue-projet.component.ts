@@ -17,9 +17,7 @@ export class EnsembleVueProjetComponent implements OnInit {
   listTache :any;
  
 
-
-
-  constructor(private route: ActivatedRoute, private projetService: ProjetService) { }
+  constructor(private dialog : MatDialog,private route: ActivatedRoute, private projetService: ProjetService) { }
 
 
   ngOnInit() {
@@ -29,12 +27,44 @@ export class EnsembleVueProjetComponent implements OnInit {
 
     let valeur = this.projetService.getById(this.projetId);
     valeur.subscribe((data)=>this.projet=data);
+
+    
+    //...................Recuperation de la liste de phase d'un projet....................
+    let element = this.projetService.AllphaseDeProjet(this.projetId);
+    element.subscribe((data)=>this.listPhase=data);
+
+    //...................Recuperation de la liste de tache d'un projet....................
+    let variable = this.projetService.projectAllTask(this.projetId);
+    variable.subscribe((data)=>this.listTache=data);
+    
   }
 
   nomProjet(){
     return this.projet.nomProjet;
   }
   
+  //............................................................................................... 
+  onAjoutPhase(){ 
+    console.log(this.projet.nomProjet);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.data = {projet: this.projet};
+    this.dialog.open(AjoutPhaseComponent, dialogConfig);
+  } 
+//..................................................................................................
+  onAjoutTahce(){  
+    console.log(this.listTache);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true; 
+    dialogConfig.width = "60%";
+     //...........ici.....................
+    dialogConfig.data= {listPhases: this.listPhase, listTaches: this.listTache};
+    this.dialog.open(AddTacheComponent, dialogConfig);
+  } 
+
 
 
 

@@ -9,13 +9,9 @@ export class Tache{
 	duree : number;
 	phase: object;
 	facture: object;
-
-
 	depenses: object[];
 	fichiers: object[];
-	//..................
 	predecesseurs: object[];
-
 	ressources:object[];
 	
 }

@@ -1,18 +1,19 @@
+
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { PhaseService } from 'src/app/services/phase.service';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-import { Phase } from '../Phase';
+import { Phase } from 'src/app/Phase/Phase';
 import { ProjetService } from 'src/app/services/projet.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Projet } from 'src/app/Projet/Projet';
 import {  MatDialog } from "@angular/material";
 
 @Component({
-  selector: 'app-ajout-phase',
-  templateUrl: './ajout-phase.component.html',
-  styleUrls: ['./ajout-phase.component.scss']
+  selector: 'app-ajout-phase-second',
+  templateUrl: './ajout-phase-second.component.html',
+  styleUrls: ['./ajout-phase-second.component.scss']
 })
-export class AjoutPhaseComponent implements OnInit {
+export class AjoutPhaseSecondComponent implements OnInit {
 
   phase : Phase = new Phase();
   addPhaseForm : FormGroup;
@@ -22,7 +23,7 @@ export class AjoutPhaseComponent implements OnInit {
   constructor(private phaseService: PhaseService, private formBuilder: FormBuilder,
 
     private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any,
-    public fenetreReference: MatDialogRef<AjoutPhaseComponent>) { }
+    public fenetreReference: MatDialogRef<AjoutPhaseSecondComponent>) { }
 
 
   ngOnInit() {
@@ -48,5 +49,4 @@ export class AjoutPhaseComponent implements OnInit {
 }
 
 
-
-} 
+}

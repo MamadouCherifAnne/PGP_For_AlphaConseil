@@ -54,9 +54,9 @@ export class GanttProjectComponent implements OnInit {
               /**  Conversion des taches precedentes pour le rendre compatible avec 
                * la logique de dependence entre les taches
               */
-              if(this.tacheRealisable[i].tachePrecedente){
+              if(this.tacheRealisable[i].predecesseurs){
                 this.preced=[];
-                for(let p=0; p<this.tacheRealisable[i].tachePrecedente.length;p++){
+                for(let p=0; p<this.tacheRealisable[i].predecesseurs.length;p++){
                   this.preced.push(data[i].tachePrecedente[p].numTache);
 
                 }

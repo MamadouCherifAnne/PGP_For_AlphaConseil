@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Tache } from '../Tache';
 import {TacheService} from "src/app/services/tache.service";
-import { MatDialogRef} from "@angular/material";
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ProjetService} from 'src/app/services/projet.service';
+
 
 @Component({
   selector: 'app-edit-tache',
@@ -16,8 +16,14 @@ export class EditTacheComponent implements OnInit {
   updateTacheForm: FormGroup;
   tacheAmodifier: any;
   returnMessage: any;
+  projet: any;
+  listTache: any;
+  listPhase: any;
 
-  constructor(private tacheService: TacheService ,private formBuilder: FormBuilder
+  @Input() public idProjet: any;
+  @Input() public idTache: any;
+
+  constructor(private tacheService: TacheService, private projetService: ProjetService,private formBuilder: FormBuilder
     ) { }
 
   ngOnInit() {
@@ -27,13 +33,46 @@ export class EditTacheComponent implements OnInit {
       "chargeTache": this.tache.chargeTache,
       "niveauPriorite": this.tache.niveauPriorite,
       "duree": [this.tache.duree, Validators.required],
+      "phase": this.tache.phase,
       "debutTache": [this.tache.debutTache,Validators.required],
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
-     // "tachePrecedente": this.tache.tachePrecedente,
+      "predecesseurs" : [this.tache.predecesseurs], 
     })
 
+    console.log("projet num "+this.idProjet);
+    console.log("tache id "+this.idTache);
+
+    //......................Recuperation du projet par son id.....................
+   this.projetService.getById(this.idProjet).subscribe(data=>{
+     if(data){
+       this.projet=data;
+      }
+    });
+
+    //...................Recuperation de la liste de tache d'un projet....................
+    this.projetService.projectAllTask(this.idProjet).subscribe(data=>{
+      if(data){
+        this.listTache=data;}
+      });
+
+     this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
+       if(data){
+         this.listPhase=data;
+
+        }
+
+     });
+     this.tacheService.getTache(this.idTache).subscribe(data=>{
+      if(data){
+        this.tacheAmodifier = data;
+        this.currentForm();
+      }
+    });
+
+     
   }
+
   formatLabel(value: number) {
     return value + '%';
   }
@@ -47,28 +86,29 @@ export class EditTacheComponent implements OnInit {
     this.tache.debutTache = this.updateTacheForm.get("debutTache").value;
     this.tache.finTache = this.updateTacheForm.get("finTache").value;
     this.tache.tauxAvancement = this.updateTacheForm.get("tauxAvancement").value;
-   // this.tache.tachePrecedente = this.updateTacheForm.get("tachePrecedente").value;
+    this.tache.predecesseurs = this.updateTacheForm.get("predecesseurs").value;
 
-    let idTache = Number.parseFloat(this.tacheAmodifier.tache.numTache);
+    
 
-    let value = this.tacheService.updateTask(idTache, this.tache);
+    let value = this.tacheService.updateTask(this.idTache, this.tache);
     value.subscribe((data)=>this.returnMessage=data);
 
-   
+    
   }
 
- 
-  curentForm(){
-    this.updateTacheForm.get("nomTache").setValue(this.tacheAmodifier.tache.nomTache);
-    this.updateTacheForm.get("description").setValue(this.tacheAmodifier.tache.description);
-    this.updateTacheForm.get("chargeTache").setValue(this.tacheAmodifier.tache.niveauPriorite);
-    this.updateTacheForm.get("niveauPriorite").setValue(this.tacheAmodifier.tache.niveauPriorite);
-    this.updateTacheForm.get("duree").setValue(this.tacheAmodifier.tache.duree);
-    this.updateTacheForm.get("debutTache").setValue(this.tacheAmodifier.tache.debutTache);
-    this.updateTacheForm.get("finTache").setValue(this.tacheAmodifier.tache.finTache);
-    this.updateTacheForm.get("tauxAvancement").setValue(this.tacheAmodifier.tache.tauxAvancement);
-    this.updateTacheForm.get("tachePrecedente").setValue(this.tacheAmodifier.tache.tachePrecedente);
+  currentForm(){
+
+    this.updateTacheForm.get("nomTache").setValue(this.tacheAmodifier.nomTache);
+    this.updateTacheForm.get("description").setValue(this.tacheAmodifier.description);
+    this.updateTacheForm.get("chargeTache").setValue(this.tacheAmodifier.chargeTache);
+    this.updateTacheForm.get("niveauPriorite").setValue(this.tacheAmodifier.niveauPriorite);
+    this.updateTacheForm.get("duree").setValue(this.tacheAmodifier.duree);
+    this.updateTacheForm.get("debutTache").setValue(this.tacheAmodifier.debutTache);
+    this.updateTacheForm.get("finTache").setValue(this.tacheAmodifier.finTache);
+    this.updateTacheForm.get("tauxAvancement").setValue(this.tacheAmodifier.tauxAvancement);
+    this.updateTacheForm.get("predecesseurs").setValue(this.tacheAmodifier.predecesseurs);
   }
-  
+
+
 
 }

@@ -45,12 +45,11 @@ import { AltachesComponent } from './altaches/altaches.component';
 import { UpdateTacheComponent } from './Tache/update-tache/update-tache.component';
 import { EditTacheComponent } from './Tache/edit-tache/edit-tache.component';
 import {FieldsetModule} from 'primeng/fieldset';
-import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
-
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-phase-second.component';
 
 
 
@@ -86,14 +85,12 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     UpdateTacheComponent,
     
     EditTacheComponent,
-    
-    ToutLeProjetComponent,
-
     GanttProjectComponent,
     UtilisateurGanttComponent,
     AddEntrepriseComponent,
     AffecterRessourcesComponent,
     SideNavComponent,
+    AjoutPhaseSecondComponent,
 
   ],
   imports: [
@@ -117,7 +114,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     UpdateProfessionComponent,
 
     UpdateTacheComponent,
-    
+    AjoutPhaseSecondComponent,
     AjoutProjetComponent,
     AjoutPhaseComponent,
     AddTacheComponent,

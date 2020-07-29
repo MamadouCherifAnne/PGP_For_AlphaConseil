@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToutLeProjetComponent } from './tout-le-projet.component';
+import { AjoutPhaseSecondComponent } from './ajout-phase-second.component';
 
-describe('ToutLeProjetComponent', () => {
-  let component: ToutLeProjetComponent;
-  let fixture: ComponentFixture<ToutLeProjetComponent>;
+describe('AjoutPhaseSecondComponent', () => {
+  let component: AjoutPhaseSecondComponent;
+  let fixture: ComponentFixture<AjoutPhaseSecondComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToutLeProjetComponent ]
+      declarations: [ AjoutPhaseSecondComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToutLeProjetComponent);
+    fixture = TestBed.createComponent(AjoutPhaseSecondComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

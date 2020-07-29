@@ -20,7 +20,6 @@ import {AltachesComponent} from './altaches/altaches.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
 import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component';
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
-import{ToutLeProjetComponent} from './Projet/tout-le-projet/tout-le-projet.component';
 
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 
@@ -42,10 +41,9 @@ const routes: Routes = [
   {path:'profession', component:ListeProfessionComponent},
   {path: 'projet/gantt/:id', component: GanttProjectComponent},
 
-  {path: 'projet/:id', component: EnsembleVueProjetComponent, children:[
-    {path: 'Taches/:id', component: AltachesComponent},
-    {path: 'toutleprojet/:id', component: ToutLeProjetComponent},
-  ] },
+  {path: 'projet/:id', component: EnsembleVueProjetComponent},
+  {path: 'Taches/:id', component: AltachesComponent},
+ 
   
 
   {path: 'modifier/:id', component: UpdateTacheComponent},
