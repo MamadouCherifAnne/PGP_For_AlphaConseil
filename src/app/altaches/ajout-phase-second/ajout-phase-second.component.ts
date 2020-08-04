@@ -28,7 +28,7 @@ export class AjoutPhaseSecondComponent implements OnInit {
 
   ngOnInit() {
     this.addPhaseForm = this.formBuilder.group({
-      'titrePhase': this.phase.titrePhase,
+      'titrePhase': this.phase.nomTache,
       'description': this.phase.description  
     })
     

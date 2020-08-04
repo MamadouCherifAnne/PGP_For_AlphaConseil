@@ -50,6 +50,7 @@ import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entrepri
 import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-phase-second.component';
+import { JalonComponent } from './Projet/jalon/jalon.component';
 
 
 
@@ -92,6 +93,9 @@ import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-p
     SideNavComponent,
     AjoutPhaseSecondComponent,
 
+    JalonComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -112,6 +116,7 @@ import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-p
     AddProfessionComponent,
     AjoutPhaseComponent,
     UpdateProfessionComponent,
+    AffecterRessourcesComponent,
 
     UpdateTacheComponent,
     AjoutPhaseSecondComponent,

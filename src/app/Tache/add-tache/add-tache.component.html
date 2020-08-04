@@ -19,7 +19,7 @@
                     <mat-label>Ajouter une Phase</mat-label>
                     <mat-select formControlName="phase" [(ngModel)]="tache.phase">
                         <ng-container  *ngFor="let phase of allPhases"> 
-                        <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
+                        <mat-option  [value]="phase">{{phase.nomTache}}</mat-option>
                         </ng-container> 
                     </mat-select>  
                 </mat-form-field>
@@ -29,13 +29,13 @@
 
                 <mat-tab label="Durée">
                     <mat-form-field>
-                        <input formControlName="duree"  [(ngModel)]="tache.duree" matInput placeholder="Durée de la tache">
+                        <input formControlName="duree"  [(ngModel)]="tache.duree" matInput type="number" placeholder="Durée de la tache en jour">
                     </mat-form-field>
                 </mat-tab>
                 
                 <mat-tab label="chargeTache">
                     <mat-form-field>
-                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput placeholder="Charge de la tache">
+                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput type="number" placeholder="Charge de la tache en heure">
                     </mat-form-field>
                 </mat-tab>
 
@@ -63,7 +63,7 @@
                <mat-tab label="Prédecesseurs">         
                     <mat-form-field>
                         <mat-label>prédecesseurs</mat-label>
-                        <mat-select formControlName="predecesseurs" [(ngModel)]="tache.predecesseurs">
+                        <mat-select formControlName="tachePrecedente" [(ngModel)]="tache.tachePrecedente" multiple>
                             <ng-container *ngFor="let tache of allTaches">
                             <mat-option  [value]="tache">{{tache.nomTache}}</mat-option>
                             </ng-container> 

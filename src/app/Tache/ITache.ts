@@ -13,7 +13,7 @@ export interface ITache{
 	facture: object;
 	depenses: object[];
 	fichiers: object[];
-	predecesseurs: object[];
+	tachePrecedente: object[];
 	ressources:object[];
  
 	

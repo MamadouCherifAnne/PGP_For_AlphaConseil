@@ -16,6 +16,10 @@ export class TacheService {
     return this.http.post("http://localhost:8080/tache/add",tache);
   }
 
+  ajoutJalon(tache){
+    return this.http.post("http://localhost:8080/tache/addJalon",tache);
+  }
+
   //......................................................................................
  findAllTache(): Observable<ITache[]>{
    return this.http.get<ITache[]>("http://localhost:8080/tache/findAll");

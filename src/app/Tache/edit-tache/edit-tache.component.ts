@@ -37,7 +37,8 @@ export class EditTacheComponent implements OnInit {
       "debutTache": [this.tache.debutTache,Validators.required],
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
-      "predecesseurs" : [this.tache.predecesseurs], 
+      "tachePrecedente" : [this.tache.tachePrecedente],
+      
     })
 
     console.log("projet num "+this.idProjet);
@@ -70,7 +71,7 @@ export class EditTacheComponent implements OnInit {
       }
     });
 
-     
+   
   }
 
   formatLabel(value: number) {
@@ -78,6 +79,7 @@ export class EditTacheComponent implements OnInit {
   }
 
   updateTache(){
+   
     this.tache.nomTache = this.updateTacheForm.get( "nomTache").value;
     this.tache.description = this.updateTacheForm.get("description").value;
     this.tache.chargeTache = this.updateTacheForm.get("chargeTache").value;
@@ -86,9 +88,10 @@ export class EditTacheComponent implements OnInit {
     this.tache.debutTache = this.updateTacheForm.get("debutTache").value;
     this.tache.finTache = this.updateTacheForm.get("finTache").value;
     this.tache.tauxAvancement = this.updateTacheForm.get("tauxAvancement").value;
-    this.tache.predecesseurs = this.updateTacheForm.get("predecesseurs").value;
 
-    
+    this.tache.tachePrecedente = this.updateTacheForm.get("tachePrecedente").value;
+
+
 
     let value = this.tacheService.updateTask(this.idTache, this.tache);
     value.subscribe((data)=>this.returnMessage=data);
@@ -106,7 +109,7 @@ export class EditTacheComponent implements OnInit {
     this.updateTacheForm.get("debutTache").setValue(this.tacheAmodifier.debutTache);
     this.updateTacheForm.get("finTache").setValue(this.tacheAmodifier.finTache);
     this.updateTacheForm.get("tauxAvancement").setValue(this.tacheAmodifier.tauxAvancement);
-    this.updateTacheForm.get("predecesseurs").setValue(this.tacheAmodifier.predecesseurs);
+    this.updateTacheForm.get("tachePrecedente").setValue(this.tacheAmodifier.tachePrecedente);
   }
 
 

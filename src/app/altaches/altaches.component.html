@@ -6,7 +6,7 @@
         <br>
         <ul class="list-group" *ngFor="let phase of allphase">
             <li class="list-group-item  breadcrumb" style="border: none">
-                <dl >{{phase.titrePhase}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
+                <dl >{{phase.nomTache}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
                
             </li>
         </ul>
@@ -20,7 +20,7 @@
             <br>
             <br>
         </div>
-   
+
     
  <!--- ------------------------------fin------------------------------------------------ -->
  
@@ -33,7 +33,7 @@
                     [attr.data-target]="'#collapse'+i"
                     aria-expanded="true"
                     aria-controls="collapseOne">
-                {{ phase.titrePhase }}
+                {{ phase.nomTache }}
                 <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
                 </button>
             </h5>
@@ -44,26 +44,29 @@
           
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let tache of phase.taches">
+                    <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
+
                        <div>
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                          {{tache.nomTache}} 
-                         <button class="btn-sm" (click)="togleDisplay()">edit</button>
+                         <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
                        </div> 
                         
                         <mat-menu #menu="matMenu">
                                 <button mat-menu-item  (click)="modifier(tache)"><span>modifier</span></button>
-                                <button mat-menu-item class="ajoutPhase" ><span>supprimer</span>
+                                <button mat-menu-item class="ajoutPhase" ><span>supprimer</span></button>
+                                <button mat-menu-item class="ajoutPhase" (click)="affecterRessources(tache)" ><span>Ajout Ressources</span>
                                 </button>
                         </mat-menu>
                         
-                        <div [hidden]="display">
+                        <div [hidden]="!display[i]">
                         <app-edit-tache [idProjet]="idProjet" [idTache]="tache.numTache"></app-edit-tache>
                         </div>
-                        <button class="btn btn-success btn-sm">Ajouter une tache</button>         
+                              
                     </li>
+                    <p class="btAjtache"><button class="btn btn-success btn-sm ">Ajouter une tache</button></p>   
                 </ul>
             </div>
         </div>

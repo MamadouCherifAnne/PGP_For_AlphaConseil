@@ -1,0 +1,25 @@
+<mat-toolbar>
+    <span>Nouvelle Jalon</span>
+</mat-toolbar>
+<form [formGroup]="ajoutTacheForm" class="normal-form">
+    <mat-grid-list cols="2" rorHeight="300px">
+        
+            <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom jalon">
+                    <mat-error></mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <textarea formControlName="description" [(ngModel)]="tache.description" matInput placeholder="description"></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
+                        <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #picker1 ></mat-datepicker>
+                    </mat-form-field>
+
+                    </div>
+                    </mat-grid-list>
+</form>

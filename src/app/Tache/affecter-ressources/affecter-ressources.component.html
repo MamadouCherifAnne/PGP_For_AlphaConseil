@@ -1,5 +1,6 @@
+<P class="center"> <span>Affecter Autant de Ressource </span></P>
 <form [formGroup]="affectationForm" class="normal-form">
-    <mat-grid-list cols="2" rorHeight="100px">
+    <mat-grid-list cols="2" rorHeight="50px">
         <mat-grid-tile>
           <div class="controles-container">
   
@@ -19,6 +20,7 @@
           </div>
         </mat-grid-tile>
         </mat-grid-list> 
-        <button mat-button color="warn" (click)="onFermer()">Terminer</button>
-        <button mat-button color="primary" (click)="affecterRessource()">Valider</button>
+        
+        <button mat-button color="primary" (click)="affecterRessource()" [disabled]="affectationForm.invalid">Valider</button>
+        <button mat-button color="" (click)="onFermer()">Fermer</button>
 </form>

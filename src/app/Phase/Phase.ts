@@ -1,7 +1,9 @@
 export class Phase{
-    titrePhase: String;
+ 
+    nomTache: String;
+    debutTache:Date;
     description: String;
     projet: object;
-    tache: object;
+    taches: object[];
 
 }

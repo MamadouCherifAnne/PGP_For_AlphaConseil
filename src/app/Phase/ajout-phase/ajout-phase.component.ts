@@ -27,8 +27,9 @@ export class AjoutPhaseComponent implements OnInit {
 
   ngOnInit() {
     this.addPhaseForm = this.formBuilder.group({
-      'titrePhase': this.phase.titrePhase,
-      'description': this.phase.description  
+      'titrePhase': this.phase.nomTache,
+      'description': this.phase.description
+
     })
     
     this.projet = this.data.projet;
@@ -38,9 +39,15 @@ export class AjoutPhaseComponent implements OnInit {
    console.log(this.projet);
    this.phase.projet = this.projet;
    let valeur = this.phaseService.addPhase(this.phase);
-   valeur.subscribe((data)=>this.message=data);
+   valeur.subscribe((data)=>{
+     if(data){
+     this.message=data;
+     this.onFermer();
+     }
 
-   this.onFermer();
+  });
+  
+
  } 
  // FERMER
  public onFermer(){

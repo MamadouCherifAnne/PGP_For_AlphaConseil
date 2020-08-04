@@ -1,30 +1,24 @@
 <div class="container">
-    <div>
-    <h3>Mes projets</h3>
-    <button class="btn btn-success thebt" (click)="onCreate()">Affecter a une tache</button>
+    <h4>Details Utilisateur </h4>
+
+    
+<div class="container">
+<div class="card" *ngIf="currentUser">
+    <div class="card-body">
+      <h5 class="card-title">Information de l'Utilisateur</h5>
+      <br>
+      <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
+      <span>Nom de L'utilisateur :{{currentUser.nom}} </span><br><br>
+      <span>Prenom: {{currentUser.prenom}}</span><br><br>
+      <span>Email : {{currentUser.email}}</span><br><br>
+      <span>Telephone: {{currentUser.telephone}}</span><br><br>
+      <span>Adresse: {{currentUser.adresse}}</span><br><br>
+      <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
+      <span>Telephone: {{currentUser.role}}</span><br><br>
+      <span>Adresse: {{currentUser.adresse}}</span><br><br>
+      <a href="#!" class="card-link">Card link</a>
+      <a href="#!" class="card-link">Another link</a>
     </div>
-    <br>
-    <br>
-    <hr>
-    <div class="container">
-        <div class="row" *ngFor="let projet of projets">
-            <div class="col">
-                <div class="card horizontal" >
-                    <div class="card-body">
-                        <div class="thebt">
-                            <button mat-icon-button (click)="edit(projet)"><mat-icon>launch</mat-icon></button>
-                            <button  mat-icon-button (click)="delete(projet.numProjet)"><mat-icon>delete_outline</mat-icon></button>
-                        </div>
-                    <div>
-                    <h5 class="card-title" >{{projet.nomProjet}}</h5>
-                    </div>
-                    <h6 class="card-subtitle mb-2 text-muted">Entreprise name ici</h6>
-                    <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-                    
-                    <button (click)="onSelect(projet)">Voir Detail</button>
-                    </div>
-                </div>
-                <br>     
-            </div>
-        </div>
-    </div>
+  </div>
+  </div>
+  </div>

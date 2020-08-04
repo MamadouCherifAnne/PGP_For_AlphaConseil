@@ -16,7 +16,6 @@ export class EnsembleVueProjetComponent implements OnInit {
   listPhase : any;
   listTache :any;
  
-
   constructor(private dialog : MatDialog,private route: ActivatedRoute, private projetService: ProjetService) { }
 
 
@@ -44,8 +43,31 @@ export class EnsembleVueProjetComponent implements OnInit {
   }
   
   //............................................................................................... 
-  onAjoutPhase(){ 
+ /* onAjoutPhase(){ 
     console.log(this.projet.nomProjet);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.data = {projet: this.projet};
+    this.dialog.open(AjoutPhaseComponent, dialogConfig);
+  } */
+//..................................................................................................
+/*  onAjoutTahce(){  
+    console.log(this.listTache);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true; 
+    dialogConfig.width = "60%";
+     //...........ici.....................
+    dialogConfig.data= {listPhases: this.listPhase, listTaches: this.listTache};
+    this.dialog.open(AddTacheComponent, dialogConfig);
+  } */
+
+
+ //............................................................................................... 
+  onAjoutPhase(){ 
+    console.log(this.listPhase);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -58,15 +80,20 @@ export class EnsembleVueProjetComponent implements OnInit {
     console.log(this.listTache);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true; 
+    dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
      //...........ici.....................
     dialogConfig.data= {listPhases: this.listPhase, listTaches: this.listTache};
-    this.dialog.open(AddTacheComponent, dialogConfig);
+    this.dialog.open(AddTacheComponent, dialogConfig).afterClosed()
+    .subscribe(result => {
+      this.refresh();
+    });
+    ;
   } 
 
 
-
-
-
+  refresh(){
+    let valeur = this.projetService.getById(this.projetId);
+    valeur.subscribe((data)=>this.projet=data);
+  }
 }

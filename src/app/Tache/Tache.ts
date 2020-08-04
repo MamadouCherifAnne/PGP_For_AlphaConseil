@@ -1,4 +1,5 @@
 export class Tache{
+	numTache:number
 	nomTache: String;
 	description : String;
 	debutTache: Date;
@@ -11,7 +12,9 @@ export class Tache{
 	facture: object;
 	depenses: object[];
 	fichiers: object[];
-	predecesseurs: object[];
+	predecesseurs: string;
+	tachePrecedente:any[];
 	ressources:object[];
+	taches:object[];
 	
 }

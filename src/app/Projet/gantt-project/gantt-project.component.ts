@@ -13,6 +13,7 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { ProjetService} from 'src/app/services/projet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from '../Projet';
+import { Iphase } from 'src/app/Phase/Iphase';
 
 @Component({
   selector: 'app-gantt-project',
@@ -20,6 +21,7 @@ import { Projet } from '../Projet';
   styleUrls: ['./gantt-project.component.scss']
 })
 export class GanttProjectComponent implements OnInit {
+
 
   tacheRealisable: ITache[] ;
   allTask:any;
@@ -31,6 +33,7 @@ export class GanttProjectComponent implements OnInit {
   projet:any;
   projetName:String;
   personnes:object[]
+  phases:Iphase[]
 
   constructor(private userService:UtilisateurService,
     private projetService:ProjetService,
@@ -39,69 +42,77 @@ export class GanttProjectComponent implements OnInit {
     ){}
 
     ngOnInit(){
-      this.projectId = parseInt(this.route.snapshot.paramMap.get('idProjet'));
+      this.projectId = parseInt(this.route.snapshot.paramMap.get('id'));
      // this.projectId=6;
    
         //recuperation des taches a travers la bdd
-       this.projetService.projectAllTasks(this.projectId).subscribe((data)=>{
+       this.projetService.AllphaseDeProjet(this.projectId).subscribe((data)=>{
           if(data){
             
-            this.tacheRealisable =data;
-            console.log(this.tacheRealisable)
-            for(let i=0 ;i<data.length;i++){
+            this.phases =data;
+            console.log(this.phases)
+            //Recuperer les predecessuer des taches de chaque phase
+            for(let phase of this.phases){
+              if(phase.taches){
+                for(let task of phase.taches){
+                  if(task.tachePrecedente){
+                    this.preced=[];
+                    for(let p=0; p<task.tachePrecedente.length;p++){
+                      this.preced.push(task.tachePrecedente[p].numTache);
+    
+                    }
+                    task.predecesseurs= this.preced.toString(); 
+                    console.log(task.predecesseurs)
+                  }
 
 
-              /**  Conversion des taches precedentes pour le rendre compatible avec 
-               * la logique de dependence entre les taches
-              */
-              if(this.tacheRealisable[i].predecesseurs){
-                this.preced=[];
-                for(let p=0; p<this.tacheRealisable[i].predecesseurs.length;p++){
-                  this.preced.push(data[i].tachePrecedente[p].numTache);
-
-                }
-                this.tacheRealisable[i].predecesseur=this.preced.toString();
-                console.log(this.tacheRealisable[i].predecesseur);
-                
-              }
-              // alimenter la liste des ressources de chaque tache
-              this.taskService.getRessoucesForTask(this.tacheRealisable[i].numTache)
+                     // alimenter la liste des ressources de chaque tache
+              this.taskService.getRessoucesForTask(task.numTache)
               .subscribe(resource=>{
                 if(resource){
                    
-                  this.tacheRealisable[i].ressources=[];
+                  task.ressources=[];
                   for(let r=0;r<resource.length;r++){
-                    this.tacheRealisable[i].ressources[r]=resource[r].idUser;
+                    task.ressources[r]=resource[r].idUser;
                   }
                       }
               });// fin de recuperation de ressources de tache
+                }
+
+                
+                
+                }
+              }
               
             }
-                
-       // get ressources
-       this.userService.getUsers().subscribe(users=>{
+
+             this.userService.getUsers().subscribe(users=>{
         if(users){
           // get the current project
        
         this.personnes=users;
+      
+        
+        }
         this.projetService.getById(this.projectId).subscribe(project=>{
           if(project){
             this.projet=project;
             console.log(project)
-            this.ChargerGanttDiagramm();
+            this.ChargerGanttDiagramm()
           }
         });
         
-        }
       });
+            
+          
+           
+          
 
-            
-            
-          }
         });// fin de recuperation des tache
      
      
     }
+  
   
   /*ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
@@ -109,15 +120,16 @@ export class GanttProjectComponent implements OnInit {
  
   public ChargerGanttDiagramm(){ 
     let gantt:Gantt=new Gantt({
-      dataSource:this.tacheRealisable,
+      dataSource:this.phases,
       height:'600px',
       taskFields : {
         id: 'numTache',
         name: 'nomTache',
         startDate: 'debutTache',
         endDate: 'finTache',
+        child:'taches',
         duration:'duree',
-      dependency:'predecesseur',
+      dependency:'predecesseurs',
         resourceInfo:'ressources'
     },
     resources:this.personnes,
@@ -128,16 +140,19 @@ export class GanttProjectComponent implements OnInit {
       rightLabel:'ressources',
       
     },
-    /*
+    
+    
     projectStartDate:this.projet.debutProjet,
     projectEndDate:this.projet.finProjet,
    timelineSettings:{
       timelineViewMode:'Year',
-      timelineUnitSize:50,
+      timelineUnitSize:100,
       topTier:{
-        unit:'Day'
+        unit:'Week'
       }
-    }*/
+    }
+    // AJouter les options de modifications
+   
     
     });
     gantt.appendTo("#GanttContainer");

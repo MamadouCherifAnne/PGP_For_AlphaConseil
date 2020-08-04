@@ -18,10 +18,13 @@ import { AffectationUserComponent } from './Utilisateur/affectation-user/affecta
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component'
 import {AltachesComponent} from './altaches/altaches.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
-import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component';
-import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+import { JalonComponent } from './Projet/jalon/jalon.component';
+
+
+import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component';
+import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
@@ -32,6 +35,7 @@ const routes: Routes = [
   {path: 'utilisateur', component: ListeUtilisateurComponent},
   {path: 'add', component: AjoutUtilisateurComponent},
   {path: 'update',component: UpdateUtilisateurComponent},
+  {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent},
   
 
   {path: 'utilisateur/affect', component: AffectationUserComponent},

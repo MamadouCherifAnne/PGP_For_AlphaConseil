@@ -34,7 +34,9 @@ export class UpdateTacheComponent implements OnInit {
       "debutTache": [this.tache.debutTache,Validators.required],
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
-      "predecesseurs": this.tache.predecesseurs,
+      "tachePrecedente" : [this.tache.tachePrecedente],
+     // "tachePrecedente": this.tache.tachePrecedente,
+
     })
     this.tacheAmodifier = this.data;
     console.log(this.tacheAmodifier.tache.numTache);
@@ -54,7 +56,9 @@ export class UpdateTacheComponent implements OnInit {
     this.tache.debutTache = this.updateTacheForm.get("debutTache").value;
     this.tache.finTache = this.updateTacheForm.get("finTache").value;
     this.tache.tauxAvancement = this.updateTacheForm.get("tauxAvancement").value;
-    this.tache.predecesseurs = this.updateTacheForm.get("predecesseurs").value;
+
+    this.tache.tachePrecedente = this.updateTacheForm.get("tachePrecedente").value;
+
 
     let idTache = Number.parseFloat(this.tacheAmodifier.tache.numTache);
 
@@ -80,4 +84,8 @@ export class UpdateTacheComponent implements OnInit {
     this.updateTacheForm.get("predecesseurs").setValue(this.tacheAmodifier.tache.predecesseurs);
   }
   
+  onClose(){
+    this.updateTacheForm.reset();
+    this.dialogRef.close();
+  }
 }

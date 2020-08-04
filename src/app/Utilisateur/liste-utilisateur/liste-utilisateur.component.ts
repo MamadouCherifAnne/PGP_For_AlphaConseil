@@ -80,4 +80,9 @@ export class ListeUtilisateurComponent implements OnInit {
   goToGanttUser(user){
     this.router.navigate(["/utilisateur/gantt", user]);
   }
+
+  // Acceder aux details de l'utilisateur
+  goToUserDetails(user){
+    this.router.navigate(["/utilisateur/details",user]);
+  }
 }

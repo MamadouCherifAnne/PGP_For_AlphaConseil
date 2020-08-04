@@ -4,7 +4,11 @@ import {ProjetService} from 'src/app/services/projet.service';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {Router, RouterState} from '@angular/router';
 import{UpdateTacheComponent} from '../Tache/update-tache/update-tache.component';
+
 import {AjoutPhaseSecondComponent} from './ajout-phase-second/ajout-phase-second.component';
+
+import { AffecterRessourcesComponent}  from '../Tache/affecter-ressources/affecter-ressources.component'
+
 
 @Component({
   selector: 'app-altaches',
@@ -19,10 +23,10 @@ export class AltachesComponent implements OnInit {
   projet: any;
   listTache: any;
 
-  display = true;
-  togleDisplay(){
-  this.display = !this.display
-  }
+  display = [];
+ // togleDisplay(){
+  //this.display = !this.display
+  //}
   constructor( private route: ActivatedRoute, private dialog : MatDialog,
     private projetService: ProjetService, private  router: Router) { }
 
@@ -58,6 +62,7 @@ export class AltachesComponent implements OnInit {
   } 
 
   ajouterPhase(){
+ 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -65,4 +70,15 @@ export class AltachesComponent implements OnInit {
     dialogConfig.data = {projet: this.projet};
     this.dialog.open(AjoutPhaseSecondComponent, dialogConfig);
   }
+
+  affecterRessources(element){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.data = {tache: element};
+    this.dialog.open(AffecterRessourcesComponent, dialogConfig);
+  }
+
+
 }
