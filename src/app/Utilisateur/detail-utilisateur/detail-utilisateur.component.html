@@ -8,16 +8,16 @@
       <h5 class="card-title">Information de l'Utilisateur</h5>
       <br>
       <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
-      <span>Nom de L'utilisateur :{{currentUser.nom}} </span><br><br>
-      <span>Prenom: {{currentUser.prenom}}</span><br><br>
-      <span>Email : {{currentUser.email}}</span><br><br>
-      <span>Telephone: {{currentUser.telephone}}</span><br><br>
-      <span>Adresse: {{currentUser.adresse}}</span><br><br>
+      <mat-icon>account_circle</mat-icon> <b>Nom de L'utilisateur </b> :{{currentUser.nom}}<br><br>
+      <mat-icon>person</mat-icon> <b>Prenom</b> Prenom: {{currentUser.prenom}}<br><br>
+      <mat-icon>mail</mat-icon> <b>Email</b> : {{currentUser.email}}<br><br>
+      <mat-icon>call</mat-icon> <b>Telephone</b>: {{currentUser.telephone}}<br><br>
+      <mat-icon>place</mat-icon> <b>Adresse</b>: {{currentUser.adresse}}<br><br>
       <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
-      <span>Telephone: {{currentUser.role}}</span><br><br>
-      <span>Adresse: {{currentUser.adresse}}</span><br><br>
-      <a href="#!" class="card-link">Card link</a>
-      <a href="#!" class="card-link">Another link</a>
+      <mat-icon>group</mat-icon><b>Role</b> : {{currentUser.role}}<br><br>
+      <mat-icon>domain</mat-icon> <b>Profession</b> : {{userProfessions}}<br><br>
+      <a href="#!" class="card-link">Accorder nouvel Status</a>
+      <a href="#!" class="card-link">Editer Profession</a>
     </div>
   </div>
   </div>
