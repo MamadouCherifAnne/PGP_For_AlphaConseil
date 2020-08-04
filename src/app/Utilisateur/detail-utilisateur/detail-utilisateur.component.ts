@@ -11,6 +11,7 @@ import { Utilisateur } from '../Utilisateur';
 export class DetailUtilisateurComponent implements OnInit {
 
   currentUser:any;
+  userProfessions:string[]=[];
   
 
   constructor(private userService:UtilisateurService,
@@ -24,6 +25,9 @@ export class DetailUtilisateurComponent implements OnInit {
        this.userService.getUserByIdUser(idUser).subscribe((data)=>{
           if(data){
             this.currentUser =data;
+           for(let p of this.currentUser.professions){
+             this.userProfessions.push(p.titreProfession)
+           }
             console.log(this.currentUser);
           }
        });

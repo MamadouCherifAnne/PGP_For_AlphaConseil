@@ -149,8 +149,16 @@ export class GanttProjectComponent implements OnInit {
       topTier:{
         unit:'Week'
       }
-    }
+    },
     // AJouter les options de modifications
+    editSettings:{
+      allowAdding:true,
+      allowEditing:true
+    },
+    allowSelection:true,
+    toolbar:['Add','Edit','Cancel'],
+    allowFiltering:true
+    
    
     
     });
