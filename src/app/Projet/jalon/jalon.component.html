@@ -1,25 +1,59 @@
-<mat-toolbar>
-    <span>Nouvelle Jalon</span>
-</mat-toolbar>
-<form [formGroup]="ajoutTacheForm" class="normal-form">
-    <mat-grid-list cols="2" rorHeight="300px">
-        
-            <div class="controles-container">
-                <mat-form-field>
-                    <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom jalon">
-                    <mat-error></mat-error>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <textarea formControlName="description" [(ngModel)]="tache.description" matInput placeholder="description"></textarea>
-                    </mat-form-field>
-
-                    <mat-form-field>
-                        <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
-                        <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
-                        <mat-datepicker #picker1 ></mat-datepicker>
-                    </mat-form-field>
-
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <div class="container-flud">
+        <br>
+        <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Liste des phases</h6>
+        <br>
+        <ul class="list-group" >
+            <li class="list-group-item  breadcrumb" style="border: none">
+               
+               
+            </li>
+        </ul>
+    </div>
+    </mat-sidenav>
+    <mat-sidenav-content> 
+       <div class="container-flud headline">
+            <h5>Jalon</h5>
+         
+            <p><button class="btn btn-success btn-sm btnAjout" (click)="goToAddJalon()" type="submit">Ajouter Jalon</button></p>
+            <br>
+            <br>
+        </div>
+        <!-- Les jalon a venir et les  -->
+        <mat-tab-group>
+            <mat-tab label="Tout"><span class="badge badge-pill badge-light">{{nombreJalon}}</span>
+                <div class="container" >
+                    <h4>liste des Evenements</h4>
+                
+                    
+                <div class="container" *ngIf="jalons" >
+                <div class="card" *ngFor="let jalon of jalons">
+                    <div class="card-body">
+                      <h5 class="card-title">{{jalon.nomTache}}</h5>
+                      <br>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                          <mat-icon>calendar</mat-icon>
+                           <b>Attendu le </b>  <small style="color: brown;">{{jalon.debutTache}}</small>
+                      </h6>
                     </div>
-                    </mat-grid-list>
-</form>
+                  </div>
+                  </div>
+                  </div>
+            </mat-tab>
+            <mat-tab label="En Retard">
+                <div class="container" *ngIf="lateJalon" >
+                    <div class="card" *ngFor="let jalon of lateJalon">
+                        <div class="card-body">
+                          <h5 class="card-title">{{jalon.nomTache}}</h5>
+                          <br>
+                          <h6 class="card-subtitle mb-2 text-muted">
+                              <mat-icon>calendar</mat-icon>
+                               <b>Devais Terminé le  </b>  <small style="color: brown;">{{jalon.debutTache}}</small>
+                          </h6>
+                        </div>
+                      </div>
+                      </div>
+            </mat-tab>
+           
+          </mat-tab-group>

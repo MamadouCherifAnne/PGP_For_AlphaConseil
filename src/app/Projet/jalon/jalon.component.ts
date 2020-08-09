@@ -14,6 +14,9 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { ProjetService} from 'src/app/services/projet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from '../Projet';
+import {AddJalonComponent} from '../add-jalon/add-jalon.component'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {MatDialog,MatDialogConfig, MatTableDataSource} from '@angular/material'
 
 
 @Component({
@@ -23,28 +26,74 @@ import { Projet } from '../Projet';
 })
 export class JalonComponent implements OnInit {
 
-  tacheRealisable: ITache[] ;
-  allTask:any;
-  ressources:object[]=[];
-  tasks:Tache
+ 
+  tache:Tache
   preced:object[] =[];
   taskfield: object;
-  projectId:number;
-  projet:any;
-  projetName:String;
-  personnes:object[]
-  phases:Iphase[]
+  ajoutJalon:FormGroup;
+  jalons:ITache[]
+  lateJalon:ITache[]=[]
+  nombreJalon:number
+  projectId:number
 
   constructor(private userService:UtilisateurService,
+    private formBuilder:FormBuilder,
     private projetService:ProjetService,
+    private fenetre:MatDialog,
     private taskService:TacheService,
     private route:ActivatedRoute,
     ){}
 
     ngOnInit(){
-      this.projectId = parseInt(this.route.snapshot.paramMap.get('idProjet'));
-     // this.projectId=6;
-   
-    }
+      this.projectId = parseInt(this.route.snapshot.paramMap.get('id'));
+     
+      // Recuperer tout les jalons
+      this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
+        if(data){
+          this.jalons=data;
+          this.nombreJalon=this.jalons.length
+          for(let j of this.jalons){
+            if(new Date(j.debutTache ) < new Date()){
+              this.lateJalon.push(j);
+              console.log(j.nomTache+"#   #"+j.debutTache)
+            }
+            }
+            console.log(new Date())
+        } 
+      });
+      }
+    
 
-}
+  // Ajout d'un Jalon
+  goToAddJalon(){
+
+      //this.router.navigate(["add"],{relativeTo: this.route});
+       //la configuration du pop up
+       const fenetreConfig= new MatDialogConfig();
+       fenetreConfig.disableClose =true;
+       fenetreConfig.autoFocus = true;
+       fenetreConfig.width="65%";
+       fenetreConfig.data;
+       this.fenetre.open(AddJalonComponent,fenetreConfig)
+       .afterClosed().subscribe(result => {
+        this.refresh();
+      });
+  
+    }
+  
+    refresh() {
+     
+      this.projetService.getProjectJalons(1).subscribe((data)=>{
+        if(data){
+          this.jalons=data;
+          for(let j of this.jalons){
+            if(j.debutTache < new Date()){
+              this.lateJalon.push(j);
+            }
+            }
+            console.log(this.lateJalon)
+        } 
+      });
+    }
+    
+  }

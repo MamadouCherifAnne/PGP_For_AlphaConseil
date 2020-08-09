@@ -50,4 +50,9 @@ export class ProjetService {
   public projectAllTasks(idProject):Observable<any>{
     return this.http.get<any>("http://localhost:8080/projet/projectAllTask/"+idProject);
   }
+
+  // Afficher tout les jalons du projet
+  public getProjectJalons(idProjet): Observable<ITache[]>{
+    return this.http.get<ITache[]>("http://localhost:8080/projet/projectJalons/"+idProjet);
+  }
 }

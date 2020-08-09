@@ -48,6 +48,7 @@ const routes: Routes = [
 
   {path: 'projet/:id', component: EnsembleVueProjetComponent, children:[
     {path: 'Taches/:id', component: AltachesComponent},
+    {path:'jalon/:id', component:JalonComponent},
     {path: 'toutleprojet/:id', component: ToutLeProjetComponent},
   ] },
   
@@ -59,7 +60,8 @@ const routes: Routes = [
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
 
   // les liens concernant entreprise
-  {path: 'workspace/new', component:AddEntrepriseComponent}
+  {path: 'workspace/new', component:AddEntrepriseComponent},
+  {path:'jalon', component:JalonComponent},
 
 ];
 

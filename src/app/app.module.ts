@@ -52,6 +52,7 @@ import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entrepri
 import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
+import { AddJalonComponent } from './Projet/add-jalon/add-jalon.component';
 
 
 
@@ -96,7 +97,9 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     AffecterRessourcesComponent,
     SideNavComponent,
 
-    JalonComponent
+    JalonComponent,
+
+    AddJalonComponent
 
 
   ],
@@ -127,6 +130,7 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     AjoutPhaseComponent,
     AddTacheComponent,
     EditProjetComponent,
-    UpdateRoleComponent],
+    UpdateRoleComponent,
+    AddJalonComponent],
 })
 export class AppModule { }
