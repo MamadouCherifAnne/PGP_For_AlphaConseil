@@ -65,6 +65,7 @@ export class GanttProjectComponent implements OnInit {
                     console.log(task.predecesseurs)
                   }
 
+
                      // alimenter la liste des ressources de chaque tache
               this.taskService.getRessoucesForTask(task.numTache)
               .subscribe(resource=>{

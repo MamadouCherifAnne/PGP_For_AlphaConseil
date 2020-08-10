@@ -5,13 +5,13 @@
     </h3>
     <br>  
     <ul class="list-inline">
-        <li class="list-inline-item">
-            <a  [routerLink]="['toutleprojet/', projetId]">Vue d'ensemble</a></li>
-        <li class="list-inline-item">
-            <a  [routerLink]="['Taches/', projetId]">Taches</a></li>
-
+        
+        
         <li class="list-inline-item">
             <a  [routerLink]="['jalon/', projetId]">Jalon</a></li>
+         <li class="list-inline-item">
+             <a  [routerLink]="['Taches/', projetId]">Taches</a></li>
+
         <li class="list-inline-item">
             <a  href="#">Fichiers</a></li>
         <li class="list-inline-item">
@@ -23,11 +23,13 @@
         <li class="list-inline-item">
             <a  href="#">Utilisateurs</a></li>
     </ul>
+   
 </div>
-<br>
-<router-outlet></router-outlet>
 
-<!--<mat-sidenav-container>
+
+<br>
+
+<mat-sidenav-container>
     <mat-sidenav mode="side" opened>
         <p><strong>Desciption</strong><br>
         Ajouter une Desciption</p>
@@ -40,17 +42,15 @@
     <mat-sidenav-content>
         <div class="headline">
         <h3>Vue d'ensemble</h3>
-       
      
         <p ><button class="btn btn-success btnAjout" mat-button [matMenuTriggerFor]="menu" >
             <mat-icon>add</mat-icon>Ajouter
         </button></p> 
-
+        </div>
+        <mat-menu #menu="matMenu">
                 <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajout Phase</button>
                 <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajout tache </button>
         </mat-menu>
     </mat-sidenav-content>
-</mat-sidenav-container> -->
-
-
-
+</mat-sidenav-container>
+<router-outlet></router-outlet>

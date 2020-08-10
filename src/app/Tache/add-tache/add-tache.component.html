@@ -23,17 +23,22 @@
                         </ng-container> 
                     </mat-select>  
                 </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="duree"  [(ngModel)]="tache.duree" matInput placeholder="Durée de la tache">
-                </mat-form-field>
 
                 <mat-tab-group>
                 <br>
-                <mat-tab label="chargeTache">
+
+                <mat-tab label="Durée">
                     <mat-form-field>
-                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput placeholder="Charge de la tache">
+                        <input formControlName="duree"  [(ngModel)]="tache.duree" matInput type="number" placeholder="Durée de la tache en jour">
                     </mat-form-field>
                 </mat-tab>
+                
+                <mat-tab label="chargeTache">
+                    <mat-form-field>
+                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput type="number" placeholder="Charge de la tache en heure">
+                    </mat-form-field>
+                </mat-tab>
+
                  <mat-tab label="priorité">
                      <br>
                     <label id="matgp"> Niveau de priorité: </label>
@@ -57,10 +62,8 @@
                                
                <mat-tab label="Prédecesseurs">         
                     <mat-form-field>
-                        <mat-label>prédecesseur</mat-label>
-
+                        <mat-label>prédecesseurs</mat-label>
                         <mat-select formControlName="tachePrecedente" [(ngModel)]="tache.tachePrecedente" multiple>
-
                             <ng-container *ngFor="let tache of allTaches">
                             <mat-option  [value]="tache">{{tache.nomTache}}</mat-option>
                             </ng-container> 

@@ -39,15 +39,15 @@ export class AddTacheComponent implements OnInit {
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
       "phase": this.tache.phase,
-
       "tachePrecedente": this.tache.tachePrecedente,
+
     })
   }
 
   
   ajoutTache(){
     console.log(this.allPhases);
-    console.log(this.allTaches);
+    //console.log(this.allTaches);
     console.log("tout va bien");
     let val = this.tacheService.ajoutTache(this.tache);
 
