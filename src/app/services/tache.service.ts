@@ -50,7 +50,16 @@ export class TacheService {
   public getPredecesseurTask(idTache):Observable<any>{
       return this.http.get<any>("http://localhost:8080/tache/predecesseurs/"+idTache);
   }
+  
+  //..... recuperation d'une tache by Id.......................................
+  public getTache(tacheId):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/tache/findTache/" +tacheId);
+  }
 
+  // Listes des taches succeptibles d'etre des predecesseurs a une tache T
+  public getPotentielPredecesseurs(tacheId):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/tache/potentielPredecesseurs/" +tacheId);
+  }
 
 
 }

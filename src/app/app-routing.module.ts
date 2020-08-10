@@ -25,7 +25,6 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
 
 import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component';
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
-import{ToutLeProjetComponent} from './Projet/tout-le-projet/tout-le-projet.component';
 
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
@@ -46,11 +45,11 @@ const routes: Routes = [
   {path:'profession', component:ListeProfessionComponent},
   {path: 'projet/gantt/:id', component: GanttProjectComponent},
 
-  {path: 'projet/:id', component: EnsembleVueProjetComponent, children:[
-    {path: 'Taches/:id', component: AltachesComponent},
-    {path:'jalon/:id', component:JalonComponent},
-    {path: 'toutleprojet/:id', component: ToutLeProjetComponent},
-  ] },
+  {path: 'projet/:id', component: EnsembleVueProjetComponent},
+  {path: 'Taches/:id', component: AltachesComponent},
+  {path:'jalon/:id', component:JalonComponent},
+ 
+
   
 
   {path: 'modifier/:id', component: UpdateTacheComponent},
@@ -61,7 +60,7 @@ const routes: Routes = [
 
   // les liens concernant entreprise
   {path: 'workspace/new', component:AddEntrepriseComponent},
-  {path:'jalon', component:JalonComponent},
+ 
 
 ];
 

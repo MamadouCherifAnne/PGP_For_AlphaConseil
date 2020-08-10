@@ -16,70 +16,64 @@
        <div class="container-flud headline">
             <h5>Taches</h5>
          
-            <p><button class="btn btn-success btn-sm btnAjout" type="submit">Ajouter phase</button></p>
+            <p><button class="btn btn-success btn-sm btnAjout" type="submit" (click)="ajouterPhase()">Ajouter une phase</button></p>
             <br>
             <br>
         </div>
-   
-        <!-- Affichage des ridos pour les phases ----------------------------------------> 
-        <mat-accordion class="example-headers-align"  *ngFor="let phase of allphase">
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{phase.nomTache}}
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-               
-                <ul  *ngFor="let tache of phase.taches">
-                    <li  *ngIf="tache">
-                       
+
+    
+ <!--- ------------------------------fin------------------------------------------------ -->
+ 
+ <div id="accordion" >
+    <div class="card" *ngFor="let phase of allphase; let i=index;">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link " 
+                    data-toggle="collapse"
+                    [attr.data-target]="'#collapse'+i"
+                    aria-expanded="true"
+                    aria-controls="collapseOne">
+                {{ phase.nomTache }}
+                <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
+                </button>
+            </h5>
+        </div>
+        <div [attr.id]="'collapse'+i" class="collapse"
+            aria-labelledby="headingOne"
+            data-parent="#accordion">
+          
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
+
                        <div>
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                          {{tache.nomTache}} 
-                         
-                        
+                         <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
                        </div> 
-                      
-               
+                        
                         <mat-menu #menu="matMenu">
-                                
                                 <button mat-menu-item  (click)="modifier(tache)"><span>modifier</span></button>
                                 <button mat-menu-item class="ajoutPhase" ><span>supprimer</span></button>
                                 <button mat-menu-item class="ajoutPhase" (click)="affecterRessources(tache)" ><span>Ajout Ressources</span>
                                 </button>
                         </mat-menu>
-                        <button (click)="togleDisplay()">click</button>
-                        <div  [hidden]="display">
-                         
-                             <div>
-                              <app-edit-tache></app-edit-tache>
-                             </div>
-                         
+                        
+                        <div [hidden]="!display[i]">
+                        <app-edit-tache [idProjet]="idProjet" [idTache]="tache.numTache"></app-edit-tache>
                         </div>
+                              
                     </li>
+                    <p class="btAjtache"><button class="btn btn-success btn-sm ">Ajouter une tache</button></p>   
                 </ul>
-            </mat-expansion-panel>       
-
-        </mat-accordion> 
- <!--- ------------------------------fin------------------------------------------------ -->
- <!--<div id="accordion" >
-    <div class="card" *ngFor="let phase of allphase">
-      <div class="card-header">
-        <span >
-        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-            {{phase.titrePhase}}
-        </a>
-        </span>
-      </div>
-      <div id="collapseOne" class="collapse show" data-parent="#accordion">
-        <div class="card-body">
-          Lorem ipsum..
+            </div>
         </div>
-      </div>
     </div>
-</div>    -->
+</div>`
+
+
     </mat-sidenav-content>
 </mat-sidenav-container>
 

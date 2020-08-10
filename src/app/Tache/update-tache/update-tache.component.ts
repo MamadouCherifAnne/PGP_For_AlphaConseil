@@ -17,11 +17,14 @@ export class UpdateTacheComponent implements OnInit {
   updateTacheForm: FormGroup;
   tacheAmodifier: any;
   returnMessage: any;
+  listeTache : any;
 
   constructor(private tacheService: TacheService ,private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef : MatDialogRef<UpdateTacheComponent>) { }
 
   ngOnInit() {
+    this.listeTache = this.data.listTache;
+
     this.updateTacheForm = this.formBuilder.group({
       "nomTache": [this.tache.nomTache,Validators.required],
       "description": this.tache.description,
@@ -33,6 +36,7 @@ export class UpdateTacheComponent implements OnInit {
       "tauxAvancement" : [this.tache.tauxAvancement],
       "tachePrecedente" : [this.tache.tachePrecedente],
      // "tachePrecedente": this.tache.tachePrecedente,
+
     })
     this.tacheAmodifier = this.data;
     console.log(this.tacheAmodifier.tache.numTache);
@@ -52,7 +56,9 @@ export class UpdateTacheComponent implements OnInit {
     this.tache.debutTache = this.updateTacheForm.get("debutTache").value;
     this.tache.finTache = this.updateTacheForm.get("finTache").value;
     this.tache.tauxAvancement = this.updateTacheForm.get("tauxAvancement").value;
+
     this.tache.tachePrecedente = this.updateTacheForm.get("tachePrecedente").value;
+
 
     let idTache = Number.parseFloat(this.tacheAmodifier.tache.numTache);
 
@@ -75,7 +81,7 @@ export class UpdateTacheComponent implements OnInit {
     this.updateTacheForm.get("debutTache").setValue(this.tacheAmodifier.tache.debutTache);
     this.updateTacheForm.get("finTache").setValue(this.tacheAmodifier.tache.finTache);
     this.updateTacheForm.get("tauxAvancement").setValue(this.tacheAmodifier.tache.tauxAvancement);
-    this.updateTacheForm.get("tachePrecedente").setValue(this.tacheAmodifier.tache.tachePrecedente);
+    this.updateTacheForm.get("predecesseurs").setValue(this.tacheAmodifier.tache.predecesseurs);
   }
   
   onClose(){

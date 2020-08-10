@@ -1,6 +1,5 @@
 form.normal-form{
     margin: 10px;
-    width: 100%;
 }
 
 .controles-container{
@@ -20,18 +19,10 @@ textarea .textarea{
     margin: 5px;
 }
 
-.matgp{
-    mat-radio-button
-    {
-        margin: 5px;
-        margin-right: 10px;
-    }
-   
+span{
+    margin-right: 23em;
+}
+.bton{
+    float: right;
 }
 
-.btn{
-    float: left;
-    button{
-        margin: 5px;
-    }
-}

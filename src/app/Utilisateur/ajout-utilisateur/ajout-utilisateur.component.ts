@@ -41,7 +41,7 @@ export class AjoutUtilisateurComponent implements OnInit {
       'prenom':[this.user.prenom, [Validators.required]],
       'email':[this.user.email, [Validators.required, Validators.email]],
       'password':[this.user.password, [Validators.required]],
-      'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8)]],
+      'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8),Validators.pattern('[0-9]*')]],
       'adresse':[this.user.adresse, [Validators.required]],
       'role':[this.idRol,[Validators.required]],
       'profession':[this.idProfession]
