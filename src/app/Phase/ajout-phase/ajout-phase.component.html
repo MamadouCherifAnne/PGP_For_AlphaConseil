@@ -4,20 +4,6 @@
     <span>Nouvelle Phase</span>
 </mat-toolbar>
 <br>
-<!-- <form [formGroup]="addPhaseForm" class="normal-form">
-
-    <div class="controles-container">
-    <div class="form-group">
-        <input class="form-control" type="text"  [(ngModel)]="phase.nomTache" [ngModelOptions]="{standalone: true}" placeholder="Nom de la phase">
-    </div>
-    <div class="form-group">  
-        <input class="form-control" type="text" [(ngModel)]="phase.description" [ngModelOptions]="{standalone: true}" placeholder="Ajouter une Description">
-    </div>
-    
-    <button type="submit" class="btn btn-success lebutton" (click)="ajoutPhase()">Ajouter</button>
-    <button mat-raised-button  type="submit" (click)="onFermer()">Annuler</button>
-    </div>
-</form> -->
 
 <form [formGroup]="addPhaseForm" class="normal-form">
     <mat-grid-list cols="2" rorHeight="300px">
@@ -25,6 +11,7 @@
         <div class="controles-container">
             <mat-form-field>
                 <input formControlName="titrePhase" [(ngModel)]="phase.nomTache" matInput placeholder="Nom de la phase">
+                <mat-error>Le nom de la phase est obligatoire.</mat-error>
             </mat-form-field>
 
             <mat-form-field>

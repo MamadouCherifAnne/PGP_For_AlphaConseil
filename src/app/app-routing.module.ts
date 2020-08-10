@@ -18,12 +18,11 @@ import { AffectationUserComponent } from './Utilisateur/affectation-user/affecta
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component'
 import {AltachesComponent} from './altaches/altaches.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
-
+import {FileComentComponent} from './altaches/file-coment/file-coment.component';
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
 
 
-import {UpdateTacheComponent} from './Tache/update-tache/update-tache.component';
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 
 const routes: Routes = [
@@ -47,12 +46,10 @@ const routes: Routes = [
 
   {path: 'projet/:id', component: EnsembleVueProjetComponent},
   {path: 'Taches/:id', component: AltachesComponent},
- 
-  
+  {path: 'task/:id', component: FileComentComponent},
 
-  {path: 'modifier/:id', component: UpdateTacheComponent},
   {path: 'MesTache', component: EditTacheComponent},
-
+ 
  
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
 

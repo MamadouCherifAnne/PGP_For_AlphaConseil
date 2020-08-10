@@ -22,11 +22,13 @@
                     <input formControlName="debutProjet"   matInput [matDatepicker]="picker1" placeholder="Date de debut du projet">
                     <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
                     <mat-datepicker #picker1 ></mat-datepicker>
+                    <mat-error>Mentionnez la date de debut</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="finProjet"  matInput [matDatepicker]="picker2" placeholder="Date de fin du projet">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 ></mat-datepicker>
+                    <mat-error>Mentionnez la date de fin</mat-error>
                 </mat-form-field>
                 <div class="button-row">
                     <button mat-raised-button color="primary" type="submit" (click)="updateProjet()">Modifier</button>

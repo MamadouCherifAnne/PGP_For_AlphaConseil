@@ -42,7 +42,6 @@ import {GanttModule} from '@syncfusion/ej2-angular-gantt';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
 import { AltachesComponent } from './altaches/altaches.component';
-import { UpdateTacheComponent } from './Tache/update-tache/update-tache.component';
 import { EditTacheComponent } from './Tache/edit-tache/edit-tache.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
@@ -51,6 +50,8 @@ import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecte
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-phase-second.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
+import { AjoutTacheSecondComponent } from './altaches/ajout-tache-second/ajout-tache-second.component';
+import { FileComentComponent } from './altaches/file-coment/file-coment.component';
 
 
 
@@ -82,9 +83,6 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     
    
     AltachesComponent,
-    
-    UpdateTacheComponent,
-    
     EditTacheComponent,
     GanttProjectComponent,
     UtilisateurGanttComponent,
@@ -93,7 +91,11 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     SideNavComponent,
     AjoutPhaseSecondComponent,
 
-    JalonComponent
+    JalonComponent,
+
+    AjoutTacheSecondComponent,
+
+    FileComentComponent
 
 
   ],
@@ -117,8 +119,6 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
     AjoutPhaseComponent,
     UpdateProfessionComponent,
     AffecterRessourcesComponent,
-
-    UpdateTacheComponent,
     AjoutPhaseSecondComponent,
     AjoutProjetComponent,
     AjoutPhaseComponent,

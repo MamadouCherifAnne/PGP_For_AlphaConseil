@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdateTacheComponent } from './update-tache.component';
+import { AjoutTacheSecondComponent } from './ajout-tache-second.component';
 
-describe('UpdateTacheComponent', () => {
-  let component: UpdateTacheComponent;
-  let fixture: ComponentFixture<UpdateTacheComponent>;
+describe('AjoutTacheSecondComponent', () => {
+  let component: AjoutTacheSecondComponent;
+  let fixture: ComponentFixture<AjoutTacheSecondComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateTacheComponent ]
+      declarations: [ AjoutTacheSecondComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UpdateTacheComponent);
+    fixture = TestBed.createComponent(AjoutTacheSecondComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
