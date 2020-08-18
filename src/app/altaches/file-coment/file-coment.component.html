@@ -1,0 +1,77 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <p><strong>Desciption</strong><br>
+        </p>
+        <p><i class='far fa-calendar-alt'></i>Dates</p>
+        <div *ngIf="currentTache" class="divdate">
+             <span>Début: {{currentTache.debutTache | date}}</span>
+             <br>
+             <span class="spandate">Fin: {{currentTache.finTache | date}}</span>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content> 
+       <div class="container-flud headline">
+            <h5>Jalon</h5>
+         
+            <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
+            <br>
+            <br>
+        </div>
+
+        <mat-tab-group>
+            <mat-tab label="Tout">
+                <div class="container" >
+                    <h4></h4><br>
+                    <div class="container">
+                        <div class="card" >
+                            <div class="card-body" *ngIf="currentTache" >
+                              <h5 class="card-title">Information de l'Utilisateur</h5>
+                              <br>
+                              <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
+                              <mat-icon>edit</mat-icon> <b>Nom de La Tache </b> :{{currentTache.nomTache}}<br><br>
+                              <mat-icon>calendar</mat-icon> <b>Attendu Au Plus Tard </b> :{{currentTache.finTache | date}}<br><br>
+                              <mat-icon>hour</mat-icon> <b>Duree de La Tache </b> :{{currentTache.duree}}<br><br>
+                              <mat-icon>time</mat-icon> <b>Charge de La Tache </b> :{{currentTache.chargeTache}}(jours)<br><br>
+                              <mat-icon>time</mat-icon> <b>Les Ressources Affectés  </b> :
+                              <span *ngFor="let u of ressources">
+                              <a  [routerLink]="['/utilisateur/details/', u.idUser]">  {{u.nom}}</a></span><br><br>
+                              <a href="#!" class="card-link">Ajouter Commentaire</a>
+                              <a href="#!" class="card-link">Editer Profession</a>
+                            </div>
+                          </div>
+                          </div>
+                
+                  </div>
+            </mat-tab>
+            <mat-tab label="Commentaire">
+                <div class="container">
+                    <br>
+                    <div class="card" >
+                        <div class="card-body" *ngIf="currentTache" >
+                          <h5 class="card-title">Commentaires à propos de La Tache <span class="badge badge-pill badge-primary" *ngIf="tacheComments">{{tacheComments.length}}</span></h5>
+                          <br>
+                          <h6 class="card-subtitle mb-2 text-muted" *ngFor="let com of tacheComments">
+                            <b>{{com.user.nom}} ::=> </b> <span>{{com.comment}}  ( {{com.dateComment}} )</span>
+                          </h6>
+                            <div>
+
+                                <form [formGroup]="commentaireForm" class="normal-form">
+                                    <div formArrayName="commentaire">
+                                        <H3>AJouter des commentaire</H3>
+                                        <div class="form-group" *ngFor="let commentControl of getCommentaires().controls; let i=index">
+                                            <textarea type="text" class="form-control" [formControlName]="i"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-success"(click)="addComment()">
+                                            Ajouter un commentaire
+                                        </button>
+                                    </div>
+                                    <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Ajouter</button>
+                                </form>
+                            </div>
+                          
+                        </div>
+                      </div>
+                      </div>
+            </mat-tab>
+           
+          </mat-tab-group>

@@ -25,7 +25,7 @@
                 </mat-form-field>
             </mat-tab>
 
-            <mat-tab label="Pahse">
+            <!--<mat-tab label="Pahse">
             <mat-form-field>
                 <mat-label>Ajouter une Phase</mat-label>
                 <mat-select formControlName="phase" [(ngModel)]="tache.phase">
@@ -34,7 +34,7 @@
                     </ng-container> 
                 </mat-select>  
             </mat-form-field>
-            </mat-tab>
+            </mat-tab> -->
 
             <mat-tab label="chargeTache">
                 <mat-form-field>
@@ -65,9 +65,11 @@
             <mat-tab label="Prédecesseurs">         
                 <mat-form-field>
                 <mat-label>prédecesseurs</mat-label>
+
                     <mat-select formControlName="tachePrecedente" [(ngModel)]="taskPredecessor" multiple>
                         <ng-container *ngFor="let task of potentielTaskPreced">
                           <mat-option  [value]="task" >{{task.nomTache}}</mat-option>
+
                         </ng-container> 
                         </mat-select>  
                     </mat-form-field> 

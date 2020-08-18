@@ -6,8 +6,7 @@
         <br>
         <ul class="list-group" *ngFor="let phase of allphase">
             <li class="list-group-item  breadcrumb" style="border: none">
-                <dl >{{phase.nomTache}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
-               
+                <dl>{{phase.nomTache}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
             </li>
         </ul>
     </div>
@@ -50,23 +49,31 @@
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
-                         {{tache.nomTache}} 
+                          <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
                          <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
+                         <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
+                         <small *ngIf="compareDateDebut(tache.debutTache)==0 ">En Cours</small>
+                         
                        </div> 
                         
                         <mat-menu #menu="matMenu">
-                                <button mat-menu-item  (click)="modifier(tache)"><span>modifier</span></button>
-                                <button mat-menu-item class="ajoutPhase" ><span>supprimer</span></button>
+                                <button mat-menu-item  (click)="display[i] = !display[i]"><span>modifier</span></button>
+                                <button mat-menu-item class="ajoutPhase" (click)="deleteTask(tache.numTache)"><span>supprimer</span></button>
                                 <button mat-menu-item class="ajoutPhase" (click)="affecterRessources(tache)" ><span>Ajout Ressources</span>
                                 </button>
                         </mat-menu>
                         
                         <div [hidden]="!display[i]">
-                        <app-edit-tache [idProjet]="idProjet" [idTache]="tache.numTache"></app-edit-tache>
+                        <app-edit-tache [idProjet]="idProjet" [idTache]="tache.numTache" [idPhase]="phase.numTache"></app-edit-tache>
                         </div>
                               
                     </li>
-                    <p class="btAjtache"><button class="btn btn-success btn-sm ">Ajouter une tache</button></p>   
+                    <p class="btAjtache"><button class="btn btn-success btn-sm" (click)="cacher[i] = !cacher[i]">Ajouter une tache</button></p>
+                    <div [hidden] = "!cacher[i]">
+                        <div class="row">
+                        <app-ajout-tache-second [idProjet]="idProjet" [idPhase]="phase.numTache"></app-ajout-tache-second>
+                        </div>
+                    </div>   
                 </ul>
             </div>
         </div>
@@ -75,6 +82,7 @@
 
 
     </mat-sidenav-content>
+
 </mat-sidenav-container>
 
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProjetService} from 'src/app/services/projet.service';
+import {TacheService} from 'src/app/services/tache.service';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {Router, RouterState} from '@angular/router';
-import{UpdateTacheComponent} from '../Tache/update-tache/update-tache.component';
 
 import {AjoutPhaseSecondComponent} from './ajout-phase-second/ajout-phase-second.component';
 
@@ -22,13 +22,16 @@ export class AltachesComponent implements OnInit {
   iteration: number =0;
   projet: any;
   listTache: any;
+  deleteMessage: any;
+  ajourdhuit = new Date();
 
   display = [];
+  cacher = [];
  // togleDisplay(){
   //this.display = !this.display
   //}
   constructor( private route: ActivatedRoute, private dialog : MatDialog,
-    private projetService: ProjetService, private  router: Router) { }
+    private projetService: ProjetService, private  router: Router, private tacheService: TacheService) { }
 
   ngOnInit() {
     this.idProjet = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -38,16 +41,6 @@ export class AltachesComponent implements OnInit {
   }
 
   
-
-  modifier(element){ 
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data = {tache: element, listTache: this.listTache};
-    this.dialog.open(UpdateTacheComponent, dialogConfig);
-  } 
-
   ajouterPhase(){
  
     const dialogConfig = new MatDialogConfig();
@@ -70,6 +63,7 @@ export class AltachesComponent implements OnInit {
     this.dialog.open(AffecterRessourcesComponent, dialogConfig);
   }
 
+
   refresh(){
     this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
       if(data){
@@ -86,6 +80,30 @@ export class AltachesComponent implements OnInit {
   let variable = this.projetService.projectAllTask(this.idProjet);
   variable.subscribe((data)=>this.listTache=data);
   }
+
+
+  deleteTask(tacheId){
+    if(confirm('Etes vous sur de vouloir supprimer ?')){
+      let theValue = this.tacheService.deleteTask(tacheId);
+      theValue.subscribe((data)=>{
+        if(data){
+          this.deleteMessage=data;
+          this.refresh();
+        }
+      this.deleteMessage
+    });
+    }
+  }
+
+  compareDateDebut(element){
+    let res=0;
+    if(new Date() < new Date(element) ){
+      res=1;
+    }
+    return res;
+  }
+
+ 
 
 
 }

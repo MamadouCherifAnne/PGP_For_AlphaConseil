@@ -46,4 +46,9 @@ export class UtilisateurService {
   public getTaskToRealise(idUser): Observable<any>{
   return this.http.get("http://localhost:8080/utilisateur/tacheToRealise/"+idUser);
   }
+
+  // ENvoie de message A un utilisateur
+  public sendMessageToUser(message){
+    return this.http.post("http://localhost:8080/message/sendMessage/",message);
+  }
 }

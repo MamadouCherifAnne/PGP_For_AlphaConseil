@@ -16,8 +16,8 @@
       <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
       <mat-icon>group</mat-icon><b>Role</b> : {{currentUser.role}}<br><br>
       <mat-icon>domain</mat-icon> <b>Profession</b> : {{userProfessions}}<br><br>
-      <a href="#!" class="card-link">Accorder nouvel Status</a>
-      <a href="#!" class="card-link">Editer Profession</a>
+      <a  class="card-link">Accorder nouvel Status</a>
+     <mat-icon>mail</mat-icon> <a [routerLink]="['/message/', currentUser.idUser]"  class="card-link">Envoyer Message</a>
     </div>
   </div>
   </div>

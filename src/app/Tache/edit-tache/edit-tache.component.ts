@@ -4,7 +4,7 @@ import { Tache } from '../Tache';
  import { ITache } from '../ITache';
 import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from 'src/app/services/projet.service';
-
+import {PhaseService} from 'src/app/services/phase.service';
 
 @Component({
   selector: 'app-edit-tache',
@@ -20,15 +20,19 @@ export class EditTacheComponent implements OnInit {
   taskPredecessor:ITache[];
   projet: any;
   listTache: any;
-  listPhase: any;
+  listPhase: any
   potentielTaskPreced:any
+
+
+  newPhase: any;
 
 
   @Input() public idProjet: any;
   @Input() public idTache: any;
+  @Input() public idPhase: any;
 
   constructor(private tacheService: TacheService, private projetService: ProjetService,private formBuilder: FormBuilder
-    ) { }
+   , private phaseService: PhaseService ) { }
 
   ngOnInit() {
     this.updateTacheForm = this.formBuilder.group({
@@ -37,7 +41,6 @@ export class EditTacheComponent implements OnInit {
       "chargeTache": this.tache.chargeTache,
       "niveauPriorite": this.tache.niveauPriorite,
       "duree": [this.tache.duree, Validators.required],
-      "phase": this.tache.phase,
       "debutTache": [this.tache.debutTache,Validators.required],
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
@@ -77,6 +80,12 @@ export class EditTacheComponent implements OnInit {
       }
     });
 
+    this.phaseService.findById(this.idPhase).subscribe(data=>{
+      if(data){
+        this.newPhase=data;
+      }
+    })
+
    
   }
 
@@ -85,7 +94,7 @@ export class EditTacheComponent implements OnInit {
   }
 
   updateTache(){
-   
+    this.tache.phase = this.newPhase;
     this.tache.nomTache = this.updateTacheForm.get( "nomTache").value;
     this.tache.description = this.updateTacheForm.get("description").value;
     this.tache.chargeTache = this.updateTacheForm.get("chargeTache").value;
