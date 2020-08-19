@@ -37,13 +37,17 @@ export class AjoutUtilisateurComponent implements OnInit {
 
     //Preparaion du formulaire d'ajout
     this.addUserForm=this.formBuilder.group({
-      'username':[this.user.nom, [Validators.required]],
-      'prenom':[this.user.prenom, [Validators.required]],
+      'username':[this.user.nom, [Validators.required,Validators.maxLength(20)]],
+      'prenom':[this.user.prenom, [Validators.required,Validators.maxLength(20),Validators.pattern( '[a-zA-Z ]*')]],
       'email':[this.user.email, [Validators.required, Validators.email]],
       'password':[this.user.password, [Validators.required]],
+
       'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8),Validators.pattern('[0-9]*')]],
+
+      'confirmPassword':[[Validators.required]],
+
       'adresse':[this.user.adresse, [Validators.required]],
-      'role':[this.idRol,[Validators.required]],
+      'role':[this.idRol,[]],
       'profession':[this.idProfession]
     });
     

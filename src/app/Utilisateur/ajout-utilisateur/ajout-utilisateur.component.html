@@ -14,7 +14,7 @@
 
             
                     <mat-form-field>
-                        <input formControlName="prenom"  [(ngModel)]="user.prenom" matInput placeholder="Prenom">
+                        <input formControlName="prenom"  [(ngModel)]="user.prenom" matInput placeholder="Prenom" pattern="[a-zA-Z ]*">
                     </mat-form-field>
                     
                     <mat-form-field>

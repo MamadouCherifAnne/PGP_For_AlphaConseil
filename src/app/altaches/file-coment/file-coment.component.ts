@@ -87,18 +87,19 @@ export class FileComentComponent implements OnInit {
       console.log(comments);
       for(let com of comments){
         let comment:Commentaire = new Commentaire();
-        comment.user=null;
+        
         comment.tacheComment=this.tacheToComment;
         comment.comment=com;
         comment.dateComment = new Date();
         this.userService.getUserByIdUser(this.currentUser).subscribe(user=>{
           if(user){
             comment.user = user;
-            console.log(com);
+            console.log(comment);
+            this.commentaires.push(comment);
             
           }
         });
-        this.commentaires.push(comment);
+        
        
 
       }

@@ -6,12 +6,14 @@
     <br>  
     <ul class="list-inline">
         
+
         <li class="list-inline-item">
             <a  [routerLink]="['/Taches/', projetId]">Taches</a></li>
         <li class="list-inline-item">
             <a  [routerLink]="['/jalon/', projetId]">Jalons</a></li>
 
         <li class="list-inline-item">
+
             <a  href="#">Fichiers</a></li>
         <li class="list-inline-item">
             <a  href="#">Commentaires</a></li>
@@ -52,3 +54,4 @@
         </mat-menu>
     </mat-sidenav-content>
 </mat-sidenav-container>
+<router-outlet></router-outlet>
