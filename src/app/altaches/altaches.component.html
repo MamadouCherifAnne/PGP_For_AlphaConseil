@@ -13,11 +13,20 @@
     </mat-sidenav>
     <mat-sidenav-content> 
        <div class="container-flud headline">
-            <h5>Taches</h5>
+           <div class="row"> 
+            <div class="col-sm-4">
+                <h5>Taches</h5>
+            </div> 
+          
          
-            <p><button class="btn btn-success btn-sm btnAjout" type="submit" (click)="ajouterPhase()">Ajouter une phase</button></p>
-            <br>
-            <br>
+            <div class="col-sm-8">
+                <p><button class="btn btn-success btn-sm btnAjout" type="button" (click)="ajouterPhase()">Ajouter une phase</button>
+                    <button  type="submit" class="btn btn-light btn-sm btnlight">Voir Gantt</button></p>
+                    <br>
+                    <br>
+            </div>
+           
+            </div>
         </div>
 
     
@@ -35,6 +44,7 @@
                 {{ phase.nomTache }}
                 <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
                 </button>
+                <small class="badge badge-pill badge-info">{{phase.taches.length}} Taches</small>
             </h5>
         </div>
         <div [attr.id]="'collapse'+i" class="collapse"
@@ -44,8 +54,9 @@
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
-
-                       <div>
+                        
+                        
+                       <div *ngIf="tache != null; else vide">
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
@@ -53,9 +64,8 @@
                          <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
                          <small *ngIf="compareDateDebut(tache.debutTache)==0 ">En Cours</small>
-                         
+                          
                        </div> 
-                        
                         <mat-menu #menu="matMenu">
                                 <button mat-menu-item  (click)="display[i] = !display[i]"><span>modifier</span></button>
                                 <button mat-menu-item class="ajoutPhase" (click)="deleteTask(tache.numTache)"><span>supprimer</span></button>
@@ -66,14 +76,19 @@
                         <div [hidden]="!display[i]">
                         <app-edit-tache [idProjet]="idProjet" [idTache]="tache.numTache" [idPhase]="phase.numTache"></app-edit-tache>
                         </div>
-                              
+
+                        <ng-template #vide>
+                            vide tache
+                        </ng-template>
+                            
                     </li>
-                    <p class="btAjtache"><button class="btn btn-success btn-sm" (click)="cacher[i] = !cacher[i]">Ajouter une tache</button></p>
+                    
+                    <p ><button class="btn btn-success btn-sm btAjtache" typep="button" (click)="cacher[i] = !cacher[i]">Ajouter une tache</button>
+                    <small class="sapantache">{{finTache(phase.taches)}} Terminé</small></p>
                     <div [hidden] = "!cacher[i]">
-                        <div class="row">
                         <app-ajout-tache-second [idProjet]="idProjet" [idPhase]="phase.numTache"></app-ajout-tache-second>
-                        </div>
                     </div>   
+                    
                 </ul>
             </div>
         </div>

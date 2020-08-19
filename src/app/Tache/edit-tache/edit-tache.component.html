@@ -25,16 +25,7 @@
                 </mat-form-field>
             </mat-tab>
 
-            <!--<mat-tab label="Pahse">
-            <mat-form-field>
-                <mat-label>Ajouter une Phase</mat-label>
-                <mat-select formControlName="phase" [(ngModel)]="tache.phase">
-                    <ng-container  *ngFor="let phase of listPhase"> 
-                    <mat-option  [value]="phase">{{phase.titrePhase}}</mat-option>
-                    </ng-container> 
-                </mat-select>  
-            </mat-form-field>
-            </mat-tab> -->
+          
 
             <mat-tab label="chargeTache">
                 <mat-form-field>
@@ -85,7 +76,14 @@
                         <mat-datepicker #picker2 ></mat-datepicker>
                     </mat-form-field>
                 </mat-tab>
+                
+            <!--  <mat-tab label="fichier">
+                    <div class="form-control"> 
+                    <input type="file" class="form-group" (change)="onSelectFile($event)">
+                    </div>
+              </mat-tab> --> 
             </mat-tab-group>
+        
         <button class="btn btn-success btn-sm " type="submit" (click)="updateTache()">Sauvegarder</button>
 </form>  
 </div>

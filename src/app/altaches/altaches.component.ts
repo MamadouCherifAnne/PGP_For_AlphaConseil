@@ -8,6 +8,8 @@ import {Router, RouterState} from '@angular/router';
 import {AjoutPhaseSecondComponent} from './ajout-phase-second/ajout-phase-second.component';
 
 import { AffecterRessourcesComponent}  from '../Tache/affecter-ressources/affecter-ressources.component'
+import {Tache} from '../Tache/Tache';
+import { Phase } from '../Phase/Phase';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class AltachesComponent implements OnInit {
   listTache: any;
   deleteMessage: any;
   ajourdhuit = new Date();
-
+  tache: Tache = new Tache;
   display = [];
   cacher = [];
  // togleDisplay(){
@@ -88,6 +90,14 @@ export class AltachesComponent implements OnInit {
     return res;
   }
 
- 
+  finTache(tache){
+    let cmpt = 0;
+    for(let i of tache){
+      if(i.tauxAvancement ==  100){
+        cmpt += 1;
+      }
+    }
+    return cmpt;
+  }
 
 }
