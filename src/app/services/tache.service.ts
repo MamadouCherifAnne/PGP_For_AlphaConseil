@@ -56,4 +56,20 @@ export class TacheService {
     return this.http.get<any>("http://localhost:8080/tache/findTache/" +tacheId);
   }
 
+  // Listes des taches succeptibles d'etre des predecesseurs a une tache T
+  public getPotentielPredecesseurs(tacheId):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/tache/potentielPredecesseurs/" +tacheId);
+  }
+
+  // Ajouter ds commentaires a une tache
+  public addCommentToTask(comments){
+    return this.http.post("http://localhost:8080/tache/addCommentsToTask",comments)
+  }
+
+  // Afficher les commentaires effectue sur une tache
+  public getCommentsOfTask(idTache){
+    return this.http.get<any>("http://localhost:8080/tache/commentsOfTask/" +idTache);
+  }
+
+
 }

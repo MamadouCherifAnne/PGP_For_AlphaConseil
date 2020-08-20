@@ -24,6 +24,8 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
 
 
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
+import { MessagerieComponent } from './Message/messagerie/messagerie.component';
+
 
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
@@ -44,8 +46,13 @@ const routes: Routes = [
   {path:'profession', component:ListeProfessionComponent},
   {path: 'projet/gantt/:id', component: GanttProjectComponent},
 
-  {path: 'projet/:id', component: EnsembleVueProjetComponent},
-  {path: 'Taches/:id', component: AltachesComponent},
+
+
+
+  {path: 'projet/:id', component: EnsembleVueProjetComponent, children:[
+   
+  ] },
+
   {path: 'task/:id', component: FileComentComponent},
 
   {path: 'MesTache', component: EditTacheComponent},
@@ -53,8 +60,13 @@ const routes: Routes = [
  
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
 
+  {path:'message/:idDestinataire', component: MessagerieComponent},
+
   // les liens concernant entreprise
-  {path: 'workspace/new', component:AddEntrepriseComponent}
+  {path: 'workspace/new', component:AddEntrepriseComponent},
+
+  {path: 'Taches/:id', component: AltachesComponent},
+  {path:'jalon/:id', component:JalonComponent},
 
 ];
 

@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Tache } from '../Tache';
+ import { ITache } from '../ITache';
 import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from 'src/app/services/projet.service';
 import {PhaseService} from 'src/app/services/phase.service';
-import {FichierService} from 'src/app/services/fichier.service';
+
 
 @Component({
   selector: 'app-edit-tache',
@@ -17,18 +18,21 @@ export class EditTacheComponent implements OnInit {
   updateTacheForm: FormGroup;
   tacheAmodifier: any;
   returnMessage: any;
+  taskPredecessor:ITache[];
   projet: any;
   listTache: any;
-  listPhase: any;
+  listPhase: any
+  potentielTaskPreced:any
+
+
   newPhase: any;
 
-  tacheFile: any = File; 
   @Input() public idProjet: any;
   @Input() public idTache: any;
   @Input() public idPhase: any;
 
   constructor(private tacheService: TacheService, private projetService: ProjetService,private formBuilder: FormBuilder
-   , private phaseService: PhaseService, private fichierservice: FichierService) { }
+   , private phaseService: PhaseService) { }
 
   ngOnInit() {
     this.updateTacheForm = this.formBuilder.group({
@@ -40,7 +44,7 @@ export class EditTacheComponent implements OnInit {
       "debutTache": [this.tache.debutTache,Validators.required],
       "finTache": [this.tache.finTache,Validators.required],
       "tauxAvancement" : [this.tache.tauxAvancement],
-      "tachePrecedente" : [this.tache.tachePrecedente],
+      "tachePrecedente" : [this.taskPredecessor],
       
     })
 
@@ -57,7 +61,9 @@ export class EditTacheComponent implements OnInit {
     //...................Recuperation de la liste de tache d'un projet....................
     this.projetService.projectAllTask(this.idProjet).subscribe(data=>{
       if(data){
-        this.listTache=data;}
+        this.listTache=data;
+        // toutes les taches sauf la tache
+      }
       });
 
      this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
@@ -87,19 +93,7 @@ export class EditTacheComponent implements OnInit {
     return value + '%';
   }
 
- /* onSelectFile(event){
-    const file = event.target.files[0];
-    this.tacheFile = file;
-  } */
-
-  /* submission(){
-    const formData = new FormData();
-    formData.append('file', this.tacheFile);
-    this.fichierservice.uploadFile(formData).subscribe((response) =>{
-      console.log(response);
-    })
-  }  */
-
+ //Modification du fichier 
   updateTache(){
     this.tache.numTache=this.idTache; 
     this.tache.phase = this.newPhase;
@@ -112,9 +106,9 @@ export class EditTacheComponent implements OnInit {
     this.tache.finTache = this.updateTacheForm.get("finTache").value;
     this.tache.tauxAvancement = this.updateTacheForm.get("tauxAvancement").value;
 
-    this.tache.tachePrecedente = this.updateTacheForm.get("tachePrecedente").value;
+    this.tache.tachePrecedente = this.taskPredecessor
 
-
+    console.log(this.tache.tachePrecedente)
 
    let value = this.tacheService.updateTask(this.idTache, this.tache);
     value.subscribe((data)=>{
@@ -128,16 +122,24 @@ export class EditTacheComponent implements OnInit {
 
   currentForm(){
 
-    this.updateTacheForm.get("nomTache").setValue(this.tacheAmodifier.nomTache);
-    this.updateTacheForm.get("description").setValue(this.tacheAmodifier.description);
-    this.updateTacheForm.get("chargeTache").setValue(this.tacheAmodifier.chargeTache);
-    this.updateTacheForm.get("niveauPriorite").setValue(this.tacheAmodifier.niveauPriorite);
-    this.updateTacheForm.get("duree").setValue(this.tacheAmodifier.duree);
-    this.updateTacheForm.get("debutTache").setValue(this.tacheAmodifier.debutTache);
-    this.updateTacheForm.get("finTache").setValue(this.tacheAmodifier.finTache);
-    this.updateTacheForm.get("tauxAvancement").setValue(this.tacheAmodifier.tauxAvancement);
-    this.updateTacheForm.get("tachePrecedente").setValue(this.tacheAmodifier.tachePrecedente);
+    // Recuperation des taches qui sont succeptibles de preceder la tache en question
+    this.tacheService.getPotentielPredecesseurs(this.tacheAmodifier.numTache).subscribe(data=>{
+      if(data){
+        this.potentielTaskPreced=data;
+        
+        this.updateTacheForm.get("nomTache").setValue(this.tacheAmodifier.nomTache);
+        this.updateTacheForm.get("description").setValue(this.tacheAmodifier.description);
+        this.updateTacheForm.get("chargeTache").setValue(this.tacheAmodifier.chargeTache);
+        this.updateTacheForm.get("niveauPriorite").setValue(this.tacheAmodifier.niveauPriorite);
+        this.updateTacheForm.get("duree").setValue(this.tacheAmodifier.duree);
+        this.updateTacheForm.get("debutTache").setValue(this.tacheAmodifier.debutTache);
+        this.updateTacheForm.get("finTache").setValue(this.tacheAmodifier.finTache);
+        this.updateTacheForm.get("tauxAvancement").setValue(this.tacheAmodifier.tauxAvancement);
+        this.updateTacheForm.get("tachePrecedente").setValue(this.tacheAmodifier.tachePrecedente);
+      }
+      });
 
+   
 
   }
 

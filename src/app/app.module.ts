@@ -50,8 +50,13 @@ import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecte
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-phase-second.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
+
+import { AddJalonComponent } from './Projet/add-jalon/add-jalon.component';
+
 import { AjoutTacheSecondComponent } from './altaches/ajout-tache-second/ajout-tache-second.component';
 import { FileComentComponent } from './altaches/file-coment/file-coment.component';
+import { MessagerieComponent } from './Message/messagerie/messagerie.component'
+
 
 
 
@@ -93,9 +98,15 @@ import { FileComentComponent } from './altaches/file-coment/file-coment.componen
 
     JalonComponent,
 
+
+    AddJalonComponent,
+
     AjoutTacheSecondComponent,
 
-    FileComentComponent
+    FileComentComponent,
+
+    MessagerieComponent
+
 
 
   ],
@@ -124,6 +135,7 @@ import { FileComentComponent } from './altaches/file-coment/file-coment.componen
     AjoutPhaseComponent,
     AddTacheComponent,
     EditProjetComponent,
-    UpdateRoleComponent],
+    UpdateRoleComponent,
+    AddJalonComponent],
 })
 export class AppModule { }

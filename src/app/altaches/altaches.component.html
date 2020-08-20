@@ -60,7 +60,7 @@
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
-                          <a [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
+                          <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
                          <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
                          <small *ngIf="compareDateDebut(tache.debutTache)==0 ">En Cours</small>

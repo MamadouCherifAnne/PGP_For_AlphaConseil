@@ -10,7 +10,7 @@ export class FichierService {
 
   constructor(private http: HttpClient) { } 
 
-  public uploadFile(formData: FormData): Observable<any>{
-    return this.http.post("http://localhost:8080/fichier/upload", formData);
+  public uploadFile(formData: FormData, tacheId): Observable<any>{
+    return this.http.post("http://localhost:8080/fichier/upload/"+tacheId, formData);
   }
 }

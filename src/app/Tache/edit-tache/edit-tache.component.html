@@ -56,12 +56,14 @@
             <mat-tab label="Prédecesseurs">         
                 <mat-form-field>
                 <mat-label>prédecesseurs</mat-label>
-                    <mat-select formControlName="tachePrecedente" [(ngModel)]="tache.tachePrecedente">
-                        <ng-container *ngFor="let tache of listTache">
-                          <mat-option  [value]="tache">{{tache.nomTache}}</mat-option>
+
+                    <mat-select formControlName="tachePrecedente" [(ngModel)]="taskPredecessor" multiple>
+                        <ng-container *ngFor="let task of potentielTaskPreced">
+                          <mat-option  [value]="task" >{{task.nomTache}}</mat-option>
+
                         </ng-container> 
                         </mat-select>  
-                    </mat-form-field>
+                    </mat-form-field> 
                 </mat-tab>
 
             <mat-tab label="Dates"> 

@@ -1,0 +1,43 @@
+mat-sidenav-container{
+    height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content{
+    padding: 16px;
+}
+
+mat-sidenav{
+    width: 300px;
+}
+
+mat-sidenav-content{
+    background-color: white;
+}
+
+.bton{
+    float: right;
+    button{
+        margin: 5px;
+    }
+}
+i{
+    margin-right: 8px;
+  }
+  
+  
+  .list-group-item{
+      margin-bottom: -6px;
+      margin-top: -6px;  
+  }
+  
+  
+  .headline h5, 
+   p {
+      display: inline-block;
+      padding: 25px;
+  
+  }
+  
+  .headline p{
+      float:right;
+  }

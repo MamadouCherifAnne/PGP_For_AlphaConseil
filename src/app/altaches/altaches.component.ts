@@ -39,20 +39,7 @@ export class AltachesComponent implements OnInit {
     this.idProjet = parseInt(this.route.snapshot.paramMap.get('id'));
 
    //...................Recuperation de la liste de phase d'un projet....................    
-     this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
-        if(data){
-          this.allphase = data;
-          this.countPhase= this.allphase.length;
-        }
-     });
-
-     let valeur = this.projetService.getById(this.idProjet);
-    valeur.subscribe((data)=>this.projet=data);
-
-
-    //...................Recuperation de la liste de tache d'un projet....................
-    let variable = this.projetService.projectAllTask(this.idProjet);
-    variable.subscribe((data)=>this.listTache=data);
+    this.refresh()
   }
 
   
@@ -63,7 +50,10 @@ export class AltachesComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     dialogConfig.data = {projet: this.projet};
-    this.dialog.open(AjoutPhaseSecondComponent, dialogConfig);
+    this.dialog.open(AjoutPhaseSecondComponent, dialogConfig)
+    .afterClosed().subscribe(result => {
+      this.refresh();
+    });;
   }
 
   affecterRessources(element){
@@ -75,16 +65,41 @@ export class AltachesComponent implements OnInit {
     this.dialog.open(AffecterRessourcesComponent, dialogConfig);
   }
 
+
+  refresh(){
+    this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
+      if(data){
+        this.allphase = data;
+        this.countPhase= this.allphase.length;
+      }
+   });
+
+   let valeur = this.projetService.getById(this.idProjet);
+  valeur.subscribe((data)=>this.projet=data);
+
+
+  //...................Recuperation de la liste de tache d'un projet....................
+  let variable = this.projetService.projectAllTask(this.idProjet);
+  variable.subscribe((data)=>this.listTache=data);
+  }
+
+
   deleteTask(tacheId){
     if(confirm('Etes vous sur de vouloir supprimer ?')){
-    let theValue = this.tacheService.deleteTask(tacheId);
-    theValue.subscribe((data)=>this.deleteMessage);
+      let theValue = this.tacheService.deleteTask(tacheId);
+      theValue.subscribe((data)=>{
+        if(data){
+          this.deleteMessage=data;
+          this.refresh();
+        }
+      this.deleteMessage
+    });
     }
   }
 
   compareDateDebut(element){
     let res=0;
-    if(new Date(element) < new Date()){
+    if(new Date() < new Date(element) ){
       res=1;
     }
     return res;
@@ -99,5 +114,6 @@ export class AltachesComponent implements OnInit {
     }
     return cmpt;
   }
+
 
 }

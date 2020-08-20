@@ -14,6 +14,7 @@ export class Tache{
 	fichiers: object[];
 	predecesseurs: string;
 	tachePrecedente:any[];
+	commentaires:object[]
 	ressources:object[];
 	taches:object[];
 	

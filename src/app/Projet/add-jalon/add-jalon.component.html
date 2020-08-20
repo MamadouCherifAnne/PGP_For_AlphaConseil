@@ -1,0 +1,32 @@
+
+<mat-toolbar>
+    <span>Nouvel Jalon</span>
+</mat-toolbar>
+<br>
+<form [formGroup]="ajoutJalon" class="mon-form">
+    <mat-grid-list cols="2" rowHeight="250px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom Evenement">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="description" [(ngModel)]="tache.description" matInput placeholder="Description">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
+                    <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" (click)="goToAddJalon()" [disabled]="ajoutJalon.invalid">Ajouter</button>
+                    <button mat-raised-button  type="submit" (click)="onClose()">Annuler</button>
+                    
+                </div>
+
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</form>
