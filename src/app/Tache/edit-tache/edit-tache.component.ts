@@ -6,6 +6,7 @@ import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from 'src/app/services/projet.service';
 import {PhaseService} from 'src/app/services/phase.service';
 
+
 @Component({
   selector: 'app-edit-tache',
   templateUrl: './edit-tache.component.html',
@@ -26,13 +27,12 @@ export class EditTacheComponent implements OnInit {
 
   newPhase: any;
 
-
   @Input() public idProjet: any;
   @Input() public idTache: any;
   @Input() public idPhase: any;
 
   constructor(private tacheService: TacheService, private projetService: ProjetService,private formBuilder: FormBuilder
-   , private phaseService: PhaseService ) { }
+   , private phaseService: PhaseService) { }
 
   ngOnInit() {
     this.updateTacheForm = this.formBuilder.group({
@@ -86,14 +86,16 @@ export class EditTacheComponent implements OnInit {
       }
     })
 
-   
+    
   }
 
   formatLabel(value: number) {
     return value + '%';
   }
 
+ //Modification du fichier 
   updateTache(){
+    this.tache.numTache=this.idTache; 
     this.tache.phase = this.newPhase;
     this.tache.nomTache = this.updateTacheForm.get( "nomTache").value;
     this.tache.description = this.updateTacheForm.get("description").value;
@@ -108,10 +110,14 @@ export class EditTacheComponent implements OnInit {
 
     console.log(this.tache.tachePrecedente)
 
-    let value = this.tacheService.updateTask(this.idTache, this.tache);
-    value.subscribe((data)=>this.returnMessage=data);
+   let value = this.tacheService.updateTask(this.idTache, this.tache);
+    value.subscribe((data)=>{
+      if(data){
+        this.returnMessage=data
+      }
+      })
 
-    
+     
   }
 
   currentForm(){
@@ -134,6 +140,7 @@ export class EditTacheComponent implements OnInit {
       });
 
    
+
   }
 
 

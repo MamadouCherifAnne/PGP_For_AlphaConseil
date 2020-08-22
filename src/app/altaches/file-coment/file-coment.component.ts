@@ -6,6 +6,8 @@ import { Tache } from 'src/app/Tache/Tache';
 import { ICommentaire } from 'src/app/Commentaire/ICommentaire';
 import { Commentaire } from 'src/app/Commentaire/Commentaire';
 import {UtilisateurService} from 'src/app/services/utilisateur.service';
+import {FichierService} from 'src/app/services/fichier.service';
+
 
 @Component({
   selector: 'app-file-coment',
@@ -24,11 +26,13 @@ export class FileComentComponent implements OnInit {
   ressources:any;
   resourcesNames:string[] =[]
   closeCommentForm:number=1;
+  tacheFile: any = File;
 
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,
     private userService:UtilisateurService,
-    private formBuilder:FormBuilder) { }
+    private formBuilder:FormBuilder,
+    private fichierservice: FichierService) { }
 
   ngOnInit() {
     //L'utilisateur en session
@@ -120,5 +124,22 @@ export class FileComentComponent implements OnInit {
       }
     });
   }
+
+  //Recuperation du fichier charger 
+  onSelectFile(event){
+    const file = event.target.files[0];
+    this.tacheFile = file;
+  } 
+
+  //enregistrement du fichier 
+  fileSubmission(){
+    const formData = new FormData();
+    formData.append('file', this.tacheFile);
+    this.fichierservice.uploadFile(formData, this.idTache).subscribe((response) =>{
+      console.log(response);
+    })
+
+    console.log("#######yup");
+  } 
 
 }

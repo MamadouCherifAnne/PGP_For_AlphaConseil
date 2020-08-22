@@ -14,7 +14,7 @@ import { ProfessionService } from './services/profession.service';
 
 import {FormsModule} from '@angular/forms'
 import { AddRoleComponent } from './Role/add-role/add-role.component';
-
+import {FichierService} from './services/fichier.service';
 import { RoleService } from './services/role.service';
 import {  PhaseService } from './services/phase.service';
 import {TacheService} from './services/tache.service';
@@ -122,7 +122,7 @@ import { MessagerieComponent } from './Message/messagerie/messagerie.component'
     FieldsetModule
   ],
 
-  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService],
+  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService],
   bootstrap: [AppComponent],
   entryComponents: [AjoutUtilisateurComponent,UpdateUtilisateurComponent,
     AddRoleComponent,

@@ -18,6 +18,7 @@
             <br>
         </div>
 
+    <form [formGroup]="commentaireForm" class="normal-form">
         <mat-tab-group>
             <mat-tab label="Tout">
                 <div class="container" >
@@ -55,7 +56,7 @@
                           </h6>
                             <div>
 
-                                <form [formGroup]="commentaireForm" class="normal-form">
+                               
                                     <div formArrayName="commentaire">
                                         <H3>AJouter des commentaire</H3>
                                         <div class="form-group" *ngFor="let commentControl of getCommentaires().controls; let i=index">
@@ -66,12 +67,28 @@
                                         </button>
                                     </div>
                                     <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Ajouter</button>
-                                </form>
+                               
                             </div>
                           
                         </div>
                       </div>
                       </div>
             </mat-tab>
-           
+            <mat-tab label="Fichier">
+                <br>
+                <div class="card" >
+                    <div class="card-body">
+                     
+                     <h6  class="card-title">Vous pouvez ajouter des fichiers à cette tache</h6>
+                     <div class="form-control"> 
+                     <input type="file" class="form-group" (change)="onSelectFile($event)">
+                     </div>
+                     <button class="btn btn-success btn-sm" type="submit" (click)="fileSubmission()">Ajouter
+                     </button>
+                    </div>
+                </div>    
+            </mat-tab>
           </mat-tab-group>
+     </form>
+     </mat-sidenav-content>
+ </mat-sidenav-container>
