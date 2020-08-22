@@ -17,8 +17,17 @@
       <mat-icon>group</mat-icon><b>Role</b> : {{currentUser.role}}<br><br>
       <mat-icon>domain</mat-icon> <b>Profession</b> : {{userProfessions}}<br><br>
       <a  class="card-link">Accorder nouvel Status</a>
-     <mat-icon>mail</mat-icon> <a [routerLink]="['/message/', currentUser.idUser]"  class="card-link">Envoyer Message</a>
-    </div>
+      <br><br>
+      <span><b>Envoyer un Message à {{currentUser.prenom}}</b> </span>
+      <div>
+     <form [formGroup]="messageForm" class="normal-form">
+        <textarea type="text" class="form-control" formControlName="messageContent">Bonsoir</textarea>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="messageForm.invalid" (click)="onSendMessage()">Envoyer</button>
+        
+      </form>
+     </div>
+     
   </div>
   </div>
   </div>
