@@ -18,7 +18,8 @@ import { MatButtonModule,
   MatSliderModule,
   MatCardModule,
   MatTabsModule,
-  MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule} from '@angular/material';
+  MatPaginatorModule,
+  MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatSortModule} from '@angular/material';
 
   
 
@@ -51,7 +52,9 @@ const material = [
   MatProgressBarModule,
   MatSliderModule,
   MatCheckboxModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSortModule,
+  MatPaginatorModule
 ];
 @NgModule({
   imports: [

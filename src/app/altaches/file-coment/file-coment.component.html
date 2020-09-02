@@ -11,7 +11,7 @@
     </mat-sidenav>
     <mat-sidenav-content> 
        <div class="container-flud headline">
-            <h5>Jalon</h5>
+            <h5>Tache</h5>
          
             <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
             <br>
@@ -36,8 +36,8 @@
                               <mat-icon>time</mat-icon> <b>Les Ressources Affectés  </b> :
                               <span *ngFor="let u of ressources">
                               <a  [routerLink]="['/utilisateur/details/', u.idUser]">  {{u.nom}}</a></span><br><br>
-                              <a href="#!" class="card-link">Ajouter Commentaire</a>
-                              <a href="#!" class="card-link">Editer Profession</a>
+                              <a [routerLink]="['/depense/',currentTache.numTache]" class="card-link">Voir Depenses</a>
+                              <a [routerLink]="['/tache/facture/',currentTache.numTache]" class="card-link">Voir Facture</a>
                             </div>
                           </div>
                           </div>
@@ -81,10 +81,24 @@
                      
                      <h6  class="card-title">Vous pouvez ajouter des fichiers à cette tache</h6>
                      <div class="form-control"> 
+                     
                      <input type="file" class="form-group" (change)="onSelectFile($event)">
                      </div>
                      <button class="btn btn-success btn-sm" type="submit" (click)="fileSubmission()">Ajouter
                      </button>
+                    </div>
+                </div>    
+            </mat-tab>
+
+            <!-- Voir les Affectations de la tache courante -->
+            <mat-tab label="Affectations">
+                <br>
+                <div class="card" >
+                    <div class="card-body">
+                    
+                    <div *ngIf="currentTache">
+                        <app-affectation-tache [idTache]="currentTache.numTache" ></app-affectation-tache>
+                    </div>
                     </div>
                 </div>    
             </mat-tab>

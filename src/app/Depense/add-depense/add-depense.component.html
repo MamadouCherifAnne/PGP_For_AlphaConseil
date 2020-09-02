@@ -1,0 +1,66 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <div class="container-flud">
+        <br>
+        <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Liste des phases</h6>
+        <br>
+        <ul class="list-group" >
+            <li class="list-group-item  breadcrumb" style="border: none">
+                <dl>{{depense}}  <span class="badge badge-pill badge-light">{{depense}}</span></dl>
+            </li>
+        </ul>
+    </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content> 
+        <div class="container-flud headline">
+             <h5>Depense de la tache </h5>
+          
+             <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
+             <br>
+             <br>
+         </div>
+        <mat-toolbar>
+            <span>Nouvelle Depense sur la tache</span>
+        </mat-toolbar>
+
+    <div class="container">
+        <form [formGroup]="depenseForm" class="normal-form">
+     
+        
+            <mat-grid-list cols="2" rowHeight="300px">
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <mat-form-field>
+                            <input formControlName="libelle" matInput placeholder="Libelle de la depense">
+                            <mat-error></mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <textarea formControlName="Description"  matInput placeholder="Description de la depense"></textarea>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>    
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <mat-form-field>
+                            <input formControlName="coutDepense" matInput placeholder="Le cout de la depense">
+                            <mat-error></mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input formControlName="dateEnregistrement" matInput [matDatepicker]="picker1" placeholder="Date de l'enregistrement de la depense">
+                            <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #picker1 ></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+                
+            </mat-grid-list>
+            <div >
+                <button class="btn btn-success" type="submit" (click)="ajouterDepense()" [disabled]="depenseForm.invalid"> Ajouter</button>
+            </div>
+    </form>
+    </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

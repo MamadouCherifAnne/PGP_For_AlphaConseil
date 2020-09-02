@@ -1,0 +1,81 @@
+<div>
+    <mat-toolbar *ngIf="currentTache">
+        <span>Les Ressources Affecter sur : {{currentTache.nomTache}}</span>
+    </mat-toolbar>
+</div>
+
+<br><br>
+<div class="search-div">
+    <button mat-raised-button >
+        <mat-icon>add</mat-icon>Ajouter
+        <mat-form-field class="search-form-field">
+            <input matInput [(ngModel)]="rechercheKey" placeholder="Rechercher" autocomplete="off" (keyup)="appliquerLeFiltre()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="viderRecherche()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </button>
+</div>
+<div class="container">
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="listAffectation" matSort>
+
+        <ng-container matColumnDef="Ressources" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  Ressources </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element}}</mat-cell>
+            </ng-container>
+        
+    
+        <!-- Temps Suppose a Realiser -->
+        <ng-container matColumnDef="TempsPasser">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Temps Prevue </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tempsPasser}} </mat-cell>
+        </ng-container>
+
+        <!-- Temps Reel passe sur La tache -->
+        <ng-container matColumnDef="TempsEffectuer">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Temps Realisé  </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.tempsEffectuer}} </mat-cell>
+        </ng-container>
+         <!-- Cout Par Heure de Chaque Ressources -->
+         <ng-container matColumnDef="CoutHeure">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Cout/Heure </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.coutParHeure}} </mat-cell>
+        </ng-container>
+
+        <!-- Les Operations sur les affectations -->
+        <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_horiz</mat-icon>
+                  </button>
+    
+                  <mat-menu #menu="matMenu">
+                        <!-- Gantt Utilisateur -->
+                    <button  mat-menu-item (click)="goToUpdateAffectation(element)">
+                        <span>Modifier</span>
+                    </button> 
+    
+                    <button mat-menu-item color="primary" (click)="goToDeleteAffectation(element)"> 
+                        Supprimer 
+                </button>
+                    </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <!--Footer de la table des depenses-->
+        <ng-container matColumnDef="recharge">
+            <mat-footer-cell *matFooterCellDef colspan="6">Recharge....</mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6">Pas de Données</mat-footer-cell>
+        </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="['recharge']" [ngClass]="{'hide':listAffectation!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listAffectation!=null && listAffectation.data.length==0)}"></mat-footer-row>
+</mat-table>
+    <mat-paginator [pageSizeOptions]="[2,15,25,35]" [pageSize]="2"></mat-paginator>
+</div>
+</div>

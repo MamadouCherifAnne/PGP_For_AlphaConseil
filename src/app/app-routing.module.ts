@@ -25,6 +25,9 @@ import { JalonComponent } from './Projet/jalon/jalon.component';
 
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 import { MessagerieComponent } from './Message/messagerie/messagerie.component';
+import { AddDepenseComponent } from './Depense/add-depense/add-depense.component';
+import { DepensesComponent } from './Depense/depenses/depenses.component';
+import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.component';
 
 
 const routes: Routes = [
@@ -67,6 +70,8 @@ const routes: Routes = [
 
   {path: 'Taches/:id', component: AltachesComponent},
   {path:'jalon/:id', component:JalonComponent},
+  {path:'depense/:idTache', component:DepensesComponent},
+  {path:'tache/facture/:idTache', component:FactureTacheComponent}
 
 ];
 

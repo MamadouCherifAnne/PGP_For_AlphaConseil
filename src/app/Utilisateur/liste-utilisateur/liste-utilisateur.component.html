@@ -90,9 +90,18 @@
           
          </mat-cell>
     </ng-container>
-
+        <!--Footer de la table des depenses-->
+        <ng-container matColumnDef="recharge">
+            <mat-footer-cell *matFooterCellDef colspan="6">Recharge....</mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6">Pas de Données</mat-footer-cell>
+        </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="['recharge']" [ngClass]="{'hide':userDataSource!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(userDataSource!=null && userDataSource.data.length==0)}"></mat-footer-row>
+</mat-table>
+    <mat-paginator [pageSizeOptions]="[5,15,25,35]" [pageSize]="5"></mat-paginator>
 
 </div>

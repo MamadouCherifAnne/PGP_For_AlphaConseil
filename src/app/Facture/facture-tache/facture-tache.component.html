@@ -1,0 +1,26 @@
+<div>
+    <mat-toolbar>
+        <span>Facture Numero: AAF200PJ10</span>
+    </mat-toolbar>
+</div>
+<div>
+    <table *ngIf="currentTache">
+      <caption>Tache : <b>{{currentTache.nomTache}}</b></caption>
+
+      <!-- L'entete du tableau les ressouces et Depenses-->
+      <thead>
+          <tr>
+              <th colspan="4">Ressources </th>
+              <th colspan="2">Depenses</th>
+          </tr>
+      </thead>
+      <tr>
+          <td>Nom:</td>
+          <td>Temps Prevue:</td>
+          <td>Temps Realise:</td>
+          <td>Cout/Heure:</td>
+          <td>Montant:</td>
+      </tr>
+     
+    </table>
+</div>

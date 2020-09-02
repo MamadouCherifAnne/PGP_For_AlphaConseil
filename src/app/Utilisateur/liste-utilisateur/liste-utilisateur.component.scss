@@ -14,3 +14,11 @@
     float:right;
     
 }
+.hide{
+    display: none;
+}
+/* mat table scss*/
+mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+}

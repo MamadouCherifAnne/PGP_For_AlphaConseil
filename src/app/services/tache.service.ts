@@ -67,8 +67,38 @@ export class TacheService {
   }
 
   // Afficher les commentaires effectue sur une tache
-  public getCommentsOfTask(idTache){
+  public getCommentsOfTask(idTache):Observable<any>{
     return this.http.get<any>("http://localhost:8080/tache/commentsOfTask/" +idTache);
+  }
+
+  // Ajouter Une depense a une tache
+  public addDepenseToTask(depense){
+    return this.http.post("http://localhost:8080/tache/addDepenseToTask",depense) 
+  }
+
+  // Afficher toutes les depenses dune tache
+  public getTaskDepenses(idTache):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/tache/depenseOfTask/" +idTache);
+  }
+  
+  // Afficher les affectations sur une tache donne
+  public getAffectationOfTask(idTache):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/affectation/tacheAffectations/" +idTache);
+  }
+
+  // Modifier l'affectation sur une tache donnee
+  public updateAffectationOfTask(affectation){
+    return this.http.post("http://localhost:8080/affectation/update",affectation,{responseType:'text'});
+  }
+  
+  // Supprimer une affectation d'une tache
+  public deleteAffectation(idAffect){
+    return this.http.delete("localhost:8080/affectation/deleteAffectation/"+idAffect);
+  }
+
+  // Afficher une Affectation par son id
+  public getAffectationById(idUser,idTache):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/affectation/getAffectationById/"+idUser+"/"+idTache);
   }
 
 

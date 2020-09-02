@@ -55,7 +55,12 @@ import { AddJalonComponent } from './Projet/add-jalon/add-jalon.component';
 
 import { AjoutTacheSecondComponent } from './altaches/ajout-tache-second/ajout-tache-second.component';
 import { FileComentComponent } from './altaches/file-coment/file-coment.component';
-import { MessagerieComponent } from './Message/messagerie/messagerie.component'
+import { MessagerieComponent } from './Message/messagerie/messagerie.component';
+import { AddDepenseComponent } from './Depense/add-depense/add-depense.component';
+import { DepensesComponent } from './Depense/depenses/depenses.component';
+import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.component';
+import { AffectationTacheComponent } from './Tache/affectation-tache/affectation-tache.component';
+import { UpdateAffectationComponent } from './Tache/update-affectation/update-affectation.component'
 
 
 
@@ -105,7 +110,17 @@ import { MessagerieComponent } from './Message/messagerie/messagerie.component'
 
     FileComentComponent,
 
-    MessagerieComponent
+    MessagerieComponent,
+
+    AddDepenseComponent,
+
+    DepensesComponent,
+
+    FactureTacheComponent,
+
+    AffectationTacheComponent,
+
+    UpdateAffectationComponent
 
 
 
@@ -136,6 +151,7 @@ import { MessagerieComponent } from './Message/messagerie/messagerie.component'
     AddTacheComponent,
     EditProjetComponent,
     UpdateRoleComponent,
-    AddJalonComponent],
+    AddJalonComponent,
+    UpdateAffectationComponent],
 })
 export class AppModule { }

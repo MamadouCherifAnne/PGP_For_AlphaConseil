@@ -1,0 +1,25 @@
+<P class="center"> <span>Modifier L'Affectation de Ressource </span></P>
+<form [formGroup]="affectationForm" class="normal-form">
+    <mat-grid-list cols="2" rorHeight="50px">
+        <mat-grid-tile>
+          <div class="controles-container">
+  
+          <mat-form-field>
+            <input formControlName="tempsPasser"  matInput placeholder="Temps a passer">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="tempsEffectuer"  matInput placeholder="Temps Realisé">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="coutParHeure"  matInput placeholder="Cout/Heure">
+        </mat-form-field>
+  
+          </div>
+        </mat-grid-tile>
+        </mat-grid-list> 
+        
+        <button mat-button color="primary" (click)="updateRessourceAffectation()" [disabled]="affectationForm.invalid">Valider</button>
+        <button mat-button color="" (click)="onFermer()">Fermer</button>
+</form>

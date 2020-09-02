@@ -115,5 +115,9 @@ export class AltachesComponent implements OnInit {
     return cmpt;
   }
 
+  // Aller voir le gantt du projet
+  goToGanttProject(){
+    this.router.navigate(["/projet/gantt", this.idProjet]);
+  }
 
 }

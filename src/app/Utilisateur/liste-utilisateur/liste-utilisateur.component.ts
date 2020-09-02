@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import {IUtilisateur} from '../IUtilisateur'
 import { Router, ActivatedRoute } from '@angular/router';
-import {MatDialog,MatDialogConfig, MatTableDataSource} from '@angular/material'
+import {MatDialog,MatDialogConfig, MatTableDataSource, MatSort,MatPaginator} from '@angular/material'
 import { AjoutUtilisateurComponent } from '../ajout-utilisateur/ajout-utilisateur.component';
 import { UpdateUtilisateurComponent } from '../update-utilisateur/update-utilisateur.component';
 @Component({
@@ -15,6 +15,8 @@ export class ListeUtilisateurComponent implements OnInit {
   public users: IUtilisateur[]= [];
   message:any;
   userDataSource =new MatTableDataSource<any>();
+  @ViewChild(MatSort,{static:true}) sort: MatSort;
+  @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator
 
   displayedColumns: string [] = ['icon','username', 'prenom', 'email', 'adresse', 'telephone','Action'];
     
@@ -73,6 +75,8 @@ export class ListeUtilisateurComponent implements OnInit {
   refresh() {
     this.userService.getUsers().subscribe((allUsers:IUtilisateur[])=>{
       this.userDataSource.data=allUsers;
+      this.userDataSource.sort=this.sort;
+      this.userDataSource.paginator= this.paginator;
     })
   }
 
