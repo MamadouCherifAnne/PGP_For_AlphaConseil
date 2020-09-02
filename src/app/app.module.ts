@@ -55,7 +55,8 @@ import { AddJalonComponent } from './Projet/add-jalon/add-jalon.component';
 
 import { AjoutTacheSecondComponent } from './altaches/ajout-tache-second/ajout-tache-second.component';
 import { FileComentComponent } from './altaches/file-coment/file-coment.component';
-import { MessagerieComponent } from './Message/messagerie/messagerie.component'
+import { MessagerieComponent } from './Message/messagerie/messagerie.component';
+import { CommentComponent } from './Projet/comment/comment.component'
 
 
 
@@ -105,7 +106,9 @@ import { MessagerieComponent } from './Message/messagerie/messagerie.component'
 
     FileComentComponent,
 
-    MessagerieComponent
+    MessagerieComponent,
+
+    CommentComponent
 
 
 

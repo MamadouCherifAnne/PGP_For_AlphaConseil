@@ -114,6 +114,6 @@ export class AltachesComponent implements OnInit {
     }
     return cmpt;
   }
-
-
+ 
+  
 }

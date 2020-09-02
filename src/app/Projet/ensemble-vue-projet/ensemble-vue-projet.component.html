@@ -1,22 +1,17 @@
 <br>
 <div class="container-fluid border-bottom">
-    <h3 *ngIf=projet >      
+    <h5 *ngIf=projet >      
         <span>{{nomProjet()}}</span>
-    </h3>
-    <br>  
+    </h5>
+      
     <ul class="list-inline">
         
-
         <li class="list-inline-item">
             <a  [routerLink]="['/Taches/', projetId]">Taches</a></li>
         <li class="list-inline-item">
             <a  [routerLink]="['/jalon/', projetId]">Jalons</a></li>
-
         <li class="list-inline-item">
-
-            <a  href="#">Fichiers</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Commentaires</a></li>
+            <a  routerLink="/commentaire">Commentaires</a></li>
         <li class="list-inline-item">
             <a  href="#"> Riques</a></li>
         <li class="list-inline-item">
@@ -42,9 +37,9 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="headline">
-        <h3>Vue d'ensemble</h3>
+        <h5>Vue d'ensemble</h5>
      
-        <p ><button class="btn btn-success btnAjout" mat-button [matMenuTriggerFor]="menu" >
+        <p ><button class="btn btn-success btn-sm btnAjout" mat-button [matMenuTriggerFor]="menu" >
             <mat-icon>add</mat-icon>Ajouter
         </button></p> 
         </div>

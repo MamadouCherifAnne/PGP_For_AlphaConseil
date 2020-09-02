@@ -1,3 +1,21 @@
+<div class="container-fluid border-bottom">
+<br>
+<ul class="list-inline">
+    <li class="list-inline-item">
+        <a  [routerLink]="['../..projet', idProjet]">Vue d'ensemble</a></li>
+    
+    <li class="list-inline-item">
+        <a  [routerLink]="['../../Taches/', idProjet]">Taches</a></li> 
+    <li class="list-inline-item">
+        <a  [routerLink]="['../../jalon/', idProjet]">Jalons</a></li>
+    <li class="list-inline-item">
+        <a  routerLink="../../commentaire">Commentaires</a></li>
+    <li class="list-inline-item">
+        <a  href="#"> Riques</a></li>
+    <li class="list-inline-item">
+        <a  href="#">Utilisateurs</a></li>
+</ul>
+</div>
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
         <div class="container-flud">
@@ -44,7 +62,7 @@
                 {{ phase.nomTache }}
                 <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
                 </button>
-                <small class="badge badge-pill badge-info">{{phase.taches.length}} Taches</small>
+                <span class="badge badge-pill badge-info">{{phase.taches.length}} Taches</span>
             </h5>
         </div>
         <div [attr.id]="'collapse'+i" class="collapse"
@@ -99,7 +117,7 @@
     </mat-sidenav-content>
 
 </mat-sidenav-container>
-
+<router-outlet></router-outlet>
 
 
  

@@ -21,7 +21,7 @@ import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.comp
 import {FileComentComponent} from './altaches/file-coment/file-coment.component';
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
-
+import {CommentComponent} from './Projet/comment/comment.component';
 
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 import { MessagerieComponent } from './Message/messagerie/messagerie.component';
@@ -56,7 +56,7 @@ const routes: Routes = [
   {path: 'task/:id', component: FileComentComponent},
 
   {path: 'MesTache', component: EditTacheComponent},
- 
+  
  
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
 
@@ -67,6 +67,7 @@ const routes: Routes = [
 
   {path: 'Taches/:id', component: AltachesComponent},
   {path:'jalon/:id', component:JalonComponent},
+  {path: 'commentaire', component: CommentComponent},
 
 ];
 
