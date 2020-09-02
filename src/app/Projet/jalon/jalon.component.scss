@@ -14,6 +14,25 @@ mat-sidenav-content{
     background-color: white;
 }
 
+.border-bottom{
+    margin-bottom: 20px;
+    ul {
+        margin-bottom: 15px;
+        a{
+          text-decoration: none;
+          color: silver;
+        } 
+      li .list-inline-item{
+         float: right;
+         margin-bottom: 15px;     
+         a{
+          text-decoration: none;
+          color: silver;
+       }
+      }
+  }
+  }
+
 .bton{
     float: right;
     button{
@@ -41,3 +60,5 @@ i{
   .headline p{
       float:right;
   }
+
+ 

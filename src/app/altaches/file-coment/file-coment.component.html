@@ -1,9 +1,14 @@
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
-        <p><strong>Desciption</strong><br>
-        </p>
-        <p><i class='far fa-calendar-alt'></i>Dates</p>
-        <div *ngIf="currentTache" class="divdate">
+        <div *ngIf="currentTache" class="desClass">
+        <br>
+        <span class="desc"><strong>Desciption</strong>
+        </span> <br>
+        <span>{{currentTache.description}}</span>
+        </div>
+        
+        <div *ngIf="currentTache" class="desClass ">
+             <span><strong>Dates</strong></span><br>
              <span>Début: {{currentTache.debutTache | date}}</span>
              <br>
              <span class="spandate">Fin: {{currentTache.finTache | date}}</span>
@@ -11,8 +16,8 @@
     </mat-sidenav>
     <mat-sidenav-content> 
        <div class="container-flud headline">
-            <h5>Tache</h5>
-         
+            <h5>Details Tache</h5>
+
             <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
             <br>
             <br>
@@ -58,15 +63,15 @@
 
                                
                                     <div formArrayName="commentaire">
-                                        <H3>AJouter des commentaire</H3>
+                                        <h6>AJouter des commentaire</h6>
                                         <div class="form-group" *ngFor="let commentControl of getCommentaires().controls; let i=index">
                                             <textarea type="text" class="form-control" [formControlName]="i"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-success"(click)="addComment()">
+                                        <button type="submit" class="btn btn-success btn-sm commentBtn" (click)="addComment()">
                                             Ajouter un commentaire
                                         </button>
                                     </div>
-                                    <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Ajouter</button>
+                                    <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Sauvegarder</button>
                                
                             </div>
                           
@@ -86,7 +91,25 @@
                      </div>
                      <button class="btn btn-success btn-sm" type="submit" (click)="fileSubmission()">Ajouter
                      </button>
+
+                     <ul *ngIf="currentTache"
+                        class="list-group">
+                        <li class="list-group-item" *ngFor="let file of currentTache.fichiers">
+                             {{ file.nomFichier }} 
+                            <button type="button" (click)="fileDownlod(file.numFichier)"
+                             class="btn btn-light btn-sm">Voir Fichier</button>
+                        </li>
+                    </ul>
+                   
+
                     </div>
+                    <div class="col-sm-8">
+                    <div class="form-control"> 
+                        <input type="file" class="form-group" (change)="onSelectFile($event)">
+                        </div>
+                        <p><button class="btn btn-success btn-sm btAjtache" type="submit" (click)="fileSubmission()">Ajouter
+                        </button> </p>
+                    </div> 
                 </div>    
             </mat-tab>
 

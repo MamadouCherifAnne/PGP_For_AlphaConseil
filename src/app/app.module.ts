@@ -56,11 +56,15 @@ import { AddJalonComponent } from './Projet/add-jalon/add-jalon.component';
 import { AjoutTacheSecondComponent } from './altaches/ajout-tache-second/ajout-tache-second.component';
 import { FileComentComponent } from './altaches/file-coment/file-coment.component';
 import { MessagerieComponent } from './Message/messagerie/messagerie.component';
+
 import { AddDepenseComponent } from './Depense/add-depense/add-depense.component';
 import { DepensesComponent } from './Depense/depenses/depenses.component';
 import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.component';
 import { AffectationTacheComponent } from './Tache/affectation-tache/affectation-tache.component';
 import { UpdateAffectationComponent } from './Tache/update-affectation/update-affectation.component'
+
+import { CommentComponent } from './Projet/comment/comment.component'
+
 
 
 
@@ -112,6 +116,7 @@ import { UpdateAffectationComponent } from './Tache/update-affectation/update-af
 
     MessagerieComponent,
 
+
     AddDepenseComponent,
 
     DepensesComponent,
@@ -120,7 +125,10 @@ import { UpdateAffectationComponent } from './Tache/update-affectation/update-af
 
     AffectationTacheComponent,
 
-    UpdateAffectationComponent
+    UpdateAffectationComponent,
+
+    CommentComponent
+
 
 
 

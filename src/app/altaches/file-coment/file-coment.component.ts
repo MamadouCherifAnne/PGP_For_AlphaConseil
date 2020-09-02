@@ -7,7 +7,7 @@ import { ICommentaire } from 'src/app/Commentaire/ICommentaire';
 import { Commentaire } from 'src/app/Commentaire/Commentaire';
 import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import {FichierService} from 'src/app/services/fichier.service';
-
+import{Observable} from 'rxjs';
 
 @Component({
   selector: 'app-file-coment',
@@ -27,6 +27,9 @@ export class FileComentComponent implements OnInit {
   resourcesNames:string[] =[]
   closeCommentForm:number=1;
   tacheFile: any = File;
+  laTache : any;
+  fileInfos: any;
+  fileTodownload: any;
 
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,
@@ -63,6 +66,12 @@ export class FileComentComponent implements OnInit {
          }
 
         });
+
+        this.tacheService.getTache(this.idTache).subscribe( tache=>{
+          if(tache){
+            this.laTache = tache;
+          } 
+        });
           // Recuperation de l'ensemble des commentaires sur la tache
           this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
             if(commentaire){
@@ -72,6 +81,8 @@ export class FileComentComponent implements OnInit {
         
       }
         });
+      
+        //this.fileInfos = this.fichierservice.allfiles();
   }
 
   //methode de recup de fichier ajouter
@@ -142,4 +153,16 @@ export class FileComentComponent implements OnInit {
     console.log("#######yup");
   } 
 
+  fileDownlod(fileId){
+
+    this.fichierservice.getFile(fileId).subscribe((data)=>{
+      if(data){
+        console.log("çcam marche");
+      }
+    })
+    for(let i of this.laTache.fichiers){
+      console.log(i);
+    }
+    console.log("hello friend");
+  }
 }

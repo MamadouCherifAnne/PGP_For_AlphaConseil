@@ -1,10 +1,9 @@
 <div class="container">
 
 <div class="headline">
-<h2>Mes projets</h2>
-<p><button class="btn btn-success" (click)="onCreate()">Ajouter un projet</button></p>
+<h5>Mes projets</h5>
+<p><button class="btn btn-success btn-sm" (click)="onCreate()">Ajouter un projet</button></p>
 </div>
-<br>
 <br>
 <hr>
 <div class="container">
@@ -20,9 +19,13 @@
                 <h5 class="card-title" >{{projet.nomProjet}}</h5>
                 </div>
                 <h6 class="card-subtitle mb-2 text-muted">Entreprise name ici</h6>
-                <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
+                <mat-divider></mat-divider>
                 
-                <button (click)="onSelect(projet)">Voir Detail</button>
+                <small class="card-text">Débute: {{ projet.debutProjet | date}}
+                    Termine: {{ projet.finProjet | date}}
+                </small>
+                <mat-divider></mat-divider>
+                <button class="btn btn-light btn-sm btnproject" type="button" (click)="onSelect(projet)">Voir Detail</button>
                 </div>
               
         </div>

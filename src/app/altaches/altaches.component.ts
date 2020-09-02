@@ -120,4 +120,5 @@ export class AltachesComponent implements OnInit {
     this.router.navigate(["/projet/gantt", this.idProjet]);
   }
 
+
 }
