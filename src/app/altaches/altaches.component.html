@@ -1,6 +1,6 @@
-<div class="container-fluid border-bottom">
+<div class="container-fluid divclass">
 <br>
-<ul class="list-inline">
+<ul class="list-inline border-bottom">
     <li class="list-inline-item">
         <a  [routerLink]="['../..projet', idProjet]">Vue d'ensemble</a></li>
     
@@ -79,7 +79,7 @@
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                           <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
-                         <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
+                         <button class="btn editbtn" (click)="display[i] = !display[i]"><i class="icon-edit"></i></button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
                          <small *ngIf="compareDateDebut(tache.debutTache)==0 ">En Cours</small>
                           

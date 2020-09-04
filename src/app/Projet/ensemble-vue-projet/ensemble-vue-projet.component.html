@@ -1,10 +1,10 @@
 <br>
-<div class="container-fluid border-bottom">
+<div class="container-fluid ">
     <h5 *ngIf=projet >      
         <span>{{nomProjet()}}</span>
     </h5>
       
-    <ul class="list-inline">
+    <ul class="list-inline border-bottom">
         
         <li class="list-inline-item">
             <a  [routerLink]="['/Taches/', projetId]">Taches</a></li>
@@ -12,8 +12,6 @@
             <a  [routerLink]="['/jalon/', projetId]">Jalons</a></li>
         <li class="list-inline-item">
             <a  routerLink="/commentaire">Commentaires</a></li>
-        <li class="list-inline-item">
-            <a  href="#"> Riques</a></li>
         <li class="list-inline-item">
             <a  href="#">Fichiers </a></li>
         <li class="list-inline-item">
