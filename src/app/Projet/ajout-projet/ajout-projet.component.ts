@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjetService } from "src/app/services/projet.service";
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Projet } from '../Projet';
 import { MatDialogRef, MatDialog } from "@angular/material";
+import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
 
 @Component({
   selector: 'app-ajout-projet',
@@ -23,29 +24,28 @@ export class AjoutProjetComponent implements OnInit {
     'nomProjet': [this.projet.nomProjet, Validators.required],
     'description': [this.projet.description], 
     'debutProjet': [this.projet.debutProjet, Validators.required],
-    'finProjet': [this.projet.finProjet, Validators.required],
+    'finProjet': [this.projet.finProjet, [Validators.required]],
     'zoneRealisation': [this.projet.zoneRealisation]
 
     });
-     
-   /* const dprojet = this.ajoutProjetForm.get("debutProjet") ;
-    const fprojet = this.ajoutProjetForm.get("finProjet");
-    if(this.ajoutProjetForm.get("debutProjet") > this.ajoutProjetForm.get("finProjet")){
-      this.ajoutProjetForm.get("debutProjet").setValidators(Validators.required);
-    }*/
- ;
   }
 
-  /*dateVerif(){
-    let dprojet = this.ajoutProjetForm.get("debutProjet").value;
-    let fprojet = this.ajoutProjetForm.get("finProjet").value;
-    if( dprojet > fprojet || this.ajoutProjetForm.invalid){
-      this.verif = true;
-    }
-    console.log("val de verif"+this.verif);
-  } */
+  
+   dateControl(control: AbstractControl): {[key:string]: any} | null{
+    
+    const sDate = new Date(this.ajoutProjetForm.get('debutProjet').value);
+    const eDate = new Date(control.value);
+
+    return (sDate > eDate)?{'StartedDateIsMore': true}: null;
+   }
 
   public addProjet(){
+    this.projet.nomProjet= this.ajoutProjetForm.get('nomProjet').value;
+    this.projet.description= this.ajoutProjetForm.get('description').value;
+    this.projet.debutProjet = this.ajoutProjetForm.get('debutProjet').value;
+    this.projet.finProjet = this.ajoutProjetForm.get('finProjet').value;
+    this.projet.zoneRealisation = this.ajoutProjetForm.get('zoneRealisation').value;
+    console.log(this.projet.zoneRealisation);
     let val = this.projetService.add(this.projet); 
     val.subscribe((data)=>this.message=data);
     this.onClose();
