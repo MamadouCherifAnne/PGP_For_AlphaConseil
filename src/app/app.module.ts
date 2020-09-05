@@ -39,6 +39,7 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
+import {jsPDF} from 'jspdf';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
 import { AltachesComponent } from './altaches/altaches.component';

@@ -56,7 +56,7 @@ export class DetailUtilisateurComponent implements OnInit {
     
   // Methode d'envoide message de la part d'un utilisateur a un autre
   onSendMessage(){
-    this.expediteur = 1;
+    this.expediteur = 14;
     this.destinataire=this.currentUser;
     this.message.messageContent=this.messageForm.get('messageContent').value;
     if(this.expediteur != this.currentUser.idUser){

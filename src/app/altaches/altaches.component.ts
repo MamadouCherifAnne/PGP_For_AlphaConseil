@@ -102,6 +102,7 @@ export class AltachesComponent implements OnInit {
     if(new Date() < new Date(element) ){
       res=1;
     }
+    
     return res;
   }
 
@@ -119,6 +120,15 @@ export class AltachesComponent implements OnInit {
   goToGanttProject(){
     this.router.navigate(["/projet/gantt", this.idProjet]);
   }
+  public isLate(dateFin:Date){
+    let today =  new Date()
+    if(dateFin > today){
 
+      return false;
+    }else{
+     
+      return true;
+    }
+  }
 
 }

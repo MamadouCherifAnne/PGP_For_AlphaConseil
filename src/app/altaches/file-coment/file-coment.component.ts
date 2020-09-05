@@ -9,6 +9,7 @@ import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import {FichierService} from 'src/app/services/fichier.service';
 import{Observable} from 'rxjs';
 
+
 @Component({
   selector: 'app-file-coment',
   templateUrl: './file-coment.component.html',
@@ -30,6 +31,8 @@ export class FileComentComponent implements OnInit {
   laTache : any;
   fileInfos: any;
   fileTodownload: any;
+  today:Date =new Date();
+  retardTache:number =0;
 
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,
@@ -39,7 +42,7 @@ export class FileComentComponent implements OnInit {
 
   ngOnInit() {
     //L'utilisateur en session
-    this.currentUser= 3;
+    this.currentUser= 14;
       // Preparez le formulaire d'ajout de FIchier
       this.commentaireForm=this.formBuilder.group({
         'commentaire':this.formBuilder.array([])
@@ -52,7 +55,9 @@ export class FileComentComponent implements OnInit {
       if(data){
         this.currentTache=data;
         this.tacheToComment=this.currentTache;
-         
+        // calcul du retard de la tache
+         let val = ((this.today.getTime() - new Date(this.currentTache.finTache).getTime())/(1000*3600*24));
+         this.retardTache =Math.trunc(val)
         this.tacheService.getRessoucesForTask(this.idTache).subscribe((resources)=>{
          if(resources){
            this.ressources=resources;
@@ -110,23 +115,24 @@ export class FileComentComponent implements OnInit {
           if(user){
             comment.user = user;
             console.log(comment);
+            this.tacheService.addCommentToTask(comment).subscribe(data=>{
+              if(data){
+                this.commentaires=[];
+               
+              }
+            });
             this.commentaires.push(comment);
             
           }
         });
         
-       
-
       }
-      this.tacheService.addCommentToTask(this.commentaires).subscribe(data=>{
-        if(data){
-          this.commentaires=[];
-          this.refresh();
-        }
-      });
-      this.commentaireForm.reset();
-      
+       
+    
     }
+    
+    this.commentaireForm.reset();
+    this.refresh();
   }
   refresh(){
     this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
@@ -164,5 +170,16 @@ export class FileComentComponent implements OnInit {
       console.log(i);
     }
     console.log("hello friend");
+  }
+
+  public isLate(dateFin:Date){
+    let today =  new Date()
+    if(dateFin > today){
+
+      return false;
+    }else{
+     
+      return true;
+    }
   }
 }

@@ -15,8 +15,8 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content> 
-       <div class="container-flud headline">
-            <h5>Details Tache</h5>
+       <div class="container-flud headline" *ngIf="currentTache">
+            <h5>{{currentTache.nomTache}} </h5><small class="small" *ngIf="isLate(currentTache.finTache)==true && 100 >= currentTache.tauxAvancement "> en retard de: <span class="badge badge-pill badge-danger" >{{retardTache}}jours</span> </small>
 
             <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
             <br>
@@ -31,13 +31,15 @@
                     <div class="container">
                         <div class="card" >
                             <div class="card-body" *ngIf="currentTache" >
-                              <h5 class="card-title">Information de l'Utilisateur</h5>
+                              <h5 class="card-title">Information sur la Tache</h5>
                               <br>
-                              <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
+                              <h6 class="card-subtitle mb-2 text-muted">Information de Base</h6>
                               <mat-icon>edit</mat-icon> <b>Nom de La Tache </b> :{{currentTache.nomTache}}<br><br>
+                              <mat-icon>calendar</mat-icon> <b>Attendu Au Plus Tard </b> :{{currentTache.debutTache | date}}<br><br>
                               <mat-icon>calendar</mat-icon> <b>Attendu Au Plus Tard </b> :{{currentTache.finTache | date}}<br><br>
                               <mat-icon>hour</mat-icon> <b>Duree de La Tache </b> :{{currentTache.duree}}<br><br>
                               <mat-icon>time</mat-icon> <b>Charge de La Tache </b> :{{currentTache.chargeTache}}(jours)<br><br>
+                              <mat-icon>time</mat-icon> <b>Etat d' Avancement</b> : {{currentTache.tauxAvancement}} % <br><br>
                               <mat-icon>time</mat-icon> <b>Les Ressources Affectés  </b> :
                               <span *ngFor="let u of ressources">
                               <a  [routerLink]="['/utilisateur/details/', u.idUser]">  {{u.nom}}</a></span><br><br>

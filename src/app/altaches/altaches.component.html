@@ -39,7 +39,7 @@
          
             <div class="col-sm-8">
                 <p><button class="btn btn-success btn-sm btnAjout" type="button" (click)="ajouterPhase()">Ajouter une phase</button>
-                    <button  type="submit" class="btn btn-light btn-sm btnlight">Voir Gantt</button></p>
+                    <button  type="submit" class="btn btn-light btn-sm btnlight" (click)="goToGanttProject()">Voir Gantt</button></p>
                     <br>
                     <br>
             </div>
@@ -74,14 +74,15 @@
                     <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
                         
                         
-                       <div *ngIf="tache != null; else vide">
+                       <div *ngIf="tache != null && tache.type !='Jalon'; else vide">
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                           <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
                          <button class="btn-sm" (click)="display[i] = !display[i]">edit</button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
-                         <small *ngIf="compareDateDebut(tache.debutTache)==0 ">En Cours</small>
+                         <small *ngIf="compareDateDebut(tache.debutTache)==0 && isLate(tache.finTache)==false ">En Cours</small>
+                         <small *ngIf="isLate(tache.finTache)==true && 100 > tache.tauxAvancement">En retard</small>
                           
                        </div> 
                         <mat-menu #menu="matMenu">
@@ -96,7 +97,7 @@
                         </div>
 
                         <ng-template #vide>
-                            vide tache
+                            Jalon : {{tache.nomTache}} : {{tache.debutTache | date}}
                         </ng-template>
                             
                     </li>
