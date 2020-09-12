@@ -29,8 +29,8 @@
         Ajouter une Desciption</p>
         <p><i class='far fa-calendar-alt'></i>Dattes</p>
         <div *ngIf="projet" class="divdate">
-             <span>Début: {{projet.debutProjet}}</span>
-             <span class="spandate">Fin: {{projet.finProjet}}</span>
+             <span>Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>
+             <span class="spandate">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>

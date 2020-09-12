@@ -67,6 +67,10 @@ import { UpdateAffectationComponent } from './Tache/update-affectation/update-af
 import { CommentComponent } from './Projet/comment/comment.component';
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
 
 
 

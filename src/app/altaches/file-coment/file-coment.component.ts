@@ -8,6 +8,7 @@ import { Commentaire } from 'src/app/Commentaire/Commentaire';
 import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import {FichierService} from 'src/app/services/fichier.service';
 import{Observable} from 'rxjs';
+import { Time } from '@angular/common';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class FileComentComponent implements OnInit {
   fileTodownload: any;
   today:Date =new Date();
   retardTache:number =0;
+  commentaire:Commentaire = new Commentaire();
 
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,
@@ -45,8 +47,8 @@ export class FileComentComponent implements OnInit {
     this.currentUser= 14;
       // Preparez le formulaire d'ajout de FIchier
       this.commentaireForm=this.formBuilder.group({
-        'commentaire':this.formBuilder.array([])
-      })
+        'commentaire':[this.commentaire.comment,[Validators.required]]
+      });
     // Getter l'id de la tache 
     this.idTache=  parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.idTache)
@@ -91,7 +93,7 @@ export class FileComentComponent implements OnInit {
   }
 
   //methode de recup de fichier ajouter
-  getCommentaires(){
+/*  getCommentaires(){
     return this.commentaireForm.get('commentaire') as FormArray;
   }
   addComment(){
@@ -100,40 +102,35 @@ export class FileComentComponent implements OnInit {
     this.getCommentaires().push(newFileControl)
     
   }
-
+*/
   ajoutCommentaires(){
-    let comments= this.commentaireForm.get('commentaire').value;
-    if(comments){
-      console.log(comments);
-      for(let com of comments){
-        let comment:Commentaire = new Commentaire();
+    let comment= this.commentaireForm.get('commentaire').value;
+   
+        this.commentaire.tacheComment=this.tacheToComment;
+        this.commentaire.comment=comment;
+        this.commentaire.dateComment = new Date();
         
-        comment.tacheComment=this.tacheToComment;
-        comment.comment=com;
-        comment.dateComment = new Date();
+   
+        
+      
+       // this.commentaire.timeComment = heure;
+       
+
+        console.log(this.commentaire.dateComment);
+
         this.userService.getUserByIdUser(this.currentUser).subscribe(user=>{
           if(user){
-            comment.user = user;
-            console.log(comment);
-            this.tacheService.addCommentToTask(comment).subscribe(data=>{
-              if(data){
-                this.commentaires=[];
-               
-              }
+            this.commentaire.user = user;
+            console.log(this.commentaire);
+            this.tacheService.addCommentToTask(this.commentaire).subscribe(data=>{
+              this.commentaireForm.reset();
+              this.refresh();
             });
-            this.commentaires.push(comment);
             
           }
         });
-        
-      }
        
-    
-    }
-    
-    this.commentaireForm.reset();
-    this.refresh();
-  }
+      }
   refresh(){
     this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
       if(commentaire){
@@ -154,6 +151,7 @@ export class FileComentComponent implements OnInit {
     formData.append('file', this.tacheFile);
     this.fichierservice.uploadFile(formData, this.idTache).subscribe((response) =>{
       console.log(response);
+      
     })
 
     console.log("#######yup");
@@ -174,6 +172,7 @@ export class FileComentComponent implements OnInit {
 
   public isLate(dateFin:Date){
     let today =  new Date()
+   
     if(dateFin > today){
 
       return false;
