@@ -28,7 +28,8 @@ import { MessagerieComponent } from './Message/messagerie/messagerie.component';
 import { AddDepenseComponent } from './Depense/add-depense/add-depense.component';
 import { DepensesComponent } from './Depense/depenses/depenses.component';
 import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.component';
-
+import {RapportComponent} from './Rapport/rapport/rapport.component';
+import {RapportPhaseComponent} from './Rapport/rapport-phase/rapport-phase.component';
 
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
@@ -62,6 +63,8 @@ const routes: Routes = [
   
  
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
+  {path: 'projet/rapport/:idProjet', component: RapportComponent},
+  {path: 'phases/rapport/:phaseId', component: RapportPhaseComponent},
 
   {path:'message/:idDestinataire', component: MessagerieComponent},
 

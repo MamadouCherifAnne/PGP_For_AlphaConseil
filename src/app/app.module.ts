@@ -65,6 +65,8 @@ import { UpdateAffectationComponent } from './Tache/update-affectation/update-af
 
 import { CommentComponent } from './Projet/comment/comment.component';
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
+import { RapportComponent } from './Rapport/rapport/rapport.component';
+import { RapportPhaseComponent } from './Rapport/rapport-phase/rapport-phase.component';
 
 
 
@@ -128,6 +130,8 @@ import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation"
     UpdateAffectationComponent,
     CommentComponent,
     EndDateValidation,
+    RapportComponent,
+    RapportPhaseComponent,
 
 
 

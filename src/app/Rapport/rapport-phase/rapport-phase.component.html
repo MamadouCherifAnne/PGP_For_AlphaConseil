@@ -1,0 +1,70 @@
+<div id="contentToConvert">
+    <div *ngIf=phase class="container">
+        <br>
+        <br>
+        <h5 class="hclass">Rapports des Tâches</h5>
+        <h6>{{projet.nomProjet}}
+            <small class="text-muted">--Entreprise Name</small>
+        </h6>
+        <small>Début: {{projet.debutProjet}} Fin: {{projet.finProjet}}
+        </small>
+        <div>
+            <br>
+            <h4 class="p-2 bg-light">{{phase.nomTache | uppercase}}</h4>
+            <br>
+            <h6 class="border-bottom">Tâches actives</h6>
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tâche</th>
+                        <th>Date de debut</th>
+                        <th>Date de fin </th>
+                        <th>Priorité</th>
+                        <th>Progression</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let tache of phase.taches">
+                    <tr *ngIf="tache.tauxAvancement != 100">
+                        <th></th>
+                        <th>{{tache.nomTache}}</th>
+                        <th>{{tache.debutTache}}</th>
+                        <th>{{tache.finTache}}</th>
+                        <th>{{tache.niveauPriorite}}</th>
+                        <th>{{tache.tauxAvancement}} %</th>
+                        <th>En cours</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h6 class="border-bottom">Taches Terminées</h6>
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tâche</th>
+                        <th>Date de debut</th>
+                        <th>Date de fin </th>
+                        <th>Priorité</th>
+                        <th>Progression</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody  *ngFor="let tache of phase.taches">
+                    <tr  *ngIf="tache.tauxAvancement == 100">
+                        <th></th>
+                        <th>{{tache.nomTache}}</th>
+                        <th>{{tache.debutTache}}</th>
+                        <th>{{tache.finTache}}</th>
+                        <th>{{tache.niveauPriorite}}</th>
+                        <th>{{tache.tauxAvancement}} %</th>
+                        <th>Terminé</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>   
+</div>
+<button type="button" class="btn-success bt-sm rigthButton" (click)="download()">Télécharger</button>

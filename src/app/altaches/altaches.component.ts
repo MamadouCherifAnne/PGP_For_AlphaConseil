@@ -120,5 +120,14 @@ export class AltachesComponent implements OnInit {
     this.router.navigate(["/projet/gantt", this.idProjet]);
   }
 
+  //Aller voir le rapport du projet 
+  goToRapportProjet(){
+    this.router.navigate(["/projet/rapport", this.idProjet]);
+  }
+
+  goToRapportTaches(phaseId){
+    this.router.navigate(["/phases/rapport", phaseId]);
+  }
+
 
 }

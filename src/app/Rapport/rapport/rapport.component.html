@@ -1,0 +1,43 @@
+<div id="content">
+    <div class="container">  
+        <br>
+        <h5 >Rapports des Tâches</h5>
+        <h6 *ngIf=projet>{{projet.nomProjet}}
+            <small class="text-muted">--Entreprise Name</small>
+        </h6>
+        <div *ngFor="let phase of allphase">
+          
+                <br>
+                <h6 class="p-2 bg-light">{{phase.nomTache | uppercase}}</h6>
+                <br>
+                <ul >
+                    <li *ngFor="let tache of phase.taches">
+                        {{tache.nomTache}} - date debut: {{tache.debutTache}} - date fin: {{tache.finTache}} - Avancement: {{tache.tauxAvancement}} %
+                        statut: En cours
+                    </li>
+                    <li>
+                        nimportequoi
+                    </li>        
+                 </ul>
+                <!--
+               
+                    <tbody  *ngFor="let tache of phase.taches">
+                        <tr  *ngIf="tache.tauxAvancement == 100">
+                            <th></th>
+                            <th>{{tache.nomTache}}</th>
+                            <th>{{tache.debutTache}}</th>
+                            <th>{{tache.finTache}}</th>
+                            <th>{{tache.niveauPriorite}}</th>
+                            <th>{{tache.tauxAvancement}} %</th>
+                            <th>Terminé</th>
+                        </tr>
+                    </tbody>
+                </table>
+                    -->
+        </div>
+    </div>     
+</div>  
+
+<div class="container">
+    <p ><button type="button" class="btn-success bt-sm " (click)="createpdf()">Télécharger</button></p>
+</div>
