@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -69,6 +69,9 @@ import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation"
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { LoginComponent } from './Login/login/login.component';
+import { AuthInterceptor} from './services/authconfig.interceptor';
+import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 registerLocaleData(localeFr, 'fr');
 
 
@@ -133,6 +136,8 @@ registerLocaleData(localeFr, 'fr');
     UpdateAffectationComponent,
     CommentComponent,
     EndDateValidation,
+    LoginComponent,
+    UserProfilComponent,
 
 
 
@@ -149,7 +154,14 @@ registerLocaleData(localeFr, 'fr');
     FieldsetModule
   ],
 
-  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService],
+  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor ,
+        multi: true
+      }
+    
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AjoutUtilisateurComponent,UpdateUtilisateurComponent,
     AddRoleComponent,
