@@ -31,6 +31,7 @@ import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.com
 import { LoginComponent } from './Login/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
+import { AuthAdminGuard } from './services/auth-admin.guard';
 
 
 const routes: Routes = [
@@ -41,7 +42,7 @@ const routes: Routes = [
     
   ],canActivate:[AuthGuard]},
 
-  {path: 'utilisateur', component: ListeUtilisateurComponent,canActivate:[AuthGuard]},
+  {path: 'utilisateur', component: ListeUtilisateurComponent,canActivate:[AuthAdminGuard,AuthGuard]},
   {path: 'add', component: AjoutUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'update',component: UpdateUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent,canActivate:[AuthGuard]},

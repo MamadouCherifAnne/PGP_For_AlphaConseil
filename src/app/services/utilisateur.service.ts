@@ -33,7 +33,7 @@ export class UtilisateurService {
   // Delete un utilisateur
   public deleteUser(idUser){
 
-    return this.http.post("http://localhost:8080/utilisateur/delete/"+idUser,[]);
+    return this.http.post("http://localhost:8080/utilisateur/delete/"+idUser,{headers:this.entete})
   }
   
 
@@ -45,25 +45,23 @@ export class UtilisateurService {
     return this.http.get("http://localhost:8080/utilisateur/findUser/"+idUser);
   }
   public getUserByUsername(username):Observable<any>{
-    return this.http.get("http://localhost:8080/utilisateur/findUserByUsername/"+username)
+    return this.http.get("http://localhost:8080/utilisateur/findUsername/"+username)
 
   }
 
   // Affecter un utilisateur a une tache
   public affectToTask(userAffect){
-    return this.http.post("http://localhost:8080/affectation/add/",userAffect,{responseType:'text'})
+    return this.http.post("http://localhost:8080/affectation/add/",userAffect,{responseType:'text',headers:this.entete})
   }
   // Afficher toutes les taches a realise de l'utilisateur
   public getTaskToRealise(idUser): Observable<any>{
-  return this.http.get("http://localhost:8080/utilisateur/tacheToRealise/"+idUser);
+  return this.http.get("http://localhost:8080/utilisateur/tacheToRealise/"+idUser,{headers:this.entete});
   }
 
   // ENvoie de message A un utilisateur
   public sendMessageToUser(message){
-    return this.http.post("http://localhost:8080/message/sendMessage",message);
+    return this.http.post("http://localhost:8080/message/sendMessage",message,{headers:this.entete});
   }
 
-  public verifToGetCmpany(noname):Observable<any>{
-    return this.http.get("http://localhost:8080/utilisateur/tryVerifUserCompany/"+noname);
-  }
+
 }

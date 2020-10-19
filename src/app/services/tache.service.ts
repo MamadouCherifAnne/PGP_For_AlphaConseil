@@ -107,7 +107,7 @@ export class TacheService {
   
   // Supprimer une affectation d'une tache
   public deleteAffectation(idAffect){
-    return this.http.delete("localhost:8080/affectation/deleteAffectation/"+idAffect,{headers:this.entete});
+    return this.http.post("http://localhost:8080/affectation/deleteAffectation",idAffect,{responseType:'text',headers:this.entete});
   }
 
   // Afficher une Affectation par son id

@@ -55,7 +55,22 @@ export class AffecterRessourcesComponent implements OnInit {
     this.affectation.user_task =this.ressource;
     console.log(this.affectation)
     this.userService.affectToTask(this.affectation)
-    .subscribe()
+    .subscribe(data=>{
+      if(data){
+        let reponse:String  ="false";
+        reponse=data;
+        if(reponse == "true"){
+          this.message="Affectation realisé avec succés";
+          
+
+        }else{
+          this.message ="Cet utilisateur est dèja affecté à cette tache";
+          window.alert(this.message);
+          this.onFermer()
+        }
+        console.log(this.message)
+      }
+    })
     this.affectationForm.reset()
     
   }

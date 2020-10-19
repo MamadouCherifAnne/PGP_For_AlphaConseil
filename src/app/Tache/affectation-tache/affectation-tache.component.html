@@ -6,15 +6,16 @@
 
 <br><br>
 <div class="search-div">
-    <button mat-raised-button >
+    <button mat-raised-button (click)="affecterRessources()" >
         <mat-icon>add</mat-icon>Ajouter
+    </button>
         <mat-form-field class="search-form-field">
             <input matInput [(ngModel)]="rechercheKey" placeholder="Rechercher" autocomplete="off" (keyup)="appliquerLeFiltre()">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="viderRecherche()">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
-    </button>
+    
 </div>
 <div class="container">
 <div class="mat-elevation-z8">
@@ -22,7 +23,7 @@
 
         <ng-container matColumnDef="Ressources" >
             <mat-header-cell *matHeaderCellDef mat-sort-header>  Ressources </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element}}</mat-cell>
+            <mat-cell *matCellDef="let element"></mat-cell>
             </ng-container>
         
     

@@ -23,10 +23,13 @@ export class AuthentificationService {
 
     //service Login dune autre maniere
     public login(user){
-      return this.http.post("http://localhost:8080/login",user,{observe:'response'})
-      .subscribe((resp)=>{
-        console.log(resp)
-        let jwtToken = resp.headers.get('authorization')
+      return this.http.post("http://localhost:8080/authenticate/login",user,{observe:'response'})
+      .subscribe((data)=>{
+        let bodyToken:any;
+        console.log(data.body.valueOf())
+        bodyToken = data.body.valueOf();
+       
+        let jwtToken = bodyToken["token"];
         console.log(jwtToken);
         if(jwtToken!== null){
           let use =this.saveJWT(jwtToken);
@@ -35,10 +38,11 @@ export class AuthentificationService {
           console.log(userBody.sub);
           let username =  userBody.sub
           
-        
+          console.log(userBody.sub);
            
          this.getUserProfile(username).subscribe((res) => {
           this.currentUser = res;
+          console.log(res);
           this.router.navigate(['user/profil/'+ res.idUser]);
         });
           
@@ -62,6 +66,29 @@ export class AuthentificationService {
       //console.log("Voici le utilisateur connecte:"+userBody.sub+" avec les roles :"+userBody.roles)
       
     }
+    // Decodage du token
+    public decodeJwtToken(){
+      const jwtHelper = new JwtHelperService();
+      if(this.jwtToken !== null){
+      const userBody =jwtHelper.decodeToken(this.getToken());
+      console.log(userBody)
+      return userBody;
+      }
+      return null;
+    }
+    // getCurrent utilisateur
+    public getCurrentUser(){
+      let authenticateUser = this.decodeJwtToken();
+      if(authenticateUser != null){
+        console.log(authenticateUser.sub);
+        return authenticateUser.sub;
+      }
+      return null;
+
+      
+
+
+    }
 
     // Service de Registration d'un nouveau utilisateur
     public registrer(user:Utilisateur):Observable<any>{
@@ -76,7 +103,7 @@ export class AuthentificationService {
     // Service de L'authentification
     seConnecter(user:Utilisateur){
 
-      let service = 'http://localhost:8080/login';
+      let service = 'http://localhost:8080/authenticate/login';
       return this.http.post<any>(service,user,{observe:'response'})
       .subscribe((resp:any)=>{
         console.log(resp)
@@ -96,7 +123,10 @@ export class AuthentificationService {
       let service = "http://localhost:8080/utilisateur/findUsername/"+username;
       return this.http.get(service, { headers: new HttpHeaders({'authorization':this.getToken()}) }).pipe(
         map((res: Response) => {
+          if(res){
+            console.log(res.body)
           return res || {}
+          }
         }),
         catchError(this.handleError)
       )
@@ -144,13 +174,19 @@ export class AuthentificationService {
       const jwtHelper = new JwtHelperService();
       if(this.isLoggedIn && this.getToken()!==null){
        const  verifUser=jwtHelper.decodeToken(this.getToken());
-       for(let v in verifUser){
-         if(v==="ADMIN"){
-           isadmin = true;
+       let roles:any[] = verifUser.roles;
+       console.log(roles)
+       
+       for(let v=0;v<roles.length; v++){
+         if(roles[v] =="ADMIN"){
+           return true;
          }
+         console.log(roles[v]);
+        }
        }
+     
        return isadmin;
-    }
+   
        
     }
     

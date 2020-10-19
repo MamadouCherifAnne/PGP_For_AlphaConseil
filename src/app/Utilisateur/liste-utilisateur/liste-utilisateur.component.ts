@@ -32,14 +32,14 @@ export class ListeUtilisateurComponent implements OnInit {
   }
 
   public deleteUser(id){
-
-    this.userService.deleteUser(id).subscribe(
-      (result => {
+    console.log("bonsoir")
+    this.userService.deleteUser(id).subscribe
+      (data => {
+        if(data){
+          console.log(data)
       this.refresh();
-  }),
-  (data=>this.message=data)
-  
-  );
+        }
+  });
 }
 
   // Navigation vers la page update utilisateur

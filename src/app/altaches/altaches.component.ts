@@ -122,12 +122,14 @@ export class AltachesComponent implements OnInit {
   }
   public isLate(dateFin:Date){
     let today =  new Date()
-    if(dateFin > today){
+    let fin = new Date(dateFin)
+    console.log(today+" et datefin = "+fin)
+    if(today > fin){
 
-      return false;
+      return true;
     }else{
      
-      return true;
+      return false;
     }
   }
 

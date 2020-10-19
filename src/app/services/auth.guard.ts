@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       // On verifie si l'utilisateur qui veut acceder est authentifie ou non
-      if(this.authService.isLoggedIn !==true){
+      if(this.authService.isLoggedIn !==true ){
         // On fait une alerte 
         window.alert("Vous netes pas authentifier vous n'avez pas le droit");
         this.router.navigate(['seConnecter']);
