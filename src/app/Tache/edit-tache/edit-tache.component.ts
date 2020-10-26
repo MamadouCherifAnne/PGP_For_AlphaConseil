@@ -59,7 +59,7 @@ export class EditTacheComponent implements OnInit {
     });
 
     //...................Recuperation de la liste de tache d'un projet....................
-    this.projetService.projectAllTask(this.idProjet).subscribe(data=>{
+    this.tacheService.getPotentielPredecesseurs(this.idTache).subscribe(data=>{
       if(data){
         this.listTache=data;
         // toutes les taches sauf la tache

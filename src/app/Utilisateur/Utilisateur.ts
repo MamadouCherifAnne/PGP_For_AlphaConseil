@@ -14,9 +14,13 @@ export class Utilisateur{
         actif:boolean;
         role:object;
         telephone:string;
-        ptojet:object;
+        projets:any[];
         entreprise: object;
         professions:any[];
+        taches:any[];
+        isChefProjet:number
+        
+        
     
 
 

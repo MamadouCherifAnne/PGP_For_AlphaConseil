@@ -64,4 +64,9 @@ export class ProjetService {
   public getProjectJalons(idProjet): Observable<ITache[]>{
     return this.http.get<ITache[]>("http://localhost:8080/projet/projectJalons/"+idProjet,{headers:this.entete});
   }
+
+  // AFFICHER LES PROJET LIER A UN UTILISATEUR
+  public allProjectOfUser(username): Observable<any>{
+    return this.http.get<any>("http://localhost:8080/utilisateur/myProjects/"+username,{headers:this.entete});
+  }
 }

@@ -15,6 +15,9 @@ export interface ITache{
 	fichiers: object[];
 	tachePrecedente: object[];
 	ressources:object[];
+	createur:object;
+	lastUpdate:Date;
+	type:String;
  
 	
 }

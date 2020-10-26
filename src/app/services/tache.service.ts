@@ -115,5 +115,9 @@ export class TacheService {
     return this.http.get<any>("http://localhost:8080/affectation/getAffectationById/"+idUser+"/"+idTache,{headers:this.entete});
   }
 
+  // Afficher le createur de la tache
+  public getOwner(idTache):Observable<any>{
+    return this.http.get("http://localhost:8080/tache/getOwner/"+idTache,{responseType:'text',headers:this.entete});
+  }
 
 }

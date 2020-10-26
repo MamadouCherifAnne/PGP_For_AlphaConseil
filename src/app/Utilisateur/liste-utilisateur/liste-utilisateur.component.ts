@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {MatDialog,MatDialogConfig, MatTableDataSource, MatSort,MatPaginator} from '@angular/material'
 import { AjoutUtilisateurComponent } from '../ajout-utilisateur/ajout-utilisateur.component';
 import { UpdateUtilisateurComponent } from '../update-utilisateur/update-utilisateur.component';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 @Component({
   selector: 'app-liste-utilisateur',
   templateUrl: './liste-utilisateur.component.html',
@@ -21,6 +22,7 @@ export class ListeUtilisateurComponent implements OnInit {
   displayedColumns: string [] = ['icon','username', 'prenom', 'email', 'adresse', 'telephone','Action'];
     
   constructor(private userService:UtilisateurService,
+    private authService:AuthentificationService, 
      private router:Router, 
      private route:ActivatedRoute,
      private changeDetect: ChangeDetectorRef,
@@ -32,7 +34,9 @@ export class ListeUtilisateurComponent implements OnInit {
   }
 
   public deleteUser(id){
-    console.log("bonsoir")
+    if(this.authService.isSuperAdmin==true){
+    let confirm :boolean =  window.confirm("êtes vous sûre de vouloir supprimer cet utilisateur")
+    if(confirm == true){
     this.userService.deleteUser(id).subscribe
       (data => {
         if(data){
@@ -40,6 +44,8 @@ export class ListeUtilisateurComponent implements OnInit {
       this.refresh();
         }
   });
+}
+}
 }
 
   // Navigation vers la page update utilisateur
@@ -69,7 +75,6 @@ export class ListeUtilisateurComponent implements OnInit {
      .afterClosed().subscribe(result => {
       this.refresh();
     });
-;
   }
 
   refresh() {

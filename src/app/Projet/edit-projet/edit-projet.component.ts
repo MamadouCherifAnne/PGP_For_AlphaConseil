@@ -25,7 +25,8 @@ export class EditProjetComponent implements OnInit {
       'description': [this.projet.description],
       'debutProjet': [this.projet.debutProjet, Validators.required],
       'finProjet': [this.projet.finProjet,Validators.required],
-      'zoneRealisation': [this.projet.zoneRealisation]
+      'zoneRealisation': [this.projet.zoneRealisation],
+      'responsable':[this.projet.responsable]
   
       });
 
@@ -43,6 +44,7 @@ export class EditProjetComponent implements OnInit {
      this.projet.debutProjet  = this.editProjetForm.get("debutProjet").value;
      this.projet.finProjet = this.editProjetForm.get("finProjet").value;
      this.projet.zoneRealisation = this.editProjetForm.get("zoneRealisation").value;
+     this.projet.responsable =  this.editProjetForm.get("responsable").value;
 
      let idProjet = Number.parseFloat(this.projetToEdit.projet.numProjet);
 
@@ -68,6 +70,7 @@ export class EditProjetComponent implements OnInit {
     this.editProjetForm.get("debutProjet").setValue(this.projetToEdit.projet.debutProjet);
     this.editProjetForm.get("finProjet").setValue(this.projetToEdit.projet.finProjet);
     this.editProjetForm.get("zoneRealisation").setValue(this.projetToEdit.projet.zoneRealisation);
+    this.editProjetForm.get("finProjet").setValue(this.projetToEdit.projet.finProjet);
   }
   
 }

@@ -4,6 +4,8 @@ import { Tache } from 'src/app/Tache/Tache';
 import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from 'src/app/services/projet.service';
 import {PhaseService} from 'src/app/services/phase.service';
+import { AuthentificationService } from 'src/app/services/authentification.service';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-ajout-tache-second',
@@ -18,14 +20,23 @@ export class AjoutTacheSecondComponent implements OnInit {
   projet: any;
   listTache: any;
   newPhase: any;
+  currentUser:any;
 
   @Input() public idProjet: any;
   @Input() public idPhase: any;
 
   constructor(private tacheService: TacheService, private projetService: ProjetService,
-     private formBuilder: FormBuilder, private phaseService: PhaseService ) { }
+     private formBuilder: FormBuilder, private phaseService: PhaseService ,
+     public userService:UtilisateurService,
+     public authService:AuthentificationService ) { }
 
   ngOnInit() {
+    let username = this.authService.getCurrentUser();
+    this.userService.getUserByUsername(username).subscribe(data=>{
+      if(data){
+        this.currentUser = data;
+      }
+    })
     this.AjoutTacheSecndForm = this.formBuilder.group({
       "nomTache": [this.tache.nomTache,Validators.required],
       "description": this.tache.description,
@@ -46,9 +57,10 @@ export class AjoutTacheSecondComponent implements OnInit {
    });
 
    //...................Recuperation de la liste de tache d'un projet....................
-   this.projetService.projectAllTask(this.idProjet).subscribe(data=>{
+   this.projetService.projectAllTasks(this.idProjet).subscribe(data=>{
      if(data){
-       this.listTache=data;}
+       this.listTache=data;
+      }
      });
 
     this.phaseService.findById(this.idPhase).subscribe(data=>{
@@ -66,9 +78,12 @@ export class AjoutTacheSecondComponent implements OnInit {
   Ajouter(){
     console.log("fof"+this.idProjet);
     console.log("fif"+this.newPhase);
+    console.log("Le user courant est "+this.currentUser.username)
+    this.tache.createur= this.currentUser;
     this.tache.phase = this.newPhase;
     let val = this.tacheService.ajoutTache(this.tache);
     val.subscribe((data)=>this.AjoutMessage = data);
+
   }
 
 }

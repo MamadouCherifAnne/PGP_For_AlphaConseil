@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import { UtilisateurService } from './utilisateur.service';
 
 @Injectable({
   providedIn: 'root'
@@ -69,9 +70,9 @@ export class AuthentificationService {
     // Decodage du token
     public decodeJwtToken(){
       const jwtHelper = new JwtHelperService();
-      if(this.jwtToken !== null){
+      if(this.getToken() !== null){
       const userBody =jwtHelper.decodeToken(this.getToken());
-      console.log(userBody)
+      
       return userBody;
       }
       return null;
@@ -125,7 +126,7 @@ export class AuthentificationService {
         map((res: Response) => {
           if(res){
             console.log(res.body)
-          return res || {}
+          return res || null;
           }
         }),
         catchError(this.handleError)
@@ -143,6 +144,7 @@ export class AuthentificationService {
     
     public get isLoggedIn() : boolean {
       let authToken = localStorage.getItem('token');
+      
       return (authToken !== null) ? true : false;
     }
   
@@ -171,6 +173,7 @@ export class AuthentificationService {
     
     public get isAdmin() : boolean {
       let isadmin:boolean=false;
+      this.isNotExpiredKey();
       const jwtHelper = new JwtHelperService();
       if(this.isLoggedIn && this.getToken()!==null){
        const  verifUser=jwtHelper.decodeToken(this.getToken());
@@ -189,6 +192,75 @@ export class AuthentificationService {
    
        
     }
+
+
+        // Verifier si il est un admin
     
+        public get isSuperAdmin() : boolean {
+          let isSuperAdmin:boolean=false;
+          this.isNotExpiredKey();
+          const jwtHelper = new JwtHelperService();
+          if(this.isLoggedIn && this.getToken()!==null){
+           const  verifUser=jwtHelper.decodeToken(this.getToken());
+           let roles:any[] = verifUser.roles;
+           console.log(roles)
+           
+           for(let v=0;v<roles.length; v++){
+             if(roles[v] =="SUPERADMIN"){
+               return true;
+             }
+             console.log(roles[v]);
+            }
+           }
+         
+           return isSuperAdmin;
+       
+           
+        }
+
+
+    public getUserByUsername(username){
+      let user:any;
+      let service = "http://localhost:8080/utilisateur/findUsername/"+username;
+      return this.http.get(service, { headers: new HttpHeaders({'authorization':this.getToken()}) })
+      .subscribe(res=>{
+        if(res){
+          user = res;
+          return user;
+        }
+      });
+      
+    }
+
+    // get object of the current user
+    public getObjectUserConnected(){
+      
+      let username =this.getCurrentUser();
+    
+        let user = this.getUserByUsername(username);
+        return user;
+      }
+
+      isNotExpiredKey(){
+        
+        let verif:boolean = false
+        if(this.getToken() != null){
+          let decodedToken =  this.decodeJwtToken();
+          let expired = decodedToken.exp;
+          let date = new Date(expired *1000);
+          let now = new Date();
+          if(date < now){
+            verif = true;
+            console.log(expired)
+            console.log("La date de expiration"+date);
+            // la cles est expirer on supprime la session demande d'une nouvelle connexion
+            this.doLogout();
+          }
+          
+          return verif;
+        }
+
+        
+      }
 
 }

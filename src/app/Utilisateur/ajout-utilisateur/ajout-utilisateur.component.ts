@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ProfessionService } from 'src/app/services/profession.service';
 import { IRole } from 'src/app/Role/IRole';
 import {MatDialogRef} from '@angular/material'
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-ajout-utilisateur',
@@ -19,15 +20,15 @@ export class AjoutUtilisateurComponent implements OnInit {
    
    addUserForm: FormGroup;
    message:any;
-   
-   idRol:IRole;
+
    listProfession: Profession[]
    idProfession:IProfession[];
 
 
   public professions =[];
-   roles:IRole[];
-  constructor(private userService: UtilisateurService, private roleService: RoleService,
+
+  constructor(private userService: UtilisateurService,
+    
     private professionService: ProfessionService,
      private formBuilder: FormBuilder,
      public fenetreReference: MatDialogRef<AjoutUtilisateurComponent>
@@ -47,14 +48,11 @@ export class AjoutUtilisateurComponent implements OnInit {
       'confirmPassword':[[Validators.required]],
 
       'adresse':[this.user.adresse, [Validators.required]],
-      'role':[this.idRol,[]],
+      
       'profession':[this.idProfession]
     });
     
     /* .................... Recuperation des roles et professions pour les renseigner dans le formulaires......*/
-   
-     this.roleService.getRoles()
-      .subscribe((data)=> this.roles=data);
       //get the professions for adding a new user 
       this.professionService.getProfession()
       .subscribe((data)=> this.professions=data)
@@ -66,8 +64,8 @@ export class AjoutUtilisateurComponent implements OnInit {
   public addNewUser(){
   //  console.log(this.user)
     this.user.actif=true;
-    this.user.role = this.idRol;
-    this.user.ptojet=null
+    
+    this.user.projets=null
     this.user.professions= this.idProfession;
     
     let res=this.userService.addUser(this.user);

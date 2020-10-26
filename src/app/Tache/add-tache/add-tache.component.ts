@@ -5,6 +5,8 @@ import {TacheService} from "src/app/services/tache.service";
 import { Tache } from '../Tache';
 import { from } from 'rxjs';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AuthentificationService } from 'src/app/services/authentification.service';
+import { Utilisateur } from 'src/app/Utilisateur/Utilisateur';
 
 @Component({
   selector: 'app-add-tache',
@@ -18,9 +20,10 @@ export class AddTacheComponent implements OnInit {
   message: any;
   allPhases: any;
   allTaches: any;
+  currentUser:object;
 
   constructor(private tacheService: TacheService ,private formBuilder: FormBuilder,
-
+    public authService:AuthentificationService,
     private dialogRef : MatDialogRef<AddTacheComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -28,6 +31,7 @@ export class AddTacheComponent implements OnInit {
   ngOnInit() {
     this.allPhases = this.data.listPhases;
     this.allTaches = this.data.listTaches;
+    this.currentUser = this.authService.getObjectUserConnected();
 
     this.ajoutTacheForm = this.formBuilder.group({
       "nomTache": [this.tache.nomTache,Validators.required],
@@ -49,6 +53,8 @@ export class AddTacheComponent implements OnInit {
     console.log(this.allPhases);
     //console.log(this.allTaches);
     console.log("tout va bien");
+    this.tache.createur = this.currentUser;
+    window.alert("le createur est "+this.currentUser);
     let val = this.tacheService.ajoutTache(this.tache);
 
     val.subscribe((data)=>{

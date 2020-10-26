@@ -72,6 +72,7 @@ import localeFr from '@angular/common/locales/fr';
 import { LoginComponent } from './Login/login/login.component';
 import { AuthInterceptor} from './services/authconfig.interceptor';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
+import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
 registerLocaleData(localeFr, 'fr');
 
 
@@ -138,6 +139,7 @@ registerLocaleData(localeFr, 'fr');
     EndDateValidation,
     LoginComponent,
     UserProfilComponent,
+    UserEntrepriseComponent,
 
 
 
