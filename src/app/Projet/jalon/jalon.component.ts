@@ -58,7 +58,7 @@ export class JalonComponent implements OnInit {
               console.log(j.nomTache+"#   #"+j.debutTache)
             }
             }
-            console.log(new Date())
+            
         } 
       });
       }
@@ -83,7 +83,7 @@ export class JalonComponent implements OnInit {
   
     refresh() {
      
-      this.projetService.getProjectJalons(1).subscribe((data)=>{
+      this.projetService.getProjectJalons(this.projectId ).subscribe((data)=>{
         if(data){
           this.jalons=data;
           for(let j of this.jalons){

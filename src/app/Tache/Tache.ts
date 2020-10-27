@@ -17,5 +17,8 @@ export class Tache{
 	commentaires:object[]
 	ressources:object[];
 	taches:object[];
+	createur:object;
+	lastUpdate:Date;
+	type:String;
 	
 }

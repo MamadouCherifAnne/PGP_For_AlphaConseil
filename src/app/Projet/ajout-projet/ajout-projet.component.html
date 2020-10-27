@@ -37,14 +37,31 @@
                     <mat-error *ngIf="checkError('debutProjet', 'required')">La date de fin est obligatoire</mat-error>
                     <mat-error *ngIf="checkError('debutProjet', 'dateInvalid')">Le format de la date est: dd/mm/yyyy</mat-error>
                 </mat-form-field>
-                <div class="button-row">
+                    
+                
+        
+                        <mat-form-field>
+                            <mat-label>Chef de Projet</mat-label>
+                            <mat-select formControlName="responsable">
+                                <ng-container *ngFor="let user of allUsers">
+                              <mat-option  [value]="user">{{user.nom}}</mat-option>
+                            </ng-container>
+                            </mat-select>
+                          
+                        
+                    </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+                
+              
+          
+    </mat-grid-list>
+
+    <div class="button-row">
                    
 
-                    <button class="btn btn-success btn-sm" type="submit" (click)="addProjet()"
-                    [disabled]="ajoutProjetForm.invalid">Ajouter</button>
-                    <button class="btn btn-light btn-sm" type="submit" (click)="onClear()">Annuler</button>
-                </div>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
+        <button class="btn btn-success btn-sm" type="submit" (click)="addProjet()"
+        [disabled]="ajoutProjetForm.invalid">Ajouter</button>
+        <button class="btn btn-light btn-sm" type="submit" (click)="onClear()">Annuler</button>
+    </div>
 </form>

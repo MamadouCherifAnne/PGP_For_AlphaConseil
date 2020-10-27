@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -71,7 +71,14 @@ import { RapportPhaseComponent } from './Rapport/rapport-phase/rapport-phase.com
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+<<<<<<< HEAD
 import { MonTravailComponent } from './Utilisateur/mon-travail/mon-travail.component';
+=======
+import { LoginComponent } from './Login/login/login.component';
+import { AuthInterceptor} from './services/authconfig.interceptor';
+import { UserProfilComponent } from './Login/user-profil/user-profil.component';
+import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
 registerLocaleData(localeFr, 'fr');
 
 
@@ -136,9 +143,15 @@ registerLocaleData(localeFr, 'fr');
     UpdateAffectationComponent,
     CommentComponent,
     EndDateValidation,
+<<<<<<< HEAD
     RapportComponent,
     RapportPhaseComponent,
     MonTravailComponent,
+=======
+    LoginComponent,
+    UserProfilComponent,
+    UserEntrepriseComponent,
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
 
 
 
@@ -155,7 +168,14 @@ registerLocaleData(localeFr, 'fr');
     FieldsetModule
   ],
 
-  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService],
+  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor ,
+        multi: true
+      }
+    
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AjoutUtilisateurComponent,UpdateUtilisateurComponent,
     AddRoleComponent,

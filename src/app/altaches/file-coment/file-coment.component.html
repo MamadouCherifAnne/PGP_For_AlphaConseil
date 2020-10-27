@@ -37,8 +37,8 @@
                               <mat-icon>edit</mat-icon> <b>Nom de La Tache </b> :{{currentTache.nomTache}}<br><br>
                               <mat-icon>calendar</mat-icon> <b>Debute le : </b> :{{currentTache.debutTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}<br><br>
                               <mat-icon>calendar</mat-icon> <b>Attendu Au Plus Tard </b> :{{currentTache.finTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}<br><br>
-                              <mat-icon>hour</mat-icon> <b>Duree de La Tache </b> :{{currentTache.duree}}<br><br>
-                              <mat-icon>time</mat-icon> <b>Charge de La Tache </b> :{{currentTache.chargeTache}}(jours)<br><br>
+                              <mat-icon>hour</mat-icon> <b>Duree de La Tache </b> :{{currentTache.duree}} jours<br><br>
+                              <mat-icon>time</mat-icon> <b>Charge de La Tache </b> :{{currentTache.chargeTache}} heures<br><br>
                               <mat-icon>time</mat-icon> <b>Etat d' Avancement</b> : {{currentTache.tauxAvancement}} % <br><br>
                               <mat-icon>time</mat-icon> <b>Les Ressources Affectés  </b> :
                               <span *ngFor="let u of ressources">

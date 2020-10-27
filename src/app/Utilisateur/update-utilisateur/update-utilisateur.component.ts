@@ -80,7 +80,7 @@ public userUpdate(){
   let id=Number.parseFloat(this.updatingUser.user.idUser);
   
   this.user.role = this.updatingUser.user.role;
-  this.user.ptojet=null
+  //this.user.ptojet=null
   this.user.professions=this.updateUserForm.get("profession").value
   this.user.role=this.updateUserForm.get("role").value
   

@@ -4,6 +4,7 @@ import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import { Utilisateur } from '../Utilisateur';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Message } from 'src/app/Message/Message';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-detail-utilisateur',
@@ -23,7 +24,8 @@ export class DetailUtilisateurComponent implements OnInit {
 
   constructor(private userService:UtilisateurService,
                private route:ActivatedRoute,
-               private formBuilder:FormBuilder
+               private formBuilder:FormBuilder,
+               private authService: AuthentificationService
     ) { }
 
   ngOnInit() {
@@ -56,12 +58,15 @@ export class DetailUtilisateurComponent implements OnInit {
     
   // Methode d'envoide message de la part d'un utilisateur a un autre
   onSendMessage(){
+    let exped = this.authService.getCurrentUser();
+    
     this.expediteur = 14;
     this.destinataire=this.currentUser;
     this.message.messageContent=this.messageForm.get('messageContent').value;
-    if(this.expediteur != this.currentUser.idUser){
+    if(exped != null){
       //Recuperation de l'objet editeur du message
-        this.userService.getUserByIdUser(this.expediteur).subscribe(data=>{
+       // this.userService.getUserByIdUser(this.expediteur).subscribe(data=>{
+          this.userService.getUserByUsername(exped).subscribe(data=>{
         if(data){
           let userEDit = data;
           //Recuperation de l'objet destinataire du message

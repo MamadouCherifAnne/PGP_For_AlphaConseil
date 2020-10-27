@@ -61,8 +61,9 @@ export class UpdateAffectationComponent implements OnInit {
     console.log(this.affectation)
    // Appel du service de modification
    this.tacheService.updateAffectationOfTask(this.affectation).subscribe(data=>{
-     
+     if(data){
       this.onFermer();
+     }
    });
     
   }

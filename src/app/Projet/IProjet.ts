@@ -6,5 +6,6 @@ export interface IProjet{
     zoneRealisation: String;
     risque: object[];
     phase: object[];
-    responsables: object[];
+    responsable: object;
+    entreprise:object;
 }

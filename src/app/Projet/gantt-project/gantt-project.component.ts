@@ -144,11 +144,12 @@ export class GanttProjectComponent implements OnInit {
     
     projectStartDate:this.projet.debutProjet,
     projectEndDate:this.projet.finProjet,
-   timelineSettings:{
+    timelineSettings:{
       timelineViewMode:'Year',
-      timelineUnitSize:100,
+      timelineUnitSize:30,
+
       topTier:{
-        unit:'Week'
+        unit:'Day'
       }
     },
     // AJouter les options de modifications
@@ -156,10 +157,10 @@ export class GanttProjectComponent implements OnInit {
       allowAdding:true,
       allowEditing:true
     },
-    allowSelection:true,
+    /*allowSelection:true,
     toolbar:['Add','Edit','Cancel'],
-    allowFiltering:true
-    
+    allowFiltering:true*/
+
    
     
     });

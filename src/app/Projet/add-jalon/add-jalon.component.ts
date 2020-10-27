@@ -54,7 +54,7 @@ export class AddJalonComponent implements OnInit {
 
   // Ajout d'un Jalon
   goToAddJalon(){
-    
+    this.tache.type="Jalon"
     this.taskService.ajoutJalon(this.tache).subscribe()
     this.onClose();
     

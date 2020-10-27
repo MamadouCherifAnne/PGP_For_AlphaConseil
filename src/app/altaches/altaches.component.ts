@@ -11,7 +11,14 @@ import {AjoutPhaseSecondComponent} from './ajout-phase-second/ajout-phase-second
 import { AffecterRessourcesComponent}  from '../Tache/affecter-ressources/affecter-ressources.component'
 import {Tache} from '../Tache/Tache';
 import { Phase } from '../Phase/Phase';
+<<<<<<< HEAD
 import fileSaver from 'file-saver';
+=======
+import { AuthentificationService } from '../services/authentification.service';
+import { UtilisateurService } from '../services/utilisateur.service';
+import { Utilisateur } from '../Utilisateur/Utilisateur';
+
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
 
 @Component({
   selector: 'app-altaches',
@@ -28,18 +35,31 @@ export class AltachesComponent implements OnInit {
   deleteMessage: any;
   ajourdhuit = new Date();
   tache: Tache = new Tache;
+  currentUser:Utilisateur;
+  mesTaches:any[];
+  isAdmin:boolean;
+  isSuperAdmin:boolean;
+  ownProject:any[]
   display = [];
   cacher = [];
  // togleDisplay(){
   //this.display = !this.display
   //}
   constructor( private route: ActivatedRoute, private dialog : MatDialog,
+<<<<<<< HEAD
     private projetService: ProjetService, private  router: Router, private tacheService: TacheService,
     private rapportServiceService: RapportServiceService) { }
+=======
+    private authService:AuthentificationService ,
+    private userService:UtilisateurService,
+    private projetService: ProjetService, private  router: Router, private tacheService: TacheService) { }
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
 
   ngOnInit() {
-    this.idProjet = parseInt(this.route.snapshot.paramMap.get('id'));
-
+    this.idProjet = parseInt(this.route.snapshot.paramMap.get('id')); 
+    this.isAdmin = this.authService.isAdmin;
+    this.isSuperAdmin = this.isSuperAdmin;
+ 
    //...................Recuperation de la liste de phase d'un projet....................    
     this.refresh()
   }
@@ -55,16 +75,21 @@ export class AltachesComponent implements OnInit {
     this.dialog.open(AjoutPhaseSecondComponent, dialogConfig)
     .afterClosed().subscribe(result => {
       this.refresh();
-    });;
+    });
   }
 
   affecterRessources(element){
+    if(this.authService.isAdmin == true){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     dialogConfig.data = {tache: element};
     this.dialog.open(AffecterRessourcesComponent, dialogConfig);
+
+    }else{
+      window.alert("Vous n'avez pas les privillèges");
+    }
   }
 
 
@@ -77,7 +102,26 @@ export class AltachesComponent implements OnInit {
    });
 
    let valeur = this.projetService.getById(this.idProjet);
-  valeur.subscribe((data)=>this.projet=data);
+  valeur.subscribe((data)=>{
+    if(data){
+      this.projet=data;
+      let username = this.authService.getCurrentUser();
+      this.authService.getUserProfile(username).subscribe(data=>{
+        if(data != null){
+          this.currentUser = data;
+          this.mesTaches = this.currentUser.taches
+          this.isOwnerOfProject();
+         console.log("les taches que jai creer "+this.mesTaches.length)
+        }
+      })
+      
+      
+      //this.ownProject = this.currentUser.projet
+
+      // On verifie si l'utilisateur courant ets le chef du projet courant
+      
+    }
+    });
 
 
   //...................Recuperation de la liste de tache d'un projet....................
@@ -87,6 +131,7 @@ export class AltachesComponent implements OnInit {
 
 
   deleteTask(tacheId){
+    
     if(confirm('Etes vous sur de vouloir supprimer ?')){
       let theValue = this.tacheService.deleteTask(tacheId);
       theValue.subscribe((data)=>{
@@ -97,6 +142,7 @@ export class AltachesComponent implements OnInit {
       this.deleteMessage
     });
     }
+  
   }
 
   compareDateDebut(element){
@@ -136,12 +182,14 @@ export class AltachesComponent implements OnInit {
 
   public isLate(dateFin:Date){
     let today =  new Date()
-    if(dateFin > today){
+    let fin = new Date(dateFin)
+    
+    if(today > fin){
 
-      return false;
+      return true;
     }else{
      
-      return true;
+      return false;
     }
   }
   /*
@@ -184,4 +232,39 @@ export class AltachesComponent implements OnInit {
       console.log(error);
     });}
 
+  public isCreateur(createur){
+    let verif:boolean = false;
+    if(this.mesTaches.length != 0 ){
+      for(let tache of this.mesTaches){
+        if(tache.idTache === createur.idTache &&
+          tache.nomTache === createur.nomTache &&
+          tache.lastUpdate === createur.lastUpdate &&
+          tache.debutTache === createur.debutTache 
+          ){
+            verif = true;
+            break;
+          }
+      }
+      
+    
+    return verif;
+  }
+}
+
+// verification si il s'agit du chef du projet
+    public isOwnerOfProject(){
+      this.currentUser.isChefProjet =0;
+      if(this.currentUser.projets){
+        console.log(this.currentUser.projets.length)
+      for(let p of this.currentUser.projets){
+        console.log("le projet dont jsuis"+p);
+        if(p.numProjet == this.projet.numProjet){
+          this.currentUser.isChefProjet = 1;
+          
+          break;
+        }
+      }
+      
+    }
+    }
 }

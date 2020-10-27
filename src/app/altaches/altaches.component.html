@@ -84,26 +84,30 @@
             aria-labelledby="headingOne"
             data-parent="#accordion">
           
-            <div class="card-body">
+            <div class="card-body" *ngIf ="mesTaches">
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
                         
                         
                        <div *ngIf="tache != null && tache.type !='Jalon'; else vide">
-                        <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
+                        <button class="matbtn" mat-icon-button *ngIf="isCreateur(tache) == true || isSuperAdmin == true || currentUser.isChefProjet == 1 " [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                           <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
                          <button class="btn editbtn" (click)="display[i] = !display[i]"><i class="icon-edit"></i></button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
                          <small *ngIf="compareDateDebut(tache.debutTache)==0 && isLate(tache.finTache)==false ">En Cours</small>
+<<<<<<< HEAD
                          <small *ngIf="isLate(tache.finTache)==true &&  tache.tauxAvancement != 100 ">En retard</small>
+=======
+                         <small *ngIf="isLate(tache.finTache)==true && 100 > tache.tauxAvancement && compareDateDebut(tache.debutTache)!=1">En retard</small>
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
                           
                        </div> 
-                        <mat-menu #menu="matMenu">
+                        <mat-menu  #menu="matMenu">
                                 <button mat-menu-item  (click)="display[i] = !display[i]"><span>modifier</span></button>
-                                <button mat-menu-item class="ajoutPhase" (click)="deleteTask(tache.numTache)"><span>supprimer</span></button>
-                                <button mat-menu-item class="ajoutPhase" (click)="affecterRessources(tache)" ><span>Ajout Ressources</span>
+                                <button mat-menu-item class="ajoutPhase"  (click)="deleteTask(tache.numTache)"><span>supprimer</span></button>
+                                <button mat-menu-item class="ajoutPhase"  (click)="affecterRessources(tache)" ><span>Ajout Ressources</span>
                                 </button>
                         </mat-menu>
                         

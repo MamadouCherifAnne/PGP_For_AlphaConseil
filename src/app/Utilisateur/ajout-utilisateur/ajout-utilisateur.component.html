@@ -55,22 +55,7 @@
             </mat-form-field>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile>
-            <div class="controles-container">
-                <mat-form-field>
-                    <mat-select formControlName="role" [(ngModel)]="idRol" matInput placeholder="Role">
-                        <ng-container *ngFor="let rol of roles">
-                        <mat-option [value]="rol">
-                            {{rol.role}}
-                        </mat-option>
-                    </ng-container>
-                        
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            
-        </mat-grid-tile>
+      
 
     </mat-grid-list>
     <div class="button-row">

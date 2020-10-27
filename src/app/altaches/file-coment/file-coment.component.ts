@@ -9,6 +9,7 @@ import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import {FichierService} from 'src/app/services/fichier.service';
 import{Observable} from 'rxjs';
 import { Time } from '@angular/common';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class FileComentComponent implements OnInit {
   idTache:number;
   tacheComments:ICommentaire[];
   commentaires:ICommentaire[] = [];
-  currentUser:number;
+  
+  currentUser:any;
   tacheToComment:Tache;
   ressources:any;
   resourcesNames:string[] =[]
@@ -39,12 +41,13 @@ export class FileComentComponent implements OnInit {
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,
     private userService:UtilisateurService,
+    public authService:AuthentificationService,
     private formBuilder:FormBuilder,
     private fichierservice: FichierService) { }
 
   ngOnInit() {
     //L'utilisateur en session
-    this.currentUser= 14;
+    this.currentUser= this.authService.getCurrentUser() ;
       // Preparez le formulaire d'ajout de FIchier
       this.commentaireForm=this.formBuilder.group({
         'commentaire':[this.commentaire.comment,[Validators.required]]
@@ -59,6 +62,7 @@ export class FileComentComponent implements OnInit {
         this.tacheToComment=this.currentTache;
         // calcul du retard de la tache
          let val = ((this.today.getTime() - new Date(this.currentTache.finTache).getTime())/(1000*3600*24));
+         
          this.retardTache =Math.trunc(val)
         this.tacheService.getRessoucesForTask(this.idTache).subscribe((resources)=>{
          if(resources){
@@ -117,10 +121,12 @@ export class FileComentComponent implements OnInit {
        
 
         console.log(this.commentaire.dateComment);
-
-        this.userService.getUserByIdUser(this.currentUser).subscribe(user=>{
+        if(this.currentUser!==null){
+          console.log(this.currentUser);
+        this.userService.getUserByUsername(this.currentUser).subscribe(user=>{
           if(user){
             this.commentaire.user = user;
+            console.log(user);
             console.log(this.commentaire);
             this.tacheService.addCommentToTask(this.commentaire).subscribe(data=>{
               this.commentaireForm.reset();
@@ -129,8 +135,9 @@ export class FileComentComponent implements OnInit {
             
           }
         });
-       
+        
       }
+    }
   refresh(){
     this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
       if(commentaire){
@@ -172,13 +179,14 @@ export class FileComentComponent implements OnInit {
 
   public isLate(dateFin:Date){
     let today =  new Date()
+    let fin = new Date(dateFin)
    
-    if(dateFin > today){
+    if(today>fin ){
 
-      return false;
+      return true;
     }else{
      
-      return true;
+      return false;
     }
   }
 }

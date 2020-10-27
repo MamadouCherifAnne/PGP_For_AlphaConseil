@@ -2,7 +2,9 @@ import { Role } from '../Role/Role';
 import { IProfession } from '../Profession/IProfession';
 
 export class Utilisateur{
-    
+        
+        idUser:number;
+        username:string;
         nom:string;
         prenom:string;
         email:string;
@@ -12,9 +14,13 @@ export class Utilisateur{
         actif:boolean;
         role:object;
         telephone:string;
-        ptojet:object;
+        projets:any[];
         entreprise: object;
         professions:any[];
+        taches:any[];
+        isChefProjet:number
+        
+        
     
 
 

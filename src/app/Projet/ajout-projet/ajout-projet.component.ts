@@ -4,7 +4,11 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from
 import { Projet } from '../Projet';
 import { MatDialogRef, MatDialog } from "@angular/material";
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
+<<<<<<< HEAD
 import {DateValidation} from "src/app/ValidationsFunctions/DateValidation";
+=======
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
 
 @Component({
   selector: 'app-ajout-projet',
@@ -16,23 +20,43 @@ export class AjoutProjetComponent implements OnInit {
   ajoutProjetForm: FormGroup;
   message: any;
   verif = false;
+<<<<<<< HEAD
  
 
   constructor(private projetService: ProjetService, private formBuilder: FormBuilder,
     private dialogRef : MatDialogRef<AjoutProjetComponent>) { 
     }
+=======
+  allUsers:any;
+  constructor(private projetService: ProjetService, private formBuilder: FormBuilder,
+    public userService:UtilisateurService,
+    private dialogRef : MatDialogRef<AjoutProjetComponent>) { }
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
  
 
   ngOnInit() {
+    // CHarger les utilisateurs succeptibles detre responsble
+    this.userService.getUsers().subscribe(data=>{
+      if(data){
+        this.allUsers =data;
+      }
+    })
     this.ajoutProjetForm= this.formBuilder.group({
     'nomProjet': [this.projet.nomProjet,[ Validators.required,
       Validators.minLength(3),
       Validators.maxLength(100),
       Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
     'description': [this.projet.description], 
+<<<<<<< HEAD
     'debutProjet': [this.projet.debutProjet, [Validators.required, this.dateValidator]],
     'finProjet': [this.projet.finProjet, [Validators.required, this.dateValidator]],
     'zoneRealisation': [this.projet.zoneRealisation,[Validators.maxLength(100)]] 
+=======
+    'debutProjet': [this.projet.debutProjet, Validators.required],
+    'finProjet': [this.projet.finProjet, [Validators.required]],
+    'zoneRealisation': [this.projet.zoneRealisation],
+    'responsable':[this.projet.responsable]
+>>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
     });
  
   }
@@ -75,6 +99,7 @@ export class AjoutProjetComponent implements OnInit {
     this.projet.debutProjet = this.ajoutProjetForm.get('debutProjet').value;
     this.projet.finProjet = this.ajoutProjetForm.get('finProjet').value;
     this.projet.zoneRealisation = this.ajoutProjetForm.get('zoneRealisation').value;
+    this.projet.responsable = this.ajoutProjetForm.get('responsable').value;
     console.log(this.projet.zoneRealisation);
     let val = this.projetService.add(this.projet); 
     val.subscribe((data)=>this.message=data);
