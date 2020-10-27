@@ -8,6 +8,8 @@ import { Commentaire } from 'src/app/Commentaire/Commentaire';
 import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import {FichierService} from 'src/app/services/fichier.service';
 import{Observable} from 'rxjs';
+import { Time } from '@angular/common';
+
 
 @Component({
   selector: 'app-file-coment',
@@ -30,6 +32,9 @@ export class FileComentComponent implements OnInit {
   laTache : any;
   fileInfos: any;
   fileTodownload: any;
+  today:Date =new Date();
+  retardTache:number =0;
+  commentaire:Commentaire = new Commentaire();
 
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,
@@ -39,11 +44,11 @@ export class FileComentComponent implements OnInit {
 
   ngOnInit() {
     //L'utilisateur en session
-    this.currentUser= 3;
+    this.currentUser= 14;
       // Preparez le formulaire d'ajout de FIchier
       this.commentaireForm=this.formBuilder.group({
-        'commentaire':this.formBuilder.array([])
-      })
+        'commentaire':[this.commentaire.comment,[Validators.required]]
+      });
     // Getter l'id de la tache 
     this.idTache=  parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.idTache)
@@ -52,7 +57,9 @@ export class FileComentComponent implements OnInit {
       if(data){
         this.currentTache=data;
         this.tacheToComment=this.currentTache;
-         
+        // calcul du retard de la tache
+         let val = ((this.today.getTime() - new Date(this.currentTache.finTache).getTime())/(1000*3600*24));
+         this.retardTache =Math.trunc(val)
         this.tacheService.getRessoucesForTask(this.idTache).subscribe((resources)=>{
          if(resources){
            this.ressources=resources;
@@ -86,7 +93,7 @@ export class FileComentComponent implements OnInit {
   }
 
   //methode de recup de fichier ajouter
-  getCommentaires(){
+/*  getCommentaires(){
     return this.commentaireForm.get('commentaire') as FormArray;
   }
   addComment(){
@@ -95,39 +102,35 @@ export class FileComentComponent implements OnInit {
     this.getCommentaires().push(newFileControl)
     
   }
-
+*/
   ajoutCommentaires(){
-    let comments= this.commentaireForm.get('commentaire').value;
-    if(comments){
-      console.log(comments);
-      for(let com of comments){
-        let comment:Commentaire = new Commentaire();
+    let comment= this.commentaireForm.get('commentaire').value;
+   
+        this.commentaire.tacheComment=this.tacheToComment;
+        this.commentaire.comment=comment;
+        this.commentaire.dateComment = new Date();
         
-        comment.tacheComment=this.tacheToComment;
-        comment.comment=com;
-        comment.dateComment = new Date();
+   
+        
+      
+       // this.commentaire.timeComment = heure;
+       
+
+        console.log(this.commentaire.dateComment);
+
         this.userService.getUserByIdUser(this.currentUser).subscribe(user=>{
           if(user){
-            comment.user = user;
-            console.log(comment);
-            this.commentaires.push(comment);
+            this.commentaire.user = user;
+            console.log(this.commentaire);
+            this.tacheService.addCommentToTask(this.commentaire).subscribe(data=>{
+              this.commentaireForm.reset();
+              this.refresh();
+            });
             
           }
         });
-        
        
-
       }
-      this.tacheService.addCommentToTask(this.commentaires).subscribe(data=>{
-        if(data){
-          this.commentaires=[];
-          this.refresh();
-        }
-      });
-      this.commentaireForm.reset();
-      
-    }
-  }
   refresh(){
     this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
       if(commentaire){
@@ -148,6 +151,7 @@ export class FileComentComponent implements OnInit {
     formData.append('file', this.tacheFile);
     this.fichierservice.uploadFile(formData, this.idTache).subscribe((response) =>{
       console.log(response);
+      
     })
 
     console.log("#######yup");
@@ -164,5 +168,17 @@ export class FileComentComponent implements OnInit {
       console.log(i);
     }
     console.log("hello friend");
+  }
+
+  public isLate(dateFin:Date){
+    let today =  new Date()
+   
+    if(dateFin > today){
+
+      return false;
+    }else{
+     
+      return true;
+    }
   }
 }

@@ -1,10 +1,76 @@
-table{
-    border-collapse: collapse;
-}
-tr{
-    border:2px solid black;
-    size: 2cm;
-}
-td,th{
+
+table {
+    border:3px solid dimgray;
+    border-collapse:collapse;
+    width:90%;
+    margin:auto;
+    }
+    thead, tfoot {
+    background-color:#D0E3FA;
+    ;
+    border:1px solid lightslategray;
+    }
+    tbody {
+    background-color:#FFFFFF;
+    border:1px solid darkgray;
+    }
+    th {
+    font-family:monospace;
+    border:1px dotted black;
+    padding:2px;
+    background-color:#EFF6FF;
+    width:15%;
+    }
+    td {
+    font-family:sans-serif;
+    font-size:80%;
     border:1px solid black;
+    padding:2px;
+    text-align:left;
+    }
+    caption {
+    font-family:sans-serif;
+    }
+    .bton{
+        float: right;
+        button{
+            margin: 5px;
+        }
+    }
+    i{
+        margin-right: 8px;
+      }
+      
+      
+      .list-group-item{
+          margin-bottom: -6px;
+          margin-top: -6px;  
+      }
+      
+      
+      .headline h5, 
+       p {
+          display: inline-block;
+          padding: 25px;
+      
+      }
+      
+      .headline p{
+          float:right;
+      }
+    
+      .commentBtn{
+          margin : 2px;
+          margin-bottom: 5px;
+      }
+    
+      .desc{
+          margin-right: 5px;
+      }
+    
+      .desClass{
+          margin : 10px;
+      }
+.mat-toolbar{
+    background-color: rgb(222, 229, 236);
 }

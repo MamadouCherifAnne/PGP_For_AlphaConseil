@@ -28,7 +28,7 @@ export class AjoutProjetComponent implements OnInit {
     'nomProjet': [this.projet.nomProjet,[ Validators.required,
       Validators.minLength(3),
       Validators.maxLength(100),
-      Validators.pattern( '[a-zA-Z ]*')]],
+      Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
     'description': [this.projet.description], 
     'debutProjet': [this.projet.debutProjet, [Validators.required, this.dateValidator]],
     'finProjet': [this.projet.finProjet, [Validators.required, this.dateValidator]],

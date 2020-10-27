@@ -39,6 +39,7 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
+import {jsPDF} from 'jspdf';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
 import { AltachesComponent } from './altaches/altaches.component';
@@ -67,6 +68,11 @@ import { CommentComponent } from './Projet/comment/comment.component';
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
 import { RapportComponent } from './Rapport/rapport/rapport.component';
 import { RapportPhaseComponent } from './Rapport/rapport-phase/rapport-phase.component';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { MonTravailComponent } from './Utilisateur/mon-travail/mon-travail.component';
+registerLocaleData(localeFr, 'fr');
 
 
 
@@ -132,6 +138,7 @@ import { RapportPhaseComponent } from './Rapport/rapport-phase/rapport-phase.com
     EndDateValidation,
     RapportComponent,
     RapportPhaseComponent,
+    MonTravailComponent,
 
 
 

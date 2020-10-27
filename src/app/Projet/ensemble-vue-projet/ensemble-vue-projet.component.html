@@ -29,8 +29,8 @@
         Ajouter une Desciption</p>
         <p><i class='far fa-calendar-alt'></i>Dattes</p>
         <div *ngIf="projet" class="divdate">
-             <span>Début: {{projet.debutProjet}}</span>
-             <span class="spandate">Fin: {{projet.finProjet}}</span>
+             <span class="border">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>
+             <span class="spandate">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -38,12 +38,12 @@
         <h5>Vue d'ensemble</h5>
      
         <p ><button class="btn btn-success btn-sm btnAjout" mat-button [matMenuTriggerFor]="menu" >
-            <mat-icon>add</mat-icon>Ajouter
+            <mat-icon class="maticon">add</mat-icon>Ajouter
         </button></p> 
         </div>
         <mat-menu #menu="matMenu">
-                <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajout Phase</button>
-                <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajout tache </button>
+                <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajouter Phase</button>
+                <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajouter tache </button>
         </mat-menu>
     </mat-sidenav-content>
 </mat-sidenav-container>

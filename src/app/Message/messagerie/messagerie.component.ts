@@ -22,7 +22,7 @@ export class MessagerieComponent implements OnInit {
 
   ngOnInit() {
     // Recuperer  L'utilisateur qui envoie le message
-    this.expediteur = 2;
+    this.expediteur = 14;
     this.destinataire = parseInt(this.route.snapshot.paramMap.get('idDestinataire'));
 
     this.messageForm = this.formBuilder.group({

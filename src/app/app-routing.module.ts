@@ -30,11 +30,13 @@ import { DepensesComponent } from './Depense/depenses/depenses.component';
 import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.component';
 import {RapportComponent} from './Rapport/rapport/rapport.component';
 import {RapportPhaseComponent} from './Rapport/rapport-phase/rapport-phase.component';
+import {MonTravailComponent} from './Utilisateur/mon-travail/mon-travail.component';
 
 const routes: Routes = [
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
     {path: 'projet', component: AllProjetsComponent},
+    {path: 'montravail', component:MonTravailComponent},
   ]},
 
   {path: 'utilisateur', component: ListeUtilisateurComponent},

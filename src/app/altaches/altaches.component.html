@@ -23,8 +23,8 @@
         <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Liste des phases</h6>
         <br>
         <ul class="list-group" *ngFor="let phase of allphase">
-            <li class="list-group-item  breadcrumb" style="border: none">
-                <dl>{{phase.nomTache}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
+            <li class="list-group-item  breadcrumb " style="border: none">
+                <dl class="bg-light">{{phase.nomTache | titlecase}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
             </li>
         </ul>
     </div>
@@ -39,13 +39,16 @@
          
             <div class="col-sm-8">
                 <p><button class="btn btn-success btn-sm btnAjout" type="button" (click)="ajouterPhase()">Ajouter une phase</button>
-                    <button  type="submit" class="btn btn-light btn-sm btnlight">Voir Gantt</button>
+
+                    <button  type="submit" class="btn btn-light btn-sm btnlight" (click)="goToGanttProject()">Voir Gantt</button>
                     <button color="primary" class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                         <mat-icon>more_horiz</mat-icon>
-                    </button></p>
+                    </button> </p>
                     <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="goToRapportProjet()"><span>Rapport des tâches</span></button>
+                    <button mat-menu-item (click)="exportDailyOrdersToPdf()"><span>Rapport des tâches</span></button>
                     </mat-menu>
+                
+
                     <br>
                     <br>
             </div>
@@ -63,6 +66,7 @@
                 <button color="primary" class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                     <mat-icon>more_horiz</mat-icon>  </button>
                 <mat-menu #menu="matMenu">
+                <button mat-menu-item ><span>Supprimer cette phase</span></button>
                 <button mat-menu-item (click)="goToRapportTaches(phase.numTache)"><span>Rapport des tâches</span></button>
                 </mat-menu>
                 <button class="btn btn-link " 
@@ -70,7 +74,7 @@
                     [attr.data-target]="'#collapse'+i"
                     aria-expanded="true"
                     aria-controls="collapseOne">
-                {{ phase.nomTache | uppercase }}
+                {{ phase.nomTache | titlecase }}
                 <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
                 </button>
                 <span class="badge badge-pill badge-info">{{phase.taches.length}} Taches</span>
@@ -85,14 +89,15 @@
                     <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
                         
                         
-                       <div *ngIf="tache != null; else vide">
+                       <div *ngIf="tache != null && tache.type !='Jalon'; else vide">
                         <button class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                           <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
                          <button class="btn editbtn" (click)="display[i] = !display[i]"><i class="icon-edit"></i></button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
-                         <small *ngIf="compareDateDebut(tache.debutTache)==0 ">En Cours</small>
+                         <small *ngIf="compareDateDebut(tache.debutTache)==0 && isLate(tache.finTache)==false ">En Cours</small>
+                         <small *ngIf="isLate(tache.finTache)==true &&  tache.tauxAvancement != 100 ">En retard</small>
                           
                        </div> 
                         <mat-menu #menu="matMenu">
@@ -107,7 +112,7 @@
                         </div>
 
                         <ng-template #vide>
-                            vide tache
+                            Jalon : {{tache.nomTache}} : {{tache.debutTache | date}}
                         </ng-template>
                             
                     </li>
@@ -122,7 +127,7 @@
             </div>
         </div>
     </div>
-</div>`
+</div>
 
 
     </mat-sidenav-content>

@@ -69,6 +69,8 @@ export class AjoutTacheSecondComponent implements OnInit {
     this.tache.phase = this.newPhase;
     let val = this.tacheService.ajoutTache(this.tache);
     val.subscribe((data)=>this.AjoutMessage = data);
+    //..............................................
+    this.AjoutTacheSecndForm.reset();
   }
 
 }

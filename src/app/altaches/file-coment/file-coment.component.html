@@ -9,14 +9,14 @@
         
         <div *ngIf="currentTache" class="desClass ">
              <span><strong>Dates</strong></span><br>
-             <span>Début: {{currentTache.debutTache | date}}</span>
+             <span>Début: {{currentTache.debutTache | date: 'EEEE d MMMM, y' : '' : 'fr-FR'}}</span>
              <br>
-             <span class="spandate">Fin: {{currentTache.finTache | date}}</span>
+             <span class="spandate">Fin: {{currentTache.finTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
         </div>
     </mat-sidenav>
     <mat-sidenav-content> 
-       <div class="container-flud headline">
-            <h5>Details Tache</h5>
+       <div class="container-flud headline" *ngIf="currentTache">
+            <h5>{{currentTache.nomTache}} </h5><small class="small" *ngIf="isLate(currentTache.finTache)==true && currentTache.tauxAvancement != 100"> en retard de: <span class="badge badge-pill badge-danger" >{{retardTache}}jours</span> </small>
 
             <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
             <br>
@@ -31,13 +31,15 @@
                     <div class="container">
                         <div class="card" >
                             <div class="card-body" *ngIf="currentTache" >
-                              <h5 class="card-title">Information de l'Utilisateur</h5>
+                              <h5 class="card-title">Information sur la Tache</h5>
                               <br>
-                              <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
+                              <h6 class="card-subtitle mb-2 text-muted">Information de Base</h6>
                               <mat-icon>edit</mat-icon> <b>Nom de La Tache </b> :{{currentTache.nomTache}}<br><br>
-                              <mat-icon>calendar</mat-icon> <b>Attendu Au Plus Tard </b> :{{currentTache.finTache | date}}<br><br>
+                              <mat-icon>calendar</mat-icon> <b>Debute le : </b> :{{currentTache.debutTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}<br><br>
+                              <mat-icon>calendar</mat-icon> <b>Attendu Au Plus Tard </b> :{{currentTache.finTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}<br><br>
                               <mat-icon>hour</mat-icon> <b>Duree de La Tache </b> :{{currentTache.duree}}<br><br>
                               <mat-icon>time</mat-icon> <b>Charge de La Tache </b> :{{currentTache.chargeTache}}(jours)<br><br>
+                              <mat-icon>time</mat-icon> <b>Etat d' Avancement</b> : {{currentTache.tauxAvancement}} % <br><br>
                               <mat-icon>time</mat-icon> <b>Les Ressources Affectés  </b> :
                               <span *ngFor="let u of ressources">
                               <a  [routerLink]="['/utilisateur/details/', u.idUser]">  {{u.nom}}</a></span><br><br>
@@ -57,22 +59,22 @@
                           <h5 class="card-title">Commentaires à propos de La Tache <span class="badge badge-pill badge-primary" *ngIf="tacheComments">{{tacheComments.length}}</span></h5>
                           <br>
                           <h6 class="card-subtitle mb-2 text-muted" *ngFor="let com of tacheComments">
-                            <b>{{com.user.nom}} ::=> </b> <span>{{com.comment}}  ( {{com.dateComment}} )</span>
+                            <b>{{com.user.nom}} ::=> </b> <span>{{com.comment}}  ( {{com.dateComment | date: 'EEEE d MMMM y, HH:mm:ss' : '' : 'fr-FR'}}) </span>
                           </h6>
                             <div>
 
                                
-                                    <div formArrayName="commentaire">
+                                    <div >
                                         <h6>AJouter des commentaire</h6>
-                                        <div class="form-group" *ngFor="let commentControl of getCommentaires().controls; let i=index">
-                                            <textarea type="text" class="form-control" [formControlName]="i"></textarea>
+                                        <div>
+                                            <textarea type="text" class="form-control" formControlName="commentaire" placeholder="Ajouter un commentaire sur la tache" ></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-success btn-sm commentBtn" (click)="addComment()">
-                                            Ajouter un commentaire
-                                        </button>
                                     </div>
-                                    <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Sauvegarder</button>
-                               
+                                    <div>
+                                        <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Sauvegarder</button>
+                                    </div>
+                                   
+                                
                             </div>
                           
                         </div>
@@ -103,13 +105,7 @@
                    
 
                     </div>
-                    <div class="col-sm-8">
-                    <div class="form-control"> 
-                        <input type="file" class="form-group" (change)="onSelectFile($event)">
-                        </div>
-                        <p><button class="btn btn-success btn-sm btAjtache" type="submit" (click)="fileSubmission()">Ajouter
-                        </button> </p>
-                    </div> 
+        
                 </div>    
             </mat-tab>
 

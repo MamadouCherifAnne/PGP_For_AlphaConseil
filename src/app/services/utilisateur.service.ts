@@ -49,6 +49,6 @@ export class UtilisateurService {
 
   // ENvoie de message A un utilisateur
   public sendMessageToUser(message){
-    return this.http.post("http://localhost:8080/message/sendMessage/",message);
+    return this.http.post("http://localhost:8080/message/sendMessage",message);
   }
 }
