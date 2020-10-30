@@ -62,10 +62,13 @@ export class AffecterRessourcesComponent implements OnInit {
     this.affectation.user_task =this.ressource;
     console.log(this.affectation)
     this.userService.affectToTask(this.affectation)
-<<<<<<< HEAD
-    .subscribe()
-
-    //envoyer des mails au utilisateurs ajouter à la taches; 
+    .subscribe(data=>{
+      if(data){
+        let reponse:String  ="false";
+        reponse=data;
+        if(reponse == "true"){
+          this.message="Affectation realisé avec succés";
+           //envoyer des mails au utilisateurs ajouter à la taches; 
      //
      this.userService.getUserByIdUser(this.ressource.idUser).subscribe(data=>{
       if(data){
@@ -91,16 +94,8 @@ export class AffecterRessourcesComponent implements OnInit {
         console.log("help its works");
       });
       console.log("hi"+this.mail.to+ this.mail.subject+this.mail.body);
-    })
+    });
     
-=======
-    .subscribe(data=>{
-      if(data){
-        let reponse:String  ="false";
-        reponse=data;
-        if(reponse == "true"){
-          this.message="Affectation realisé avec succés";
-          
 
         }else{
           this.message ="Cet utilisateur est dèja affecté à cette tache";
@@ -110,7 +105,6 @@ export class AffecterRessourcesComponent implements OnInit {
         console.log(this.message)
       }
     })
->>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
     this.affectationForm.reset()
     
   }

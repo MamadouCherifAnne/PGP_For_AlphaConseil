@@ -11,14 +11,10 @@ import {AjoutPhaseSecondComponent} from './ajout-phase-second/ajout-phase-second
 import { AffecterRessourcesComponent}  from '../Tache/affecter-ressources/affecter-ressources.component'
 import {Tache} from '../Tache/Tache';
 import { Phase } from '../Phase/Phase';
-<<<<<<< HEAD
 import fileSaver from 'file-saver';
-=======
 import { AuthentificationService } from '../services/authentification.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 import { Utilisateur } from '../Utilisateur/Utilisateur';
-
->>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
 
 @Component({
   selector: 'app-altaches',
@@ -46,14 +42,11 @@ export class AltachesComponent implements OnInit {
   //this.display = !this.display
   //}
   constructor( private route: ActivatedRoute, private dialog : MatDialog,
-<<<<<<< HEAD
     private projetService: ProjetService, private  router: Router, private tacheService: TacheService,
-    private rapportServiceService: RapportServiceService) { }
-=======
+    private rapportServiceService: RapportServiceService, 
     private authService:AuthentificationService ,
-    private userService:UtilisateurService,
-    private projetService: ProjetService, private  router: Router, private tacheService: TacheService) { }
->>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
+    private userService:UtilisateurService,) { }
+
 
   ngOnInit() {
     this.idProjet = parseInt(this.route.snapshot.paramMap.get('id')); 

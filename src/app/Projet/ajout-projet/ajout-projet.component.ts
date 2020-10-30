@@ -4,11 +4,11 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from
 import { Projet } from '../Projet';
 import { MatDialogRef, MatDialog } from "@angular/material";
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
-<<<<<<< HEAD
+
 import {DateValidation} from "src/app/ValidationsFunctions/DateValidation";
-=======
+
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
->>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
+
 
 @Component({
   selector: 'app-ajout-projet',
@@ -20,18 +20,12 @@ export class AjoutProjetComponent implements OnInit {
   ajoutProjetForm: FormGroup;
   message: any;
   verif = false;
-<<<<<<< HEAD
- 
-
-  constructor(private projetService: ProjetService, private formBuilder: FormBuilder,
-    private dialogRef : MatDialogRef<AjoutProjetComponent>) { 
-    }
-=======
   allUsers:any;
+
   constructor(private projetService: ProjetService, private formBuilder: FormBuilder,
     public userService:UtilisateurService,
     private dialogRef : MatDialogRef<AjoutProjetComponent>) { }
->>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
+
  
 
   ngOnInit() {
@@ -47,16 +41,11 @@ export class AjoutProjetComponent implements OnInit {
       Validators.maxLength(100),
       Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
     'description': [this.projet.description], 
-<<<<<<< HEAD
     'debutProjet': [this.projet.debutProjet, [Validators.required, this.dateValidator]],
     'finProjet': [this.projet.finProjet, [Validators.required, this.dateValidator]],
-    'zoneRealisation': [this.projet.zoneRealisation,[Validators.maxLength(100)]] 
-=======
-    'debutProjet': [this.projet.debutProjet, Validators.required],
-    'finProjet': [this.projet.finProjet, [Validators.required]],
-    'zoneRealisation': [this.projet.zoneRealisation],
-    'responsable':[this.projet.responsable]
->>>>>>> 5c60ba5f4caa6f517c6765cd219b2f6cef9bc90e
+    'zoneRealisation': [this.projet.zoneRealisation,[Validators.maxLength(100)]], 
+    'responsable':[this.projet.responsable],
+
     });
  
   }

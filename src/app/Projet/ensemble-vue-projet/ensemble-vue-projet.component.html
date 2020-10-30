@@ -40,11 +40,15 @@
         <p ><button class="btn btn-success btn-sm btnAjout" mat-button [matMenuTriggerFor]="menu" >
             <mat-icon class="maticon">add</mat-icon>Ajouter
         </button></p> 
+        
+        <h6><a   [routerLink]="resume" >Resumé</a></h6>
+        <app-tout-le-projet [projetId]= "projetId"></app-tout-le-projet>
         </div>
+       
         <mat-menu #menu="matMenu">
                 <button mat-menu-item  class="ajoutPhase" (click)="onAjoutPhase()">Ajouter Phase</button>
                 <button mat-menu-item class="ajoutPhase" (click)="onAjoutTahce()">Ajouter tache </button>
         </mat-menu>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<router-outlet></router-outlet>

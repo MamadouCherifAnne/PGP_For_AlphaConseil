@@ -32,7 +32,7 @@ export class AllProjetsComponent implements OnInit {
   }
 
   onCreate(){
-    if(this.authService.isSuperAdmin ==true){
+   // if(this.authService.isSuperAdmin ==true){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -41,9 +41,9 @@ export class AllProjetsComponent implements OnInit {
     .subscribe(result => {
       this.refresh();
     });
-  }else{
+ /* }else{
     window.alert("Vous n'avez pas le droit d'effectuer cette opération");
-  }
+  }*/
   }
 
 
