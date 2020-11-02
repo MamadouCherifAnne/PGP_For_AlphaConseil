@@ -120,4 +120,10 @@ export class TacheService {
     return this.http.get("http://localhost:8080/tache/getOwner/"+idTache,{responseType:'text',headers:this.entete});
   }
 
+  public getTacheProject(idTache):Observable<any>{
+    return this.http.get("http://localhost:8080/tache/getTacheProject/"+idTache,{headers:this.entete});
+  }
+
+  
+
 }

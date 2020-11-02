@@ -73,6 +73,7 @@ import { LoginComponent } from './Login/login/login.component';
 import { AuthInterceptor} from './services/authconfig.interceptor';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 registerLocaleData(localeFr, 'fr');
 
 
@@ -140,6 +141,7 @@ registerLocaleData(localeFr, 'fr');
     LoginComponent,
     UserProfilComponent,
     UserEntrepriseComponent,
+    
 
 
 
@@ -153,7 +155,8 @@ registerLocaleData(localeFr, 'fr');
     ReactiveFormsModule,
     HttpClientModule,
     GanttModule,
-    FieldsetModule
+    FieldsetModule,
+    NgxPaginationModule
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,

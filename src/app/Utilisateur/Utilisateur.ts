@@ -18,6 +18,8 @@ export class Utilisateur{
         entreprise: object;
         professions:any[];
         taches:any[];
+        messageReceived:any[]
+        sendMessages:any[];
         isChefProjet:number
         
         

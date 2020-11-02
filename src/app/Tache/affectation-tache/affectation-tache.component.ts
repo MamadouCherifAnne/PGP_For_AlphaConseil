@@ -7,6 +7,7 @@ import { UserToTask } from 'src/app/Utilisateur/UserToTask';
 import { UpdateAffectationComponent } from '../update-affectation/update-affectation.component';
 import { AffecterRessourcesComponent } from '../affecter-ressources/affecter-ressources.component';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-affectation-tache',
@@ -19,6 +20,7 @@ export class AffectationTacheComponent implements OnInit {
  // idTache:number;
   currentTache:any;
   affectations:any;
+  currentUser:any;
   affect:UtilisateurAffectation;
   displayedColumns: string [] = ['Ressources', 'TempsPasser', 'TempsEffectuer','CoutHeure','Action']
   rechercheKey:string;
@@ -29,11 +31,18 @@ export class AffectationTacheComponent implements OnInit {
 
   constructor(private tacheService:TacheService, private route:ActivatedRoute,
     public userService:UtilisateurService,
+    public authService:AuthentificationService,
     private fenetre:MatDialog
     ) { }
 
   ngOnInit() {
     // Initialisation de la page
+    let username =this.authService.getCurrentUser();
+    this.userService.getUserByUsername(username).subscribe(data=>{
+      if(data){
+        this.currentUser=data;
+      }
+    })
     this.refresh();
 
   }

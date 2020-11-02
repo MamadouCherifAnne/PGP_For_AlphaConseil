@@ -1,4 +1,5 @@
 export class Projet{
+    numProjet:number;
     nomProjet: String;
     description: String;
     debutProjet: Date;
