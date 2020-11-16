@@ -7,6 +7,8 @@ import { PhaseService } from 'src/app/services/phase.service';
 import { Tache } from 'src/app/Tache/Tache';
 import { UserToTask } from '../UserToTask';
 import { UtilisateurAffectation } from '../UtilisateurAffectation';
+import {EmailService} from 'src/app/services/email.service';
+import {Mail} from 'src/app/Email/email';
 
 
 @Component({
@@ -24,11 +26,16 @@ export class AffectationUserComponent implements OnInit {
   affectation: UtilisateurAffectation = new UtilisateurAffectation();
   allPhases: any;
   allUsers:any;
+  mail : Mail = new Mail();
+  ceTache : any;
+  userMail: any;
 
   constructor(private tacheService: TacheService ,
     private userServcie:UtilisateurService,
     private phaseService:PhaseService,
     private formBuilder: FormBuilder,
+    private emailService: EmailService,
+   
    ) { }
 
   ngOnInit() {
@@ -79,6 +86,8 @@ export class AffectationUserComponent implements OnInit {
     
   }
   
+ 
+
   affecterRessource(){
     let res=JSON.parse(this.message)
     this.ressource.idUser=this.ajoutTacheForm.get("ressources").value;
@@ -88,9 +97,25 @@ export class AffectationUserComponent implements OnInit {
     console.log(this.affectation)
     this.userServcie.affectToTask(this.affectation)
     .subscribe()
-    this.ajoutTacheForm.reset()
-    
-    
+    //
+    this.userServcie.getUserByIdUser(this.ressource.idUser).subscribe(data=>{
+      if(data){
+        this.userMail = data;
+      }
+    })
+    this.tacheService.getTache(this.ressource.idTache).subscribe(data=>{
+      if(data){
+        this.ceTache = data;
+      }
+    })
+    console.log("c'est la le p");
+    /*this.mail.to.push(this.userMail.email);
+    this.mail.subject = "Mamadou vient de vous affecter à une tache";
+    this.mail.body = "Détails de la tache: /n - Nom de la tache: "+this.ceTache.nomTache+"/n -Débute: "+this.ceTache.debutTache+" -Termine: "+this.ceTache.finTache;
+    console.log("hi"+this.mail.to+ this.mail.subject+this.mail.body)
+    this.emailService.simplEmail(this.mail);
+    */
+    this.ajoutTacheForm.reset();
     
   }
 

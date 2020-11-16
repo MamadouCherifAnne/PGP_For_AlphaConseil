@@ -40,17 +40,21 @@ export class UserProfilComponent implements OnInit {
     this.userService.getUserByUsername(username).subscribe(data=>{
       if(data){
         this.currentUser = data;
-        this.config = {
-          itemsPerPage:5,
-          currentPage: 1,
-          totalItems: this.currentUser.messageReceived.length,
-          nextLabel:"suivant",
-          previousLabel:"précédent"
-        };
-        this.messages = this.currentUser.messageReceived
+        this.userService.getMessageRecieved(this.currentUser.idUser).subscribe(result=>{
+          if(result){
+            this.messages = result;
+            this.config = {
+              itemsPerPage:5,
+              currentPage: 1,
+              totalItems: this.messages.length,
+            };
+          }
+        });
         console.log("les messages"+this.currentUser.messageReceived)
       }
     });
+    
+    
   }
 
 

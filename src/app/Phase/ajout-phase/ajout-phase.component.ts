@@ -27,12 +27,21 @@ export class AjoutPhaseComponent implements OnInit {
 
   ngOnInit() {
     this.addPhaseForm = this.formBuilder.group({
-      'titrePhase': [this.phase.nomTache,Validators.required],
-      'description': this.phase.description
+      'titrePhase': [this.phase.nomTache,[Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+        Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
+      'description': [this.phase.description,
+        Validators.minLength(3),
+        Validators.maxLength(100)]
 
     })
     
     this.projet = this.data.projet;
+  }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.addPhaseForm.controls[controlName].hasError(errorName);
   }
 
  public ajoutPhase(){

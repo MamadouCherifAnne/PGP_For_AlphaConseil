@@ -26,18 +26,19 @@ import {MatDialogRef} from '@angular/material';
 export class AddJalonComponent implements OnInit {
 
  
-  tache:Tache = new Tache();
-  preced:object[] =[];
-  taskfield: object;
-  ajoutJalon:FormGroup;
+  public tache:Tache = new Tache();
+  public preced:object[] =[];
+  public taskfield: object;
+  public ajoutJalon:FormGroup;
+  public listTache:any;
 
 
   constructor(private userService:UtilisateurService,
-    private formBuilder:FormBuilder,
-    private projetService:ProjetService,
-    private taskService:TacheService,
+    public formBuilder:FormBuilder,
+    public projetService:ProjetService,
+    public taskService:TacheService,
     public fenetreReference: MatDialogRef<AddJalonComponent>,
-    private route:ActivatedRoute,
+    public route:ActivatedRoute
     ){}
 
     ngOnInit(){
@@ -46,6 +47,7 @@ export class AddJalonComponent implements OnInit {
         "nomTache": [this.tache.nomTache,Validators.required],
         "description": this.tache.description,
         "debutTache": [this.tache.debutTache,[Validators.required]],
+        "tachePrecedente" : [this.tache.tachePrecedente],
      
     });
 

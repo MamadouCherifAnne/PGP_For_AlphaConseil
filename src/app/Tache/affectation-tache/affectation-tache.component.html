@@ -5,8 +5,10 @@
 </div>
 
 <br><br>
-<div class="search-div">
-    <button mat-raised-button (click)="affecterRessources()" >
+
+<div class="search-div" *ngIf="tacheProject && currentTache">
+   
+    <button *ngIf="itHasAccessToTask === true" class="btn-success" mat-raised-button (click)="affecterRessources()" >
         <mat-icon>add</mat-icon>Ajouter
     </button>
         <mat-form-field class="search-form-field">
@@ -23,42 +25,42 @@
 
         <ng-container matColumnDef="Ressources" >
             <mat-header-cell *matHeaderCellDef mat-sort-header>  Ressources </mat-header-cell>
-            <mat-cell *matCellDef="let element"></mat-cell>
+            <mat-cell *matCellDef="let element">{{element.ressources.username}}</mat-cell>
             </ng-container>
         
     
         <!-- Temps Suppose a Realiser -->
         <ng-container matColumnDef="TempsPasser">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Temps Prevue </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.tempsPasser}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.affectation.tempsPasser}} </mat-cell>
         </ng-container>
 
         <!-- Temps Reel passe sur La tache -->
         <ng-container matColumnDef="TempsEffectuer">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Temps Realisé  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.tempsEffectuer}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.affectation.tempsEffectuer}} </mat-cell>
         </ng-container>
          <!-- Cout Par Heure de Chaque Ressources -->
          <ng-container matColumnDef="CoutHeure">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Cout/Heure </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.coutParHeure}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.affectation.coutParHeure}} </mat-cell>
         </ng-container>
 
         <!-- Les Operations sur les affectations -->
-        <ng-container matColumnDef="Action">
+        <ng-container matColumnDef="Action" >
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let element"> 
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <button *ngIf="itHasAccessToTask === true" mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon-button with a menu">
                     <mat-icon>more_horiz</mat-icon>
                   </button>
     
-                  <mat-menu #menu="matMenu">
+                  <mat-menu #menu="matMenu" >
                         <!-- Gantt Utilisateur -->
-                    <button  mat-menu-item (click)="goToUpdateAffectation(element)">
+                    <button  mat-menu-item (click)="goToUpdateAffectation(element.affectation)">
                         <span>Modifier</span>
                     </button> 
     
-                    <button mat-menu-item color="primary" (click)="goToDeleteAffectation(element)"> 
+                    <button mat-menu-item color="primary" (click)="goToDeleteAffectation(element.affectation)"> 
                         Supprimer 
                 </button>
                     </mat-menu>

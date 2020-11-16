@@ -1,21 +1,21 @@
 <mat-sidenav-container>
     <mat-sidenav opened mode="side">
         <mat-list>
-            <a mat-list-item href="#">Mon Travail</a>
-            <mat-divider></mat-divider>
-            <!--<a mat-list-item routerLink="projet">Mes Projets</a>-->
-            <a mat-list-item routerLink="projet">Mes Projets</a>
-            <mat-divider></mat-divider>
-            <a mat-list-item href="#">Activité</a>
-            <mat-divider></mat-divider>
-            <a mat-list-item routerLink="#">Tableau de Bord</a>
-            <mat-divider></mat-divider>
-            <a mat-list-item href="#">Commentaires non lus</a>
-            <mat-divider></mat-divider>
-            <a mat-list-item href="#">Messages non lus</a>
+            <a mat-list-item routerLink="montravail" routerLinkActive="active"><i class="fa fa-tasks" aria-hidden="true"></i>Mon Travail</a>
+            
+            
+            <a mat-list-item routerLink="projet" routerLinkActive="active"><i class="far fa-folder-open"></i>Mes Projets</a>
+            
+            <a mat-list-item routerLink="#" routerLinkActive="active"><i class="fas fa-bolt"></i>Activité</a>
+           
+            <a mat-list-item routerLink="#" routerLinkActive="active"><i class="fas fa-chart-line"></i>Tableau de Bord</a>
+         
+            <a mat-list-item routerLink="#" routerLinkActive="active"><i class="far fa-comment-alt"></i>Commentaires non lus</a>
+            
+            <a mat-list-item *ngIf="currentUser" routerLink="['user/profil/','currentUser.idUser']" routerLinkActive="active" ><i class="far fa-envelope"></i>Messages non lus <span class="badge badge-pill badge-danger" *ngIf="messageNonLu != 0" >{{messageNonLu}}</span></a>
 
         </mat-list>
     </mat-sidenav>
     <router-outlet></router-outlet>
-  </mat-sidenav-container>
-  
+  </mat-sidenav-container> 
+

@@ -31,6 +31,15 @@ export class DepensesComponent implements OnInit {
           })*/
           this.listDepense = new MatTableDataSource(depenses);
           this.listDepense.sort = this.sort;
+          this.paginator._intl.itemsPerPageLabel="élements par page";
+          this.paginator._intl.nextPageLabel="suivant";
+          this.paginator._intl.previousPageLabel ="précédent";
+          
+          this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+            const start = page * pageSize + 1;
+            const end = (page + 1) * pageSize;
+            return `${start} - ${end} de ${length}`;
+          };
           this.listDepense.paginator =this.paginator;
         }
       });

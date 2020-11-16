@@ -12,7 +12,7 @@ export class Utilisateur{
         confirmPassword:string;
         adresse:string;
         actif:boolean;
-        role:object;
+        role:String[];
         telephone:string;
         projets:any[];
         entreprise: object;

@@ -62,6 +62,18 @@ export class UtilisateurService {
   public sendMessageToUser(message){
     return this.http.post("http://localhost:8080/message/sendMessage",message,{headers:this.entete});
   }
+  //Modifier etat du message
+  public modifEtatMessage(idmessage){
+    return this.http.post("http://localhost:8080/message/modifEatMessage/"+idmessage,{headers:this.entete});
+  }
 
+  // recuperer mes messages
+  public getMessageRecieved(idUser): Observable<any>{
+    return this.http.get("http://localhost:8080/utilisateur/boiteReception/"+idUser,{headers:this.entete});
+    }
+   // recuperer mes messages non lu
+   public getMessageRecievedNonLus(username): Observable<any>{
+    return this.http.get("http://localhost:8080/utilisateur/messageNonLus/"+username,{headers:this.entete});
+    }
 
 }

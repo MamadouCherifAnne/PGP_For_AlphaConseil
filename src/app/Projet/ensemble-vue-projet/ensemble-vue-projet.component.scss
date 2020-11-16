@@ -22,6 +22,7 @@ ul {
      
     li .list-inline-item{
        float: right;
+       margin:0 0 10px 0;  
         
     }
 }
@@ -33,6 +34,10 @@ ul {
 
 }
 
+.headline h6{
+    padding: 25px;
+}
+
 .headline p{
     
     float:right;
@@ -41,9 +46,15 @@ ul {
 a{
     text-decoration: none;
     color: silver;
+   
 }
 
 .bordure{
     border-bottom: 1px solid;
 }
 
+.border{
+    border-radius:  10px;
+    border: 10px 10px;
+    
+}

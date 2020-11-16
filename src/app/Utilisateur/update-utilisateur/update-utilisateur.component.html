@@ -59,9 +59,9 @@
 <mat-grid-tile>
     <div class="controles-container">
         <mat-form-field>
-            <mat-select formControlName="role"  matInput placeholder="Role">
+            <mat-select formControlName="role"  matInput placeholder="Role" multiple>
                 <ng-container *ngFor="let rol of roles">
-                <mat-option [value]="rol">
+                <mat-option [value]="rol.role">
                     {{rol.role}}
                 </mat-option>
             </ng-container>

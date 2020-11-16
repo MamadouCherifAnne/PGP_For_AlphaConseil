@@ -1,0 +1,30 @@
+ 
+   
+    <div class="container printformClass" id="printIt">  
+        <br>
+        <h5 >Rapports des Tâches</h5>
+        <h6 *ngIf=projet>{{projet.nomProjet}}
+            <small class="text-muted">--Entreprise Name</small>
+        </h6>
+        <div *ngFor="let phase of allphase">
+          
+                <br>
+                <h6 class="p-2 bg-light">{{phase.nomTache | uppercase}}</h6>
+                <br>
+                <ul >
+                    <li *ngFor="let tache of phase.taches">
+                        {{tache.nomTache}} - date debut: {{tache.debutTache}} - date fin: {{tache.finTache}} - Avancement: {{tache.tauxAvancement}} %
+                        statut: En cours
+                    </li>
+                         
+                 </ul>
+               
+        </div>
+    </div>     
+  
+
+<div class="container">
+    <p ><button type="button" class="btn-success bt-sm " (click)="convertToPdf()">Télécharger</button></p>
+    <p ><button type="button" class="btn-success bt-sm " (click)="getPDF()">TéléchargerMulti</button></p>
+</div> 
+

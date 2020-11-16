@@ -58,13 +58,18 @@ export class EditTacheComponent implements OnInit {
       }
     });
 
+    this.refresh()
+    /*...................Recuperation de la liste de tache d'un projet....................
+    this.projetService.projectAllTask(this.idProjet).subscribe(data=>{
+=======
     //...................Recuperation de la liste de tache d'un projet....................
     this.tacheService.getPotentielPredecesseurs(this.idTache).subscribe(data=>{
+
       if(data){
         this.listTache=data;
         // toutes les taches sauf la tache
       }
-      });
+      }); */
 
      this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
        if(data){
@@ -87,6 +92,16 @@ export class EditTacheComponent implements OnInit {
     })
 
     
+  }
+
+  refresh(){
+     //...................Recuperation de la liste de tache d'un projet....................
+     this.projetService.projectAllTask(this.idProjet).subscribe(data=>{
+      if(data){
+        this.listTache=data;
+        // toutes les taches sauf la tache
+      }
+      });
   }
 
   formatLabel(value: number) {
@@ -114,10 +129,11 @@ export class EditTacheComponent implements OnInit {
     value.subscribe((data)=>{
       if(data){
         this.returnMessage=data
+        this.refresh()
       }
       })
 
-     
+      
   }
 
   currentForm(){

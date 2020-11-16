@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+ import { Injectable } from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {Utilisateur} from '../Utilisateur/Utilisateur';
 import { catchError, map } from 'rxjs/operators';
@@ -14,9 +14,10 @@ export class AuthentificationService {
   // On definit les headers et le serveur 
   host:string = 'http://localhost:8080/';
   // On definit l'entete des formats de donnes de nos services
-  entete  = new HttpHeaders().set('Content-Type','application/json');
-  jwtToken :string;
-  currentUser ={};
+  public entete  = new HttpHeaders().set('Content-Type','application/json');
+  public jwtToken :string;
+  public currentUser ={};
+  public entrepriseName:string;
 
   constructor(private http:HttpClient,
     public router:Router
@@ -38,8 +39,8 @@ export class AuthentificationService {
           const userBody =jwtHelper.decodeToken(this.getToken())
           console.log(userBody.sub);
           let username =  userBody.sub
-          
-          console.log(userBody.sub);
+          this.entrepriseName = userBody.tenantID;
+          console.log(userBody.tenantID);
            
          this.getUserProfile(username).subscribe((res) => {
           this.currentUser = res;
@@ -55,6 +56,18 @@ export class AuthentificationService {
        // localStorage.setItem("token",jwtToken);
      
       });
+    }
+
+    // Get ENtreprise name
+    public get getEntrepriseName():String{
+      let company:string ="";
+      let keys =this.decodeJwtToken()
+      console.log(keys);
+      
+      company = keys.tenantID;
+      console.log("company "+ company);
+      return company;
+
     }
 
     // Recuperer le jwt
@@ -125,7 +138,7 @@ export class AuthentificationService {
       return this.http.get(service, { headers: new HttpHeaders({'authorization':this.getToken()}) }).pipe(
         map((res: Response) => {
           if(res){
-            console.log(res.body)
+            
           return res || null;
           }
         }),

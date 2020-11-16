@@ -11,7 +11,10 @@
         <div class="controles-container">
             <mat-form-field>
                 <input formControlName="titrePhase" [(ngModel)]="phase.nomTache" matInput placeholder="Nom de la phase">
-                <mat-error>Le nom de la phase est obligatoire.</mat-error>
+                <mat-error *ngIf="checkError('titrePhase', 'maxLength')">Ne doit pas déppasser 100 caractères !</mat-error>
+                    <mat-error *ngIf="checkError('titrePhase', 'required')">Le nom est obligatoire !</mat-error>
+                    <mat-error *ngIf="checkError('titrePhase', 'pattern')">N'accepte pas les caractère spéciaux !</mat-error>
+                    <mat-error *ngIf="checkError('titrePhase', 'minLength')">Doit etre plus de 3 caractère !</mat-error>
             </mat-form-field>
 
             <mat-form-field>

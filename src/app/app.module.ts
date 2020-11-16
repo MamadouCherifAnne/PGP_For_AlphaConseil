@@ -66,14 +66,24 @@ import { UpdateAffectationComponent } from './Tache/update-affectation/update-af
 
 import { CommentComponent } from './Projet/comment/comment.component';
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
+import { RapportComponent } from './Rapport/rapport/rapport.component';
+import { RapportPhaseComponent } from './Rapport/rapport-phase/rapport-phase.component';
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
+import { MonTravailComponent } from './Utilisateur/mon-travail/mon-travail.component';
+
 import { LoginComponent } from './Login/login/login.component';
 import { AuthInterceptor} from './services/authconfig.interceptor';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
+
 import { NgxPaginationModule } from 'ngx-pagination';
+
+import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 registerLocaleData(localeFr, 'fr');
 
 
@@ -138,12 +148,13 @@ registerLocaleData(localeFr, 'fr');
     UpdateAffectationComponent,
     CommentComponent,
     EndDateValidation,
+    RapportComponent,
+    RapportPhaseComponent,
+    MonTravailComponent,
     LoginComponent,
     UserProfilComponent,
     UserEntrepriseComponent,
-    
-
-
+    ToutLeProjetComponent,
 
   ],
   imports: [
@@ -156,7 +167,12 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     GanttModule,
     FieldsetModule,
-    NgxPaginationModule
+
+    NgxPaginationModule,
+
+    NgApexchartsModule,
+    Ng2GoogleChartsModule,
+
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,

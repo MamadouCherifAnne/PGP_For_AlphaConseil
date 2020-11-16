@@ -16,7 +16,8 @@
     </mat-sidenav>
     <mat-sidenav-content> 
        <div class="container-flud headline" *ngIf="currentTache">
-            <h5>{{currentTache.nomTache}} </h5><small class="small" *ngIf="isLate(currentTache.finTache)==true && 100 >= currentTache.tauxAvancement "> en retard de: <span class="badge badge-pill badge-danger" >{{retardTache}}jours</span> </small>
+            <h5>{{currentTache.nomTache}} </h5><small class="small" *ngIf="isLate(currentTache.finTache)==true && currentTache.tauxAvancement != 100"> en retard de: <span class="badge badge-pill badge-danger" >{{retardTache}}jours</span> </small>
+
             <br>
             <br>
         </div>

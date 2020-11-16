@@ -18,7 +18,9 @@ export class AffectationTacheComponent implements OnInit {
 
   @Input() public idTache: any;
  // idTache:number;
+ public itHasAccessToTask:boolean = false;
   currentTache:any;
+  tacheProject:any;
   affectations:any;
   currentUser:any;
   affect:UtilisateurAffectation;
@@ -36,14 +38,32 @@ export class AffectationTacheComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel="élements par page";
+    this.paginator._intl.nextPageLabel="suivant";
+    this.paginator._intl.previousPageLabel ="précédent";
+    
+    this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      const start = page * pageSize + 1;
+      const end = (page + 1) * pageSize;
+      return `${start} - ${end} de ${length}`;
+    };
     // Initialisation de la page
     let username =this.authService.getCurrentUser();
     this.userService.getUserByUsername(username).subscribe(data=>{
       if(data){
         this.currentUser=data;
+        
+        this.tacheService.getTacheProject(this.idTache).subscribe(result=>{
+          if(result){
+            this.tacheProject = result;
+            
+             this.refresh();
+          }
+        });
       }
-    })
-    this.refresh();
+    });
+   
+   
 
   }
 
@@ -109,24 +129,26 @@ export class AffectationTacheComponent implements OnInit {
        this.idTache = parseInt(this.route.snapshot.paramMap.get('id'));
        this.tacheService.getTache(this.idTache).subscribe(data=>{
          if(data){
-         this.currentTache = data;
-          this.paginator._intl.itemsPerPageLabel="élements par page";
-          this.paginator._intl.nextPageLabel="suivant";
-          this.paginator._intl.previousPageLabel ="précédent";
+           this.currentTache = data;
+           this.itHasAccessToTask = this.hasAccessToTask();
+          // get la tache projey
           
-  
+
          // Appel de la methode de calcul du cout total de la facture et des information de la tache
-         this.tacheService.getAffectationOfTask(this.idTache).subscribe(affect=>{
+         this.tacheService.getAffectationOfTaskFormat(this.idTache).subscribe(affect=>{
            if(affect){
-             this.affectations=affect;
-             this.listAffectation = new MatTableDataSource(this.affectations);
-            this.listAffectation.sort = this.sort;
-            this.listAffectation.paginator =this.paginator;
+             console.log(affect)
+              this.affectations=affect;
+              this.listAffectation = new MatTableDataSource(this.affectations);
+              this.listAffectation.sort = this.sort;
+  
+              this.listAffectation.paginator =this.paginator;
            }
   
          });
        }
        });
+
   }
 
   // Affectation des ressources
@@ -142,5 +164,55 @@ export class AffectationTacheComponent implements OnInit {
       this.refresh();
     });
   }
+
+  public isCreateur(){
+    let verif:boolean = false;
+
+    if(this.currentUser.taches!= null && this.currentUser.taches.length != 0 ){
+      for(let tache of this.currentUser.taches){
+        if(tache.idTache === this.currentTache.idTache &&
+          tache.nomTache === this.currentTache.nomTache &&
+          tache.lastUpdate === this.currentTache.lastUpdate &&
+          tache.debutTache === this.currentTache.debutTache 
+          ){
+            verif = true;
+            break;
+          }
+      }
+      
+    
+    return verif;
+  }
+}
+
+// verification si il s'agit du chef du projet
+    public isOwnerOfProject(){
+      this.currentUser.isChefProjet =0;
+      let isChef:boolean = false;
+      if(this.currentUser.projets && this.tacheProject !== -1){
+        console.log(this.currentUser.projets.length)
+      for(let p of this.currentUser.projets){
+        console.log("le projet dont jsuis"+p);
+        if(p.numProjet == this.tacheProject){
+         // this.currentUser.isChefProjet = 1;
+          isChef = true;
+          break;
+        }
+      }
+      
+    }
+    return isChef;
+    }
+
+    public hasAccessToTask():boolean{
+      
+      if(this.authService.isSuperAdmin == true || this.isCreateur() == true ||
+       this.isOwnerOfProject()== true){
+        
+        return true;
+       }else{
+       return false;
+       }
+    }
 
 }

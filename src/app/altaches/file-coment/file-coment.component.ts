@@ -255,4 +255,13 @@ export class FileComentComponent implements OnInit {
     }
     return isChef;
     }
+
+    public hasAccessToTask(){
+      let verif:Boolean = false;
+      if(this.authService.isSuperAdmin == true || this.isCreateur() == true ||
+       this.isOwnerOfProject()== true){
+        verif = true;
+       }
+       return verif;
+    }
 }

@@ -24,7 +24,7 @@
                 
                 <mat-icon mat-list-icon>account_circle</mat-icon>
                 <button class="btn-danger" (click)="deleteComment(msg.idMessage)" ><mat-icon mat-list-icon>delete</mat-icon></button>
-                <div mat-line style="white-space: normal;"><b>{{msg}}</b> : {{msg.dateEnvoie | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
+                <div mat-line style="white-space: normal;"><b>{{msg.editUser.username}}</b> : {{msg.dateEnvoie | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
                 <br>
                 <br>
                 <div mat-line style="white-space: normal;"> {{msg.messageContent}}</div>

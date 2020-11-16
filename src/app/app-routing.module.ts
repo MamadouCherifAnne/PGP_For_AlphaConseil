@@ -28,25 +28,40 @@ import { MessagerieComponent } from './Message/messagerie/messagerie.component';
 import { AddDepenseComponent } from './Depense/add-depense/add-depense.component';
 import { DepensesComponent } from './Depense/depenses/depenses.component';
 import { FactureTacheComponent } from './Facture/facture-tache/facture-tache.component';
+
+import {RapportComponent} from './Rapport/rapport/rapport.component';
+import {RapportPhaseComponent} from './Rapport/rapport-phase/rapport-phase.component';
+import {MonTravailComponent} from './Utilisateur/mon-travail/mon-travail.component';
+
 import { LoginComponent } from './Login/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { AuthAdminGuard } from './services/auth-admin.guard';
-
+import {ResumeProjetComponent} from './Projet/resume-projet/resume-projet.component';
+import {ToutLeProjetComponent} from  "./Projet/tout-le-projet/tout-le-projet.component";
 
 const routes: Routes = [
   
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
     {path: 'projet', component: AllProjetsComponent},
+    {path: 'montravail', component:MonTravailComponent},
+  ]},
+
+  {path: 'utilisateur', component: ListeUtilisateurComponent},
+  {path: 'add', component: AjoutUtilisateurComponent},
+  {path: 'update',component: UpdateUtilisateurComponent},
+  {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent},
+
     
-  ],canActivate:[AuthGuard]},
+
 
   {path: 'utilisateur', component: ListeUtilisateurComponent,canActivate:[AuthAdminGuard,AuthGuard]},
   {path: 'add', component: AjoutUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'update',component: UpdateUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'user/profil/:id',component: UserProfilComponent, canActivate:[AuthGuard]},
+
   
 
   {path: 'utilisateur/affect', component: AffectationUserComponent},
@@ -60,7 +75,8 @@ const routes: Routes = [
 
 
   {path: 'projet/:id', component: EnsembleVueProjetComponent, children:[
-   
+    //{path: '', redirectTo: 'resume', pathMatch: 'full'},
+    {path: 'resume/:id', component: ToutLeProjetComponent},
   ] ,canActivate:[AuthGuard]},
 
   {path: 'task/:id', component: FileComentComponent,canActivate:[AuthGuard]},
@@ -69,6 +85,8 @@ const routes: Routes = [
   
  
   {path: 'projet/gantt/:idProjet', component: GanttProjectComponent},
+  {path: 'projet/rapport/:idProjet', component: RapportComponent},
+  {path: 'phases/rapport/:phaseId', component: RapportPhaseComponent},
 
   {path:'message/:idDestinataire', component: MessagerieComponent},
 

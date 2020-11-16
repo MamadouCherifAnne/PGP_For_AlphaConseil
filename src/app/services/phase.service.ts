@@ -28,4 +28,12 @@ export class PhaseService {
   public findById(idPhase): Observable<Iphase>{
     return this.http.get<Iphase>("http://localhost:8080/phase/find/"+ idPhase,{headers:this.entete});
   }
+
+  public deletePhase(idPhase){
+    return this.http.delete("http://localhost:8080/phase/delete/"+idPhase);
+  }
+
+  public getProjetOfPhase (idPhase){
+    return this.http.get("http://localhost:8080/phase/getProjet/"+idPhase);
+  }
 }
