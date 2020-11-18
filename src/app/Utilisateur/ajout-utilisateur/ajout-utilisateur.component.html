@@ -9,7 +9,7 @@
             <mat-grid-tile>
                 <div class="controles-container">
                     <mat-form-field>
-                        <input formControlName="username"  [(ngModel)]="user.nom" matInput placeholder="Nom">
+                        <input formControlName="username"  [(ngModel)]="user.username" matInput placeholder="Nom d'utilisateur">
                     </mat-form-field>
 
             
@@ -18,7 +18,7 @@
                     </mat-form-field>
                     
                     <mat-form-field>
-                        <input formControlName="email"  [(ngModel)]="user.email" matInput placeholder="Email">
+                        <input formControlName="nom"  [(ngModel)]="user.nom" matInput placeholder="Nom de Famille">
                     </mat-form-field>
                         
             </div>
@@ -26,22 +26,31 @@
 
         <mat-grid-tile>
             <div class="controles-container">
-                    
+                
                 <mat-form-field>
-                    <input formControlName="password" [(ngModel)]="user.password" type="password" matInput placeholder="Password">
+                    <input formControlName="email" [(ngModel)]="user.email" matInput placeholder="Adresse mail">
                 </mat-form-field>
-                        
+
                 <mat-form-field>
                     <input formControlName="adresse" [(ngModel)]="user.adresse" matInput placeholder="Addresse">
                 </mat-form-field>
-                
+
                 <mat-form-field>
-                    <input formControlName="telephone" [(ngModel)]="user.telephone" matInput placeholder="Telephone">
+                    <input formControlName="password" [(ngModel)]="user.password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>>
                 </mat-form-field>
+                        
+                
+            
         </div>
     </mat-grid-tile>
         <mat-grid-tile>
             <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="telephone" [(ngModel)]="user.telephone" matInput placeholder="Telephone">
+                </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Professions</mat-label>

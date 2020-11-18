@@ -12,12 +12,14 @@ export class Utilisateur{
         confirmPassword:string;
         adresse:string;
         actif:boolean;
-        role:object;
+        role:String[];
         telephone:string;
         projets:any[];
         entreprise: object;
         professions:any[];
         taches:any[];
+        messageReceived:any[]
+        sendMessages:any[];
         isChefProjet:number
         
         

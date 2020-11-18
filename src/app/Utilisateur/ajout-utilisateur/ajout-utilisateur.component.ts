@@ -18,11 +18,11 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 export class AjoutUtilisateurComponent implements OnInit {
    user:Utilisateur = new Utilisateur()
    
-   addUserForm: FormGroup;
-   message:any;
-
-   listProfession: Profession[]
-   idProfession:IProfession[];
+  public addUserForm: FormGroup;
+  public message:any;
+  public  hide:true;
+  public  listProfession: Profession[]
+  public idProfession:IProfession[];
 
 
   public professions =[];
@@ -38,7 +38,8 @@ export class AjoutUtilisateurComponent implements OnInit {
 
     //Preparaion du formulaire d'ajout
     this.addUserForm=this.formBuilder.group({
-      'username':[this.user.nom, [Validators.required,Validators.maxLength(20)]],
+      'username':[this.user.username, [Validators.required,Validators.maxLength(20)]],
+      'nom':[this.user.nom, [Validators.required,Validators.maxLength(20)]],
       'prenom':[this.user.prenom, [Validators.required,Validators.maxLength(20),Validators.pattern( '[a-zA-Z ]*')]],
       'email':[this.user.email, [Validators.required, Validators.email]],
       'password':[this.user.password, [Validators.required]],

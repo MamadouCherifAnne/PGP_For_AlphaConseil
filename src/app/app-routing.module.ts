@@ -100,7 +100,7 @@ const routes: Routes = [
   {path:'depense/:idTache', component:DepensesComponent},
   {path:'tache/facture/:idTache', component:FactureTacheComponent},
 
-  {path: 'commentaire', component: CommentComponent},
+  {path: 'commentaire/:numProjet', component: CommentComponent},
   {path:'seConnecter', component:LoginComponent}
 
 

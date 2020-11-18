@@ -12,19 +12,25 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
   styleUrls: ['./all-projets.component.scss']
 })
 export class AllProjetsComponent implements OnInit {
-  projets : any;
-  delateMessage: any;
-  currentUser:any;
-  constructor(private projetService: ProjetService,
-    private authService:AuthentificationService,
-    private dialog : MatDialog, private  router: Router) { }
+  public projets : any;
+  public entrepriseNom:String;
+  public delateMessage: any;
+  public currentUser:any;
+  constructor(public projetService: ProjetService,
+    public authService:AuthentificationService,
+    public  dialog : MatDialog, private  router: Router) { }
 
   ngOnInit() {
+    console.log("entreprise name"+this.entrepriseNom)
+    this.entrepriseNom = this.authService.getEntrepriseName;
+    console.log("entreprise name"+this.authService.getEntrepriseName)
     this.currentUser =this.authService.getCurrentUser();
    // let resp = this.projetService.getAllProjet();
    let resp = this.projetService.allProjectOfUser(this.currentUser )
     resp.subscribe(data=>{
       this.projets=data
+      
+      console.log("entreprise name"+this.entrepriseNom)
       console.log(data)
     })
   

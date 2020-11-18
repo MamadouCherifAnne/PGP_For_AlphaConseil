@@ -78,14 +78,14 @@ public userUpdate(){
   this.user.adresse =this.updateUserForm.get("adresse").value;
   this.user.telephone =this.updateUserForm.get("telephone").value;
   let id=Number.parseFloat(this.updatingUser.user.idUser);
-  
-  this.user.role = this.updatingUser.user.role;
+  console.log("les role choisit"+this.user.role+ "ou "+this.updateUserForm.get("role").value)
+  this.user.role = this.user.role;
   //this.user.ptojet=null
   this.user.professions=this.updateUserForm.get("profession").value
   this.user.role=this.updateUserForm.get("role").value
   
   let res=this.userService.updateUser(this.user,id);
-  res.subscribe((data)=>this.message=data);
+  res.subscribe((data)=>this.message=data)
   
 
   this.onFermer();

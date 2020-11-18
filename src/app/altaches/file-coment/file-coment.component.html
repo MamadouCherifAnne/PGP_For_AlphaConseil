@@ -18,7 +18,6 @@
        <div class="container-flud headline" *ngIf="currentTache">
             <h5>{{currentTache.nomTache}} </h5><small class="small" *ngIf="isLate(currentTache.finTache)==true && currentTache.tauxAvancement != 100"> en retard de: <span class="badge badge-pill badge-danger" >{{retardTache}}jours</span> </small>
 
-            <p><button class="btn btn-success btn-sm btnAjout"  type="submit">Ajouter commentaire</button></p>
             <br>
             <br>
         </div>
@@ -54,32 +53,47 @@
             <mat-tab label="Commentaire">
                 <div class="container">
                     <br>
-                    <div class="card" >
-                        <div class="card-body" *ngIf="currentTache" >
-                          <h5 class="card-title">Commentaires à propos de La Tache <span class="badge badge-pill badge-primary" *ngIf="tacheComments">{{tacheComments.length}}</span></h5>
-                          <br>
-                          <h6 class="card-subtitle mb-2 text-muted" *ngFor="let com of tacheComments">
-                            <b>{{com.user.nom}} ::=> </b> <span>{{com.comment}}  ( {{com.dateComment | date: 'EEEE d MMMM y, HH:mm:ss' : '' : 'fr-FR'}}) </span>
-                          </h6>
-                            <div>
-
                                
-                                    <div >
-                                        <h6>AJouter des commentaire</h6>
-                                        <div>
-                                            <textarea type="text" class="form-control" formControlName="commentaire" placeholder="Ajouter un commentaire sur la tache" ></textarea>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Sauvegarder</button>
-                                    </div>
-                                   
-                                
-                            </div>
-                          
+                    <div >
+                        <h6>Commenter <mat-icon>edit</mat-icon></h6>
+                        <div>
+                            <textarea type="text" class="form-control" formControlName="commentaire" placeholder="Ajouter un commentaire sur la tache" ></textarea>
                         </div>
-                      </div>
-                      </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-sm" type="submit" (click)="ajoutCommentaires()">Sauvegarder</button>
+                    </div>
+                           
+                          
+                    
+                </div>
+                <br>
+                <br>
+                    <div class="container">
+                        <div class="card" style="width:auto">
+                            <div class="card-header" *ngIf="tacheToComment">
+                              Commentaires sur la tache : <b>{{tacheToComment.nomTache}}</b>
+                            </div>
+                            <mat-list *ngIf="tacheComments">
+                              <div mat-subheader></div>
+                              <mat-list-item style="height: auto;"   *ngFor="let com of tacheComments | paginate:config">
+                
+                                <mat-icon mat-list-icon>account_circle</mat-icon>
+                                <button class="btn-danger" (click)="deleteComment(com.idComment)" ><mat-icon mat-list-icon>delete</mat-icon></button>
+                                <div mat-line style="white-space: normal;"><b>{{com.user.username}}</b> : {{com.dateComment | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
+                                <br>
+                                <br>
+                                <div mat-line style="white-space: normal;"> {{com.comment}}</div>
+                                <mat-divider></mat-divider>
+                              </mat-list-item>
+                              
+                            </mat-list>
+                          </div>
+                        <pagination-controls previousLabel="précédent "
+                        nextLabel="suivant"
+                        responsive="true"
+                        (pageChange)="pageChanged($event)"></pagination-controls>
+                    </div>
             </mat-tab>
             <mat-tab label="Fichier">
                 <br>

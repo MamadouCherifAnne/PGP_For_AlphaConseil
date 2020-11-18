@@ -78,12 +78,14 @@ import { LoginComponent } from './Login/login/login.component';
 import { AuthInterceptor} from './services/authconfig.interceptor';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
+
+import { NgxPaginationModule } from 'ngx-pagination';
+
 import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { TauxAvancemantComponent } from './Tache/taux-avancemant/taux-avancemant.component';
 import { ActiviteComponent } from './Projet/activite/activite.component';
-
 registerLocaleData(localeFr, 'fr');
 
 
@@ -158,9 +160,6 @@ registerLocaleData(localeFr, 'fr');
     TauxAvancemantComponent,
     ActiviteComponent,
 
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -172,8 +171,12 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     GanttModule,
     FieldsetModule,
+
+    NgxPaginationModule,
+
     NgApexchartsModule,
     Ng2GoogleChartsModule,
+
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,

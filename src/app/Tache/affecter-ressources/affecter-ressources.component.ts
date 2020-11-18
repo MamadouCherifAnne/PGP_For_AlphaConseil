@@ -70,7 +70,7 @@ export class AffecterRessourcesComponent implements OnInit {
           this.message="Affectation realisé avec succés";
            //envoyer des mails au utilisateurs ajouter à la taches; 
      //
-     this.userService.getUserByIdUser(this.ressource.idUser).subscribe(data=>{
+  /*   this.userService.getUserByIdUser(this.ressource.idUser).subscribe(data=>{
       if(data){
         this.userMail = data;
       }
@@ -81,7 +81,7 @@ export class AffecterRessourcesComponent implements OnInit {
         console.log("c'est la le p", this.ceTache);
       }
       //mail do etre le mail de l'uitilisateur connecté donc à modifier
-      this.mail.to.push("bows4844@gmail.com");
+     /* this.mail.to.push("bows4844@gmail.com");
       console.log("icisssssss"+this.mail.to);
       this.mail.subject = "Mamadou vient de vous affecter à une tache";
       console.log("je suis la"+this.mail.subject);
@@ -95,7 +95,7 @@ export class AffecterRessourcesComponent implements OnInit {
       });
       console.log("hi"+this.mail.to+ this.mail.subject+this.mail.body);
     });
-    
+    */
 
         }else{
           this.message ="Cet utilisateur est dèja affecté à cette tache";

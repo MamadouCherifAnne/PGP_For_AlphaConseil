@@ -69,4 +69,14 @@ export class ProjetService {
   public allProjectOfUser(username): Observable<any>{
     return this.http.get<any>("http://localhost:8080/utilisateur/myProjects/"+username,{headers:this.entete});
   }
+
+  // afficher les comentaire d,un projet
+  public allCommentsOfProject(numProjet): Observable<any>{
+    return this.http.get<any>("http://localhost:8080/projet/commentsOfProject/"+numProjet,{headers:this.entete});
+  }
+
+  // Ajouter un commentaire  a un projet
+  public addCommentToProject(comment):Observable<any>{
+    return this.http.post("http://localhost:8080/projet/addCommentofProjet",comment,{headers:this.entete})
+  }
 }

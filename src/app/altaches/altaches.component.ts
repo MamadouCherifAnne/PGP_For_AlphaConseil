@@ -211,6 +211,7 @@ export class AltachesComponent implements OnInit {
   exportDailyOrdersToPdf() {
     this.rapportServiceService.pdf(this.idProjet).subscribe(response => {
       console.log(response);
+      if(response){
       let url = window.URL.createObjectURL(response.data);
       let a = document.createElement('a');
       document.body.appendChild(a);
@@ -221,6 +222,7 @@ export class AltachesComponent implements OnInit {
       a.click();
       window.URL.revokeObjectURL(url);
       a.remove();
+      }
     }, error => {
       console.log(error);
     });}
@@ -259,5 +261,18 @@ export class AltachesComponent implements OnInit {
       }
       
     }
+    }
+
+    // Compter la longuer des taches d'une phase
+    public countLengthOfPhase(phase):number{
+      let cpt:number =0;
+      let tasks:any;
+      tasks =phase.taches;
+      for(let t of tasks){
+        if(t.type !== 'Jalon'){
+          cpt++;
+        }
+      }
+      return cpt;
     }
 }

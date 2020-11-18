@@ -10,6 +10,7 @@ import {FichierService} from 'src/app/services/fichier.service';
 import{Observable} from 'rxjs';
 import { Time } from '@angular/common';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import { CommentaireService } from 'src/app/services/commentaire.service';
 
 
 @Component({
@@ -19,13 +20,15 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 })
 export class FileComentComponent implements OnInit {
 
+  public tacheProject:any;
   currentTache:any;
   commentaireForm:FormGroup;
   idTache:number;
   tacheComments:ICommentaire[];
   commentaires:ICommentaire[] = [];
-  
+  config:any;
   currentUser:any;
+  message:any;
   tacheToComment:Tache;
   ressources:any;
   resourcesNames:string[] =[]
@@ -43,6 +46,7 @@ export class FileComentComponent implements OnInit {
     private userService:UtilisateurService,
     public authService:AuthentificationService,
     private formBuilder:FormBuilder,
+    private commentService:CommentaireService,
     private fichierservice: FichierService) { }
 
   ngOnInit() {
@@ -52,6 +56,8 @@ export class FileComentComponent implements OnInit {
       this.commentaireForm=this.formBuilder.group({
         'commentaire':[this.commentaire.comment,[Validators.required]]
       });
+
+   
     // Getter l'id de la tache 
     this.idTache=  parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.idTache)
@@ -81,12 +87,24 @@ export class FileComentComponent implements OnInit {
         this.tacheService.getTache(this.idTache).subscribe( tache=>{
           if(tache){
             this.laTache = tache;
+            this.tacheService.getTacheProject(this.idTache).subscribe(result=>{
+              if(result){
+                this.tacheProject = result;
+              }
+            })
           } 
         });
           // Recuperation de l'ensemble des commentaires sur la tache
           this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
             if(commentaire){
               this.tacheComments=commentaire;
+              this.config = {
+                itemsPerPage:5,
+                currentPage: 1,
+                totalItems: commentaire.length,
+                nextLabel:"suivant",
+                previousLabel:"précédent"
+              };
             }
           });
         
@@ -137,6 +155,16 @@ export class FileComentComponent implements OnInit {
         });
         
       }
+    };
+
+    //Delete Commentaire
+    public deleteComment(idComment){
+      if(confirm("voulez vous vraiment supprimer ce commentaire?")){
+      this.commentService.deleteComment(idComment).subscribe(data=>{
+        this.message = data;
+        this.refresh();
+      });
+    }
     }
   refresh(){
     this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
@@ -189,4 +217,51 @@ export class FileComentComponent implements OnInit {
       return false;
     }
   }
+
+   public isCreateur(){
+    let verif:boolean = false;
+    if(this.currentUser.taches.length != 0 ){
+      for(let tache of this.currentUser.taches){
+        if(tache.idTache === this.currentTache.idTache &&
+          tache.nomTache === this.currentTache.nomTache &&
+          tache.lastUpdate === this.currentTache.lastUpdate &&
+          tache.debutTache === this.currentTache.debutTache 
+          ){
+            verif = true;
+            break;
+          }
+      }
+      
+    
+    return verif;
+  }
+}
+
+// verification si il s'agit du chef du projet
+    public isOwnerOfProject(){
+      this.currentUser.isChefProjet =0;
+      let isChef:boolean = false;
+      if(this.currentUser.projets && this.tacheProject !== -1){
+        console.log(this.currentUser.projets.length)
+      for(let p of this.currentUser.projets){
+        console.log("le projet dont jsuis"+p);
+        if(p.numProjet == this.tacheProject){
+         // this.currentUser.isChefProjet = 1;
+          isChef = true;
+          break;
+        }
+      }
+      
+    }
+    return isChef;
+    }
+
+    public hasAccessToTask(){
+      let verif:Boolean = false;
+      if(this.authService.isSuperAdmin == true || this.isCreateur() == true ||
+       this.isOwnerOfProject()== true){
+        verif = true;
+       }
+       return verif;
+    }
 }

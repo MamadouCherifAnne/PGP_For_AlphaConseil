@@ -3,6 +3,6 @@ export interface ICommentaire{
     comment:string;
     dateComment:Date;
     user:object;
-    
+    projet:object;
     tacheComment:object;
 }

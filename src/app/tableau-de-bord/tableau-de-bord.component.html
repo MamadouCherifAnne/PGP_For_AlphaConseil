@@ -12,7 +12,7 @@
          
             <a mat-list-item routerLink="#" routerLinkActive="active"><i class="far fa-comment-alt"></i>Commentaires non lus</a>
             
-            <a mat-list-item routerLink="#" routerLinkActive="active"><i class="far fa-envelope"></i>Messages non lus</a>
+            <a mat-list-item *ngIf="currentUser" routerLink="['user/profil/','currentUser.idUser']" routerLinkActive="active" ><i class="far fa-envelope"></i>Messages non lus <span class="badge badge-pill badge-danger" *ngIf="messageNonLu != 0" >{{messageNonLu}}</span></a>
 
         </mat-list>
     </mat-sidenav>

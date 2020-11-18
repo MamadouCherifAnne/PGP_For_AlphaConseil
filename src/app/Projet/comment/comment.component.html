@@ -1,1 +1,48 @@
-<p>comment works!</p>
+<div class="container" *ngIf="currentProject">
+
+    <div class="headline">
+    <h5>Commentaires</h5>
+    
+        <div>
+            <form [formGroup]="commentaireForm" class="normal-form">
+              
+                <textarea type="text" class="form-control" formControlName="comment">
+                  <mat-error>Les commentaires ne dépassent pas 100 caractère</mat-error>
+                </textarea>
+              
+              <button class="btn-success" type="submit" [disabled]="commentaireForm.invalid" (click)="ajoutCommentaires()">Envoyer</button>
+      
+            </form>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="container">
+        <div class="card" style="width: 110%;">
+            <div class="card-header">
+              Commentaires sur le projet : <b>{{currentProject.nomProjet}}</b>
+            </div>
+            <mat-list *ngIf="commentaires">
+              <div mat-subheader></div>
+              <mat-list-item style="height: auto;"   *ngFor="let com of commentaires | paginate:config">
+                
+                <mat-icon mat-list-icon>account_circle</mat-icon>
+                <button class="btn-danger" (click)="deleteComment(com.idComment)" ><mat-icon mat-list-icon>delete</mat-icon></button>
+                <div mat-line style="white-space: normal;"><b>{{com.user.username}}</b> : {{com.dateComment | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
+                <br>
+                <br>
+                <div mat-line style="white-space: normal;"> {{com.comment}}</div>
+                
+                <mat-divider></mat-divider>
+              </mat-list-item>
+              
+            </mat-list>
+          </div>
+        <pagination-controls previousLabel="précédent "
+        nextLabel="suivant"
+        responsive="true"
+        (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+
+    
+</div>

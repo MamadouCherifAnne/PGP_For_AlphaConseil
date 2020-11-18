@@ -104,6 +104,11 @@ export class TacheService {
     return this.http.get<any>("http://localhost:8080/affectation/tacheAffectations/" +idTache,{headers:this.entete});
   }
 
+   // Afficher les affectations sur une tache avec un format preparer pour laffichage
+  public getAffectationOfTaskFormat(idTache):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/affectation/tacheAffectationsFormater/" +idTache,{headers:this.entete});
+  }
+
   // Modifier l'affectation sur une tache donnee
   public updateAffectationOfTask(affectation){
     return this.http.post("http://localhost:8080/affectation/update",affectation,{responseType:'text',headers:this.entete});
@@ -128,6 +133,11 @@ export class TacheService {
   public getTachesInfo(idProjet):Observable<any>{
     return this.http.get("http://localhost:8080/tache/TasksInformation/"+idProjet);
   }
+
+  public getTacheProject(idTache):Observable<any>{
+    return this.http.get("http://localhost:8080/tache/getTacheProject/"+idTache,{headers:this.entete});
+  }
+
   
 
 }

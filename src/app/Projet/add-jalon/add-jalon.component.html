@@ -13,10 +13,24 @@
                 <mat-form-field>
                     <input formControlName="description" [(ngModel)]="tache.description" matInput placeholder="Description">
                 </mat-form-field>
+
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
                 <mat-form-field>
                     <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
                     <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
                     <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                  
+                    <mat-select formControlName="tachePrecedente" [(ngModel)]="tache.tachePrecedente" multiple>
+                    <ng-container *ngFor="let tache of listTache">
+                        <mat-option  [value]="tache">{{tache.nomTache}}</mat-option>
+                    </ng-container> 
+                    </mat-select>  
                 </mat-form-field>
 
                 <div class="button-row">

@@ -75,7 +75,7 @@
                 {{ phase.nomTache | titlecase }}
                 <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
                 </button>
-                <span class="badge badge-pill badge-info">{{phase.taches.length}} Taches</span>
+                <span class="badge badge-pill badge-info">{{countLengthOfPhase(phase)}} Taches</span>
             </h5>
         </div>
         <div [attr.id]="'collapse'+i" class="collapse"
@@ -87,7 +87,7 @@
                     <li class="list-group-item" *ngFor="let tache of phase.taches; let i = index">
                         
                         
-                       <div *ngIf="tache != null && tache.type !='Jalon'; else vide">
+                       <div *ngIf="tache != null && tache.type != 'Jalon' && tache.tauxAvancement !=100; else vide">
                         <button class="matbtn" mat-icon-button *ngIf="isCreateur(tache) == true || isSuperAdmin == true || currentUser.isChefProjet == 1 " [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
@@ -112,7 +112,7 @@
                         </div>
 
                         <ng-template #vide>
-                            Jalon : {{tache.nomTache}} : {{tache.debutTache | date}}
+                            
                         </ng-template>
                             
                     </li>
