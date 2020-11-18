@@ -58,6 +58,10 @@ export class TacheService {
     return this.http.post("http://localhost:8080/tache/update/"+idtache, tache,  {'responseType': 'text',headers:this.entete});
   }
 
+  //................modifier tache secondaire.....................
+  public updateTaskSecondaire(idtache, tache){
+    return this.http.put("http://localhost:8080/tache/updateSecondaire/"+idtache, tache, {'responseType': 'text',headers:this.entete});
+  }
     
     // Recuperer la liste des taches precedents d'une tache ayant de predecesseur
 
@@ -119,5 +123,11 @@ export class TacheService {
   public getOwner(idTache):Observable<any>{
     return this.http.get("http://localhost:8080/tache/getOwner/"+idTache,{responseType:'text',headers:this.entete});
   }
+
+  //
+  public getTachesInfo(idProjet):Observable<any>{
+    return this.http.get("http://localhost:8080/tache/TasksInformation/"+idProjet);
+  }
+  
 
 }

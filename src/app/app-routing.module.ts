@@ -22,7 +22,7 @@ import {FileComentComponent} from './altaches/file-coment/file-coment.component'
 import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { JalonComponent } from './Projet/jalon/jalon.component';
 import {CommentComponent} from './Projet/comment/comment.component';
-
+import {ActiviteComponent} from './Projet/activite/activite.component';
 import {EditTacheComponent} from './Tache/edit-tache/edit-tache.component';
 import { MessagerieComponent } from './Message/messagerie/messagerie.component';
 import { AddDepenseComponent } from './Depense/add-depense/add-depense.component';
@@ -46,6 +46,7 @@ const routes: Routes = [
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
     {path: 'projet', component: AllProjetsComponent},
     {path: 'montravail', component:MonTravailComponent},
+    {path: 'activite', component: ActiviteComponent},
   ]},
 
   {path: 'utilisateur', component: ListeUtilisateurComponent},

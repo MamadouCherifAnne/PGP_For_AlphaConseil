@@ -1,7 +1,9 @@
-import { Component,ViewChild, OnInit,Input,  } from '@angular/core';
+import { Component,ViewChild, ElementRef, OnInit,AfterViewInit, Input,  } from '@angular/core';
 import {Chart} from 'chart.js';
 import { ChartComponent } from "ng-apexcharts";
 import {GoogleChartInterface} from 'ng2-google-charts';
+import {TacheService} from "src/app/services/tache.service";
+declare var google: any;
 
 import {
   ApexNonAxisChartSeries,
@@ -20,11 +22,14 @@ export type ChartOptions = {
   templateUrl: './tout-le-projet.component.html',
   styleUrls: ['./tout-le-projet.component.scss']
 })
-export class ToutLeProjetComponent implements OnInit {
+export class ToutLeProjetComponent implements OnInit, AfterViewInit {
 
   @Input()  public projetId: any;
-  
-  public pieChart: GoogleChartInterface = {
+  loading: any;
+  late: any;
+  finished: any; 
+  public infoTaches: any;
+ /* public pieChart: GoogleChartInterface = {
     chartType: 'PieChart',
     dataTable: [
       ['Les taches du projet', 'Les taches  du projet'],
@@ -38,33 +43,55 @@ export class ToutLeProjetComponent implements OnInit {
       'height':300
      },
      
-    }
+    } */
 
-  title = 'Browser market shares at a specific website, 2014';
-   type = 'PieChart';
-   data = [
-      ['Firefox', 45.0],
-      ['IE', 26.8],
-      ['Chrome', 12.8],
-      ['Safari', 8.5],
-      ['Opera', 6.2],
-      ['Others', 0.7] 
-   ];
-   columnNames = ['Browser', 'Percentage'];
-   options = { 
-    'width':400,
-    'height':300
-   };
-   //width = 550;
-   //height = 400;
+  //////////////////////////////////////////////////////
+  @ViewChild('pieChart',{static:false}) pieChart: ElementRef
+
+  drawChart = () => {
+
+  const data = google.visualization.arrayToDataTable([
+    ['Les taches du projet', 'Les taches  du projet'],
+    ['Taches en cours', this.loading],
+    ['Teches en retards', this.late],
+    ['Taches terminées', this.finished],
+  ]);
+
+  const options = {
+    title: 'Tâches',
+    legend: {position: 'top'},
+    colors: ['#1E90FF', '#FF0000', '#32CD32'], is3D: true
+  };
+
+  const chart = new google.visualization.PieChart(this.pieChart.nativeElement);
+
+  chart.draw(data, options);
+}
+
+  ngAfterViewInit() {
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(this.drawChart);
+  }
+  //////////////////////////////////////////////////////
+
   @ViewChild("chart",{static:false}) chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
   
-  constructor() { }
+  constructor(private tacheService: TacheService) { }
 
   ngOnInit() {
-    
+    console.log("......///....");
+    this.tacheService.getTachesInfo(this.projetId).subscribe(data=>{
+      if(data){
+        this.infoTaches = data;
+        this.loading = data.nbrTachesEnCours;
+        this.finished = data.nbrTacesTerminees;
+        this.late = data.nbrTachesEnRetards;
+        console.log("///late//"+this.loading);
+      }
+    });
+
     
     /* ///////////////////////////////////////
     this.chartOptions = {

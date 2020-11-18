@@ -24,11 +24,11 @@ export class RapportServiceService {
   pdf(id): any {
     const httpOptions = {
       //responseType: 'arraybuffer' as 'json'
-      responseType  : 'blob' as 'json'        //This also worked
+      responseType  : 'blob' as 'json'      //This also worked
     };
     
     return this.http.get<any>("http://localhost:8080/rapport/export/" + id, httpOptions);
-     }
+  }
 
   /////////////////////////////////////////
   generateDocumentReport(idProjet): Observable<any> {

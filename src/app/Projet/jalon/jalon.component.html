@@ -1,15 +1,14 @@
 <div class="container-fluid borderDiv">
     <br>
     <ul class="list-inline border-bottom">
-             
         <li class="list-inline-item">
-            <a  [routerLink]="['../../Taches/', projectId]">Taches</a></li>
+            <a  [routerLink]="['../../projet/', projectId]" routerLinkActive="active">Vue d'ensemble</a></li>     
         <li class="list-inline-item">
-            <a  [routerLink]="['../../jalon/', projectId]">Jalons</a></li>
+            <a  [routerLink]="['../../Taches/', projectId]" routerLinkActive="active">Taches</a></li>
         <li class="list-inline-item">
-            <a  routerLink="../../commentaire">Commentaires</a></li>
+            <a  [routerLink]="['../../jalon/', projectId]" routerLinkActive="active">Jalons</a></li>
         <li class="list-inline-item">
-            <a  href="#"> Riques</a></li>
+            <a  routerLink="../../commentaire" routerLinkActive="active">Commentaires</a></li>
         <li class="list-inline-item">
             <a  href="#">Utilisateurs</a></li>
     </ul>

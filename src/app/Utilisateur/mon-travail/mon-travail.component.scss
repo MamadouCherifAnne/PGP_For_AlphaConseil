@@ -1,3 +1,68 @@
+mat-sidenav-container{
+    height: 100%;
+    background-color: white;
+}
+
+mat-sidenav-content{
+    background-color: white;
+}
+
 .headline{
     padding: 25px;
+}
+
+.tacheclass p,
+.tacheclass {
+    margin:0 0 0 10px;
+}
+.tacheclass p{
+    font-size: 15px;
+    display: inline;
+}
+
+h4 small
+ {
+    margin:0 0 0 5px;
+}
+
+.strike {
+    display: block;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > h6 {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > h6:before,
+.strike > h6:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: gray;
+}
+
+.strike > h6:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > h6:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+h6 span{
+    margin:0 0 0 5px;
+    color: gray;
+}
+
+.tacheclass span{
+    background-color:#9ACD32;
+    color: white;
 }
