@@ -1,0 +1,14 @@
+
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <div class="container headline">
+            <h3>Activité</h3>
+            <hr>
+            <br>
+            <div  *ngFor="let projet of projets">
+                <h6>{{projet.nomProjet}}</h6>
+            </div>
+        </div>
+        
+    </mat-sidenav-content>
+</mat-sidenav-container>

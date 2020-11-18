@@ -32,8 +32,8 @@ export class AjoutPhaseComponent implements OnInit {
         Validators.maxLength(100),
         Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'description': [this.phase.description,
-        Validators.minLength(3),
-        Validators.maxLength(100)]
+        [Validators.minLength(3),
+        Validators.maxLength(100)]],
 
     })
     
@@ -46,7 +46,10 @@ export class AjoutPhaseComponent implements OnInit {
 
  public ajoutPhase(){
    console.log(this.projet);
+   this.phase.nomTache= this.addPhaseForm.get('titrePhase').value;
+   this.phase.description = this.addPhaseForm.get('description').value;
    this.phase.projet = this.projet;
+   
    let valeur = this.phaseService.addPhase(this.phase);
    valeur.subscribe((data)=>{
      if(data){

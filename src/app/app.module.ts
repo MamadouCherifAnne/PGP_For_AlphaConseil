@@ -85,6 +85,10 @@ import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.co
 import { NgApexchartsModule } from "ng-apexcharts";
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NotificationComponent } from './notification/notification.component';
+
+import { TauxAvancemantComponent } from './Tache/taux-avancemant/taux-avancemant.component';
+import { ActiviteComponent } from './Projet/activite/activite.component';
+
 registerLocaleData(localeFr, 'fr');
 
 
@@ -156,7 +160,12 @@ registerLocaleData(localeFr, 'fr');
     UserProfilComponent,
     UserEntrepriseComponent,
     ToutLeProjetComponent,
+
     NotificationComponent,
+
+    TauxAvancemantComponent,
+    ActiviteComponent,
+
 
   ],
   imports: [

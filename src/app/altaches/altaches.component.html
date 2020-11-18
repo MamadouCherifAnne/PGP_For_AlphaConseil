@@ -2,16 +2,14 @@
 <br>
 <ul class="list-inline border-bottom">
     <li class="list-inline-item">
-        <a  [routerLink]="['../..projet', idProjet]">Vue d'ensemble</a></li>
+        <a  [routerLink]="['../../projet/', idProjet]" routerLinkActive="active">Vue d'ensemble</a></li>
     
     <li class="list-inline-item">
-        <a  [routerLink]="['../../Taches/', idProjet]">Taches</a></li> 
+        <a  [routerLink]="['../../Taches/', idProjet]" routerLinkActive="active">Taches</a></li> 
     <li class="list-inline-item">
-        <a  [routerLink]="['../../jalon/', idProjet]">Jalons</a></li>
+        <a  [routerLink]="['../../jalon/', idProjet]" routerLinkActive="active">Jalons</a></li>
     <li class="list-inline-item">
-        <a  routerLink="../../commentaire">Commentaires</a></li>
-    <li class="list-inline-item">
-        <a  href="#"> Riques</a></li>
+        <a  routerLink="../../commentaire" routerLinkActive="active">Commentaires</a></li>
     <li class="list-inline-item">
         <a  href="#">Utilisateurs</a></li>
 </ul>
@@ -96,7 +94,7 @@
                           <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>
                          <button class="btn editbtn" (click)="display[i] = !display[i]"><i class="icon-edit"></i></button>
                          <small *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</small>
-                         <small *ngIf="compareDateDebut(tache.debutTache)==0 && isLate(tache.finTache)==false ">En Cours</small>
+                         <small *ngIf="compareDateDebut(tache.debutTache)==0 && isLate(tache.finTache)==false && tache.tauxAvancement != 100">En Cours</small>
 
                          <small *ngIf="isLate(tache.finTache)==true && 100 > tache.tauxAvancement && compareDateDebut(tache.debutTache)!=1">En retard</small>
 

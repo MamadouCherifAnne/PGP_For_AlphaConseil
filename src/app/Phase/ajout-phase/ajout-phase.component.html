@@ -10,7 +10,7 @@
 
         <div class="controles-container">
             <mat-form-field>
-                <input formControlName="titrePhase" [(ngModel)]="phase.nomTache" matInput placeholder="Nom de la phase">
+                <input formControlName="titrePhase"  matInput placeholder="Nom de la phase">
                 <mat-error *ngIf="checkError('titrePhase', 'maxLength')">Ne doit pas déppasser 100 caractères !</mat-error>
                     <mat-error *ngIf="checkError('titrePhase', 'required')">Le nom est obligatoire !</mat-error>
                     <mat-error *ngIf="checkError('titrePhase', 'pattern')">N'accepte pas les caractère spéciaux !</mat-error>
@@ -18,7 +18,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <textarea formControlName="description" [(ngModel)]="phase.description" matInput placeholder="Description"></textarea>
+                <textarea formControlName="description"  matInput placeholder="Description"></textarea>
             </mat-form-field>
 
         </div>

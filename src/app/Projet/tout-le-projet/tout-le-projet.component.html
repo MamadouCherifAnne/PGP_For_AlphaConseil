@@ -1,20 +1,16 @@
 <div class="container">
-<p>tout-le-projet works!</p>
+<hr>
+   
+   <div *ngIf="infoTaches"  #pieChart style="width: 50vw; height: 50vh;" class="divChart"></div>
+   <!--<div class="seconddiv">
+      <hr>
+      <h6>Résumé</h6>
+      <small><i class="fas fa-tasks"></i>Taches terminées aujourd'hui  ()</small><br>
+      <small><i class="fas fa-plus"></i> Taches crées aujourd'hui     ()</small><br>
+      <small><i class="fas fa-tasks"></i>Taches sans afectations  ()</small><br>
+      <small><i class="far fa-user"></i>Utilisations sans taches à faire  ()</small>
+      <hr> 
+   </div> -->
 
-<div (window:resize) = "resetWindowSize($event)">
-   <google-chart
-      [data]="pieChart">
-   </google-chart>
-</div>
-<!--<apx-chart class="apx-chart"
-    [title]="title"
-    [type]="type"
-    [data]="data"
-    [columnNames]="columnNames"
-    [options]="options"
-    [width]="width"
-    [height]="height">
- ></apx-chart> -->
 
-  
 </div>

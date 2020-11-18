@@ -1,11 +1,86 @@
-<div class="container headline">
-    <h5>Mon travail</h5>
-</div>
 
-<!-- hr {
-    transform:rotate(90deg);
-    -ms-transform:rotate(90deg);
-    /* IE 9 */
-    -webkit-transform:rotate(90deg);
-    /* Safari and Chrome */
-} -->
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <div class="container headline">
+            <h3>Mon travail</h3>
+            <br>
+            
+            <div class="strike">
+                <h6>Mes Taches</h6>
+             </div>  
+            <br>
+          
+             <!--
+            <div *ngFor="let projet of projets">
+                <div *ngFor="let phase of projet.phases">
+                    <h4 class="p-2 bg-light">{{phase.nomTache }}<small>{{projet.nomProjet}}</small></h4>
+                    
+                        <div *ngFor="let tache of phase.taches">
+                          
+                               <div class="tacheclass" *ngIf="tache != null && tache.type !='Jalon'; else vide"> 
+                                    <p><i class="fas fa-check"></i>
+                                    <span>{{currentUser}}</span></p>
+                                    <p> {{tache.nomTache}}</p>
+                                    <p class="text-danger" *ngIf="compareDateDebut(tache.debutTache)==1 ">(Commence le {{tache.debutTache}})</p>
+                                    <p class="text-danger" *ngIf="compareDateDebut(tache.debutTache)==0 && isLate(tache.finTache)==false && tache.tauxAvancement != 100">En Cours</p>
+                                    <p class="text-danger" *ngIf="tache.tauxAvancement == 100">Terminée</p>
+                                    <p class="text-danger" *ngIf="isLate(tache.finTache)==true && 100 > tache.tauxAvancement && compareDateDebut(tache.debutTache)!=1">En retard</p>     
+          
+                               <hr> 
+                                </div>
+                               
+                        </div>
+                
+                </div>
+            </div> -->
+          
+            <div *ngIf="userTaches">
+                
+                <div *ngIf="userTaches.length != 0; else pasvide">
+
+                    <div *ngFor="let uerTache of userTaches; let i = index">
+                        
+                        <h6>{{uerTache.phase.nomTache }}<span>{{uerTache.projet.nomProjet}}</span></h6>
+                        <div class="tacheclass" *ngIf="uerTache.tache != null && uerTache.tache.type !='Jalon'; else vide"> 
+                            
+                            <p><i class="fas fa-check"></i>
+                            <span>{{currentUser}}</span></p>
+                            <p> {{uerTache.tache.nomTache}}</p>
+                            <p class="text-danger" *ngIf="compareDateDebut(uerTache.tache.debutTache)==1 ">(Commence le {{uerTache.tache.debutTache}})</p>
+                            <p class="text-danger" *ngIf="compareDateDebut(uerTache.tache.debutTache)==0 && isLate(uerTache.tache.finTache)==false && uerTache.tache.tauxAvancement != 100">En Cours</p>
+                            <p class="text-danger" *ngIf="uerTache.tache.tauxAvancement == 100">Terminée</p>
+                            <p class="text-danger" *ngIf="isLate(uerTache.tache.finTache)==true && 100 > uerTache.tache.tauxAvancement && compareDateDebut(uerTache.tache.debutTache)!=1">En retard</p>     
+                            <p *ngIf="uerTache.tache.tauxAvancement != 100" (mouseover)="display[i] = !display[i]">{{uerTache.tache.tauxAvancement}}%</p>
+                            <div [hidden]="!display[i]" style="width:30;margin:0 0 0 7em;">
+                                <app-taux-avancemant [idTache]="uerTache.tache.numTache" [tache]="uerTache.tache"></app-taux-avancemant>
+                            </div>
+                        <hr> 
+
+                                
+                        </div>
+                        
+                      
+                    </div>
+                </div>
+                
+                <ng-template #pasvide>
+                    <div>
+                         <h4>Vous n'avez pas encore de taches</h4>
+                     </div>
+                </ng-template>
+                
+                   
+                
+            </div> 
+         
+        </div>
+        
+        <!-- hr {
+            transform:rotate(90deg);
+            -ms-transform:rotate(90deg);
+            /* IE 9 */
+            -webkit-transform:rotate(90deg);
+            /* Safari and Chrome */
+        } -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

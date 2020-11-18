@@ -39,12 +39,12 @@ export class RapportServiceService {
     console.log("la cle de eport pdf est"+this.jeton)
     const httpOptions = {
       //responseType: 'arraybuffer' as 'json'
-      headers: headers,
-      responseType  : 'blob' as 'json'        //This also worked
+      responseType  : 'blob' as 'json'      //This also worked
     };
     
-    return this.http.get<any>("http://localhost:8080/rapport/export/"+id,httpOptions);
-     }
+    return this.http.get<any>("http://localhost:8080/rapport/export/" + id, httpOptions);
+  }
+    
 
   /////////////////////////////////////////
   generateDocumentReport(idProjet): Observable<any> {

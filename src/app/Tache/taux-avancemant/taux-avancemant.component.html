@@ -1,0 +1,20 @@
+<div class="container">
+    <form [formGroup]="updateTacheForm" class="normal-form">
+        
+            <label id="matgp">Avencement de la tache:</label>
+            <mat-slider 
+                aria-labelledby="matgp"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="100"
+                min="1"
+                max="100" formControlName="tauxAvancement" [(ngModel)]="tache.tauxAvancement"
+        
+                >
+                
+
+            </mat-slider>   
+
+        <button type="submit" (click)="updateTache()">Appliquer</button>
+    </form>
+</div>

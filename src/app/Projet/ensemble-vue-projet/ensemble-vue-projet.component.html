@@ -1,19 +1,17 @@
 <br>
 <div class="container-fluid ">
-    <h5 *ngIf=projet >      
+    <h5 *ngIf=projet class="hclass">      
         <span>{{nomProjet()}}</span>
     </h5>
       
     <ul class="list-inline border-bottom">
         
         <li class="list-inline-item">
-            <a  [routerLink]="['/Taches/', projetId]">Taches</a></li>
+            <a  [routerLink]="['/Taches/', projetId]" routerLinkActive="active">Taches</a></li>
         <li class="list-inline-item">
-            <a  [routerLink]="['/jalon/', projetId]">Jalons</a></li>
+            <a  [routerLink]="['/jalon/', projetId]" routerLinkActive="active">Jalons</a></li>
         <li class="list-inline-item">
-            <a  routerLink="/commentaire">Commentaires</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Fichiers </a></li>
+            <a  routerLink="/commentaire" routerLinkActive="active">Commentaires</a></li>
         <li class="list-inline-item">
             <a  href="#">Utilisateurs</a></li>
     </ul>
@@ -25,12 +23,14 @@
 
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
+        <div class="container">
         <p><strong>Desciption</strong><br>
         Ajouter une Desciption</p>
         <p><i class='far fa-calendar-alt'></i>Dattes</p>
         <div *ngIf="projet" class="divdate">
              <span class="border">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>
              <span class="spandate">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
+        </div>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -41,7 +41,7 @@
             <mat-icon class="maticon">add</mat-icon>Ajouter
         </button></p> 
         
-        <h6><a   [routerLink]="resume" >Resumé</a></h6>
+        
         <app-tout-le-projet [projetId]= "projetId"></app-tout-le-projet>
         </div>
        
