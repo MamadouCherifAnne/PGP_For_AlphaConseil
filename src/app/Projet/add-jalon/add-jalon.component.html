@@ -28,7 +28,7 @@
                   
                     <mat-select formControlName="tachePrecedente" [(ngModel)]="tache.tachePrecedente" multiple>
                     <ng-container *ngFor="let tache of listTache">
-                        <mat-option  [value]="tache">{{tache.nomTache}}</mat-option>
+                        <mat-option  [value]="tache">{{tache.nomTache}}:<small>debute:({{tache.debutTache}})</small></mat-option>
                     </ng-container> 
                     </mat-select>  
                 </mat-form-field>

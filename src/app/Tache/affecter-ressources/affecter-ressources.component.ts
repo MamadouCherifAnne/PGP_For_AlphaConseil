@@ -60,6 +60,7 @@ export class AffecterRessourcesComponent implements OnInit {
     this.ressource.idTache=this.idTache;
     this.affectation.tempsPasser= this.affectationForm.get("tempsPasser").value
     this.affectation.user_task =this.ressource;
+    this.affectation.dateAffectation = new Date();
     console.log(this.affectation)
     this.userService.affectToTask(this.affectation)
     .subscribe(data=>{

@@ -5,4 +5,5 @@ export class UtilisateurAffectation{
     tempsPasser:number;
     tempsEffectuer:number;
     coutParHeure:number;
+    dateAffectation:Date;
 }

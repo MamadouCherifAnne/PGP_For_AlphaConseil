@@ -84,6 +84,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { NotificationComponent } from './notification/notification.component';
 registerLocaleData(localeFr, 'fr');
 
 
@@ -155,6 +156,7 @@ registerLocaleData(localeFr, 'fr');
     UserProfilComponent,
     UserEntrepriseComponent,
     ToutLeProjetComponent,
+    NotificationComponent,
 
   ],
   imports: [

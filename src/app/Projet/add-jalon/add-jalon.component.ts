@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import {DatePipe} from "@angular/common";
 import { ITache } from 'src/app/Tache/ITache';
@@ -15,7 +15,7 @@ import { ProjetService} from 'src/app/services/projet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from '../Projet';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
@@ -36,6 +36,7 @@ export class AddJalonComponent implements OnInit {
   constructor(private userService:UtilisateurService,
     public formBuilder:FormBuilder,
     public projetService:ProjetService,
+    @Inject (MAT_DIALOG_DATA) public data: any,
     public taskService:TacheService,
     public fenetreReference: MatDialogRef<AddJalonComponent>,
     public route:ActivatedRoute
@@ -64,5 +65,14 @@ export class AddJalonComponent implements OnInit {
   public onClose(){
     this.ajoutJalon.reset();
     this.fenetreReference.close();
+  }
+
+  //initialize
+  public initialiser(){
+    this.projetService.projectAllTasks(this.data.projet).subscribe(result=>{
+      if(result){
+        this.listTache =result;
+      }
+    });
   }
 }
