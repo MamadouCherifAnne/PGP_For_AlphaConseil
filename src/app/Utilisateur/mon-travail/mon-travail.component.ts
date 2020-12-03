@@ -5,7 +5,7 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 import { ProjetService } from 'src/app/services/projet.service';
 import { DOCUMENT } from '@angular/common';
 import {UtilisateurService} from 'src/app/services/utilisateur.service';
-
+import {TacheService} from 'src/app/services/tache.service';
 
 @Component({
   selector: 'app-mon-travail',
@@ -24,6 +24,7 @@ export class MonTravailComponent implements OnInit {
     private authService: AuthentificationService,
     private userService: UtilisateurService,
     private projetService: ProjetService,
+    private tacheService: TacheService,
 
   ) { }
 
@@ -82,7 +83,17 @@ export class MonTravailComponent implements OnInit {
       }
     }
 
-
+  public gatAllusers(idTache){
+    let users: any = null;
+    let val = 0;
+    this.tacheService.getRessoucesForTask(idTache).subscribe(ressource=>{
+      if(ressource){
+        users = ressource;
+      }
+    })
+    val = users.lenght; 
+    return val;
+  }
  
 
 }
