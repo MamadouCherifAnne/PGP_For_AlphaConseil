@@ -42,7 +42,6 @@
                         
                         <h6>{{uerTache.phase.nomTache }}<span>{{uerTache.projet.nomProjet}}</span></h6>
                         <div class="tacheclass" *ngIf="uerTache.tache != null && uerTache.tache.type !='Jalon'; else vide"> 
-                            
                             <p><i class="fas fa-check"></i>
                             <span>{{currentUser}}</span></p>
                             <p> {{uerTache.tache.nomTache}}</p>

@@ -88,7 +88,10 @@ import { NotificationComponent } from './notification/notification.component';
 
 import { TauxAvancemantComponent } from './Tache/taux-avancemant/taux-avancemant.component';
 import { ActiviteComponent } from './Projet/activite/activite.component';
+
 import { AlfaconseilinterceptorService } from './rechargeData/alfaconseilinterceptor.service';
+
+import { SecondTableauDeBordComponent } from './Projet/second-tableau-de-bord/second-tableau-de-bord.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -166,6 +169,7 @@ registerLocaleData(localeFr, 'fr');
 
     TauxAvancemantComponent,
     ActiviteComponent,
+    SecondTableauDeBordComponent,
 
 
   ],

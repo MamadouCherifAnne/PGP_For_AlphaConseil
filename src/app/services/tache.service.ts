@@ -134,15 +134,22 @@ export class TacheService {
     return this.http.get("http://localhost:8080/tache/getOwner/"+idTache,{responseType:'text',headers:this.entete});
   }
 
+
   // Recuperer les informations 
+
+  
+
   public getTachesInfo(idProjet):Observable<any>{
     return this.http.get("http://localhost:8080/tache/TasksInformation/"+idProjet,{headers:this.entete});
   }
+  //les tache, le phase et le projet en meme temps
 
   public getTacheProject(idTache):Observable<any>{
     return this.http.get("http://localhost:8080/tache/getTacheProject/"+idTache,{headers:this.entete});
   }
 
-  
+  public getPhaseDuneTache(idTache): Observable<any>{
+    return this.http.get("http://localhost:8080/tache/getPhaseDuneTache/"+idTache,{headers:this.entete});
+  }
 
 }
