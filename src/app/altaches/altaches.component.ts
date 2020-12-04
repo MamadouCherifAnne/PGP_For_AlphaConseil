@@ -15,6 +15,7 @@ import fileSaver from 'file-saver';
 import { AuthentificationService } from '../services/authentification.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 import { Utilisateur } from '../Utilisateur/Utilisateur';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-altaches',
@@ -185,19 +186,6 @@ export class AltachesComponent implements OnInit {
       return false;
     }
   }
-  /*
-  exportFile() {
-    this.rapportServiceService.printInvoice(this.idProjet).subscribe(
-      res => this.downloadFile(res.body, res.headers.get('content-type'),
-        res.headers.get('content-disposition').split("filename=")[1]));
-  }
-
-  downloadFile() {
-    const blob = new Blob([data], { type: contentType + '; charset=utf-8'});
-    fileSaver.saveAs(blob, filename);
-    // const url = window.URL.createObjectURL(blob);
-    // window.open(url, filename);
-  } */
 
   printPrint() {
     this.rapportServiceService.printInvoice(this.idProjet).subscribe((response) => {
@@ -210,18 +198,30 @@ export class AltachesComponent implements OnInit {
 
   exportDailyOrdersToPdf() {
     this.rapportServiceService.pdf(this.idProjet).subscribe(response => {
-      console.log(response);
+      
+      // definissons le header autorisation avec le token jwt
+      let headers = new Headers();
+      headers.append('Authorization','Bearer '+this.authService.getToken())
       if(response){
-      let url = window.URL.createObjectURL(response.data);
-      let a = document.createElement('a');
-      document.body.appendChild(a);
-      a.setAttribute('style', 'display: none');
-      a.setAttribute('target', 'blank');
-      a.href = url;
-      a.download = response.filename;
-      a.click();
-      window.URL.revokeObjectURL(url);
-      a.remove();
+        console.log(response);
+        let blobby = new Blob([response],{type:'application/pdf'});
+        console.log("Voici le document apres conversion en blob"+blobby);
+       
+        if(window.navigator && window.navigator.msSaveOrOpenBlob){
+          window.navigator.msSaveOrOpenBlob(blobby);
+          return ;
+        }
+
+         let url = window.URL.createObjectURL(blobby);
+        let a = document.createElement('a')
+        a.href = url;
+        a.download = "rapport_du_Projet_"+ this.projet.nomProjet+".pdf";
+        a.click();
+        setTimeout(function(){
+          // pour firefox
+          window.URL.revokeObjectURL(url);
+        },1000)
+
       }
     }, error => {
       console.log(error);

@@ -108,6 +108,11 @@ export class TacheService {
   public getAffectationOfTaskFormat(idTache):Observable<any>{
     return this.http.get<any>("http://localhost:8080/affectation/tacheAffectationsFormater/" +idTache,{headers:this.entete});
   }
+  
+  // Afficher les dernieres affectation dun utilisateur selon la date d'affectation de la tache
+  public getLatestAffectationOfUser(username):Observable<any>{
+    return this.http.get<any>("http://localhost:8080/affectation/LatestTacheToRealise/" +username);
+  }
 
   // Modifier l'affectation sur une tache donnee
   public updateAffectationOfTask(affectation){
@@ -129,9 +134,9 @@ export class TacheService {
     return this.http.get("http://localhost:8080/tache/getOwner/"+idTache,{responseType:'text',headers:this.entete});
   }
 
-  //
+  // Recuperer les informations 
   public getTachesInfo(idProjet):Observable<any>{
-    return this.http.get("http://localhost:8080/tache/TasksInformation/"+idProjet);
+    return this.http.get("http://localhost:8080/tache/TasksInformation/"+idProjet,{headers:this.entete});
   }
 
   public getTacheProject(idTache):Observable<any>{

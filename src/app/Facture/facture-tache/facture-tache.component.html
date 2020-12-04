@@ -33,11 +33,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let affect of affectations">
-                  <th scope="row" >{{affect.user_task.idUser}}</th>
-                  <th scope="row" >{{affect.tempsPasser}}</th>  
-                  <th scope="row" >{{affect.tempsEffectuer}}</th>  
-                  <th scope="row" >{{affect.coutParHeure}}</th>               
-                  <th scope="row" >{{affect.coutParHeure * affect.tempsEffectuer}}</th>  
+                  <th scope="row" >{{affect.ressources.nom}}</th>
+                  <th scope="row" >{{affect.affectation.tempsPasser}}</th>  
+                  <th scope="row" >{{affect.affectation.tempsEffectuer}}</th>  
+                  <th scope="row" >{{affect.affectation.coutParHeure}}</th>               
+                  <th scope="row" >{{affect.affectation.coutParHeure * affect.affectation.tempsEffectuer}}</th>  
               </tr>
             </tbody>
             <tfoot>

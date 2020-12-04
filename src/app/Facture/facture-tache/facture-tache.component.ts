@@ -31,11 +31,11 @@ export class FactureTacheComponent implements OnInit {
 
 
        // Appel de la methode de calcul du cout total de la facture et des information de la tache
-       this.tacheService.getAffectationOfTask(this.idTache).subscribe(affect=>{
+       this.tacheService.getAffectationOfTaskFormat(this.idTache).subscribe(affect=>{
          if(affect){
            this.affectations=affect;
            for(let afect of this.affectations){
-              this.totalCoutRessource = this.totalCoutRessource +(afect.tempsEffectuer*afect.coutParHeure)
+              this.totalCoutRessource = this.totalCoutRessource +(afect.affectation.tempsEffectuer*afect.affectation.coutParHeure)
            }
            
          }
@@ -77,6 +77,10 @@ export class FactureTacheComponent implements OnInit {
       .set(options)
       .save()
   }
-  
 
-}
+  public calculCoutFacture(coutHeure,tmpsRealiser):number{
+    console.log("Le cout / heure"+coutHeure)
+    return coutHeure*tmpsRealiser;
+  }
+ 
+  }

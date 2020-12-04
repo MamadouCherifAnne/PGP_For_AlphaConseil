@@ -44,6 +44,9 @@ export class AddJalonComponent implements OnInit {
 
     ngOnInit(){
 
+      // On charge la liste des  taches precedent le jalons
+      this.initialiser()
+
       this.ajoutJalon = this.formBuilder.group({
         "nomTache": [this.tache.nomTache,Validators.required],
         "description": this.tache.description,

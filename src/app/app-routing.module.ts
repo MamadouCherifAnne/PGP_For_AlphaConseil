@@ -39,6 +39,7 @@ import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { AuthAdminGuard } from './services/auth-admin.guard';
 import {ResumeProjetComponent} from './Projet/resume-projet/resume-projet.component';
 import {ToutLeProjetComponent} from  "./Projet/tout-le-projet/tout-le-projet.component";
+import { NotificationComponent } from './notification/notification.component';
 
 const routes: Routes = [
   
@@ -101,7 +102,8 @@ const routes: Routes = [
   {path:'tache/facture/:idTache', component:FactureTacheComponent},
 
   {path: 'commentaire/:numProjet', component: CommentComponent},
-  {path:'seConnecter', component:LoginComponent}
+  {path:'seConnecter', component:LoginComponent},
+  {path:'notifications',component:NotificationComponent}
 
 
 ];

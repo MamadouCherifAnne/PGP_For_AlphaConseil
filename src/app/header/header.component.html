@@ -20,9 +20,32 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Notification</a>
+      <li class="nav-item" *ngIf="this.authService.isLoggedIn">
+        <!--  Mettre en place les notifications -->
+        <div class="notification-wrapper" >
+          <!-- You can put an icon from Material Design icon or Fontawesome -->
+          <div class="notification-btn"  (click)="openNotification(false)">
+            <span class="mdi mdi-bell">notif</span>
+          </div>
+          <div  class="notification-content" [hidden]="!openNotif">
+            <div class="notification-header">
+              <span class="mdi mdi-settings"></span>
+              <span class="label">Notifications</span>
+            </div>
+            <mat-list *ngIf="listofNewAffectation">
+              <div class="card-body" *ngFor="let affect of listofNewAffectation">
+                <a [routerLink]="['/task/',affect.tache.numTache]" routerLinkActive="active">
+                  Affectation à {{affect.tache.nomTache}} : <small>{{affect.affectation.dateAffectation | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</small>
+                </a>
+              </div>
+            </mat-list>
+          </div>
+          
+        </div>
+        <!-- Fin de la gestion des notifications-->
+        
       </li>
+      
       <li class="nav-item">
         <a *ngIf="!this.authService.isLoggedIn" class="nav-link"  routerLinkActive="active" routerLink="/seConnecter">Login</a>
         <button *ngIf="this.authService.isLoggedIn" class="nav-link" (click)="logout()">Logout</button>
@@ -32,7 +55,7 @@
   </div>
   </div>
 </nav>
-
+<router-outlet></router-outlet>
 
 <!--<mat-toolbar color="primary">
     <span>AlphaConseil</span>

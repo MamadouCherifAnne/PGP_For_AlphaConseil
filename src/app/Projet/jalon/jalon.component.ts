@@ -73,7 +73,7 @@ export class JalonComponent implements OnInit {
        fenetreConfig.disableClose =true;
        fenetreConfig.autoFocus = true;
        fenetreConfig.width="65%";
-       fenetreConfig.data;
+       fenetreConfig.data={projet:this.projectId};
        this.fenetre.open(AddJalonComponent,fenetreConfig)
        .afterClosed().subscribe(result => {
         this.refresh();

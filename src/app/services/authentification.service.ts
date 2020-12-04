@@ -233,9 +233,10 @@ export class AuthentificationService {
 
 
     public getUserByUsername(username){
+      /* { headers: new HttpHeaders({'authorization':this.getToken()}) }*/
       let user:any;
       let service = "http://localhost:8080/utilisateur/findUsername/"+username;
-      return this.http.get(service, { headers: new HttpHeaders({'authorization':this.getToken()}) })
+      return this.http.get(service)
       .subscribe(res=>{
         if(res){
           user = res;
@@ -267,7 +268,7 @@ export class AuthentificationService {
             console.log(expired)
             console.log("La date de expiration"+date);
             // la cles est expirer on supprime la session demande d'une nouvelle connexion
-            this.doLogout();
+            //this.doLogout();
           }
           
           return verif;

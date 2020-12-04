@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../services/authentification.service';
+import { TacheService } from '../services/tache.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,37 @@ import { AuthentificationService } from '../services/authentification.service';
 })
 export class HeaderComponent implements OnInit {
 
- 
-  constructor(
-    public authService:AuthentificationService
-  ){}
+  public listofNewAffectation:any=[];
+  public currentUser:any;
 
-  ngOnInit(){}
+  public openNotif:boolean = false;
+  constructor(
+    public authService:AuthentificationService,
+    public tacheService:TacheService
+  ){
+    ;
+  }
+
+  ngOnInit(){
+    this.initialiser()
+  }
 
   logout() {
     this.authService.doLogout()
   }
 
+  openNotification(state: boolean) {
+    this.openNotif = state;
+  }
+
+  public initialiser(){
+    if(this.authService.isLoggedIn){
+      let username = this.authService.getCurrentUser();
+      this.tacheService.getLatestAffectationOfUser(username).subscribe(data=>{
+        if(data){
+          this.listofNewAffectation = data;
+        }
+      });
+    }
+  }
 }

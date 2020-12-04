@@ -82,12 +82,13 @@ import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entre
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
-import { NgApexchartsModule } from "ng-apexcharts";
+import {NgApexchartsModule}from "ng-apexcharts"; 
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NotificationComponent } from './notification/notification.component';
 
 import { TauxAvancemantComponent } from './Tache/taux-avancemant/taux-avancemant.component';
 import { ActiviteComponent } from './Projet/activite/activite.component';
+import { AlfaconseilinterceptorService } from './rechargeData/alfaconseilinterceptor.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -180,18 +181,16 @@ registerLocaleData(localeFr, 'fr');
     FieldsetModule,
 
     NgxPaginationModule,
-
-    NgApexchartsModule,
+    NgxPaginationModule,
     Ng2GoogleChartsModule,
+    NgApexchartsModule
 
   ],
 
   providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: AuthInterceptor ,
-        multi: true
-      }
+        
+        {provide: HTTP_INTERCEPTORS, useClass: AlfaconseilinterceptorService, multi: true},
+     
     
   ],
   bootstrap: [AppComponent],

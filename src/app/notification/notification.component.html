@@ -1,1 +1,23 @@
-<p>notification works!</p>
+<div class="container">
+    <div class="row">
+            <!--  Afficher les affectations faites les trois dernieres jours-->
+            <div *ngIf="listofNewAffectation">
+                
+                <div *ngIf="listofNewAffectation.length != 0; else pasvide">
+                    <mat-list *ngFor="let affect of listofNewAffectation">
+                      
+                       <small>{{affect.affectation.dateAffectation}}</small>  : <h6>Vous avez été à la tâche <span><a [routerLink]="['/task/', affect.tache.numTache]">{{affect.tache.nomTache}}</a></span></h6>
+                    </mat-list>
+                </div>
+                
+                <ng-template #pasvide>
+                    <div>
+                         <h4>Vous n'êtes affecté à aucune des tâches durant ces 3 derniers jours </h4>
+                     </div>
+                </ng-template>
+                
+                   
+                
+            </div>
+    </div>
+</div>

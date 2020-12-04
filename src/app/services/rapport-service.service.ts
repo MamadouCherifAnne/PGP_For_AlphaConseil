@@ -34,10 +34,11 @@ export class RapportServiceService {
 
   }
 
-  pdf(id): any {
+  pdf(id): Observable<any> {
     let headers = new HttpHeaders({'authorization':this.jeton})
     console.log("la cle de eport pdf est"+this.jeton)
     const httpOptions = {
+      headers: this.entete,
       //responseType: 'arraybuffer' as 'json'
       responseType  : 'blob' as 'json'      //This also worked
     };

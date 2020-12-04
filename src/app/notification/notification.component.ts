@@ -10,7 +10,7 @@ import { UtilisateurService } from '../services/utilisateur.service';
 })
 export class NotificationComponent implements OnInit {
 
-  public listofNewAffectation:any;
+  public listofNewAffectation:any[];
   public currentUser:any;
   constructor(public tacheService:TacheService,
     public authService:AuthentificationService ,
