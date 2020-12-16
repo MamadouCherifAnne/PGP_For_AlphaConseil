@@ -1,0 +1,94 @@
+<div class="container-fluid divclass">
+    <br>
+    <ul class="list-inline border-bottom">
+        <li class="list-inline-item">
+            <a  [routerLink]="['../../projet/', idProjet]" routerLinkActive="active">Vue d'ensemble</a></li>
+        
+        <li class="list-inline-item">
+            <a  [routerLink]="['../../Taches/', idProjet]" routerLinkActive="active">Taches</a></li> 
+        <li class="list-inline-item">
+            <a  [routerLink]="['../../jalon/', idProjet]" routerLinkActive="active">Jalons</a></li>
+        <li class="list-inline-item">
+            <a  routerLink="../../commentaire" routerLinkActive="active">Commentaires</a></li>
+            <li class="list-inline-item">
+                <a  routerLink="['../../equipeprojet/', idProjet]" routerLinkActive="active">Membres</a></li>
+        
+    </ul>
+</div>
+
+
+<mat-sidenav-container  >
+   
+    <mat-sidenav mode="side" opened *ngIf="currentProject">
+        <div class="container-flud">
+        <br>
+        <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Informations:</h6>
+        <br>
+        <ul class="list-group" >
+            <li class="list-group-item  breadcrumb" style="border: none">
+                Débute: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
+            </li>
+
+            <li class="list-group-item  breadcrumb" style="border: none">
+                Fin: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
+            </li>
+        </ul>
+    </div>
+    </mat-sidenav>
+<mat-sidenav-content> 
+    <div class="container-flud headline">
+        <h5>Membres du Projet</h5>
+    </div>
+
+        
+<br><br>
+
+<div class="search-div">
+    <button  class="btn-success" mat-raised-button (click)="addMembre()" >
+        <mat-icon>add</mat-icon>Ajouter
+    </button>
+        <mat-form-field class="search-form-field">
+            <input matInput [(ngModel)]="rechercheKey" placeholder="Rechercher" autocomplete="off" (keyup)="appliquerLeFiltre()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="viderRecherche()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    
+</div>
+<div class="container">
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="userDataSource" matSort>
+    
+            <ng-container matColumnDef="username" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header>  Utilisateur </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
+                </ng-container>
+            
+        
+            <!-- Prenom -->
+            <ng-container matColumnDef="telephone">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.telephone}} </mat-cell>
+            </ng-container>
+    
+            <!-- Prenom -->
+            <ng-container matColumnDef="Role">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Poste  </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.projectRole}} </mat-cell>
+            </ng-container>
+            <!--Footer de la table des depenses-->
+            <ng-container matColumnDef="recharge">
+                <mat-footer-cell *matFooterCellDef colspan="6">Recharge....</mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="6">Pas de Données</mat-footer-cell>
+            </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-footer-row *matFooterRowDef="['recharge']" [ngClass]="{'hide':userDataSource!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(userDataSource!=null && userDataSource.data.length==0)}"></mat-footer-row>
+    </mat-table>
+        <mat-paginator [pageSizeOptions]="[2,15,25,35]" [pageSize]="2"></mat-paginator>
+    </div>
+    </div>
+</mat-sidenav-content>

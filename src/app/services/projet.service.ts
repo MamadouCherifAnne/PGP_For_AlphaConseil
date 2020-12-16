@@ -79,4 +79,18 @@ export class ProjetService {
   public addCommentToProject(comment):Observable<any>{
     return this.http.post("http://localhost:8080/projet/addCommentofProjet",comment,{headers:this.entete})
   }
+  // Ajout de membre dans un projet
+
+  public addMembreToProject(membre):Observable<any>{
+    return this.http.post("http://localhost:8080/projet/addMembreToProject",membre);
+  }
+
+   // afficher les membres d'un projet
+   public getProjectMembre(numProjet): Observable<any>{
+    return this.http.get<any>("http://localhost:8080/projet/projectMembres/"+numProjet,{headers:this.entete});
+  }
+  // voir s'il peut intervenir dans un projet
+  public getRoleInProject(idProjet,idUser){
+    return this.http.get("http://localhost:8080/projet/getRoleInProject/"+idProjet+"/"+idUser,{headers:this.entete});
+  }
 }

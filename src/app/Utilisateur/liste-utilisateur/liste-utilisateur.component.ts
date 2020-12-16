@@ -22,11 +22,11 @@ export class ListeUtilisateurComponent implements OnInit {
   displayedColumns: string [] = ['icon','username', 'prenom', 'email', 'adresse', 'telephone','Action'];
     
   constructor(private userService:UtilisateurService,
-    private authService:AuthentificationService, 
-     private router:Router, 
-     private route:ActivatedRoute,
-     private changeDetect: ChangeDetectorRef,
-     private fenetre:MatDialog) { }
+    public authService:AuthentificationService, 
+     public router:Router, 
+     public route:ActivatedRoute,
+     public changeDetect: ChangeDetectorRef,
+     public fenetre:MatDialog) { }
 
   ngOnInit() {
       // Charger la liste des utilisaterus au mment de llancement de la page

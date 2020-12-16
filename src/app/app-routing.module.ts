@@ -40,6 +40,7 @@ import { AuthAdminGuard } from './services/auth-admin.guard';
 import {ResumeProjetComponent} from './Projet/resume-projet/resume-projet.component';
 import {ToutLeProjetComponent} from  "./Projet/tout-le-projet/tout-le-projet.component";
 import { NotificationComponent } from './notification/notification.component';
+import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
 
 const routes: Routes = [
   
@@ -103,7 +104,8 @@ const routes: Routes = [
 
   {path: 'commentaire/:numProjet', component: CommentComponent},
   {path:'seConnecter', component:LoginComponent},
-  {path:'notifications',component:NotificationComponent}
+  {path:'notifications',component:NotificationComponent},
+  {path: 'equipeprojet/:idprojet', component: MembreProjetComponent,canActivate:[AuthGuard]},
 
 
 ];

@@ -92,6 +92,8 @@ import { ActiviteComponent } from './Projet/activite/activite.component';
 import { AlfaconseilinterceptorService } from './rechargeData/alfaconseilinterceptor.service';
 
 import { SecondTableauDeBordComponent } from './Projet/second-tableau-de-bord/second-tableau-de-bord.component';
+import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
+import { AddMembreComponent } from './Projet/membre-projet/add-membre/add-membre.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -170,6 +172,8 @@ registerLocaleData(localeFr, 'fr');
     TauxAvancemantComponent,
     ActiviteComponent,
     SecondTableauDeBordComponent,
+    MembreProjetComponent,
+    AddMembreComponent,
 
 
   ],
@@ -211,6 +215,7 @@ registerLocaleData(localeFr, 'fr');
     EditProjetComponent,
     UpdateRoleComponent,
     AddJalonComponent,
-    UpdateAffectationComponent],
+    UpdateAffectationComponent,
+    AddMembreComponent],
 })
 export class AppModule { }

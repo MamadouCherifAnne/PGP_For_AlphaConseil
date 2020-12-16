@@ -10,6 +10,7 @@ import { UtilisateurAffectation } from 'src/app/Utilisateur/UtilisateurAffectati
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {EmailService} from 'src/app/services/email.service';
 import {Mail} from 'src/app/Email/email';
+import { ProjetService } from 'src/app/services/projet.service';
 
 
 @Component({
@@ -19,12 +20,13 @@ import {Mail} from 'src/app/Email/email';
 })
 export class AffecterRessourcesComponent implements OnInit {
 
-  affectationForm: FormGroup;
-  message: any;
+  public affectationForm: FormGroup;
+  public message: any;
   ressource: UserToTask = new UserToTask();
-  affectation: UtilisateurAffectation = new UtilisateurAffectation();
+  public affectation: UtilisateurAffectation = new UtilisateurAffectation();
   allPhases: any;
   idTache:number;
+  public idProjet:number;
   allUsers:any;
   mail : Mail = new Mail();
   ceTache : any;
@@ -34,6 +36,7 @@ export class AffecterRessourcesComponent implements OnInit {
   constructor(private tacheService: TacheService ,
     private userService:UtilisateurService,
     private emailService: EmailService,
+    public projetService:ProjetService,
     private phaseService:PhaseService,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -42,12 +45,19 @@ export class AffecterRessourcesComponent implements OnInit {
 
   ngOnInit() {
     // Preparation du formulaire d' affectation de ressources a une tache
+    this.idProjet=this.data.projet;
     this.affectationForm = this.formBuilder.group({
     "ressources": [this.ressource.idUser, [Validators.required]],
     "tempsPasser": [this.affectation.tempsPasser, [Validators.required]]
     })
     this.idTache=this.data.tache.numTache
-    this.userService.getUsers().subscribe((data)=>{
+    /*this.userService.getUsers().subscribe((data)=>{
+      if(data){
+      this.allUsers=data;
+      }
+    });*/
+
+    this.projetService.getProjectMembre(this.idProjet).subscribe((data)=>{
       if(data){
       this.allUsers=data;
       }

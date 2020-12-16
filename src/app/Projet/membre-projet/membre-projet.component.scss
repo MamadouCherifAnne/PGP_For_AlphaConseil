@@ -1,0 +1,146 @@
+mat-sidenav-container{
+    height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content{
+    padding: 16px;
+}
+
+mat-sidenav{
+    width: 300px;
+}
+
+mat-sidenav-content{
+    background-color: white;
+}
+
+.divclass{
+  margin-bottom: 20px;
+  ul {
+      margin-bottom: 15px;
+      a{
+        text-decoration: none;
+        color: gray;
+        padding: 0 10px 0 20px;
+      } 
+    li .list-inline-item{
+       float: right;
+       margin-left:30px;
+       margin-right:30px;
+       margin-bottom: 15px;     
+      
+    }
+}
+}
+
+ 
+
+.fa-tasks{
+  margin-right: 8px;
+}
+
+
+.list-group-item{
+    margin-bottom: -6px;
+    margin-top: -6px;  
+}
+
+
+.headline h5, 
+ p {
+    display: inline-block;
+    padding: 25px;
+
+}
+
+.headline p{
+    float:right;
+}
+
+
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+form.normal-form{
+  margin: 10px;
+}
+
+.controles-container{
+  width: 100%;
+  padding: 5%;
+}
+
+.controles-container > * {
+  width: 100%;
+}
+
+textarea .textarea{
+  width: 100%;
+}
+
+.button-row button{
+  margin: 5px;
+}
+
+.matgp{
+  margin-right: 10px;
+}
+
+span{
+  float: right;
+}
+
+.btAjtache{
+  float: left;
+}
+
+.sapantache{
+  float: left;
+  margin-left: 5px;
+}
+
+.btnlight{
+  margin: 2px;
+}
+
+.mb-0 :hover .matbtn button{
+  display: block;
+}
+
+a.active{
+  border-bottom:4 px solid;
+  border-bottom-color: green;
+}
+.hide{
+  display: none;
+}
+/* mat table scss*/
+mat-footer-row mat-footer-cell{
+  justify-content: center;
+  font-style: italic;
+}
+.search-div{
+  margin:15px
+}
+.search-form-field{
+  width: 60%;
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: azure;
+  border-radius: 5px;
+}
+.search-form-field div.mat-form-field-underline{
+  display: none;
+}

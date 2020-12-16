@@ -10,8 +10,9 @@
         <a  [routerLink]="['../../jalon/', idProjet]" routerLinkActive="active">Jalons</a></li>
     <li class="list-inline-item">
         <a  routerLink="../../commentaire" routerLinkActive="active">Commentaires</a></li>
-    <li class="list-inline-item">
-        <a  href="#">Utilisateurs</a></li>
+        <li class="list-inline-item">
+            <a  [routerLink]="['../../equipeprojet/', idProjet]" routerLinkActive="active">Membres</a></li>
+    
 </ul>
 </div>
 <mat-sidenav-container>

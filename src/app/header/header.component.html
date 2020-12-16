@@ -51,8 +51,8 @@
       </li>
       
       <li class="nav-item">
-        <a *ngIf="!this.authService.isLoggedIn" class="nav-link"  routerLinkActive="active" routerLink="/seConnecter">Login</a>
-        <button *ngIf="this.authService.isLoggedIn" class="nav-link" (click)="logout()">Logout</button>
+        <a *ngIf="!this.authService.isLoggedIn"   routerLinkActive="active" routerLink="/seConnecter">Login</a>
+        <button  *ngIf="this.authService.isLoggedIn"  (click)="logout()">Logout</button>
       </li>
       
     </ul>

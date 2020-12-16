@@ -78,7 +78,7 @@ export class AltachesComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    dialogConfig.data = {tache: element};
+    dialogConfig.data = {tache: element, projet:this.idProjet};
     this.dialog.open(AffecterRessourcesComponent, dialogConfig);
 
     }else{

@@ -157,7 +157,7 @@ export class AffectationTacheComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    dialogConfig.data = {tache: this.currentTache};
+    dialogConfig.data = {tache: this.currentTache,projet:this.tacheProject};
     this.fenetre.open(AffecterRessourcesComponent, dialogConfig)
     .afterClosed()
     .subscribe(result => {
