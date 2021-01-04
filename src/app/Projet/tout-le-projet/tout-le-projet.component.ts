@@ -10,6 +10,7 @@ import {
   ApexResponsive,
   ApexChart
 } from "ng-apexcharts";
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -46,7 +47,7 @@ export class ToutLeProjetComponent implements OnInit, AfterViewInit {
     } */
 
   //////////////////////////////////////////////////////
-  @ViewChild('pieChart',{static:false}) pieChart: ElementRef
+  @ViewChild('pieChart',{static:true}) pieChart: ElementRef
 
   drawChart = () => {
 
@@ -76,11 +77,12 @@ export class ToutLeProjetComponent implements OnInit, AfterViewInit {
 
   @ViewChild("chart",{static:false}) chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-
+  public isAdmin:boolean = false;
   
-  constructor(private tacheService: TacheService) { }
+  constructor(private tacheService: TacheService,public authService:AuthentificationService) { }
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin;
     console.log("......///....");
     this.tacheService.getTachesInfo(this.projetId).subscribe(data=>{
       if(data){

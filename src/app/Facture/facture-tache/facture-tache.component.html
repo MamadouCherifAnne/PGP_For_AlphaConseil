@@ -14,7 +14,7 @@
 <br><br>
 <div class="row">
     <mat-toolbar>
-        <span> Cout Totale de Tache : {{totalCoutRessource+totalDepense}} </span>
+        <span> Cout Totale de Tache : {{totalCoutRessource+totalDepense | currency:"MRU":'symbol':'':'fr'}} </span>
     </mat-toolbar>
 </div>
 
@@ -36,14 +36,14 @@
                   <th scope="row" >{{affect.ressources.nom}}</th>
                   <th scope="row" >{{affect.affectation.tempsPasser}}</th>  
                   <th scope="row" >{{affect.affectation.tempsEffectuer}}</th>  
-                  <th scope="row" >{{affect.affectation.coutParHeure}}</th>               
+                  <th scope="row" >{{affect.affectation.coutParHeure | currency:"MRU":'symbol':'':'fr'}}</th>               
                   <th scope="row" >{{affect.affectation.coutParHeure * affect.affectation.tempsEffectuer}}</th>  
               </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <th scope="col" colspan="4">Total</th>
-                    <th scope="col" colspan="1"> {{totalCoutRessource}} </th>
+                    <th scope="col" colspan="1"> {{totalCoutRessource | currency:"MRU":'symbol':'':'fr'}} </th>
                 </tr>
             </tfoot>
           </table>
@@ -63,18 +63,18 @@
             <tbody>
               <tr *ngFor="let dep of depenses">
                   <th scope="row" >{{dep.libelle}}</th>
-                  <th scope="row" >{{dep.coutDepense}}</th>  
+                  <th scope="row" >{{dep.coutDepense | currency:"MRU":'symbol':'':'fr'}}</th>  
               </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <th scope="col" colspan="1">Total</th>
-                    <th scope="col" colspan="1"> {{totalDepense}} </th>
+                    <th scope="col" colspan="1"> {{totalDepense | currency:"MRU":'symbol':'':'fr'}} </th>
                 </tr>
             </tfoot>
           </table>
 </div>
 <div class="container-flud headline">
- <p> date edition : 15/09/2020 </p>
+ <p> {{getCurrentDate |date: 'EEEE d MMMM y HH:mm' : '' : 'fr-FR'}}</p>
 </div>
 </div>

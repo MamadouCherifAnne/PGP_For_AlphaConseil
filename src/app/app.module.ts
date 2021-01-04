@@ -94,6 +94,8 @@ import { AlfaconseilinterceptorService } from './rechargeData/alfaconseilinterce
 import { SecondTableauDeBordComponent } from './Projet/second-tableau-de-bord/second-tableau-de-bord.component';
 import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
 import { AddMembreComponent } from './Projet/membre-projet/add-membre/add-membre.component';
+import { PgpDatePipe } from './directives/PgpDatePipe';
+import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -175,7 +177,9 @@ registerLocaleData(localeFr, 'fr');
     MembreProjetComponent,
     AddMembreComponent,
 
+    PgpDatePipe,
 
+    UpdateDepenseComponent
   ],
   imports: [
     BrowserModule,
@@ -216,6 +220,8 @@ registerLocaleData(localeFr, 'fr');
     UpdateRoleComponent,
     AddJalonComponent,
     UpdateAffectationComponent,
-    AddMembreComponent],
+    AddMembreComponent,
+    AddDepenseComponent  
+  ],
 })
 export class AppModule { }

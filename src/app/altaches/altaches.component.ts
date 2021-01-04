@@ -23,22 +23,24 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./altaches.component.scss']
 })
 export class AltachesComponent implements OnInit {
-  idProjet : any;
-  allphase : any;
-  countPhase: number;
-  iteration: number =0;
-  projet: any;
-  listTache: any;
-  deleteMessage: any;
-  ajourdhuit = new Date();
-  tache: Tache = new Tache;
-  currentUser:Utilisateur;
-  mesTaches:any[];
-  isAdmin:boolean;
-  isSuperAdmin:boolean;
-  ownProject:any[]
-  display = [];
-  cacher = [];
+  public idProjet : any;
+  public allphase : any;
+  public countPhase: number;
+  public iteration: number =0;
+  public projet: any;
+  public listTache: any;
+  public deleteMessage: any;
+  public ajourdhuit = new Date();
+  public tache: Tache = new Tache;
+  public currentUser:Utilisateur;
+  public mesTaches:any[];
+  public isAdmin:boolean;
+  public isSuperAdmin:boolean;
+  public ownProject:any;
+  public display = [];
+  public hasAccess:boolean = false;
+  public isChefProjet:boolean =false;
+  public cacher = [];
  // togleDisplay(){
   //this.display = !this.display
   //}
@@ -52,7 +54,7 @@ export class AltachesComponent implements OnInit {
   ngOnInit() {
     this.idProjet = parseInt(this.route.snapshot.paramMap.get('id')); 
     this.isAdmin = this.authService.isAdmin;
-    this.isSuperAdmin = this.isSuperAdmin;
+    this.isSuperAdmin = this.authService.isSuperAdmin;
  
    //...................Recuperation de la liste de phase d'un projet....................    
     this.refresh()
@@ -88,6 +90,10 @@ export class AltachesComponent implements OnInit {
 
 
   refresh(){
+
+    // voir si l'utilisateur a le droit d4ajouter des taches
+    
+    ///
     this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
       if(data){
         this.allphase = data;
@@ -104,7 +110,9 @@ export class AltachesComponent implements OnInit {
         if(data != null){
           this.currentUser = data;
           this.mesTaches = this.currentUser.taches
-          this.isOwnerOfProject();
+          this.userHasAccessToProjet(this.idProjet,this.currentUser.idUser);
+          
+         // this.userHasAccessToProje()
          console.log("les taches que jai creer "+this.mesTaches.length)
         }
       })
@@ -248,6 +256,7 @@ export class AltachesComponent implements OnInit {
 
 // verification si il s'agit du chef du projet
     public isOwnerOfProject(){
+      /*
       this.currentUser.isChefProjet =0;
       if(this.currentUser.projets){
         console.log(this.currentUser.projets.length)
@@ -260,7 +269,9 @@ export class AltachesComponent implements OnInit {
         }
       }
       
-    }
+    }*/
+    //this.userHasAccessToProjet()
+    
     }
 
     // Compter la longuer des taches d'une phase
@@ -274,5 +285,39 @@ export class AltachesComponent implements OnInit {
         }
       }
       return cpt;
+    }
+
+
+    // role de utilisateru dans le projet
+    roleInProject(idProjet,idUser):String{
+   
+      return  this.projetService.HasActionInProject(idProjet,idUser);
+    }
+
+    public userHasAccessToProjet(idProjet,idUser){
+      let role ;
+      this.projetService.getRoleInProject(idProjet,idUser).subscribe(result=>{
+        if(result){
+          if(result == 1){
+            role ="acteur";
+            this.hasAccess =true;
+          }
+          if(result==2){
+            this.isChefProjet = true;
+          }
+          console.log("IS chef de projet +"+this.isChefProjet)
+          console.log("Has access to do something+"+this.hasAccess)
+        }
+      });
+      
+     /* console.log("Voici le role de user courant  ::"+role);
+      if(this.isAdmin==true || role !="client"){
+          this.hasAccess =true
+          if(role == "responsable"){
+            this.ischefProjet = true;
+          }
+      }
+      console.log("IS chef de projet +"+this.ischefProjet)
+          console.log("Has access to do something+"+this.hasAccess)*/
     }
 }

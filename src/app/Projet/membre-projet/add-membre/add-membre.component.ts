@@ -35,10 +35,10 @@ export class AddMembreComponent implements OnInit {
       let idMembre = new ProjectUserID();
       idMembre.idProjet = this.data.projet;
       idMembre.idUser =
-      this.membre.projectRole=this.membreForm.get('role').value;
-      console.log(this.membreForm.get('activiste').value)
+      this.membre.role=this.membreForm.get('role').value;
+      console.log(this.membreForm.get('role').value)
       let id = this.membreForm.get('activiste').value;
-      console.log("voici le num de user"+id)
+      console.log("voici le num de user"+this.membreForm.get('role').value)
       idMembre.idProjet = this.data.projet;
       idMembre.idUser =id;
       

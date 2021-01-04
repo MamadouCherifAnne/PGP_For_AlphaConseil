@@ -37,7 +37,7 @@
           
          
             <div class="col-sm-8">
-                <p><button class="btn btn-success btn-sm btnAjout" type="button" (click)="ajouterPhase()">Ajouter une phase</button>
+                <p><button class="btn btn-success btn-sm btnAjout" *ngIf="isChefProjet==true || isAdmin==true" type="button" (click)="ajouterPhase()">Ajouter une phase</button>
 
                     <button  type="submit" class="btn btn-light btn-sm btnlight" (click)="goToGanttProject()">Voir Gantt</button>
                     <button color="primary" class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
@@ -62,7 +62,7 @@
     <div class="card" *ngFor="let phase of allphase; let i=index;">
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-                <button color="primary" class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
+                <button color="primary"  *ngIf="isChefProjet == true" class="matbtn" mat-icon-button [matMenuTriggerFor]="menu" >
                     <mat-icon>more_horiz</mat-icon>  </button>
                 <mat-menu #menu="matMenu">
                 <button mat-menu-item ><span>Supprimer cette phase</span></button>
@@ -89,7 +89,7 @@
                         
                         
                        <div *ngIf="tache != null && tache.type != 'Jalon' && tache.tauxAvancement !=100; else vide">
-                        <button class="matbtn" mat-icon-button *ngIf="isCreateur(tache) == true || isSuperAdmin == true || currentUser.isChefProjet == 1 " [matMenuTriggerFor]="menu" >
+                        <button class="matbtn" mat-icon-button *ngIf="isCreateur(tache) == true || isSuperAdmin == true || isChefProjet == true" [matMenuTriggerFor]="menu" >
                             <mat-icon>more_horiz</mat-icon>
                          </button>
                           <a  [routerLink]="['/task/', tache.numTache]">  {{tache.nomTache}} </a>

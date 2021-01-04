@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { ITache } from '../Tache/ITache';
 import { AuthentificationService } from './authentification.service';
 
-
+import{environment} from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,63 +23,63 @@ export class UtilisateurService {
   }
 
   public addUser(user){
-    return this.http.post("http://localhost:8080/utilisateur/new/",user,{responseType:'text'})
+    return this.http.post(environment.alfaApiUrl+"/utilisateur/new/",user,{responseType:'text'})
   }
 
   public updateUser(user, idUser){
-    return this.http.post("http://localhost:8080/utilisateur/update/"+idUser,user,{responseType:'text',headers:this.entete})
+    return this.http.post(environment.alfaApiUrl+"/utilisateur/update/"+idUser,user,{responseType:'text',headers:this.entete})
   }
 
   // Delete un utilisateur
   public deleteUser(idUser){
 
-    return this.http.post("http://localhost:8080/utilisateur/delete/"+idUser,{headers:this.entete})
+    return this.http.post(environment.alfaApiUrl+"/utilisateur/delete/"+idUser,{})
   }
   
 
   public getUsers() : Observable<IUtilisateur[]>{
-    return this.http.get<IUtilisateur[]>("http://localhost:8080/utilisateur/all");
+    return this.http.get<IUtilisateur[]>(environment.alfaApiUrl+"/utilisateur/all");
   }
   // find user by name
   public getUserByIdUser(idUser){
-    return this.http.get("http://localhost:8080/utilisateur/findUser/"+idUser);
+    return this.http.get(environment.alfaApiUrl+"/utilisateur/findUser/"+idUser);
   }
 
 
   public getUserByUsername(username):Observable<any>{
-    return this.http.get("http://localhost:8080/utilisateur/findUsername/"+username)
+    return this.http.get(environment.alfaApiUrl+"/utilisateur/findUsername/"+username)
 
   }
 
   public getAlluserTasks(iduser): Observable<any>{
-    return this.http.get("http://localhost:8080/utilisateur/tasksUser/"+iduser);
+    return this.http.get(environment.alfaApiUrl+"/utilisateur/tasksUser/"+iduser);
   }
 
   // Affecter un utilisateur a une tache
   public affectToTask(userAffect){
-    return this.http.post("http://localhost:8080/affectation/add/",userAffect,{responseType:'text',headers:this.entete})
+    return this.http.post(environment.alfaApiUrl+"/affectation/add/",userAffect,{responseType:'text'})
   }
   // Afficher toutes les taches a realise de l'utilisateur
   public getTaskToRealise(idUser): Observable<any>{
-  return this.http.get("http://localhost:8080/utilisateur/tacheToRealise/"+idUser,{headers:this.entete});
+  return this.http.get(environment.alfaApiUrl+"/utilisateur/tacheToRealise/"+idUser);
   }
 
   // ENvoie de message A un utilisateur
   public sendMessageToUser(message){
-    return this.http.post("http://localhost:8080/message/sendMessage",message,{headers:this.entete});
+    return this.http.post(environment.alfaApiUrl+"/message/sendMessage",message);
   }
   //Modifier etat du message
   public modifEtatMessage(idmessage){
-    return this.http.post("http://localhost:8080/message/modifEatMessage/"+idmessage,{headers:this.entete});
+    return this.http.post(environment.alfaApiUrl+"/message/modifEatMessage/"+idmessage,{responseType:'text'});
   }
 
   // recuperer mes messages
   public getMessageRecieved(idUser): Observable<any>{
-    return this.http.get("http://localhost:8080/utilisateur/boiteReception/"+idUser,{headers:this.entete});
+    return this.http.get(environment.alfaApiUrl+"/utilisateur/boiteReception/"+idUser);
     }
    // recuperer mes messages non lu
    public getMessageRecievedNonLus(username): Observable<any>{
-    return this.http.get("http://localhost:8080/utilisateur/messageNonLus/"+username,{headers:this.entete});
+    return this.http.get(environment.alfaApiUrl+"/utilisateur/messageNonLus/"+username);
     }
 
 }

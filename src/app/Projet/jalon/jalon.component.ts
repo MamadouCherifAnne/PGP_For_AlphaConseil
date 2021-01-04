@@ -17,6 +17,8 @@ import { Projet } from '../Projet';
 import {AddJalonComponent} from '../add-jalon/add-jalon.component'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatDialog,MatDialogConfig, MatTableDataSource} from '@angular/material'
+import { Utilisateur } from 'src/app/Utilisateur/Utilisateur';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 
 @Component({
@@ -27,31 +29,43 @@ import {MatDialog,MatDialogConfig, MatTableDataSource} from '@angular/material'
 export class JalonComponent implements OnInit {
 
  
-  tache:Tache
-  preced:object[] =[];
-  taskfield: object;
-  ajoutJalon:FormGroup;
-  jalons:ITache[]
-  lateJalon:ITache[]=[]
-  nombreJalon:number
-  projectId:number
-
-  constructor(private userService:UtilisateurService,
-    private formBuilder:FormBuilder,
-    private projetService:ProjetService,
-    private fenetre:MatDialog,
-    private taskService:TacheService,
-    private route:ActivatedRoute,
+  public tache:Tache
+  public preced:object[] =[];
+  public taskfield: object;
+  public ajoutJalon:FormGroup;
+  public jalons:ITache[]
+  public lateJalon:ITache[]=[]
+  public nombreJalon:number
+  public projectId:number
+  public projectOwner:Utilisateur;
+  public isOwner : boolean = false;
+  constructor(public userService:UtilisateurService,
+    public formBuilder:FormBuilder,
+    public projetService:ProjetService,
+    public fenetre:MatDialog,
+    public taskService:TacheService,
+    public authService:AuthentificationService,
+    public route:ActivatedRoute,
     ){}
 
     ngOnInit(){
       this.projectId = parseInt(this.route.snapshot.paramMap.get('id'));
-     
-      // Recuperer tout les jalons
+      // recuperer le chef de ce projet 
+      this.projetService.getProjectOwner(this.projectId).subscribe(result=>{
+      if(result){
+        this.projectOwner =result;
+        console.log(this.projectOwner.username +" :::: ===   ")
+        if( this.projectOwner.username == this.authService.getCurrentUser()){
+          this.isOwner = true;
+        }
+      }
+    });
+   /*   // Recuperer tout les jalons
       this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
         if(data){
           this.jalons=data;
           this.nombreJalon=this.jalons.length
+          
           for(let j of this.jalons){
             if(new Date(j.debutTache ) < new Date()){
               this.lateJalon.push(j);
@@ -60,7 +74,7 @@ export class JalonComponent implements OnInit {
             }
             
         } 
-      });
+      });*/
       }
     
 
@@ -82,7 +96,7 @@ export class JalonComponent implements OnInit {
     }
   
     refresh() {
-     
+
       this.projetService.getProjectJalons(this.projectId ).subscribe((data)=>{
         if(data){
           this.jalons=data;
@@ -95,5 +109,8 @@ export class JalonComponent implements OnInit {
         } 
       });
     }
+
+    //verification si il s'agit du chef du projet
+
     
   }

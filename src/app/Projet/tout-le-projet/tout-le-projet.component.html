@@ -1,7 +1,7 @@
 <div class="container">
 <hr>
    
-   <div *ngIf="infoTaches"  #pieChart style="width: 50vw; height: 50vh;" class="divChart"></div>
+   <div *ngIf="infoTaches | async"  #pieChart style="width: 50vw; height: 50vh;" class="divChart"></div>
    <!--<div class="seconddiv">
       <hr>
       <h6>Résumé</h6>

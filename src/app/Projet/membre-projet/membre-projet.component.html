@@ -9,10 +9,11 @@
         <li class="list-inline-item">
             <a  [routerLink]="['../../jalon/', idProjet]" routerLinkActive="active">Jalons</a></li>
         <li class="list-inline-item">
-            <a  routerLink="../../commentaire" routerLinkActive="active">Commentaires</a></li>
+            <a  [routerLink]="['../../commentaire',idProjet]" routerLinkActive="active">Commentaires</a></li>
             <li class="list-inline-item">
-                <a  routerLink="['../../equipeprojet/', idProjet]" routerLinkActive="active">Membres</a></li>
-        
+                <a  [routerLink]="['../../equipeprojet/', idProjet]" routerLinkActive="active">Membres</a></li>
+                
+                
     </ul>
 </div>
 
@@ -75,6 +76,31 @@
             <ng-container matColumnDef="Role">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Poste  </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.projectRole}} </mat-cell>
+            </ng-container>
+
+            <!-- ACTION  SUR LE MEMBRE -->
+            <ng-container matColumnDef="Action" >
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <button  mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon-button with a menu">
+                        <mat-icon>more_horiz</mat-icon>
+                      </button>
+        
+                      <mat-menu #menu="matMenu" >
+                            <!-- Gantt Utilisateur -->
+                        
+                            
+                            <button mat-menu-item color="primary" (click)="goToUserDetails(element.idUser)"> 
+                                <span>voir utilisateur</span>
+                        </button>
+                            
+                      
+        
+                        <button mat-menu-item color="primary" (click)="goToDeleteMembre(element.idUser)"> 
+                            Supprimer 
+                    </button>
+                        </mat-menu>
+                </mat-cell>
             </ng-container>
             <!--Footer de la table des depenses-->
             <ng-container matColumnDef="recharge">

@@ -29,7 +29,7 @@ export class TableauDeBordComponent implements OnInit {
     this.userService.getMessageRecievedNonLus(username).subscribe(data=>{
       if(data){
         this.msgLu = data;
-        this.messageNonLu=this.msgLu;
+        this.messageNonLu=this.msgLu.msgNonLu;
         console.log("les messaes non lu"+data);
       }
     });

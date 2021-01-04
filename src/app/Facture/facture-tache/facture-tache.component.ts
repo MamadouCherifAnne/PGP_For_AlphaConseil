@@ -82,5 +82,10 @@ export class FactureTacheComponent implements OnInit {
     console.log("Le cout / heure"+coutHeure)
     return coutHeure*tmpsRealiser;
   }
+
+ 
+  public get getCurrentDate():Date{
+    return new Date();
+  }
  
   }

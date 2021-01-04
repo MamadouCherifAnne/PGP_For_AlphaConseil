@@ -3,12 +3,14 @@ import{Observable} from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Tache } from 'src/app/Tache/Tache';
 import { AuthentificationService } from './authentification.service';
-
+import {environment} from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class FichierService {
  
+  
+  public host = environment.alfaApiUrl;
   entete:any ;
   jeton:string;
 
@@ -20,7 +22,7 @@ export class FichierService {
    } 
 
   public uploadFile(formData: FormData, tacheId): Observable<any>{
-    return this.http.post("http://localhost:8080/fichier/upload/"+tacheId, formData,{headers:this.entete});
+    return this.http.post(this.host+"/fichier/upload/"+tacheId, formData,{headers:this.entete});
   }
 
   /*public allfiles(): Observable<any>{
@@ -28,6 +30,6 @@ export class FichierService {
   } */
 
   public getFile(fileId): Observable<any>{
-    return this.http.get<any>("http://localhost:8080/fichier/findFileById/"+fileId,{headers:this.entete});
+    return this.http.get<any>(this.host+"/fichier/findFileById/"+fileId,{headers:this.entete});
   }
 }

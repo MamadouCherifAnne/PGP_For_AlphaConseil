@@ -1,107 +1,143 @@
-<app-side-nav></app-side-nav>
-<div class="container">
-
-    <div class="headline">
-    <h2>Utilisateurs</h2>
-    <p><button class="btn btn-success" (click)="goToAddUser()">Nouvel Utilisateur</button></p>
-    </div>
-
+<div class="container-fluid divclass">
     <br>
-<br>
-<hr>
-<div class="container">
-   
-       
-<mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="icon" >
-        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-        <mat-cell *matCellDef="let element"><mat-icon>account_circle</mat-icon> </mat-cell>
-        </ng-container>
-    
+    <ul class="list-inline border-bottom">
         
-    <!-- Username Column -->
-    <ng-container matColumnDef="username" >
-    <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.nom}}</mat-cell>
-    </ng-container>
-
-    
-
-    <!-- Prenom -->
-    <ng-container matColumnDef="prenom">
-    <mat-header-cell *matHeaderCellDef> Prenom </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.prenom}} </mat-cell>
-    </ng-container>
-
-    <!--EMAIL -->
-    <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="adresse">
-        <mat-header-cell *matHeaderCellDef> Adresse </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.adresse}} </mat-cell>
-    </ng-container>
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="telephone">
-        <mat-header-cell *matHeaderCellDef> Telephone </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.telephone}} </mat-cell>
-    </ng-container>
-
-        <!-- 
-    <ng-container matColumnDef="role">
-        <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.role.role}} </mat-cell>
-    </ng-container>
-   Symbol Column 
-    <ng-container matColumnDef="profession">
-        <mat-header-cell *matHeaderCellDef> Profession </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
-    </ng-container>
--->
-    <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let element"> 
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                <mat-icon>more_horiz</mat-icon>
-              </button>
-
-              <mat-menu #menu="matMenu">
-                    <!-- Gantt Utilisateur -->
-                <button  mat-menu-item (click)="goToUserDetails(element.idUser)">
-                    <span>Details</span>
-                </button> 
-
-                <button mat-menu-item color="primary" (click)="goToUpdateUser(element)"> 
-                    Modifier 
-                </button>
-               <button  mat-menu-item (click)="deleteUser(element.idUser)">
-                    <span>Supprimer</span>
-                </button> 
-                <!-- Gantt Utilisateur -->
-                <button  mat-menu-item (click)="goToGanttUser(element.idUser)">
-                    <span>Planning Tache</span>
-                </button> 
-
-              </mat-menu>
-
-          
-         </mat-cell>
-    </ng-container>
-        <!--Footer de la table des depenses-->
-        <ng-container matColumnDef="recharge">
-            <mat-footer-cell *matFooterCellDef colspan="6">Recharge....</mat-footer-cell>
-        </ng-container>
-        <ng-container matColumnDef="noData">
-            <mat-footer-cell *matFooterCellDef colspan="6">Pas de Données</mat-footer-cell>
-        </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    <mat-footer-row *matFooterRowDef="['recharge']" [ngClass]="{'hide':userDataSource!=null}"></mat-footer-row>
-    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(userDataSource!=null && userDataSource.data.length==0)}"></mat-footer-row>
-</mat-table>
-    <mat-paginator [pageSizeOptions]="[5,15,25,35]" [pageSize]="5"></mat-paginator>
-
+        
+        <li class="list-inline-item">
+            <a>Taches</a></li> 
+                
+    </ul>
 </div>
+
+
+<mat-sidenav-container  >
+   
+    <mat-sidenav mode="side" opened *ngIf="1==1">
+        <div class="container-flud">
+        <br>
+        <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Informations:</h6>
+        <br>
+        <ul class="list-group" >
+            <li class="list-group-item  breadcrumb" style="border: none">
+               <!--- Débute: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}-->
+            </li>
+
+            <li class="list-group-item  breadcrumb" style="border: none">
+               <!--- Débute: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}-->
+            </li>
+        </ul>
+    </div>
+    </mat-sidenav>
+    <mat-sidenav-content> 
+        <div class="container">
+            <div class="search-div">
+                <button  class="btn-success" mat-raised-button (click)="goToAddUser()" >
+                    <mat-icon>add</mat-icon>Ajouter
+                </button>
+                    <mat-form-field class="search-form-field">
+                        <input matInput [(ngModel)]="rechercheKey" placeholder="Rechercher" autocomplete="off" (keyup)="appliquerLeFiltre()">
+                        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="viderRecherche()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                
+            </div>
+            
+            <div class="mat-elevation-z8">
+            
+            <mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="icon" >
+                    <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+                    <mat-cell *matCellDef="let element"><mat-icon>account_circle</mat-icon> </mat-cell>
+                    </ng-container>
+                
+                    
+                <!-- Username Column -->
+                <ng-container matColumnDef="username" >
+                <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.nom}}</mat-cell>
+                </ng-container>
+
+                
+
+                <!-- Prenom -->
+                <ng-container matColumnDef="prenom">
+                <mat-header-cell *matHeaderCellDef> Prenom </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.prenom}} </mat-cell>
+                </ng-container>
+
+                <!--EMAIL -->
+                <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="adresse">
+                    <mat-header-cell *matHeaderCellDef> Adresse </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.adresse}} </mat-cell>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="telephone">
+                    <mat-header-cell *matHeaderCellDef> Telephone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.telephone}} </mat-cell>
+                </ng-container>
+
+                    <!-- 
+                <ng-container matColumnDef="role">
+                    <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.role.role}} </mat-cell>
+                </ng-container>
+            Symbol Column 
+                <ng-container matColumnDef="profession">
+                    <mat-header-cell *matHeaderCellDef> Profession </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+                </ng-container>
+            -->
+                <ng-container matColumnDef="Action">
+                    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> 
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+
+                        <mat-menu #menu="matMenu">
+                                <!-- Gantt Utilisateur -->
+                            <button  mat-menu-item (click)="goToUserDetails(element.idUser)">
+                                <span>Details</span>
+                            </button> 
+
+                            <button mat-menu-item color="primary" (click)="goToUpdateUser(element)"> 
+                                Modifier 
+                            </button>
+                        <button  mat-menu-item (click)="deleteUser(element.idUser)">
+                                <span>Supprimer</span>
+                            </button> 
+                            <!-- Gantt Utilisateur -->
+                            <button  mat-menu-item (click)="goToGanttUser(element.idUser)">
+                                <span>Planning Tache</span>
+                            </button> 
+
+                        </mat-menu>
+
+                    
+                    </mat-cell>
+                </ng-container>
+                    <!--Footer de la table des depenses-->
+                    <ng-container matColumnDef="recharge">
+                        <mat-footer-cell *matFooterCellDef colspan="6">Recharge....</mat-footer-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="noData">
+                        <mat-footer-cell *matFooterCellDef colspan="6">Pas de Données</mat-footer-cell>
+                    </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                <mat-footer-row *matFooterRowDef="['recharge']" [ngClass]="{'hide':userDataSource!=null}"></mat-footer-row>
+                <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(userDataSource!=null && userDataSource.data.length==0)}"></mat-footer-row>
+            </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,15,25,35]" [pageSize]="5"></mat-paginator>
+            </div> 
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+    
