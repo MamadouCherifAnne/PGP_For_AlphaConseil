@@ -151,10 +151,11 @@ export class AltachesComponent implements OnInit {
   finTache(tache){
     let cmpt = 0;
     for(let i of tache){
-      if(i.tauxAvancement ==  100){
+      if(i.tauxAvancement ===  100 && this.isFinished(tache) === 0){
         cmpt += 1;
       }
     }
+    console.log("check task stut:"+ cmpt);
     return cmpt;
   }
 
@@ -275,4 +276,20 @@ export class AltachesComponent implements OnInit {
       }
       return cpt;
     }
+
+
+   //si l'une des taches précedante n'est pas terminé 
+   public isFinished(tache2){
+    let find = 0;
+    if(tache2.tachePrecedente != null){
+      for(let itache of tache2.tachePrecedente){
+        if(itache.tauxAvancement != 100){
+          find = 1;
+          break;
+        }
+      }
+    }
+    console.log("sssssssssssssss"); 
+    return find;
+  }
 }

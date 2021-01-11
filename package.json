@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~8.2.12",
     "@angular/router": "~8.2.12",
     "@auth0/angular-jwt": "^5.0.1",
+    "@syncfusion/ej2-angular-charts": "^18.4.30",
     "@syncfusion/ej2-angular-gantt": "^18.2.45",
     "apexcharts": "^3.22.0",
     "bootstrap": "^4.5.0",

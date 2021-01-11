@@ -41,9 +41,11 @@ import {ResumeProjetComponent} from './Projet/resume-projet/resume-projet.compon
 import {ToutLeProjetComponent} from  "./Projet/tout-le-projet/tout-le-projet.component";
 import { NotificationComponent } from './notification/notification.component';
 import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
+import {HomeComponent} from './home/home.component';
+import {RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
-  
+  {path: '', component: HomeComponent},
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
     {path: 'projet', component: AllProjetsComponent},
@@ -104,6 +106,7 @@ const routes: Routes = [
 
   {path: 'commentaire/:numProjet', component: CommentComponent},
   {path:'seConnecter', component:LoginComponent},
+  {path: 'creeruncompte', component: RegistrationComponent},
   {path:'notifications',component:NotificationComponent},
   {path: 'equipeprojet/:idprojet', component: MembreProjetComponent,canActivate:[AuthGuard]},
 

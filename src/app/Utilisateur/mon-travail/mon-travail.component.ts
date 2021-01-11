@@ -6,6 +6,7 @@ import { ProjetService } from 'src/app/services/projet.service';
 import { DOCUMENT } from '@angular/common';
 import {UtilisateurService} from 'src/app/services/utilisateur.service';
 import {TacheService} from 'src/app/services/tache.service';
+import { Tache } from 'src/app/Tache/Tache';
 
 @Component({
   selector: 'app-mon-travail',
@@ -25,7 +26,7 @@ export class MonTravailComponent implements OnInit {
     private userService: UtilisateurService,
     private projetService: ProjetService,
     private tacheService: TacheService,
-
+    private route: Router,
   ) { }
 
   ngOnInit() {
@@ -45,12 +46,14 @@ export class MonTravailComponent implements OnInit {
           this.theuser = data;
           console.log("....//....le user"+this.theuser);
         }
+
         this.userService.getAlluserTasks(this.theuser.idUser).subscribe((data)=>{
           if(data){
             this.userTaches = data;
+            console.log("hola ....."+this.userTaches);
           }
         })
-        console.log("hola"+this.userTaches);
+       
       })
       
     }) 
@@ -95,5 +98,8 @@ export class MonTravailComponent implements OnInit {
     return val;
   }
  
+  public monPlaning(){
+    this.route.navigate(['utilisateur/gantt/', this.theuser.idUser]);
+  }
 
 }

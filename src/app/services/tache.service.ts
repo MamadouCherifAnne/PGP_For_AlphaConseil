@@ -135,10 +135,7 @@ export class TacheService {
   }
 
 
-  // Recuperer les informations 
-
-  
-
+  // Recuperer les informations (si les taches sont terminées, en cours ou en retards)
   public getTachesInfo(idProjet):Observable<any>{
     return this.http.get("http://localhost:8080/tache/TasksInformation/"+idProjet,{headers:this.entete});
   }
