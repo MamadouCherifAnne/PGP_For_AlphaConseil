@@ -19,6 +19,7 @@ import { MatButtonModule,
   MatCardModule,
   MatTabsModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatGridListModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatSortModule} from '@angular/material';
 
   
@@ -54,7 +55,8 @@ const material = [
   MatCheckboxModule,
   MatMenuModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatProgressSpinnerModule
 ];
 @NgModule({
   imports: [

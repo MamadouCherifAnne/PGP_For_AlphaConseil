@@ -2,7 +2,7 @@
 
 <div class="headline">
 <h5>Mes projets</h5>
-<p><button class="btn btn-success btn-sm" (click)="onCreate()">Ajouter un projet</button></p>
+<p><button class="btn btn-success btn-sm" *ngIf="isAdmin" (click)="onCreate()">Ajouter un projet</button></p>
 </div>
 <br>
 <hr>
@@ -12,8 +12,8 @@
            
                 <div class="card-body">
                     <div class="thebt">
-                        <button mat-icon-button (click)="edit(projet)"><mat-icon>launch</mat-icon></button>
-                        <button  mat-icon-button (click)="delete(projet.numProjet)"><mat-icon>delete_outline</mat-icon></button>
+                        <button mat-icon-button *ngIf="isAdmin" (click)="edit(projet)"><mat-icon>launch</mat-icon></button>
+                        <button  mat-icon-button *ngIf="isSuperAdmin" (click)="delete(projet.numProjet)"><mat-icon>delete_outline</mat-icon></button>
                     </div>
                 <div>
                 <h5 class="card-title" >{{projet.nomProjet}}</h5>

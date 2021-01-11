@@ -63,3 +63,35 @@ a.active{
 a{
   text-decoration: whitesmoke;
 }
+.loader-container{
+  position: fixed;
+  width:100%;
+  z-index: 99;
+}
+.icon-wrapper{
+  position: relative;
+  float: left;
+}
+*.icon-red{
+  color: rgb(80, 80, 189);
+}
+*.icon-grey{
+  color: grey;
+}
+i{
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+}
+.badge{
+  background: rgb(219, 80, 80);
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 50%;
+  position: absolute;
+  top: -13px;
+  right: -8px;
+  padding: 5px;
+
+}

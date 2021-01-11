@@ -14,7 +14,8 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 export class ListeUtilisateurComponent implements OnInit {
 
   public users: IUtilisateur[]= [];
-  message:any;
+  public rechercheKey:string;
+  public message:any;
   userDataSource =new MatTableDataSource<any>();
   @ViewChild(MatSort,{static:true}) sort: MatSort;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator
@@ -95,12 +96,22 @@ export class ListeUtilisateurComponent implements OnInit {
   }
 
   // Aller sur le Gantt de l'utilisateur
-  goToGanttUser(user){
+  public goToGanttUser(user){
     this.router.navigate(["/utilisateur/gantt", user]);
   }
 
   // Acceder aux details de l'utilisateur
-  goToUserDetails(user){
+  public goToUserDetails(user){
     this.router.navigate(["/utilisateur/details",user]);
   }
+
+  // Application de  filtre dans la recherche des utilisateurs a partir de la liste des users
+  public  viderRecherche(){
+    this.rechercheKey ="";
+    this.appliquerLeFiltre();
+  }
+  public appliquerLeFiltre(){
+    this.userDataSource.filter = this.rechercheKey.trim().toLowerCase();
+  }
+
 }

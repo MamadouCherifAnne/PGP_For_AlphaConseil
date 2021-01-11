@@ -50,7 +50,7 @@ export class UserProfilComponent implements OnInit {
             };
           }
         });
-        console.log("les messages"+this.currentUser.messageReceived)
+        
       }
     });
     

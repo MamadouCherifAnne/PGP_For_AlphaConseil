@@ -37,7 +37,7 @@
         <div class="headline">
         <h5>Vue d'ensemble</h5>
      
-        <p ><button class="btn btn-success btn-sm btnAjout" mat-button [matMenuTriggerFor]="menu" >
+        <p *ngIf="chefProjet"><button class="btn btn-success btn-sm btnAjout" *ngIf="hasAccess" mat-button [matMenuTriggerFor]="menu" >
             <mat-icon class="maticon">add</mat-icon>Ajouter
         </button></p> 
         

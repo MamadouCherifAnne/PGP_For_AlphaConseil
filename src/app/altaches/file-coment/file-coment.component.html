@@ -42,7 +42,7 @@
                               <mat-icon>time</mat-icon> <b>Les Ressources Affectés  </b> :
                               <span *ngFor="let u of ressources">
                               <a  [routerLink]="['/utilisateur/details/', u.idUser]">  {{u.nom}}</a></span><br><br>
-                              <a [routerLink]="['/depense/',currentTache.numTache]" class="card-link">Voir Depenses</a>
+                              <!--<a [routerLink]="['/depense/',currentTache.numTache]" class="card-link">Voir Depenses</a>-->
                               <a [routerLink]="['/tache/facture/',currentTache.numTache]" class="card-link">Voir Facture</a>
                             </div>
                           </div>
@@ -50,6 +50,21 @@
                 
                   </div>
             </mat-tab>
+
+               <!-- Voir les Affectations de la tache courante -->
+            <mat-tab label="Affectations">
+                <br>
+                <div class="card" >
+                    <div class="card-body">
+                    
+                    <div *ngIf="currentTache">
+                        <app-affectation-tache [idTache]="currentTache.numTache" ></app-affectation-tache>
+                    </div>
+                    </div>
+                </div>    
+            </mat-tab>
+
+
             <mat-tab label="Commentaire">
                 <div class="container">
                     <br>
@@ -122,19 +137,19 @@
         
                 </div>    
             </mat-tab>
-
-            <!-- Voir les Affectations de la tache courante -->
-            <mat-tab label="Affectations">
+            <!-- Space section pour les depense de la tache -->
+            <mat-tab label="Dépenses">
                 <br>
                 <div class="card" >
                     <div class="card-body">
                     
                     <div *ngIf="currentTache">
-                        <app-affectation-tache [idTache]="currentTache.numTache" ></app-affectation-tache>
+                        <app-depenses [idTache]="currentTache.numTache" ></app-depenses>
                     </div>
                     </div>
                 </div>    
             </mat-tab>
+
           </mat-tab-group>
      </form>
      </mat-sidenav-content>

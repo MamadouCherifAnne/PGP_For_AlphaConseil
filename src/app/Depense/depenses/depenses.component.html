@@ -1,20 +1,49 @@
-<div>
+<br>
+<div >
     <mat-toolbar>
-        <span>Ensemble des Depenses de la tache</span>
+        <span>Coût des dépenses de la tâche : <strong *ngIf="currentTache"> {{currentTache.coutTotaleDepenses | currency:"MRU":'symbol':'':'fr'}}</strong></span>
     </mat-toolbar>
 </div>
 
+<!--<mat-sidenav-container  >
+   
+    <mat-sidenav mode="side" opened *ngIf="currentTache">
+        <div class="container-flud">
+        <br>
+        <h6> <i class="fa fa-tasks" aria-hidden="true"></i>
+            <h4>{{currentTache.tache.nomTache}}</h4>
+        </h6>
+        <br>
+        <ul class="list-group" >
+            <li class="list-group-item  breadcrumb" style="border: none">
+                Débute: {{ currentTache.tache.debutTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
+            </li>
+
+            <li class="list-group-item  breadcrumb" style="border: none">
+                Fin: {{ currentTache.tache.finTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
+            </li>
+        </ul>
+    </div>
+    </mat-sidenav>
+<mat-sidenav-content> -->
+    <div class="container-flud headline">
+        <h5>Membres du Projet</h5>
+    </div>
+
+        
 <br><br>
+
 <div class="search-div">
-    <button mat-raised-button >
+    <button  class="btn-success" (click)="onCreate()" mat-raised-button >
         <mat-icon>add</mat-icon>Ajouter
+    </button>
         <mat-form-field class="search-form-field">
             <input matInput [(ngModel)]="rechercheKey" placeholder="Rechercher" autocomplete="off" (keyup)="appliquerLeFiltre()">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="viderRecherche()">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
-    </button>
+    
 </div>
 <div class="container">
 <div class="mat-elevation-z8">
@@ -29,13 +58,35 @@
         <!-- Prenom -->
         <ng-container matColumnDef="date">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Operation </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.dateEnregistrement}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.dateEnregistrement |  date: ' d/MM/y' : '' : 'fr-FR'}} </mat-cell>
         </ng-container>
 
         <!-- Prenom -->
         <ng-container matColumnDef="cout">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Cout  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.coutDepense}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.coutDepense | currency:"MRU":'symbol':'':'fr' }} </mat-cell>
+        </ng-container>
+
+        <!-- Les actions succeptibles de se faire sur une tache -->
+        <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_horiz</mat-icon>
+                  </button>
+    
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item color="primary" (click)="updateDepense(element)"> 
+                        Modifier 
+                    </button>
+                   <button  mat-menu-item (click)="deleteDepense(element.idUser)">
+                        <span>Supprimer</span>
+                    </button> 
+    
+                  </mat-menu>
+    
+              
+             </mat-cell>
         </ng-container>
         <!--Footer de la table des depenses-->
         <ng-container matColumnDef="recharge">

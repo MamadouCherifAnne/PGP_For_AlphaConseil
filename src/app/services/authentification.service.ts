@@ -1,23 +1,25 @@
  import { Injectable } from '@angular/core';
-import {Observable, throwError} from 'rxjs';
+import {Observable, of, Subscription, throwError} from 'rxjs';
 import {Utilisateur} from '../Utilisateur/Utilisateur';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, delay, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { UtilisateurService } from './utilisateur.service';
-
+import {environment} from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
   // On definit les headers et le serveur 
-  host:string = 'http://localhost:8080/';
+  public host =environment.alfaApiUrl;
   // On definit l'entete des formats de donnes de nos services
   public entete  = new HttpHeaders().set('Content-Type','application/json');
   public jwtToken :string;
   public currentUser ={};
   public entrepriseName:string;
+  public tokenSubscription = new Subscription()
+  public timeout;
 
   constructor(private http:HttpClient,
     public router:Router
@@ -25,7 +27,7 @@ export class AuthentificationService {
 
     //service Login dune autre maniere
     public login(user){
-      return this.http.post("http://localhost:8080/authenticate/login",user,{observe:'response'})
+      return this.http.post(this.host+"/authenticate/login",user,{observe:'response'})
       .subscribe((data)=>{
         let bodyToken:any;
         console.log(data.body.valueOf())
@@ -76,9 +78,13 @@ export class AuthentificationService {
       localStorage.setItem('token',jwtToken)
       const jwtHelper = new JwtHelperService();
       const userBody =jwtHelper.decodeToken(this.jwtToken);
+      //recuperer la date de lexipiration du cle jwt 
+      this.timeout = jwtHelper.getTokenExpirationDate(this.jwtToken).valueOf() - new Date().valueOf();
+      console.log(this.timeout);
       console.log(userBody)
       //console.log("Voici le utilisateur connecte:"+userBody.sub+" avec les roles :"+userBody.roles)
-      
+      //on gette l'expiration de la jwt de user courrant
+      this.expirationCounter(this.timeout);
     }
     // Decodage du token
     public decodeJwtToken(){
@@ -106,7 +112,7 @@ export class AuthentificationService {
 
     // Service de Registration d'un nouveau utilisateur
     public registrer(user:Utilisateur):Observable<any>{
-      let service = 'http://localhost:8080/utilisateur/new';
+      let service = this.host+'/utilisateur/new';
       return this.http.post(service,user)
         .pipe(
           // On capte si ya une exception generer
@@ -117,7 +123,7 @@ export class AuthentificationService {
     // Service de L'authentification
     seConnecter(user:Utilisateur){
 
-      let service = 'http://localhost:8080/authenticate/login';
+      let service = this.host+'/authenticate/login';
       return this.http.post<any>(service,user,{observe:'response'})
       .subscribe((resp:any)=>{
         console.log(resp)
@@ -134,7 +140,7 @@ export class AuthentificationService {
 
     // Recuperer le profil de l'utilisateur en cours
     getUserProfile(username):Observable<any>{
-      let service = "http://localhost:8080/utilisateur/findUsername/"+username;
+      let service =this.host+"/utilisateur/findUsername/"+username;
       return this.http.get(service, { headers: new HttpHeaders({'authorization':this.getToken()}) }).pipe(
         map((res: Response) => {
           if(res){
@@ -162,6 +168,8 @@ export class AuthentificationService {
     }
   
     doLogout() {
+      this.tokenSubscription.unsubscribe();
+      this.jwtToken = null;
       let removeToken = localStorage.removeItem('token');
       if (removeToken == null) {
         this.router.navigate(['seConnecter']);
@@ -186,7 +194,7 @@ export class AuthentificationService {
     
     public get isAdmin() : boolean {
       let isadmin:boolean=false;
-      this.isNotExpiredKey();
+      //this.isNotExpiredKey();
       const jwtHelper = new JwtHelperService();
       if(this.isLoggedIn && this.getToken()!==null){
        const  verifUser=jwtHelper.decodeToken(this.getToken());
@@ -211,7 +219,7 @@ export class AuthentificationService {
     
         public get isSuperAdmin() : boolean {
           let isSuperAdmin:boolean=false;
-          this.isNotExpiredKey();
+          //this.isNotExpiredKey();
           const jwtHelper = new JwtHelperService();
           if(this.isLoggedIn && this.getToken()!==null){
            const  verifUser=jwtHelper.decodeToken(this.getToken());
@@ -235,7 +243,7 @@ export class AuthentificationService {
     public getUserByUsername(username){
       /* { headers: new HttpHeaders({'authorization':this.getToken()}) }*/
       let user:any;
-      let service = "http://localhost:8080/utilisateur/findUsername/"+username;
+      let service = this.host+"/utilisateur/findUsername/"+username;
       return this.http.get(service)
       .subscribe(res=>{
         if(res){
@@ -276,5 +284,17 @@ export class AuthentificationService {
 
         
       }
+
+  
+   public  expirationCounter(expiredTime) {
+      this.tokenSubscription.unsubscribe();
+      
+      this.tokenSubscription = of(null).pipe(delay(expiredTime)).subscribe((expired) => {
+        console.log('Votre connecxion a expire veuillez vous reconnecter a nouveau!!');
+        this.jwtToken = null
+        this.doLogout();
+        
+      });
+    }
 
 }

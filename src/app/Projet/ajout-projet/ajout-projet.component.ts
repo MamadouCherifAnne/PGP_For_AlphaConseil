@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ProjetService } from "src/app/services/projet.service";
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Projet } from '../Projet';
-import { MatDialogRef, MatDialog } from "@angular/material";
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from "@angular/material";
 import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation";
 
 import {DateValidation} from "src/app/ValidationsFunctions/DateValidation";
@@ -24,7 +24,8 @@ export class AjoutProjetComponent implements OnInit {
 
   constructor(private projetService: ProjetService, private formBuilder: FormBuilder,
     public userService:UtilisateurService,
-    private dialogRef : MatDialogRef<AjoutProjetComponent>) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef : MatDialogRef<AjoutProjetComponent>) { }
 
  
 
@@ -88,7 +89,11 @@ export class AjoutProjetComponent implements OnInit {
     this.projet.debutProjet = this.ajoutProjetForm.get('debutProjet').value;
     this.projet.finProjet = this.ajoutProjetForm.get('finProjet').value;
     this.projet.zoneRealisation = this.ajoutProjetForm.get('zoneRealisation').value;
-    this.projet.responsable = this.ajoutProjetForm.get('responsable').value;
+    if(this.ajoutProjetForm.get('responsable').value){
+      this.projet.responsable = this.ajoutProjetForm.get('responsable').value;
+    }else{
+      this.projet.responsable = this.data.defaultProjectOwner;
+    }
     console.log(this.projet.zoneRealisation);
     let val = this.projetService.add(this.projet); 
     val.subscribe((data)=>this.message=data);

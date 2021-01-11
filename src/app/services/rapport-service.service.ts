@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import{Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { AuthentificationService } from './authentification.service';
-
+import {environment} from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +11,7 @@ export class RapportServiceService {
 
   public entete:HttpHeaders;
   public jeton:string;
+  public host = environment.alfaApiUrl;
 
   constructor(private http: HttpClient,private authService:AuthentificationService) {
     // Ici on prepare le chargement du jeton d'authentification pour acceder aux 
@@ -30,7 +31,7 @@ export class RapportServiceService {
     
   };
   
-  return this.http.get<any>("http://localhost:8080/rapport/export/" + id,httpOptions );
+  return this.http.get<any>(this.host+"/rapport/export/" + id,httpOptions );
 
   }
 
@@ -43,7 +44,7 @@ export class RapportServiceService {
       responseType  : 'blob' as 'json'      //This also worked
     };
     
-    return this.http.get<any>("http://localhost:8080/rapport/export/" + id, httpOptions);
+    return this.http.get<any>(this+this.host+"/rapport/export/" + id, httpOptions);
   }
     
 
@@ -55,7 +56,7 @@ export class RapportServiceService {
     
     let requestOptions: any = { headers: headers, responseType: 'blob' };
     
-    return this.http.get('https://localhost:8080/rapport/projetCoteClient/' + idProjet, requestOptions)
+    return this.http.get(this.host+'/rapport/projetCoteClient/' + idProjet, requestOptions)
       .pipe(map((response)=>{
         return {
           filename: 'rapportJournalier.pdf',

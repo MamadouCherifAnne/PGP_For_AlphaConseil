@@ -99,6 +99,10 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegistrationComponent } from './registration/registration.component';
 
+import { PgpDatePipe } from './directives/PgpDatePipe';
+import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
+
+
 registerLocaleData(localeFr, 'fr');
 
 
@@ -182,7 +186,9 @@ registerLocaleData(localeFr, 'fr');
     FooterComponent,
     RegistrationComponent,
 
+    PgpDatePipe,
 
+    UpdateDepenseComponent
   ],
   imports: [
     BrowserModule,
@@ -223,6 +229,8 @@ registerLocaleData(localeFr, 'fr');
     UpdateRoleComponent,
     AddJalonComponent,
     UpdateAffectationComponent,
-    AddMembreComponent],
+    AddMembreComponent,
+    AddDepenseComponent  
+  ],
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjetService } from 'src/app/services/projet.service';
 import { ProjectUserID } from '../UserProjectID';
 import { AddMembreComponent } from './add-membre/add-membre.component';
@@ -15,21 +15,26 @@ export class MembreProjetComponent implements OnInit {
   public currentProject:any;
   public idProjet:number;
   public listofMembres:[];
-  rechercheKey:string;
+  public rechercheKey:string;
 
   // La dataSource pour le tableau des membres 
   public userDataSource : MatTableDataSource<any>;
   @ViewChild(MatSort,{static:true}) sort: MatSort;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator
 
-  displayedColumns: string [] = ['username', 'Role',  'telephone'];
+  displayedColumns: string [] = ['username', 'Role',  'telephone','Action'];
   affectations: any[];
   constructor(public projetService:ProjetService, public route:ActivatedRoute,
-    public fenetre:MatDialog) { }
+    public fenetre:MatDialog, public router:Router) { }
 
   ngOnInit() {
     this.idProjet= parseInt(this.route.snapshot.paramMap.get('idprojet'));
     
+   /* this.projetService.getRoleInProject(this.idProjet,2).subscribe(data=>{
+      if(data){
+        console.log("Voici le role de Samba  est ::"+data);
+      }
+    });*/
     this.initialisation();
   }
 
@@ -41,7 +46,7 @@ export class MembreProjetComponent implements OnInit {
         this.listofMembres = data;
         console.log("Voici le nombre des membres du projet"+this.listofMembres.length);
 
-        this.userDataSource = new MatTableDataSource(data);
+        this.userDataSource = new MatTableDataSource(this.listofMembres);
         this.userDataSource.sort = this.sort;
         this.paginator._intl.itemsPerPageLabel="élements par page";
         this.paginator._intl.nextPageLabel="suivant";
@@ -56,13 +61,9 @@ export class MembreProjetComponent implements OnInit {
         let idMembre = new ProjectUserID();
         idMembre.idProjet = this.idProjet;
         idMembre.idUser = 1;
-        let idUser = 74;
+        let idUser = 2;
 
-        this.projetService.getRoleInProject(this.idProjet,idUser).subscribe(role=>{
-          if(role){
-            console.log("Voici le role de Samba  est ::"+role);
-          }
-        })
+       
 
         this.projetService.getById(this.idProjet).subscribe(result=>{
           if(result){
@@ -89,11 +90,40 @@ export class MembreProjetComponent implements OnInit {
     fenetreConfig.data={projet:this.idProjet};
     this.fenetre.open(AddMembreComponent,fenetreConfig)
     .afterClosed().subscribe(result => {
-    
+      this.refreshListMembre();
    });
   }
 
-  public supprimerMembre(element){
-    
+  public goToDeleteMembre(element){
+    let idMembre = new  ProjectUserID();
+    idMembre.idProjet = this.idProjet;
+    idMembre.idUser = element;
+
+    // passer a la suppression
+    this.projetService.deleteMembreOfProject(idMembre).subscribe(data=>{
+      if(data == true){
+        window.alert("l'utilisateur a ete supprimer du projet "+this.currentProject.nomProjet)
+        this.refreshListMembre()
+      }else{
+        window.alert(
+          "L'utilisateur est affecte quelque part dans le projet veuiller verifier vos tache"
+        );
+      }
+    });
+  }
+
+  public goToUserDetails(user){
+    this.router.navigate(["/utilisateur/details",user]);
+  }
+
+  // recharger la liste des membres du projets
+  public refreshListMembre(){
+    this.projetService.getProjectMembre(this.idProjet).subscribe(data=>{
+      if(data){
+        this.listofMembres = data;
+        this.userDataSource = new MatTableDataSource(this.listofMembres);
+        console.log("Voici le nombre des membres du projet"+this.listofMembres.length);
+      }
+  });
   }
 }

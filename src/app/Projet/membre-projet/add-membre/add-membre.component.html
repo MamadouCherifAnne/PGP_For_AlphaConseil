@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <span>Nouvel Jalon</span>
+    <span>Nouveau Membre</span>
 </mat-toolbar>
 <br>
 <div *ngIf="users">
@@ -17,10 +17,12 @@
                   </mat-select>  
               </mat-form-field>
       
-              <mat-form-field>
-                <input formControlName="role"  matInput placeholder="Poste dans le projet">
-            </mat-form-field>
-      
+              <label id="matgp"> Niveau de priorité: </label>
+              <mat-radio-group class="matgp" aria-labelledby="matgp" formControlName="role"> 
+                  <mat-radio-button value="client">Client</mat-radio-button>
+                  <mat-radio-button value="acteur">Acteur</mat-radio-button>
+                  <mat-radio-button value="responsable">Responsable</mat-radio-button>
+              </mat-radio-group>
               </div>
             </mat-grid-tile>
             </mat-grid-list> 

@@ -1,31 +1,34 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Depense } from '../Depense';
-import { TacheService } from 'src/app/services/tache.service';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { TacheService } from 'src/app/services/tache.service';
+import { Depense } from '../Depense';
 
 @Component({
-  selector: 'app-add-depense',
-  templateUrl: './add-depense.component.html',
-  styleUrls: ['./add-depense.component.scss']
+  selector: 'app-update-depense',
+  templateUrl: './update-depense.component.html',
+  styleUrls: ['./update-depense.component.scss']
 })
-export class AddDepenseComponent implements OnInit {
-  
-  depenseForm:FormGroup
-  depense:Depense = new Depense();
-  idTache:number;
+export class UpdateDepenseComponent implements OnInit {
+
+
+ public  depenseForm:FormGroup
+  public depense:Depense = new Depense();
+  public idTache:number;
+  public updatingDepense:Depense;
   
 
   constructor(private formBuilder:FormBuilder,private tacheService:TacheService,
               private route:ActivatedRoute,
               @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef : MatDialogRef<AddDepenseComponent>
+    public dialogRef : MatDialogRef<UpdateDepenseComponent>
     ) { }
 
   ngOnInit() {
     // Recuperation de la tache concerner
     // this.idTache=parseInt(this.route.snapshot.paramMap.get('idTache'));
+    
     // Construire le formulaire
     this.depenseForm = this.formBuilder.group({
       'libelle':[this.depense.libelle,[Validators.required]],
@@ -42,8 +45,9 @@ export class AddDepenseComponent implements OnInit {
   }
 
   // Ajout d'une depense
-  ajouterDepense(){
+  updateDepense(){
     console.log(this.depense.tache)
+    this.depense.NumDepense = this.data.depense.NumDepense
     this.depense.description=this.depenseForm.get('Description').value;
     this.depense.coutDepense=this.depenseForm.get('coutDepense').value;
     this.depense.libelle=this.depenseForm.get('libelle').value;
@@ -70,4 +74,17 @@ export class AddDepenseComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  public chargerFormulaire(){
+    this.updatingDepense = this.data.depense;
+    if(this.updatingDepense){
+    this.depenseForm.get("Description").setValue(this.updatingDepense.description);
+    this.depenseForm.get("libelle").setValue(this.updatingDepense.libelle);
+    this.depenseForm.get("coutDepense").setValue(this.updatingDepense.coutDepense);
+    this.depenseForm.get("libelle").setValue(this.updatingDepense.dateEnregistrement);
+    
+    }
+  }
+
 }
+
+

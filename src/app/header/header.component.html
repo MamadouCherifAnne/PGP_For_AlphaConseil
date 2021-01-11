@@ -24,10 +24,21 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item" *ngIf="this.authService.isLoggedIn">
-        <!--  Mettre en place les notifications -->
+        <div class="icon-wrapper">
+          <a class="nav-link" *ngIf="messageNonLus"  routerLink="['user/profil/','messageNonLus.idUser']" routerLinkActive="active" >
+            <i class="fas fa-comment fa-5x fa-border icon-blue"></i>
+              <span class="badge">{{messageNonLus.msgNonLu}}</span>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="this.authService.isLoggedIn">
+        <a class="nav-link" routerLink="['user/profil/','currentUser.idUser']" routerLinkActive="active" ><i class="far fa-envelope"></i></a>
+      <!--
+        <--  Mettre en place les notifications >
         <div class="notification-wrapper" >
-          <!-- You can put an icon from Material Design icon or Fontawesome -->
+          <!- You can put an icon from Material Design icon or Fontawesome >
           <div class="notification-btn"  (click)="openNotification(false)">
             <span class="mdi mdi-bell">notif</span>
           </div>
@@ -46,7 +57,7 @@
           </div>
           
         </div>
-        <!-- Fin de la gestion des notifications-->
+        <-- Fin de la gestion des notifications-->
         
       </li>
       
@@ -59,5 +70,8 @@
   </div>
   </div>
 </nav>
+<div *ngIf="loaderService.isLoading |async" class="loader-container">
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <router-outlet></router-outlet>
 

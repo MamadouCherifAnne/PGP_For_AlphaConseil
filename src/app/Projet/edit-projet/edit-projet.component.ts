@@ -26,7 +26,7 @@ export class EditProjetComponent implements OnInit {
       'debutProjet': [this.projet.debutProjet, Validators.required],
       'finProjet': [this.projet.finProjet,Validators.required],
       'zoneRealisation': [this.projet.zoneRealisation],
-      'responsable':[this.projet.responsable]
+      'responsable':[this.projet.responsable, Validators.required]
   
       });
 
