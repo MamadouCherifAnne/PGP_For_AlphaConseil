@@ -23,7 +23,7 @@ export class ActiviteComponent implements OnInit {
     let resp = this.projetService.allProjectOfUser(this.currentUser )
      resp.subscribe(data=>{
        this.projets=data
-       console.log(data)
+      // console.log(data)
      })
   }
 
@@ -44,10 +44,13 @@ export class ActiviteComponent implements OnInit {
     this.tacheService.getPhaseDuneTache(idtache).subscribe((data)=>{
       if(data){
         this.phase = data;
-        console.log("c'est bon"+this.phase);
+       // console.log("c'est bon"+this.phase);
+       return this.phase.nomTache;
       }
     });
-    return this.phase.nomTache;
+   
   }
+
+  //
 
 }

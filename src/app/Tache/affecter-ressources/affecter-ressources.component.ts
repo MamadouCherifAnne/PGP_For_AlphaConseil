@@ -71,6 +71,7 @@ export class AffecterRessourcesComponent implements OnInit {
     this.affectation.tempsPasser= this.affectationForm.get("tempsPasser").value
     this.affectation.user_task =this.ressource;
     this.affectation.dateAffectation = new Date();
+    console.log("//........affectation..............."+this.affectation.dateAffectation)
     console.log(this.affectation)
     this.userService.affectToTask(this.affectation)
     .subscribe(data=>{

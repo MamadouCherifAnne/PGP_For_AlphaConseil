@@ -26,10 +26,10 @@
         <div class="container">
         <p><strong>Desciption</strong><br>
         Ajouter une Desciption</p>
-        <p><i class='far fa-calendar-alt'></i>Dattes</p>
+        <p><i class='far fa-calendar-alt'></i><strong>Dattes</strong></p>
         <div *ngIf="projet" class="divdate">
-             <span class="border">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>
-             <span class="spandate">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
+             <span class="bg-light">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>
+             <span class="bg-light">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
         </div>
         </div>
     </mat-sidenav>
@@ -42,7 +42,7 @@
         </button></p> 
         
         
-        <app-tout-le-projet [projetId]= "projetId"></app-tout-le-projet>
+        <app-tout-le-projet [projetId]="projetId"></app-tout-le-projet>
         </div>
        
         <mat-menu #menu="matMenu">

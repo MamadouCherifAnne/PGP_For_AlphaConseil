@@ -39,6 +39,7 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
+import {AccumulationChartModule, PieSeriesService, AccumulationDataLabelService, AccumulationLegendService ,AccumulationTooltipService,} from '@syncfusion/ej2-angular-charts';
 import {jsPDF} from 'jspdf';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
@@ -94,9 +95,14 @@ import { AlfaconseilinterceptorService } from './rechargeData/alfaconseilinterce
 import { SecondTableauDeBordComponent } from './Projet/second-tableau-de-bord/second-tableau-de-bord.component';
 import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
 import { AddMembreComponent } from './Projet/membre-projet/add-membre/add-membre.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { RegistrationComponent } from './registration/registration.component';
+
 import { PgpDatePipe } from './directives/PgpDatePipe';
 import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
 import { FactureProjetComponent } from './Facture/facture-projet/facture-projet.component';
+
 
 registerLocaleData(localeFr, 'fr');
 
@@ -177,6 +183,9 @@ registerLocaleData(localeFr, 'fr');
     SecondTableauDeBordComponent,
     MembreProjetComponent,
     AddMembreComponent,
+    HomeComponent,
+    FooterComponent,
+    RegistrationComponent,
 
     PgpDatePipe,
 
@@ -194,7 +203,7 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     GanttModule,
     FieldsetModule,
-
+    AccumulationChartModule,
     NgxPaginationModule,
     NgxPaginationModule,
     Ng2GoogleChartsModule,
@@ -202,9 +211,9 @@ registerLocaleData(localeFr, 'fr');
 
   ],
 
-  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,
+  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,PieSeriesService,
         
-        {provide: HTTP_INTERCEPTORS, useClass: AlfaconseilinterceptorService, multi: true},
+    AccumulationDataLabelService, AccumulationLegendService, AccumulationTooltipService, {provide: HTTP_INTERCEPTORS, useClass: AlfaconseilinterceptorService, multi: true},
      
     
   ],

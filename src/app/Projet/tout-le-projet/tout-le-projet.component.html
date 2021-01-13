@@ -1,16 +1,14 @@
 <div class="container">
 <hr>
-   
-   <div *ngIf="infoTaches | async"  #pieChart style="width: 50vw; height: 50vh;" class="divChart"></div>
-   <!--<div class="seconddiv">
-      <hr>
-      <h6>Résumé</h6>
-      <small><i class="fas fa-tasks"></i>Taches terminées aujourd'hui  ()</small><br>
-      <small><i class="fas fa-plus"></i> Taches crées aujourd'hui     ()</small><br>
-      <small><i class="fas fa-tasks"></i>Taches sans afectations  ()</small><br>
-      <small><i class="far fa-user"></i>Utilisations sans taches à faire  ()</small>
-      <hr> 
-   </div> -->
 
+ <!--<div *ngIf="infoTaches"  #pieChart style="width: 50vw; height: 50vh;" class="divChart"></div> -->
+   <div style=" height: 30%;">
+      <ejs-accumulationchart [title]='chartTitle' [legendSettings]='legend' [tooltip]='tooltipSettings' >
+         <e-accumulation-series-collection>
+            <e-accumulation-series type="Pie" [dataSource]='data' xName='name' yName='value' [dataLabel]='chartLabel' [palettes]='palette' innerRadius='40%'>
+            </e-accumulation-series>
+         </e-accumulation-series-collection>
+      </ejs-accumulationchart>
+   </div> 
 
 </div>

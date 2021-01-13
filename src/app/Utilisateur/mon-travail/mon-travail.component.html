@@ -2,7 +2,12 @@
 <mat-sidenav-container>
     <mat-sidenav-content>
         <div class="container headline">
-            <h3>Mon travail</h3>
+            <div class="row">
+                <h3 class="col-sm-10">Mon travail</h3>
+                <div class="col-sm-2">
+                <p><button type="button"  class="btn btn-success btn-sm" (click)="monPlaning()">Mon planing</button></p>
+                </div>
+            </div>
             <br>
             
             <div class="strike">
@@ -40,23 +45,21 @@
 
                     <div *ngFor="let uerTache of userTaches; let i = index">
                         
-                        <h6>{{uerTache.phase.nomTache }}<span>{{uerTache.projet.nomProjet}}</span></h6>
-                        <div class="tacheclass" *ngIf="uerTache.tache != null && uerTache.tache.type !='Jalon'; else vide"> 
+                        <h6>{{uerTache.phase.nomTache }}<span>({{uerTache.projet.nomProjet}})</span></h6>
+                        <div class="tacheclass" *ngIf="uerTache.tache.type !='Jalon'; else vide"> 
                             <p><i class="fas fa-check"></i>
                             <span>{{currentUser}}</span></p>
-                            <p> {{uerTache.tache.nomTache}}</p>
-                            <p class="text-danger" *ngIf="compareDateDebut(uerTache.tache.debutTache)==1 ">(Commence le {{uerTache.tache.debutTache}})</p>
-                            <p class="text-danger" *ngIf="compareDateDebut(uerTache.tache.debutTache)==0 && isLate(uerTache.tache.finTache)==false && uerTache.tache.tauxAvancement != 100">En Cours</p>
-                            <p class="text-danger" *ngIf="uerTache.tache.tauxAvancement == 100">Terminée</p>
+                            <p><a [routerLink]="['../../task/', uerTache.tache.numTache]">{{uerTache.tache.nomTache}}</a></p>
+                            <p class="text-primary" *ngIf="compareDateDebut(uerTache.tache.debutTache)==1 ">(Commence le {{uerTache.tache.debutTache}})</p>
+                            <p class="text-primary" *ngIf="compareDateDebut(uerTache.tache.debutTache)==0 && isLate(uerTache.tache.finTache)==false && uerTache.tache.tauxAvancement != 100">En Cours</p>
+                            <p class="text-success" *ngIf="uerTache.tache.tauxAvancement == 100">Terminée</p>                                    
                             <p class="text-danger" *ngIf="isLate(uerTache.tache.finTache)==true && 100 > uerTache.tache.tauxAvancement && compareDateDebut(uerTache.tache.debutTache)!=1">En retard</p>     
                             <p *ngIf="uerTache.tache.tauxAvancement != 100" (mouseover)="display[i] = !display[i]">{{uerTache.tache.tauxAvancement}}%</p>
-                            <div [hidden]="!display[i]" style="width:30;margin:0 0 0 7em;">
+                            <div [hidden]="!display[i]" >
                                 <app-taux-avancemant [idTache]="uerTache.tache.numTache" [tache]="uerTache.tache"></app-taux-avancemant>
                             </div>
-                        <hr> 
-
-                                
-                        </div>
+                        <hr>         
+                    </div>
                         
                       
                     </div>
@@ -83,3 +86,4 @@
         } -->
     </mat-sidenav-content>
 </mat-sidenav-container>
+<router-outlet></router-outlet>
