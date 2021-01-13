@@ -14,6 +14,7 @@ import { ProjetService} from 'src/app/services/projet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Projet } from '../Projet';
 import { Iphase } from 'src/app/Phase/Iphase';
+import { L10n, loadCldr, setCulture } from '@syncfusion/ej2-base';
 
 @Component({
   selector: 'app-gantt-project',
@@ -119,9 +120,24 @@ export class GanttProjectComponent implements OnInit {
 }*/
  
   public ChargerGanttDiagramm(){ 
+
+    // Changement des noms des labels en français
+    L10n.load({
+      'fr-FR': {
+          'gantt': {
+               "id": "ID",
+                "name": "Nom",
+                "startDate": "Début",
+                "endDate":"Fin",
+                "duration": "Durée",
+                "progress": "Avancement",
+         }
+      }
+    });
     let gantt:Gantt=new Gantt({
       dataSource:this.phases,
       height:'600px',
+      locale:'fr-FR',
       taskFields : {
         id: 'numTache',
         name: 'nomTache',

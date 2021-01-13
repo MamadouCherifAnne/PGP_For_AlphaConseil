@@ -7,9 +7,11 @@ import { Tache } from 'src/app/Tache/Tache';
 import { Subscription } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { TacheService } from 'src/app/services/tache.service';
-import {Gantt} from "@syncfusion/ej2-angular-gantt"
+import {Gantt} from "@syncfusion/ej2-angular-gantt";
 import { AllProjetsComponent } from 'src/app/Projet/all-projets/all-projets.component';
 import { ActivatedRoute } from '@angular/router';
+import  * as html2pdf from 'html2pdf.js';
+import { L10n, loadCldr, setCulture } from '@syncfusion/ej2-base';
 @Component({
   selector: 'app-utilisateur-gantt',
   templateUrl: './utilisateur-gantt.component.html',
@@ -80,9 +82,24 @@ export class UtilisateurGanttComponent implements OnInit {
 }*/
  
   public ChargerGanttDiagramm(done,rsource){ 
+   
+    L10n.load({
+      'fr-FR': {
+          'gantt': {
+               "id": "ID",
+                "name": "Nom",
+                "startDate": "Début",
+                "endDate":"Fin",
+                "duration": "Durée",
+                "progress": "Avancement",
+         }
+      }
+    });
+
     let gantt:Gantt=new Gantt({
       dataSource:done,
       height:'600px',
+      locale:'fr-FR',
       taskFields : {
         id: 'numTache',
         name: 'nomTache',
@@ -92,6 +109,9 @@ export class UtilisateurGanttComponent implements OnInit {
         
         resourceInfo:'ressources'
     },
+    /*allowPdfExport:true,
+    toolbar:['PdfExport'],
+    toolbarClick:clickHandler,*/
     resources:rsource,
     resourceIDMapping:'idUser',
     resourceNameMapping:'nom',
@@ -110,6 +130,34 @@ export class UtilisateurGanttComponent implements OnInit {
     });
     gantt.appendTo("#GanttContainer");
   
+}
+
+public imprimerFacturePDF(){
+  const options = {
+    filename: 'factureTache.pdf',
+    /*image :{type:'jpeg'},*/
+    html2canvas:{
+      dpi: 192,
+      letterRendering: true, 
+      allowTaint: true, 
+      useCORS: true, 
+      logging: false, 
+      scrollX: 0,
+      scrollY: 0 
+    },
+    jsPDF:{orientation:'portrait',
+    unit: 'cm',
+    format: 'a4'
+    }
+  }
+
+  const element: Element = document.getElementById('GanttContainer')
+
+  // Appel de la librairies pour la sauvegarde
+  html2pdf()
+    .from(element)
+    .set(options)
+    .save()
 }
 
 }

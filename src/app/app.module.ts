@@ -96,6 +96,7 @@ import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.comp
 import { AddMembreComponent } from './Projet/membre-projet/add-membre/add-membre.component';
 import { PgpDatePipe } from './directives/PgpDatePipe';
 import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
+import { FactureProjetComponent } from './Facture/facture-projet/facture-projet.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -179,7 +180,9 @@ registerLocaleData(localeFr, 'fr');
 
     PgpDatePipe,
 
-    UpdateDepenseComponent
+    UpdateDepenseComponent,
+
+    FactureProjetComponent
   ],
   imports: [
     BrowserModule,

@@ -63,14 +63,25 @@ export class FactureTacheComponent implements OnInit {
   // Open pdf avec HTML2PDF
   public imprimerFacturePDF(){
     const options = {
-      name: 'factureTache.pdf',
-      image :{type:'jpeg'},
-      html2canvas:{},
-      jsPDF:{orientation:'landscape'}
+      filename: 'facture_'+this.currentTache.nomTache+'.pdf',
+      /*image :{type:'jpeg'},*/
+      html2canvas:{
+        dpi: 192,
+        letterRendering: true, 
+        allowTaint: true, 
+        useCORS: true, 
+        logging: false, 
+        scrollX: 0,
+        scrollY: 0 
+      },
+      jsPDF:{orientation:'portrait',
+      unit: 'cm',
+      format: 'a4'
+      }
     }
-
+  
     const element: Element = document.getElementById('htmlFacture')
-
+  
     // Appel de la librairies pour la sauvegarde
     html2pdf()
       .from(element)
