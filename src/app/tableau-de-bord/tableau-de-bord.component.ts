@@ -24,15 +24,16 @@ export class TableauDeBordComponent implements OnInit {
     this.userService.getUserByUsername(username).subscribe(result=>{
       if(result){
         this.currentUser =result;
+        this.userService.getMessageRecievedNonLus(username).subscribe(data=>{
+          if(data){
+            this.msgLu = data;
+            this.messageNonLu=this.msgLu.msgNonLu;
+            console.log("les messaes non lu"+data);
+          }
+        });
       }
     });
-    this.userService.getMessageRecievedNonLus(username).subscribe(data=>{
-      if(data){
-        this.msgLu = data;
-        this.messageNonLu=this.msgLu.msgNonLu;
-        console.log("les messaes non lu"+data);
-      }
-    });
+  
   }
 
 }

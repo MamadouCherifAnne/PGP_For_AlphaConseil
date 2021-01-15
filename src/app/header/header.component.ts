@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(){
     this.loading = this.loaderService.isLoading;
-   
+    this.initialiser()
   }
 
   logout() {

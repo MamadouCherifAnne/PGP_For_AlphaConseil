@@ -26,11 +26,12 @@
                    
                 </div>
                 <div class="card-body">
-                    <form>
-                        <div class="input-group form-group">    
-                           <label for="nom">Nom</label>
-                           <input type="text" class="form-control" id=nom>
-                            
+                    <form [formGroup]="signinForm" >
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="username" placeholder="nom d'utilisateur">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">

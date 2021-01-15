@@ -35,12 +35,13 @@
       </li>-->
       <li class="nav-item" *ngIf="this.authService.isLoggedIn">
         <div class="icon-wrapper">
-          <a class="nav-link" *ngIf="messageNonLus" [routerLink]="['user/profil/','messageNonLus.idUser']" routerLinkActive="active" >
-           <i class="far fa-comment fa-5x fa-border icon-blue"></i>
+          <a class="nav-link" *ngIf="messageNonLus" [routerLink]="['user/profil/',messageNonLus.idUser]" routerLinkActive="active" >
+          
             <i class="far fa-envelope fa-border icon-grey"></i>
               <span class="badge">{{messageNonLus.msgNonLu}}</span>
           </a>
         </div>
+    
         
       <!--
         <--  Mettre en place les notifications >

@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
     let userLogin = new AppUser();
     userLogin.username =this.signinForm.get("username").value;
     userLogin.password= this.signinForm.get("password").value;
+    console.log("VOICI LE USERNAME "+ userLogin.username);
+    console.log("VOICI LE USERNAME "+ userLogin.username);
     this.authService.login(userLogin);
    /* this.userService.verifToGetCmpany(userLogin.username).subscribe(data=>{
       if(data){
