@@ -163,7 +163,7 @@ export class AltachesComponent implements OnInit {
         cmpt += 1;
       }
     }
-    console.log("check task stut:"+ cmpt);
+    //console.log("check task stut:"+ cmpt);
     return cmpt;
   }
 
@@ -301,7 +301,7 @@ export class AltachesComponent implements OnInit {
         }
       }
     }
-    console.log("sssssssssssssss"); 
+    //console.log("sssssssssssssss"); 
     return find;
   }
 

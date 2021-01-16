@@ -183,6 +183,7 @@ export class FileComentComponent implements OnInit {
   //enregistrement du fichier 
   fileSubmission(){
     const formData = new FormData();
+  
     formData.append('file', this.tacheFile);
     this.fichierservice.uploadFile(formData, this.idTache).subscribe((response) =>{
       console.log(response);
@@ -264,4 +265,6 @@ export class FileComentComponent implements OnInit {
        }
        return verif;
     }
+
+    // Go to depense 
 }

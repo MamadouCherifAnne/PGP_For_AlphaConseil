@@ -39,7 +39,7 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
-import {AccumulationChartModule, PieSeriesService, AccumulationDataLabelService, AccumulationLegendService ,AccumulationTooltipService,} from '@syncfusion/ej2-angular-charts';
+import {AccumulationChartModule, PieSeriesService, AccumulationDataLabelService, AccumulationLegendService ,AccumulationTooltipService} from '@syncfusion/ej2-angular-charts';
 import {jsPDF} from 'jspdf';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
@@ -101,6 +101,7 @@ import { RegistrationComponent } from './registration/registration.component';
 
 import { PgpDatePipe } from './directives/PgpDatePipe';
 import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
+import { FactureProjetComponent } from './Facture/facture-projet/facture-projet.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -188,7 +189,9 @@ registerLocaleData(localeFr, 'fr');
 
     PgpDatePipe,
 
-    UpdateDepenseComponent
+    UpdateDepenseComponent,
+
+    FactureProjetComponent
   ],
   imports: [
     BrowserModule,
