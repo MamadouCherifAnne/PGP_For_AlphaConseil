@@ -29,6 +29,7 @@ export class FileComentComponent implements OnInit {
   config:any;
   currentUser:any;
   message:any;
+  outpout: any;
   tacheToComment:Tache;
   ressources:any;
   resourcesNames:string[] =[]
@@ -159,7 +160,7 @@ export class FileComentComponent implements OnInit {
 
     //Delete Commentaire
     public deleteComment(idComment){
-      if(confirm("voulez vous vraiment supprimer ce commentaire?")){
+      if(confirm("Voulez vous vraiment supprimer ce commentaire?")){
       this.commentService.deleteComment(idComment).subscribe(data=>{
         this.message = data;
         this.refresh();
@@ -174,6 +175,13 @@ export class FileComentComponent implements OnInit {
     });
   }
 
+  public deleteFile(idFile){
+    if(confirm("Voulez vous vraiment supprimer ce fichier?")){
+      this.fichierservice.delete(idFile).subscribe(data=>{
+        this.outpout = data;
+      })
+    }
+  }
   //Recuperation du fichier charger 
   onSelectFile(event){
     const file = event.target.files[0];

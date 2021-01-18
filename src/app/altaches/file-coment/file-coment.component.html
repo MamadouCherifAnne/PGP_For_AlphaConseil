@@ -118,20 +118,26 @@
                      <h6  class="card-title">Vous pouvez ajouter des fichiers à cette tache</h6>
                      <div class="form-control"> 
                      
-                     <input type="file"  class="form-group" (change)="onSelectFile($event)">
-                     </div>
+                     <input type="file"  class="form-group" accept=".pdf,.doc" (change)="onSelectFile($event)">
                      <button class="btn btn-success btn-sm" type="submit" (click)="fileSubmission()">Ajouter
-                     </button>
-
+                    </button>
+                     </div>
+                     
+                   <br>  
+                   <div>
                      <ul *ngIf="currentTache"
                         class="list-group">
                         <li class="list-group-item" *ngFor="let file of currentTache.fichiers">
+                            <i class="far fa-file-pdf"></i>
                              {{ file.nomFichier }} 
                             <button type="button" (click)="fileDownlod(file.numFichier)"
-                             class="btn btn-light btn-sm">Voir Fichier</button>
+                             class="btn btn-light btn-sm"><i class="fas fa-download"></i></button>
+
+                             <button type="button" (click)="deleteFile(file.numFichier)"
+                             class="btn btn-light btn-sm"><i class="far fa-trash-alt"></i></button>
                         </li>
-                    </ul>
-                   
+                     </ul>
+                    </div>
 
                     </div>
         
