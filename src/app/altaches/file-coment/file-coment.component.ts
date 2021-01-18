@@ -11,6 +11,7 @@ import{Observable} from 'rxjs';
 import { Time } from '@angular/common';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { CommentaireService } from 'src/app/services/commentaire.service';
+import { PageEvent } from '@angular/material';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class FileComentComponent implements OnInit {
   today:Date =new Date();
   retardTache:number =0;
   commentaire:Commentaire = new Commentaire();
+  public pageChanged: PageEvent;
 
   constructor(private tacheService:TacheService,
     private route:ActivatedRoute,

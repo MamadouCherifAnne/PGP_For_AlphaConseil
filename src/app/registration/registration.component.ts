@@ -17,4 +17,9 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
+  public loginUser(){
+    // faire la registration
+    return "faire la registration";
+  }
+
 }

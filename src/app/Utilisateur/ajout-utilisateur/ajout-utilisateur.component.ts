@@ -20,7 +20,7 @@ export class AjoutUtilisateurComponent implements OnInit {
    
   public addUserForm: FormGroup;
   public message:any;
-  public  hide:true;
+  public  hide:boolean = true;
   public  listProfession: Profession[]
   public idProfession:IProfession[];
 

@@ -32,7 +32,7 @@ import { TableauDeBordComponent } from './tableau-de-bord/tableau-de-bord.compon
 import { AddTacheComponent } from './Tache/add-tache/add-tache.component';
 import { AjoutPhaseComponent } from './Phase/ajout-phase/ajout-phase.component';
 
-import { ResumeProjetComponent } from './projet/resume-projet/resume-projet.component';
+
 import { EnsembleVueProjetComponent } from './Projet/ensemble-vue-projet/ensemble-vue-projet.component';
 import { EditProjetComponent } from './Projet/edit-projet/edit-projet.component';
 import { AllProjetsComponent } from './Projet/all-projets/all-projets.component';
@@ -47,7 +47,7 @@ import { AltachesComponent } from './altaches/altaches.component';
 import { EditTacheComponent } from './Tache/edit-tache/edit-tache.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
-import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+//import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
 import { AffecterRessourcesComponent } from './Tache/affecter-ressources/affecter-ressources.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AjoutPhaseSecondComponent } from './altaches/ajout-phase-second/ajout-phase-second.component';
@@ -78,7 +78,7 @@ import { MonTravailComponent } from './Utilisateur/mon-travail/mon-travail.compo
 import { LoginComponent } from './Login/login/login.component';
 import { AuthInterceptor} from './services/authconfig.interceptor';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
-import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
+//import { UserEntrepriseComponent } from './Entreprise/user-entreprise/user-entreprise.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -130,7 +130,7 @@ registerLocaleData(localeFr, 'fr');
     TableauDeBordComponent,
     AddTacheComponent,
     AjoutPhaseComponent,
-    ResumeProjetComponent,
+  
     EnsembleVueProjetComponent,
     EditProjetComponent,
     AffectationUserComponent,
@@ -140,7 +140,7 @@ registerLocaleData(localeFr, 'fr');
     EditTacheComponent,
     GanttProjectComponent,
     UtilisateurGanttComponent,
-    AddEntrepriseComponent,
+   // AddEntrepriseComponent,
     AffecterRessourcesComponent,
     SideNavComponent,
     AjoutPhaseSecondComponent,
@@ -173,7 +173,7 @@ registerLocaleData(localeFr, 'fr');
     MonTravailComponent,
     LoginComponent,
     UserProfilComponent,
-    UserEntrepriseComponent,
+    //UserEntrepriseComponent,
     ToutLeProjetComponent,
 
     NotificationComponent,

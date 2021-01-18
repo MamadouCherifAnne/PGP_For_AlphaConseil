@@ -5,6 +5,7 @@ import { Utilisateur } from 'src/app/Utilisateur/Utilisateur';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { Message } from 'src/app/Message/Message';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-user-profil',
@@ -19,6 +20,7 @@ export class UserProfilComponent implements OnInit {
   public messageForm:FormGroup;
   public message: Message = new Message();
   destinataire:any;
+  public pageChanged:PageEvent;
 
   constructor(
     public authService: AuthentificationService,
@@ -99,4 +101,8 @@ export class UserProfilComponent implements OnInit {
       });
     }
 
+    public deleteMessage(idmess){
+      // a faire
+      return "supprimer message";
+    }
 }
