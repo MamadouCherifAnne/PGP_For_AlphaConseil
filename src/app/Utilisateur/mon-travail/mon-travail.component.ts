@@ -20,6 +20,7 @@ export class MonTravailComponent implements OnInit {
   userTaches: any = [];
   theuser: any ;
   display = [];
+  public vide:any;
 
   constructor( 
     private authService: AuthentificationService,

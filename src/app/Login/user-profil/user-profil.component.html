@@ -23,7 +23,7 @@
                 <mat-list-item style="height: auto;"   *ngFor="let msg of messages | paginate:config">
                 
                 <mat-icon mat-list-icon>account_circle</mat-icon>
-                <button class="btn-danger" (click)="deleteComment(msg.idMessage)" ><mat-icon mat-list-icon>delete</mat-icon></button>
+                <button class="btn-danger" (click)="deleteMessage(msg.idMessage)" ><mat-icon mat-list-icon>delete</mat-icon></button>
                 <div mat-line style="white-space: normal;"><b>{{msg.editUser.username}}</b> : {{msg.dateEnvoie | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
                 <br>
                 <br>
@@ -37,7 +37,7 @@
         <pagination-controls previousLabel="précédent "
         nextLabel="suivant"
         responsive="true"
-        (pageChange)="pageChanged($event)"></pagination-controls>
+        (pageChange)="pageChanged = $event"></pagination-controls>
     </div>
     
 </div>

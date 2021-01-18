@@ -19,7 +19,7 @@ import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utili
 import {AltachesComponent} from './altaches/altaches.component';
 import { GanttProjectComponent } from './Projet/gantt-project/gantt-project.component';
 import {FileComentComponent} from './altaches/file-coment/file-coment.component';
-import { AddEntrepriseComponent } from './Entreprise/add-entreprise/add-entreprise.component';
+
 import { JalonComponent } from './Projet/jalon/jalon.component';
 import {CommentComponent} from './Projet/comment/comment.component';
 import {ActiviteComponent} from './Projet/activite/activite.component';
@@ -37,7 +37,6 @@ import { LoginComponent } from './Login/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { AuthAdminGuard } from './services/auth-admin.guard';
-import {ResumeProjetComponent} from './Projet/resume-projet/resume-projet.component';
 import {ToutLeProjetComponent} from  "./Projet/tout-le-projet/tout-le-projet.component";
 import { NotificationComponent } from './notification/notification.component';
 import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
@@ -96,7 +95,7 @@ const routes: Routes = [
   {path:'message/:idDestinataire', component: MessagerieComponent},
 
   // les liens concernant entreprise
-  {path: 'workspace/new', component:AddEntrepriseComponent},
+ // {path: 'workspace/new', component:AddEntrepriseComponent},
 
   {path: 'Taches/:id', component: AltachesComponent},
   {path:'jalon/:id', component:JalonComponent},

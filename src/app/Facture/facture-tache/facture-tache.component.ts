@@ -98,5 +98,8 @@ export class FactureTacheComponent implements OnInit {
   public get getCurrentDate():Date{
     return new Date();
   }
- 
+  
+  public ouvrirPDF(){
+    return "bebe"
+  }
   }
