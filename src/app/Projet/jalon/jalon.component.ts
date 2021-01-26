@@ -58,8 +58,10 @@ export class JalonComponent implements OnInit {
         if( this.projectOwner.username == this.authService.getCurrentUser()){
           this.isOwner = true;
         }
+        this.refresh();
       }
     });
+    
    /*   // Recuperer tout les jalons
       this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
         if(data){
@@ -97,7 +99,7 @@ export class JalonComponent implements OnInit {
   
     refresh() {
 
-      this.projetService.getProjectJalons(this.projectId ).subscribe((data)=>{
+      this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
         if(data){
           this.jalons=data;
           for(let j of this.jalons){

@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   public listofNewAffectation:any=[];
   public currentUser:any;
   public loading:any;
+  public smsnonLu:number = 2;
   public openNotif:boolean = false;
   public messageNonLus:any;
   constructor(
@@ -65,6 +66,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
        this.userService.getMessageRecievedNonLus(username).subscribe(data=>{
         if(data){
           this.messageNonLus = data;
+          this.smsnonLu = this.messageNonLus.msgNonLu;
         }
       });
     }

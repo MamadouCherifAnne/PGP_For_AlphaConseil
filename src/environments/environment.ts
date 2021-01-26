@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  alfaApiUrl: 'http://localhost:8082/alfapgpcollaboratif'
+  alfaApiUrl: 'http://localhost:8080'
 };
 
 /*

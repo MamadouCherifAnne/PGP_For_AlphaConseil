@@ -1,3 +1,22 @@
+<div>
+  <br>
+  <app-projet-liens [idProjet]="projectId"></app-projet-liens>
+</div>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+      <div class="container-flud">
+      <br>
+      <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Liste des Jalons</h6>
+      <br>
+      <ul class="list-group" >
+          <li class="list-group-item  breadcrumb" style="border: none">
+             
+             
+          </li>
+      </ul>
+  </div>
+  </mat-sidenav>
+  <mat-sidenav-content> 
 <div class="container" *ngIf="currentProject">
 
     <div class="headline">
@@ -18,7 +37,7 @@
     <br>
     <hr>
     <div class="container">
-        <div class="card" style="width: 110%;">
+        <div class="card" style="width:100%">
             <div class="card-header">
               Commentaires sur le projet : <b>{{currentProject.nomProjet}}</b>
             </div>
@@ -46,3 +65,5 @@
 
     
 </div>
+</mat-sidenav-content>
+</mat-sidenav-container>

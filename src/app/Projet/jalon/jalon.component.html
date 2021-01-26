@@ -1,17 +1,6 @@
-<div class="container-fluid borderDiv">
+<div>
     <br>
-    <ul class="list-inline border-bottom">
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../projet/', projectId]" routerLinkActive="active">Vue d'ensemble</a></li>     
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../Taches/', projectId]" routerLinkActive="active">Taches</a></li>
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../jalon/', projectId]" routerLinkActive="active">Jalons</a></li>
-        <li class="list-inline-item">
-            <a  routerLink="../../commentaire" routerLinkActive="active">Commentaires</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Utilisateurs</a></li>
-    </ul>
+    <app-projet-liens [idProjet]="projectId"></app-projet-liens>
 </div>
 
 <mat-sidenav-container>

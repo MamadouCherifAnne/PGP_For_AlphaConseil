@@ -153,5 +153,10 @@ export class TacheService {
     return this.http.get(environment.alfaApiUrl+"/tache/gettachewithdepenses/"+idTache);
   }
 
+  // Suppression des dépenses
+  public deleteDepense(idDepense){
+    return this.http.delete(environment.alfaApiUrl+"/tache/deleteDepense/"+idDepense);
+  }
+
 
 }

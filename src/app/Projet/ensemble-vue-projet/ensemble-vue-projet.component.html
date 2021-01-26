@@ -1,24 +1,7 @@
-<br>
-<div class="container-fluid ">
-    <h5 *ngIf=projet class="hclass">      
-        <span>{{nomProjet()}}</span>
-    </h5>
-      
-    <ul class="list-inline border-bottom">
-        
-        <li class="list-inline-item">
-            <a  [routerLink]="['/Taches/', projetId]" routerLinkActive="active">Taches</a></li>
-        <li class="list-inline-item">
-            <a  [routerLink]="['/jalon/', projetId]" routerLinkActive="active">Jalons</a></li>
-        <li class="list-inline-item">
-            <a  routerLink="/commentaire" routerLinkActive="active">Commentaires</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Utilisateurs</a></li>
-    </ul>
-   
+<div>
+    <br>
+    <app-projet-liens [idProjet]="projetId"></app-projet-liens>
 </div>
-
-
 <br>
 
 <mat-sidenav-container>

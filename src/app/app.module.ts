@@ -102,6 +102,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PgpDatePipe } from './directives/PgpDatePipe';
 import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
 import { FactureProjetComponent } from './Facture/facture-projet/facture-projet.component';
+import { ProjetLiensComponent } from './Projet/projet-liens/projet-liens.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -191,7 +192,9 @@ registerLocaleData(localeFr, 'fr');
 
     UpdateDepenseComponent,
 
-    FactureProjetComponent
+    FactureProjetComponent,
+
+    ProjetLiensComponent
   ],
   imports: [
     BrowserModule,
