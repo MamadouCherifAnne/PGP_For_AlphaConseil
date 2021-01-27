@@ -34,6 +34,6 @@ export class FichierService {
   }
 
   public delete(fileId){
-    return this.http.delete(this.host+"/fichier/deletefile/"+fileId);
+    return this.http.delete(this.host+"/fichier/deletefile/"+fileId,{'responseType': 'text', headers:this.entete},);
   }
 }

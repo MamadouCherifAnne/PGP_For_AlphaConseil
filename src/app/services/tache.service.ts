@@ -153,5 +153,9 @@ export class TacheService {
     return this.http.get(environment.alfaApiUrl+"/tache/gettachewithdepenses/"+idTache);
   }
 
+  public getFiles(idTache): Observable<any>{
+    return this.http.get(environment.alfaApiUrl+"/tache/getFiles/"+idTache);
+  }
+
 
 }
