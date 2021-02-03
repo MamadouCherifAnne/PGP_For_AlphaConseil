@@ -42,6 +42,10 @@ import { NotificationComponent } from './notification/notification.component';
 import { MembreProjetComponent } from './Projet/membre-projet/membre-projet.component';
 import {HomeComponent} from './home/home.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {EtatProjetComponent} from './Projet/etat-projet/etat-projet.component';
+import {ActifsprojetsComponent} from './Projet/actifsprojets/actifsprojets.component';
+import {LateprojetsComponent} from './Projet/lateprojets/lateprojets.component';
+import {FinishedprojectsComponent} from './Projet/finishedprojects/finishedprojects.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -108,7 +112,12 @@ const routes: Routes = [
   {path: 'creeruncompte', component: RegistrationComponent},
   {path:'notifications',component:NotificationComponent},
   {path: 'equipeprojet/:idprojet', component: MembreProjetComponent,canActivate:[AuthGuard]},
-
+  {path: 'projets', component: EtatProjetComponent,children:[
+    {path: '', redirectTo: 'actifs', pathMatch: 'full'},
+    {path: 'actifs', component: ActifsprojetsComponent},
+    {path: 'termines', component: FinishedprojectsComponent},
+    {path: 'enretards', component: LateprojetsComponent}
+  ]}
 
 ];
 

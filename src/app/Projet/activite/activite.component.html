@@ -5,6 +5,7 @@
             <h3>Activité</h3>
             <hr>
             <br>
+            <p>lllllll{{ getPhaseDuneTache(4) }}</p>
             <div *ngIf="projets">
                 <div  *ngFor="let projet of projets">
                     <h5 class="p2 bg-light">{{projet.nomProjet | titlecase}}<small>({{entrepriseName}})</small></h5>
@@ -13,7 +14,8 @@
                         <div class="tacheclass" *ngFor="let tache of phase.taches">
                             <p><i class="fas fa-circle"></i></p>
                             <p>{{tache.nomTache}}</p>
-                            <p>(<small class="text-primary">Phase:</small><span style="margin:0 0 0 5px;">{{getPhaseDuneTache(tache.numTache)}}) </span></p>
+                            <p>{{tache.numTache}}</p>
+                            <p>(<small class="text-primary">Phase:</small><span style="margin:0 0 0 5px;">xxx </span></p>
                             <p style="margin:0 0 0 100px;" class=".text-dark">dernière activité:</p>
                             <p class="text-dark">{{tache.lastUpdate | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</p> 
                         </div>

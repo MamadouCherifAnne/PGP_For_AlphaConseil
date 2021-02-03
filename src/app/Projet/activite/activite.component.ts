@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { ProjetService } from 'src/app/services/projet.service';
 import {TacheService} from 'src/app/services/tache.service';
+import { Phase } from 'src/app/Phase/Phase';
+
 @Component({
   selector: 'app-activite',
   templateUrl: './activite.component.html',
@@ -25,6 +27,8 @@ export class ActiviteComponent implements OnInit {
        this.projets=data
       // console.log(data)
      })
+
+     this.getPhaseDuneTache(4);
   }
 
   compareDate(element){
@@ -40,15 +44,17 @@ export class ActiviteComponent implements OnInit {
   }
 
   getPhaseDuneTache(idtache){
-
-    this.tacheService.getPhaseDuneTache(idtache).subscribe((data)=>{
+    let phase = new Phase();
+    let name: String = "";
+    this.tacheService.getPhaseDuneTache(idtache).subscribe(data=>{
       if(data){
-        this.phase = data;
-       // console.log("c'est bon"+this.phase);
-       return this.phase.nomTache;
+       phase = data;
+       name = phase.nomTache
+       console.log("1111111111111111111111111111111111111111")
       }
+      console.log("1111111111111111111111111111111111111111"+name)
+      return name;
     });
-   
   }
 
   //

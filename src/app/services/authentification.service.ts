@@ -75,7 +75,7 @@ export class AuthentificationService {
     // Recuperer le jwt
     public saveJWT(jwtToken){
       this.jwtToken=jwtToken;
-      localStorage.setItem('token',jwtToken)
+      localStorage.setItem('token',this.jwtToken) //jwtToken
       const jwtHelper = new JwtHelperService();
       const userBody =jwtHelper.decodeToken(this.jwtToken);
       //recuperer la date de lexipiration du cle jwt 

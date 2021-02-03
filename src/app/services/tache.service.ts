@@ -153,8 +153,13 @@ export class TacheService {
     return this.http.get(environment.alfaApiUrl+"/tache/gettachewithdepenses/"+idTache);
   }
 
+
   public getFiles(idTache): Observable<any>{
     return this.http.get(environment.alfaApiUrl+"/tache/getFiles/"+idTache);
+  }
+  // Suppression des dépenses
+  public deleteDepense(idDepense){
+    return this.http.delete(environment.alfaApiUrl+"/tache/deleteDepense/"+idDepense);
   }
 
 

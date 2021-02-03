@@ -55,7 +55,7 @@ export class EditProjetComponent implements OnInit {
   }
 
   Clear(){
-    this.editProjetForm.reset();
+    this.dialogRef.close();
   }
 
   Close(){

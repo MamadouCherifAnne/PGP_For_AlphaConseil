@@ -91,7 +91,13 @@ public onCreate(){
    }
 
    deleteDepense(element){
-     return "bonjour";
+     this.tacheService.deleteDepense(element).subscribe(data=>{
+        if(data == true){
+          console.log("c4est supprimer ");
+        }else{
+          console.log("Not supprimed");
+        }
+     })
    }
 
 

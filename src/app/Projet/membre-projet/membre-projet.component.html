@@ -1,20 +1,6 @@
-<div class="container-fluid divclass">
+<div>
     <br>
-    <ul class="list-inline border-bottom">
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../projet/', idProjet]" routerLinkActive="active">Vue d'ensemble</a></li>
-        
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../Taches/', idProjet]" routerLinkActive="active">Taches</a></li> 
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../jalon/', idProjet]" routerLinkActive="active">Jalons</a></li>
-        <li class="list-inline-item">
-            <a  [routerLink]="['../../commentaire',idProjet]" routerLinkActive="active">Commentaires</a></li>
-            <li class="list-inline-item">
-                <a  [routerLink]="['../../equipeprojet/', idProjet]" routerLinkActive="active">Membres</a></li>
-                
-                
-    </ul>
+    <app-projet-liens [idProjet]="idProjet"></app-projet-liens>
 </div>
 
 

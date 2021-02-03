@@ -1,31 +1,15 @@
-<br>
-<div class="container-fluid ">
-    <h5 *ngIf=projet class="hclass">      
-        <span>{{nomProjet()}}</span>
-    </h5>
-      
-    <ul class="list-inline border-bottom">
-        
-        <li class="list-inline-item">
-            <a  [routerLink]="['/Taches/', projetId]" routerLinkActive="active">Taches</a></li>
-        <li class="list-inline-item">
-            <a  [routerLink]="['/jalon/', projetId]" routerLinkActive="active">Jalons</a></li>
-        <li class="list-inline-item">
-            <a  routerLink="/commentaire" routerLinkActive="active">Commentaires</a></li>
-        <li class="list-inline-item">
-            <a  href="#">Utilisateurs</a></li>
-    </ul>
-   
+<div class="eprojet">
+    <br>
+    <h6>{{ projet.nomProjet }}</h6>
+    <app-projet-liens [idProjet]="projetId"></app-projet-liens>
 </div>
-
-
 <br>
 
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
         <div class="container">
         <p><strong>Desciption</strong><br>
-        Ajouter une Desciption</p>
+           {{ projet.description }}</p>
         <p><i class='far fa-calendar-alt'></i><strong>Dattes</strong></p>
         <div *ngIf="projet" class="divdate">
              <span class="bg-light">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>

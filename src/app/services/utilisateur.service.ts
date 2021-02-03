@@ -82,4 +82,15 @@ export class UtilisateurService {
     return this.http.get(environment.alfaApiUrl+"/utilisateur/messageNonLus/"+username);
     }
 
+    public getProjetsEncours(username): Observable<any>{
+      return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetEncours/"+username);
+    }
+
+    public getProjetEnretard(username): Observable<any>{
+      return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetEnRetard/"+username)
+    }
+
+    public getProjetTermines(username): Observable<any>{
+      return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetTermines/"+username)
+    }
 }
