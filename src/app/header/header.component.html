@@ -34,36 +34,14 @@
       
       <li class="nav-item" *ngIf="this.authService.isLoggedIn">
         <div class="container">
-          <a class="nav-link amessage" ><i class="far fa-envelope fa-lg"></i>
+          <a class="nav-link amessage" routerLinkActive="active" routerLink="['user/profil']" >
+            <i class="far fa-envelope fa-lg"></i>
             Messages
           </a>
-            <span class="badge badge-notify" style="font-size:10px;">5</span>
+            <span class="badge badge-notify" style="font-size:10px;" *ngIf="messageNonLus && smsnonLu !=0 ">{{smsnonLu}}</span>
             
           </div>
         
-      <!--
-        <--  Mettre en place les notifications >
-        <div class="notification-wrapper" >
-          <!- You can put an icon from Material Design icon or Fontawesome >
-          <div class="notification-btn"  (click)="openNotification(false)">
-            <span class="mdi mdi-bell">notif</span>
-          </div>
-          <div  class="notification-content" [hidden]="!openNotif">
-            <div class="notification-header">
-              <span class="mdi mdi-settings"></span>
-              <span class="label">Notifications</span>
-            </div>
-            <mat-list *ngIf="listofNewAffectation">
-              <div class="card-body" *ngFor="let affect of listofNewAffectation">
-                <a [routerLink]="['/task/',affect.tache.numTache]" routerLinkActive="active">
-                  Affectation à {{affect.tache.nomTache}} : <small>{{affect.affectation.dateAffectation | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</small>
-                </a>
-              </div>
-            </mat-list>
-          </div>
-          
-        </div>
-        <-- Fin de la gestion des notifications-->
         
       </li>
       

@@ -136,7 +136,7 @@ export class TacheService {
 
   // Recuperer les informations (si les taches sont terminées, en cours ou en retards)
   public getTachesInfo(idProjet):Observable<any>{
-    return this.http.get(environment.alfaApiUrl+"/tache/TasksInformation/"+idProjet,{headers:this.entete});
+    return this.http.get<any>(environment.alfaApiUrl+"/tache/TasksInformation/"+idProjet,{headers:this.entete});
   }
   //les tache, le phase et le projet en meme temps
 
