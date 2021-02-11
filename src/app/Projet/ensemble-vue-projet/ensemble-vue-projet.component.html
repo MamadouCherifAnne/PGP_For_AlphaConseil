@@ -1,5 +1,6 @@
-<div>
+<div class="eprojet">
     <br>
+    <h6>{{ projet.nomProjet }}</h6>
     <app-projet-liens [idProjet]="projetId"></app-projet-liens>
 </div>
 <br>
@@ -8,7 +9,7 @@
     <mat-sidenav mode="side" opened>
         <div class="container">
         <p><strong>Desciption</strong><br>
-        Ajouter une Desciption</p>
+           {{ projet.description }}</p>
         <p><i class='far fa-calendar-alt'></i><strong>Dattes</strong></p>
         <div *ngIf="projet" class="divdate">
              <span class="bg-light">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>

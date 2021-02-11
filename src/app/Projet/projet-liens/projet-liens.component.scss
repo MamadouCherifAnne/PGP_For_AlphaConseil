@@ -21,7 +21,7 @@ mat-sidenav-content{
       a{
         text-decoration: none;
         color: gray;
-        padding: 0 10px 0 20px;
+        padding: 0 5px 0 20px;
         a:active { 
           border-bottom:4 px solid;
           border-bottom-color: green;
@@ -178,5 +178,7 @@ i{
       float:right;
   }
 
- 
- 
+a.active{
+  border-bottom: 5px solid;
+  border-bottom-color: 	#228B22;
+}

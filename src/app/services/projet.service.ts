@@ -133,4 +133,19 @@ public static isowner:boolean=false;
   public getProjectOwner(idProjet):Observable<any>{
     return this.http.get<any>(this.host+"/projet/owner/"+idProjet);
   }
+
+  // affiche le nombre de projets actifs
+  public getprojetsActifs(username): Observable<any>{
+    return this.http.get<any>(this.host+"/projet/getprojetsActifs/"+username);
+  }
+
+  // le nombre de projets en retard
+  public getprojetsEnretard(username): Observable<any>{
+    return this.http.get<any>(this.host+"/projet/getprojetsEnretard/"+username);
+  }
+
+  //Affiche le nombre de projet termines
+  public getProjetsTermines(username): Observable<any>{
+    return this.http.get<any>(this.host+"/projet/getprojetTermines/"+username);
+  }
 }

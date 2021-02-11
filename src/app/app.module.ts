@@ -103,6 +103,10 @@ import { PgpDatePipe } from './directives/PgpDatePipe';
 import { UpdateDepenseComponent } from './Depense/update-depense/update-depense.component';
 import { FactureProjetComponent } from './Facture/facture-projet/facture-projet.component';
 import { ProjetLiensComponent } from './Projet/projet-liens/projet-liens.component';
+import { EtatProjetComponent } from './Projet/etat-projet/etat-projet.component';
+import { ActifsprojetsComponent } from './Projet/actifsprojets/actifsprojets.component';
+import { LateprojetsComponent } from './Projet/lateprojets/lateprojets.component';
+import { FinishedprojectsComponent } from './Projet/finishedprojects/finishedprojects.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -194,7 +198,15 @@ registerLocaleData(localeFr, 'fr');
 
     FactureProjetComponent,
 
-    ProjetLiensComponent
+    ProjetLiensComponent,
+
+    EtatProjetComponent,
+
+    ActifsprojetsComponent,
+
+    LateprojetsComponent,
+
+    FinishedprojectsComponent
   ],
   imports: [
     BrowserModule,

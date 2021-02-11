@@ -32,4 +32,8 @@ export class FichierService {
   public getFile(fileId): Observable<any>{
     return this.http.get<any>(this.host+"/fichier/findFileById/"+fileId,{headers:this.entete});
   }
+
+  public delete(fileId){
+    return this.http.delete(this.host+"/fichier/deletefile/"+fileId,{'responseType': 'text', headers:this.entete},);
+  }
 }

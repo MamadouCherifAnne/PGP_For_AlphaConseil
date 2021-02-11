@@ -29,9 +29,9 @@ export class ToutLeProjetComponent implements OnInit {
 
   @Input()  public projetId: any;
   public alltasks: any[];
-  loading: any;
-  late: any;
-  finished: any; 
+  loading: any = 0;
+  late: any = 0;
+  finished: any = 0; 
   avenir: any; 
   nombresdetaches : any;
   pourcenloading: any;

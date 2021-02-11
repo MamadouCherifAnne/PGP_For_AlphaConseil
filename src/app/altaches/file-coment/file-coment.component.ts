@@ -30,6 +30,8 @@ export class FileComentComponent implements OnInit {
   config:any;
   currentUser:any;
   message:any;
+  tacheFiles: any
+  outpout: any;
   tacheToComment:Tache;
   ressources:any;
   resourcesNames:string[] =[]
@@ -161,17 +163,48 @@ export class FileComentComponent implements OnInit {
 
     //Delete Commentaire
     public deleteComment(idComment){
-      if(confirm("voulez vous vraiment supprimer ce commentaire?")){
+      if(confirm("Voulez vous vraiment supprimer ce commentaire?")){
       this.commentService.deleteComment(idComment).subscribe(data=>{
         this.message = data;
         this.refresh();
       });
     }
     }
+
   refresh(){
     this.tacheService.getCommentsOfTask(this.idTache).subscribe(commentaire=>{
       if(commentaire){
         this.tacheComments=commentaire;
+        console.log("les coms"+this.tacheComments)
+      }
+    });
+  }
+
+  public deleteFile(idFile){
+    if(confirm("Voulez vous vraiment supprimer ce fichier?")){
+      this.fichierservice.delete(idFile).subscribe(data=>{
+        if(data){
+          this.refreshfiles();
+          this.outpout = data;
+        }
+          
+         /* this.tacheService.getFiles(this.idTache).subscribe(data=>{
+            if(data){
+              this.tacheFiles = data;
+
+            }
+          });*/
+         
+      })
+    }
+  }
+
+  public refreshfiles(){
+    this.tacheService.getFiles(this.idTache).subscribe(data=>{
+      if(data){
+        this.tacheFiles = data;
+        this.currentTache.fichiers = this.tacheFiles;
+        console.log("les fichiers"+this.tacheFiles)
       }
     });
   }
@@ -189,7 +222,8 @@ export class FileComentComponent implements OnInit {
     formData.append('file', this.tacheFile);
     this.fichierservice.uploadFile(formData, this.idTache).subscribe((response) =>{
       console.log(response);
-      
+      this.refreshfiles();
+      console.log("les fichiers"+this.currentTache.fichiers);
     })
 
     console.log("#######yup");

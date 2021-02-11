@@ -1,0 +1,36 @@
+<br>
+<div class="container-fluid strike">
+    <h6>Liste des projets</h6>
+ </div>  
+
+ <br>
+ <mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <h6>Projets</h6>
+        <dl class="bg-light">En cours</dl>
+        <dl class="bg-light">En retard</dl>
+        <dl class="bg-light">Terminés</dl>
+    </mat-sidenav>
+    <mat-sidenav-content> 
+        <div class="container-flud borderDiv">
+            <ul class="list-inline border-bottom">
+                <li class="list-inline-item">
+                    <a  routerLink="actifs" routerLinkActive="active">Actif</a>
+                    <span class="badge badge-pill badge-primary">{{nbrdeprojetactif}}</span>
+                </li>
+
+                <li class="list-inline-item">
+                    <a  routerLink="enretards" routerLinkActive="active">En retard</a>
+                    <span class="badge badge-pill badge-danger">{{nbrdeprojetenretard}}</span>
+                </li>
+
+                <li class="list-inline-item">
+                     <a  routerLink="termines" routerLinkActive="active">Terminé</a>
+                     <span class="badge badge-pill badge-success">{{nbrdeprojettermine}}</span>
+                </li>
+            </ul> 
+        </div> 
+        <router-outlet></router-outlet>
+       <!-- <app-actifsprojets></app-actifsprojets> -->
+    </mat-sidenav-content> 
+</mat-sidenav-container>

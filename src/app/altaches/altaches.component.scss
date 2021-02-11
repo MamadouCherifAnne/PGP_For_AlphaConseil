@@ -22,10 +22,6 @@ mat-sidenav-content{
         text-decoration: none;
         color: gray;
         padding: 0 10px 0 20px;
-        a:active { 
-          border-bottom:4 px solid;
-          border-bottom-color: green;
-        }
       } 
     li .list-inline-item{
        float: right;
@@ -123,3 +119,7 @@ span{
   display: block;
 }
 
+a.active{
+  border-bottom:6px solid;
+  border-bottom-color: green;
+}
