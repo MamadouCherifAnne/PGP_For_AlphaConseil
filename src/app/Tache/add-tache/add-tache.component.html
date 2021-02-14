@@ -6,8 +6,10 @@
         
             <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom de la tache">
-                    <mat-error></mat-error>
+                    <input formControlName="nomTache" [(ngModel)]="tache.nomTache" matInput placeholder="Nom de la tache" required>
+                    <mat-error *ngIf="checkError('nomTache', 'maxLength')">Ne doit pas déppasser 100 caractères !</mat-error>
+                    <mat-error *ngIf="checkError('nomTache', 'required')">Le nom est obligatoire</mat-error>
+                    <mat-error *ngIf="checkError('nomTache', 'pattern')">N'accepte pas les caractère spéciaux !</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -29,13 +31,13 @@
 
                 <mat-tab label="Durée">
                     <mat-form-field>
-                        <input formControlName="duree"  [(ngModel)]="tache.duree" matInput type="number" placeholder="Durée de la tache en jour">
+                        <input formControlName="duree"  [(ngModel)]="tache.duree" matInput type="number" placeholder="Durée de la tache en jour" required>
                     </mat-form-field>
                 </mat-tab>
                 
                 <mat-tab label="chargeTache">
                     <mat-form-field>
-                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput type="number" placeholder="Charge de la tache en heure">
+                        <input formControlName="chargeTache"  [(ngModel)]="tache.chargeTache" matInput type="number" placeholder="Charge de la tache en heure" required>
                     </mat-form-field>
                 </mat-tab>
 
@@ -73,14 +75,18 @@
 
                 <mat-tab label="Dates"> 
                     <mat-form-field>
-                        <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache">
+                        <input formControlName="debutTache"  [(ngModel)]="tache.debutTache" matInput [matDatepicker]="picker1" placeholder="Date de debut de la tache" required>
                         <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
                         <mat-datepicker #picker1 ></mat-datepicker>
+                        <mat-error *ngIf="checkError('debutTache', 'required')">La date du debut est obligatoire</mat-error>
+                        <mat-error *ngIf="checkError('debutTache', 'dateInvalid')">Le format de la date est: dd/mm/yyyy</mat-error>
                     </mat-form-field>
                     <mat-form-field>
-                        <input formControlName="finTache"  [(ngModel)]="tache.finTache" matInput [matDatepicker]="picker2" placeholder="Date de fin de la tache">
+                        <input formControlName="finTache"  [(ngModel)]="tache.finTache" matInput [matDatepicker]="picker2" placeholder="Date de fin de la tache" required>
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2 ></mat-datepicker>
+                        <mat-error *ngIf="checkError('finTache', 'required')">La date de fin est obligatoire</mat-error>
+                        <mat-error *ngIf="checkError('finTache', 'dateInvalid')">Le format de la date est: dd/mm/yyyy</mat-error>
                     </mat-form-field>
                 </mat-tab>
                 </mat-tab-group>
@@ -89,7 +95,8 @@
     </mat-grid-list>
     <br>
     <div class="bton">
-        <button class="btn btn-success" type="submit" (click)="ajoutTache()">Ajouter</button>
+        <button class="btn btn-success" type="submit" (click)="ajoutTache()" 
+        [disabled]="ajoutTacheForm.invalid">Ajouter</button>
         <button mat-raised-button color="war"  type="submit" (click)="onClose()">Annuler</button>
     </div>
 </form>

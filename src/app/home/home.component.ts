@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NotificationsService} from 'angular2-notifications';
+import { title } from 'process';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   
  imageVar: String = "assets/images/alfaconseil1.jpg";
- constructor() { }
+ constructor(private notifService: NotificationsService) { }
 
   ngOnInit() {
   }
 
+ 
 }

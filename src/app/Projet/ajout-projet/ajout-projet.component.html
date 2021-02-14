@@ -8,7 +8,7 @@
            
                 <mat-form-field>
                     <input formControlName="nomProjet"  matInput placeholder="Nom du Projet" required>
-                    <mat-error *ngIf="checkError('nomProjet', 'maxLength')">Ne doit pas déppasser 100 caractères !</mat-error>
+                    <mat-error *ngIf="checkError('nomProjet', 'maxLength')">Le nom ne doit pas déppasser 100 caractères !</mat-error>
                     <mat-error *ngIf="checkError('nomProjet', 'required')">Le nom est obligatoire</mat-error>
                     <mat-error *ngIf="checkError('nomProjet', 'pattern')">N'accepte pas les caractère spéciaux !</mat-error>
                 </mat-form-field>

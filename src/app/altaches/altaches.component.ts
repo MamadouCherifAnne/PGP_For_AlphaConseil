@@ -16,6 +16,7 @@ import { AuthentificationService } from '../services/authentification.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 import { Utilisateur } from '../Utilisateur/Utilisateur';
 import { HttpHeaders } from '@angular/common/http';
+import { ListKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-altaches',
@@ -338,4 +339,39 @@ export class AltachesComponent implements OnInit {
           console.log("Has access to do something+"+this.hasAccess)*/
     }
 
+    exprotExel(){
+
+     this.projetService.getFileExportExcel(this.idProjet)
+        .subscribe(response=> {
+            const blob = new Blob([response], {type: 'application/vnd.ms-excel'});
+
+            if(window.navigator && window.navigator.msSaveOrOpenBlob){
+              window.navigator.msSaveOrOpenBlob(blob);
+              return;
+            }
+            const data = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = data;
+            link.download = 'projet.xlsx';
+            link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
+            setTimeout(function(){
+              window.URL.revokeObjectURL(data);
+              link.remove();
+            }, 100);
+        }
+        )
+    }
+
+
+    // regardez si ya necessite de refresh
+    public refreshIstaskAjouter(){
+      if(this.projetService.refreshProject == true){
+        this.projetService.AllphaseDeProjet(this.idProjet).subscribe(data=>{
+          if(data){
+            this.allphase = data;
+            this.countPhase= this.allphase.length;
+          }
+       });
+      }
+    }
 }

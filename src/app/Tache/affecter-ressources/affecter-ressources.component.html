@@ -1,4 +1,7 @@
-<P class="center"> <span>Affecter Autant de Ressource </span></P>
+<mat-toolbar>
+  <span>Affecter Autant de Ressource</span>
+</mat-toolbar>
+
 <form [formGroup]="affectationForm" class="normal-form">
     <mat-grid-list cols="2" rorHeight="50px">
         <mat-grid-tile>
@@ -14,13 +17,18 @@
           </mat-form-field>
   
           <mat-form-field>
-            <input formControlName="tempsPasser"  matInput placeholder="Temps a passer">
+            <input formControlName="tempsPasser"  matInput matInput type="number" placeholder="Temps a passer en heure">
         </mat-form-field>
   
           </div>
         </mat-grid-tile>
         </mat-grid-list> 
-        
+        <!--
         <button mat-button color="primary" (click)="affecterRessource()" [disabled]="affectationForm.invalid">Valider</button>
-        <button mat-button color="" (click)="onFermer()">Fermer</button>
+        <button mat-button color="" (click)="onFermer()">Fermer</button>-->
+
+        <div class="bton">
+          <button class="btn btn-success" type="submit" (click)="affecterRessource()" [disabled]="affectationForm.invalid">Ajouter</button>
+          <button mat-raised-button color="war"  type="submit" (click)="onFermer()">Fermer</button>
+      </div>
 </form>

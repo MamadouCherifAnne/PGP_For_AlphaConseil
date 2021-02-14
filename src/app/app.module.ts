@@ -72,7 +72,7 @@ import { RapportPhaseComponent } from './Rapport/rapport-phase/rapport-phase.com
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MonTravailComponent } from './Utilisateur/mon-travail/mon-travail.component';
 
 import { LoginComponent } from './Login/login/login.component';
@@ -222,7 +222,8 @@ registerLocaleData(localeFr, 'fr');
     NgxPaginationModule,
     NgxPaginationModule,
     Ng2GoogleChartsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    SimpleNotificationsModule . forRoot (),
 
   ],
 

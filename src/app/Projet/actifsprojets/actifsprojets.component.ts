@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { ProjetService } from 'src/app/services/projet.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import {Router, RouterState} from '@angular/router';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {EditProjetComponent} from "../edit-projet/edit-projet.component";
 
 @Component({
   selector: 'app-actifsprojets',
@@ -17,8 +20,8 @@ export class ActifsprojetsComponent implements OnInit {
   public currentUser:any;
   public userConnected:any;
 
-  constructor(public authService: AuthentificationService,
-    public projetService: ProjetService, public userService:UtilisateurService) { }
+  constructor(public authService: AuthentificationService, public  dialog : MatDialog,
+    public projetService: ProjetService, public userService:UtilisateurService, public  router: Router) { }
 
   ngOnInit() {
     this.isAdmin = this.authService.isAdmin;
@@ -47,5 +50,36 @@ export class ActifsprojetsComponent implements OnInit {
     
   }
   
+  onSelect(projet){
+    this.router.navigate(["/projet", projet.numProjet]);
+  }
  
+  edit(element){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.data = {projet: element};
+    this.dialog.open(EditProjetComponent, dialogConfig)
+    .afterClosed()
+    .subscribe(result => {
+      this.refresh();
+    });
+  }
+
+  delete(idProjet){
+    if(this.authService.isSuperAdmin == true){
+    if(confirm('Etes vous sur de vouloir supprimer ?')){
+      let theValue = this.projetService.delete(idProjet);
+      theValue.subscribe((data)=>{this.delateMessage=data;
+      
+    }); 
+    this.refresh();
+  }else{
+    window.alert("vous n'avez les droits necessaires")
+  }
+      
+    }
+    
+  }
 }

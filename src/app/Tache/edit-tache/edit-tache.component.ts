@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Tache } from '../Tache';
  import { ITache } from '../ITache';
 import {TacheService} from "src/app/services/tache.service";
@@ -36,13 +36,16 @@ export class EditTacheComponent implements OnInit {
 
   ngOnInit() {
     this.updateTacheForm = this.formBuilder.group({
-      "nomTache": [this.tache.nomTache,Validators.required],
-      "description": this.tache.description,
+      "nomTache": [this.tache.nomTache,[Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+        Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
+      "description": [this.tache.description, Validators.maxLength(100)],
       "chargeTache": this.tache.chargeTache,
       "niveauPriorite": this.tache.niveauPriorite,
       "duree": [this.tache.duree, Validators.required],
-      "debutTache": [this.tache.debutTache,Validators.required],
-      "finTache": [this.tache.finTache,Validators.required],
+      "debutTache": [this.tache.debutTache, [Validators.required, this.dateValidator]],
+      "finTache": [this.tache.finTache,[Validators.required, this.dateValidator]],
       "tauxAvancement" : [this.tache.tauxAvancement],
       "tachePrecedente" : [this.taskPredecessor],
       
@@ -92,6 +95,24 @@ export class EditTacheComponent implements OnInit {
     })
 
     
+  }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.updateTacheForm.controls[controlName].hasError(errorName);
+  }
+ 
+ //Verification du date format 
+  dateValidator(c: AbstractControl): { [key: string]: boolean } {
+    let value = c.value;
+    if (value && typeof value === "string") {
+      let match = value.match(/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
+      if (!match) {
+        return { 'dateInvalid': true };
+      } else if (match && match[0] !== value) {
+        return { 'dateInvalid': true };
+      }
+    }
+    return null;
   }
 
   refresh(){

@@ -12,6 +12,7 @@ import {environment} from 'src/environments/environment';
 export class ProjetService {
 public static isowner:boolean=false;
 
+  public refreshProject:boolean = false;
   public host = environment.alfaApiUrl;
 
   entete:any ;
@@ -148,4 +149,16 @@ public static isowner:boolean=false;
   public getProjetsTermines(username): Observable<any>{
     return this.http.get<any>(this.host+"/projet/getprojetTermines/"+username);
   }
+
+  public getFileExportExcel(idProjet){
+    return this.http.get(this.host+"/projet/download/Excel/"+idProjet, {responseType  : 'blob' });
+  }
+
+
+  // refresh la liste des phases d'un projet si une tache vient detre ajouter
+   // service la ou si jajoute une tache je refresh la liste de 
+   public refreshIfTaskAdded(idProjet){
+    this.refreshProject = true;
+  }
+
 }
