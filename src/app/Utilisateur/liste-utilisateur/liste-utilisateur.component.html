@@ -103,19 +103,19 @@
 
                         <mat-menu #menu="matMenu">
                                 <!-- Gantt Utilisateur -->
-                            <button  mat-menu-item (click)="goToUserDetails(element.idUser)">
+                            <button class="btn float-right"  mat-menu-item (click)="goToUserDetails(element.idUser)">
                                 <span>Details</span>
                             </button> 
 
-                            <button mat-menu-item color="primary" (click)="goToUpdateUser(element)"> 
+                            <button class="btn float-right" mat-menu-item color="primary" (click)="goToUpdateUser(element)"> 
                                 Modifier 
                             </button>
-                        <button  mat-menu-item (click)="deleteUser(element.idUser)">
+                        <button class="btn float-right" mat-menu-item (click)="deleteUser(element.idUser)">
                                 <span>Supprimer</span>
                             </button> 
                             <!-- Gantt Utilisateur -->
-                            <button  mat-menu-item (click)="goToGanttUser(element.idUser)">
-                                <span>Planning Tache</span>
+                            <button  class="btn float-right" mat-menu-item (click)="goToGanttUser(element.idUser)">
+                                <span>Planning des tâches</span>
                             </button> 
 
                         </mat-menu>

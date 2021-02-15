@@ -15,7 +15,7 @@ export class UtilisateurService {
   entete:any ;
   jeton:string;
 
-  constructor(private http: HttpClient,private authService:AuthentificationService) {
+  constructor(private http: HttpClient,public authService:AuthentificationService) {
     // Ici on prepare le chargement du jeton d'authentification pour acceder aux 
     // Requetes a travers l'entete authorization
     this.jeton = authService.getToken();
@@ -34,6 +34,12 @@ export class UtilisateurService {
   public deleteUser(idUser){
 
     return this.http.post(environment.alfaApiUrl+"/utilisateur/delete/"+idUser,{})
+  }
+
+  // registration
+
+  public registrationCompany(user){
+    return this.http.post(environment.alfaApiUrl+"/locataire/newLocataire",user,{});
   }
   
 
@@ -93,4 +99,18 @@ export class UtilisateurService {
     public getProjetTermines(username): Observable<any>{
       return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetTermines/"+username)
     }
+
+
+   public nombreMessageNonLu:number =0;
+   
+   // methode de detection de nombre des messages non lus
+   public getMessageNonLus(){
+     if(this.authService.getCurrentUser() != null){
+      this.getMessageRecievedNonLus(this.authService.getCurrentUser()).subscribe(result=>{
+        if(result){
+          this.nombreMessageNonLu = result.msgNonLu;
+        }
+      })
+    }
+   }
 }

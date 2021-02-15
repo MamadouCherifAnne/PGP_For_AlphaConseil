@@ -7,6 +7,7 @@ import { ProjetService } from 'src/app/services/projet.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { Projet } from 'src/app/Projet/Projet';
 import {  MatDialog } from "@angular/material";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-ajout-phase-second',
@@ -23,7 +24,8 @@ export class AjoutPhaseSecondComponent implements OnInit {
   constructor(private phaseService: PhaseService, private formBuilder: FormBuilder,
 
     private projetService: ProjetService, @Inject(MAT_DIALOG_DATA) public data: any,
-    public fenetreReference: MatDialogRef<AjoutPhaseSecondComponent>) { }
+    public fenetreReference: MatDialogRef<AjoutPhaseSecondComponent>
+    ) { }
 
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class AjoutPhaseSecondComponent implements OnInit {
  public onFermer(){
   this.fenetreReference.close();
 }
+
 
 
 }

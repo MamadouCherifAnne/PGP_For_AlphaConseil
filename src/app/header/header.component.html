@@ -1,3 +1,6 @@
+<div *ngIf="loaderService.isLoading |async" class="loader-container">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/">AlfaConseil</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +41,7 @@
             <i class="far fa-envelope fa-lg"></i>
             Messages
           </a>
-            <span class="badge badge-notify" style="font-size:10px;" *ngIf="messageNonLus && smsnonLu !=0 ">{{smsnonLu}}</span>
+            <span class="badge badge-notify" style="font-size:10px;" *ngIf="userService.nombreMessageNonLu != 0 ">{{this.userService.nombreMessageNonLu}}</span>
             
           </div>
         
@@ -60,8 +63,6 @@
   </div>
   </div>
 </nav>
-<div *ngIf="loaderService.isLoading |async" class="loader-container">
-<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</div>
+
 <router-outlet></router-outlet>
 

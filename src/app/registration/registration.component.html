@@ -1,4 +1,4 @@
-<div>
+<!--<div>
     <div class="container">
         <br>
         <div class="d-flex justify-content-center">
@@ -8,51 +8,146 @@
                    
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="registrationForm" class="normal-form" >
                         <div class="form-group">
                             <label for="nom">Votre nom</label>
-                            <input type="text" class="form-control" id="nom">
+                            <input type="text" class="form-control" formControlName="nom" id="nom">
                         </div>
                         <div class="form-group">
                             <label for="prenom">Prénom</label>
-                            <input style="margin-right: 5px;" type="text" class="form-control" id="prenom">
+                            <input style="margin-right: 5px;" type="text" class="form-control" formControlName="prenom" id="prenom">
                         </div>
                         <div class="form-group">
                             <label for="nomuser">Nom d'utilisateur</label>
-                            <input type="text" class="form-control" id="nomuser">
+                            <input type="text" class="form-control" formControlName="username" id="nomuser">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" formControlName="email" id="email">
                         </div>
                         <div class="form-group">
                             <label for="tel">Téléphone</label>
-                            <input type="tel" class="form-control" id="tel">
+                            <input type="tel" class="form-control" formControlName="telephone" id="tel">
                         </div>
                         <div class="form-group">
                             
                             <label for="adresse">Adresse</label>
-                            <input type="text" class="form-control" id="adresse">
+                            <input type="text" class="form-control" formControlName="adresse" id="adresse">
                         </div>
                         <div class="form-group">
                             <label for="company">Entreprise</label>
-                            <input type="text" class="form-control" id="company">
+                            <input type="text" class="form-control" formControlName="company" id="company">
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de password</label>
-                            <input type="password" class="form-control"id="password" >
+                            <input type="password" class="form-control" formControlName="password" id="password" >
                         </div>
                         <div class="form-group">
                             <label for="cpassword">Comfirmer le mot passe</label>
-                            <input type="password" class="form-control"id="cpassword" >
+                            <input type="password" class="form-control" formControlName="cpassword" id="cpassword" >
                         </div>
                         
                         <div class="form-group">
-                            <input type="submit" value="Login" (click)="loginUser()" class="btn float-right login_btn btn-info">
+                            <input type="submit" value="S'inscrire" (click)="loginUser()" class="btn float-right login_btn btn-info">
                         </div>
                     </form>
                 </div>
               
+            </div>
+        </div>
+</div>*/-->
+<div>
+    <div class="container">
+        <br><br>
+        <div class="d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h3>Créer un espace de travail</h3>
+                   
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registrationForm" >
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-at" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="username" placeholder="nom d'utilisateur">
+                            <span class="text-danger" *ngIf="checkError('username', 'maxLength')">Maximum 20 lettres </span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            </div>
+                            
+                            <input  class="form-control" formControlName="nom" placeholder="Nom">
+                            <span class="text-danger" *ngIf="checkError('nom', 'maxLength')">Maximum 40 lettres pur le nom </span>
+                        </div>
+                        
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input class="form-control" formControlName="prenom" placeholder="Prenom">
+                            <span class="text-danger" *ngIf="checkError('prenom', 'maxLength')">Maximum 40 lettres pour le prénom </span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email">
+                            <span class="text-danger" *ngIf="checkError('email', 'email')">Ne respecte le format d'un email </span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-address-card" aria-hidden="true"></i></span>
+                            </div>
+                            <input  type="text" class="form-control" formControlName="adresse" placeholder="Adresse">
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="telephone" placeholder="Telephone">
+                            <span class="text-danger" *ngIf="checkError('telephone', 'minLength')">doit contenir au minimum 8 chiffres </span>
+                            <span class="text-danger" *ngIf="checkError('telephone', 'pattern')">doit pas contenir des lettres</span>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span  class="input-group-text"><i class="fa fa-industry" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="company" placeholder="Nom d'entreprise">
+                            <span *ngIf="checkError('company', 'pattern')">Le nom doit être en minuscule</span>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="password" placeholder="Mot de passe">
+                            <span class="text-danger" *ngIf="checkError('password', 'minLength')">doit contenir au minimum 8 caractères </span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="confirmPassword" placeholder="Confirmer le mot de passe">
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit"  (click)="addNewRegistration()" class="btn float-right login_btn btn-info" [disabled]="registrationForm.invalid">S'inscrire</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Créer un espace de travail et gèrer facilement vos projet avec Alfa PGP!<br>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <span>Inscrivez-vous</span>
+                    </div>
+                </div>
             </div>
         </div>
 </div>

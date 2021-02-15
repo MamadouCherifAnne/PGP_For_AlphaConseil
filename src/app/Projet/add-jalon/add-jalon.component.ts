@@ -51,7 +51,7 @@ export class AddJalonComponent implements OnInit {
         "nomTache": [this.tache.nomTache,Validators.required],
         "description": this.tache.description,
         "debutTache": [this.tache.debutTache,[Validators.required]],
-        "tachePrecedente" : [this.tache.tachePrecedente],
+        "phase" : [this.tache.phase],
      
     });
 
@@ -61,6 +61,7 @@ export class AddJalonComponent implements OnInit {
   // Ajout d'un Jalon
   goToAddJalon(){
     this.tache.type="Jalon"
+    console.log(this.tache.phase)
     this.taskService.ajoutJalon(this.tache).subscribe()
     this.onClose();
     
@@ -72,10 +73,15 @@ export class AddJalonComponent implements OnInit {
 
   //initialize
   public initialiser(){
-    this.projetService.projectAllTasks(this.data.projet).subscribe(result=>{
+    /*this.projetService.projectAllTasks(this.data.projet).subscribe(result=>{
       if(result){
         this.listTache =result;
       }
-    });
+    });*/
+    this.projetService.AllphaseDeProjet(this.data.projet).subscribe(data=>{
+      if(data){
+        this.listTache =data;
+      }
+    })
   }
 }

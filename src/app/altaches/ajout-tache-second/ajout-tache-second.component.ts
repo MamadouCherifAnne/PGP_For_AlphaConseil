@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Tache } from 'src/app/Tache/Tache';
 import {TacheService} from "src/app/services/tache.service";
@@ -6,6 +6,8 @@ import {ProjetService} from 'src/app/services/projet.service';
 import {PhaseService} from 'src/app/services/phase.service';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajout-tache-second',
@@ -28,7 +30,9 @@ export class AjoutTacheSecondComponent implements OnInit {
   constructor(private tacheService: TacheService, private projetService: ProjetService,
      private formBuilder: FormBuilder, private phaseService: PhaseService ,
      public userService:UtilisateurService,
-     public authService:AuthentificationService ) { }
+     public authService:AuthentificationService,
+     private  router: Router,
+     @Inject(DOCUMENT) private _document: Document ) { }
 
   ngOnInit() {
     let username = this.authService.getCurrentUser();
@@ -82,11 +86,26 @@ export class AjoutTacheSecondComponent implements OnInit {
     this.tache.createur= this.currentUser;
     this.tache.phase = this.newPhase;
     let val = this.tacheService.ajoutTache(this.tache);
-    val.subscribe((data)=>this.AjoutMessage = data);
+    val.subscribe((data)=>{
+      if(data){
+        this.AjoutMessage = data;
+        this.refreshPage();
+      }
+    });
 
     //..............................................
     this.AjoutTacheSecndForm.reset();
 
+  }
+
+
+  refreshPage() {
+    //this._document.defaultView.location.reload();
+    let currentUrl = this.router.url;
+    console.log("voici le current URL ADD SECOND TACHE"+ currentUrl)
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
   }
 
 }

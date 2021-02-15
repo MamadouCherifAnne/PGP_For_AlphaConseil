@@ -21,7 +21,7 @@ export class TableauDeBordComponent implements OnInit {
   ngOnInit() {
 
     let username = this.authService.getCurrentUser();
-    this.userService.getUserByUsername(username).subscribe(result=>{
+   /* this.userService.getUserByUsername(username).subscribe(result=>{
       if(result){
         this.currentUser =result;
         this.userService.getMessageRecievedNonLus(username).subscribe(data=>{
@@ -33,7 +33,7 @@ export class TableauDeBordComponent implements OnInit {
         });
       }
     });
-  
+  */
   }
 
 }

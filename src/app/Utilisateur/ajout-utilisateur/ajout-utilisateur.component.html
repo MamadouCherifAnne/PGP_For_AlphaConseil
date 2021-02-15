@@ -10,15 +10,19 @@
                 <div class="controles-container">
                     <mat-form-field>
                         <input formControlName="username"  [(ngModel)]="user.username" matInput placeholder="Nom d'utilisateur">
+                        <mat-error *ngIf="checkError('username', 'maxLength')">Nombre de caractères depassé</mat-error>
+                    
                     </mat-form-field>
 
             
                     <mat-form-field>
                         <input formControlName="prenom"  [(ngModel)]="user.prenom" matInput placeholder="Prenom" pattern="[a-zA-Z ]*">
+                        <mat-error *ngIf="checkError('prenom', 'maxLength')">Nombre de caractères depassé</mat-error>
                     </mat-form-field>
                     
                     <mat-form-field>
                         <input formControlName="nom"  [(ngModel)]="user.nom" matInput placeholder="Nom de Famille">
+                        <mat-error *ngIf="checkError('nom', 'maxLength')">Nombre de caractères depassé</mat-error>
                     </mat-form-field>
                         
             </div>
@@ -29,6 +33,7 @@
                 
                 <mat-form-field>
                     <input formControlName="email" [(ngModel)]="user.email" matInput placeholder="Adresse mail">
+                    <mat-error *ngIf="checkError('email', 'email')">doit avoir le format(aaaa@bbb.cc) </mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -50,6 +55,7 @@
             <div class="controles-container">
                 <mat-form-field>
                     <input formControlName="telephone" [(ngModel)]="user.telephone" matInput placeholder="Telephone">
+                    <mat-error *ngIf="checkError('telephone', 'minLength')">Minimum est de 8 chiffres</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>

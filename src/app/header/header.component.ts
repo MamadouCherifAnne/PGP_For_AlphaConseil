@@ -61,14 +61,16 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
 
   public initialiser(){
     if(this.authService.isLoggedIn){
-      let username = this.authService.getCurrentUser();
+      this.userService.getMessageNonLus();
+     /* let username = this.authService.getCurrentUser();
      // this.tacheService.getLatestAffectationOfUser(username).subscribe(data=>{
        this.userService.getMessageRecievedNonLus(username).subscribe(data=>{
         if(data){
           this.messageNonLus = data;
           this.smsnonLu = this.messageNonLus.msgNonLu;
         }
-      });
+      });*/
+      
     }
   }
 

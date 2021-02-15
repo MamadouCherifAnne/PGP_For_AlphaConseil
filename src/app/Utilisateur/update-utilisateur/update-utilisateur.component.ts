@@ -10,6 +10,7 @@ import { IRole } from 'src/app/Role/IRole';
 import { IUtilisateur } from '../IUtilisateur';
 import {MatDialogRef}  from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-update-utilisateur',
@@ -30,9 +31,11 @@ export class UpdateUtilisateurComponent implements OnInit {
 
   constructor(private userService: UtilisateurService, private roleService: RoleService,
     private professionService: ProfessionService,
+      public authService:AuthentificationService,
      private formBuilder: FormBuilder,
      public fenetereRef: MatDialogRef<UpdateUtilisateurComponent>,
      @Inject(MAT_DIALOG_DATA) public data:any) {
+       
       }
 
   ngOnInit() {
@@ -47,14 +50,21 @@ export class UpdateUtilisateurComponent implements OnInit {
     // +++++++++++++++ Creation du formulaire de modification ++++++++++++++++++++++++++++++
 
     this.updateUserForm=this.formBuilder.group({
-      'username':[this.user.nom, [Validators.required]],
-      'prenom':[this.user.prenom, [Validators.required]],
+      'username':[this.user.username, [Validators.required,Validators.maxLength(20)]],
+      'nom':[this.user.nom, [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
+      'prenom':[this.user.prenom, [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'email':[this.user.email, [Validators.required, Validators.email]],
       'password':[this.user.password, [Validators.required]],
-      'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8)]],
+
+      'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8),Validators.pattern('[0-9]*')]],
+
+      'confirmPassword':["",[Validators.required]],
+
       'adresse':[this.user.adresse, [Validators.required]],
+      
+      'profession':[this.idProfession],
       'role':[this.user.role, [Validators.required]],
-      'profession':[this.idProfession]
+      
   });
   
     this.updatingUser =this.data;
@@ -67,6 +77,10 @@ export class UpdateUtilisateurComponent implements OnInit {
      
 }
 
+ // checker les erreurs dans les formulaires
+ public checkError = (controlName: string, errorName: string) => {
+  return this.updateUserForm.controls[controlName].hasError(errorName);
+}
 
 public userUpdate(){
   //console.log(this.oldUser)
@@ -77,6 +91,7 @@ public userUpdate(){
   this.user.email=this.updateUserForm.get("email").value;
   this.user.adresse =this.updateUserForm.get("adresse").value;
   this.user.telephone =this.updateUserForm.get("telephone").value;
+  this.user.company = this.authService.entrepriseName;
   let id=Number.parseFloat(this.updatingUser.user.idUser);
   console.log("les role choisit"+this.user.role+ "ou "+this.updateUserForm.get("role").value)
   this.user.role = this.user.role;

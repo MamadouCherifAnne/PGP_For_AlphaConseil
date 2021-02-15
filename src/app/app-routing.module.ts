@@ -117,7 +117,9 @@ const routes: Routes = [
     {path: 'actifs', component: ActifsprojetsComponent},
     {path: 'termines', component: FinishedprojectsComponent},
     {path: 'enretards', component: LateprojetsComponent}
-  ]}
+  ]},
+  {path: 'registration', component: RegistrationComponent},
+  
 
 ];
 

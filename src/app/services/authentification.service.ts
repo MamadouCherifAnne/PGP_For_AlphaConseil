@@ -105,10 +105,17 @@ export class AuthentificationService {
       }
       return null;
 
-      
-
-
     }
+
+    public get getCurrentCompany(): string {
+      let authenticateUser = this.decodeJwtToken();
+      if(authenticateUser != null){
+        console.log(authenticateUser.tenantID);
+        return authenticateUser.tenantID;
+      }
+      return null; 
+    }
+    
 
     // Service de Registration d'un nouveau utilisateur
     public registrer(user:Utilisateur):Observable<any>{
