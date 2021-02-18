@@ -1,9 +1,10 @@
 import { Component,ViewChild, ElementRef, OnInit,AfterViewInit, Input,  } from '@angular/core';
-import {Chart} from 'chart.js';
 import { ChartComponent } from "ng-apexcharts";
 import {GoogleChartInterface} from 'ng2-google-charts';
 import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from "src/app/services/projet.service";
+import * as Chart from 'chart.js'
+
 declare var google: any;
 
 import {
@@ -25,7 +26,7 @@ export type ChartOptions = {
   styleUrls: ['./tout-le-projet.component.scss'],
   //encapsulation: ViewEncapsulation.None
 })
-export class ToutLeProjetComponent implements OnInit {
+export class ToutLeProjetComponent implements OnInit, AfterViewInit {
 
   @Input()  public projetId: any;
   public alltasks: any[];
@@ -40,20 +41,61 @@ export class ToutLeProjetComponent implements OnInit {
   pourcenavenir: any;
   
   public infoTaches: any;
-  public data: Object[];
-  public chartTitle: string;
-  public chartLabel: Object;
-  public legend: Object;
-  public tooltipSettings: Object;
-  public palette: String[];
+//  public data: Object[];
+ // public chartTitle: string;
+ // public chartLabel: Object;
+ // public legend: Object;
+ // public tooltipSettings: Object;
+  //public palette: String[];
   public isAdmin:boolean = false;
   
   constructor(private tacheService: TacheService,public authService:AuthentificationService) { }
 
 
+  title = 'angular8chartjs';
+  canvas: any;
+  ctx: any;
+  ngAfterViewInit() {
+    this.canvas = document.getElementById('myChart');
+    this.ctx = this.canvas.getContext('2d');
+    let myChart = new Chart(this.ctx, {
+      type: 'pie',
+      data: {
+          labels: ["New", "In Progress", "On Hold", "hacge"],
+          datasets: [{
+              label: '# of Votes',
+              data: [this.loading,this.finished, this.late, 4],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: false,
+        display:true
+      }
+    });
+  }
+
   ngOnInit() {
     this.isAdmin = this.authService.isAdmin;
     console.log("......///....");
+
+    this.tacheService.getTachesInfo(this.projetId).subscribe(data=>{
+      if(data){
+        this.infoTaches = data;
+        this.loading = data.nbrTachesEnCours;
+        this.finished = data.nbrTacesTerminees;
+        this.late = data.nbrTachesEnRetards;
+        this.avenir = data.nbrTachesAvenir;
+       
+      }
+    })
+    /*
     this.tacheService.getTachesInfo(this.projetId).subscribe(data=>{
       if(data){
         this.infoTaches = data;
@@ -97,11 +139,12 @@ export class ToutLeProjetComponent implements OnInit {
       
       }
     });
-
+    */
     
    
   }
   
+
   
 
 }

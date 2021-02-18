@@ -44,7 +44,7 @@ export class RapportServiceService {
       responseType  : 'blob' as 'json'      //This also worked
     };
     
-    return this.http.get<any>(this+this.host+"/rapport/export/" + id, httpOptions);
+    return this.http.get<any>(this.host+"/rapport/export/" + id, httpOptions);
   }
     
 
