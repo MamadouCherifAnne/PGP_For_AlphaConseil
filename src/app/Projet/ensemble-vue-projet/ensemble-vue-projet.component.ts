@@ -19,12 +19,15 @@ export class EnsembleVueProjetComponent implements OnInit {
   public isAdmin :boolean = false;
   public chefProjet:any
   public hasAccess:boolean=false;
+  public entrepriseName: any;
  
   constructor(private dialog : MatDialog,private route: ActivatedRoute, 
     private projetService: ProjetService,public authService:AuthentificationService) { }
 
 
   ngOnInit() {
+      this.entrepriseName = this.authService.getEntrepriseName;
+      console.log("entreprise"+this.entrepriseName);
   /*  this.isAdmin=this.authService.isAdmin;
     //ici je recupère l'ID 
     this.projetId = parseInt(this.route.snapshot.paramMap.get('id'));

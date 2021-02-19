@@ -56,7 +56,7 @@ export class ToutLeProjetComponent implements OnInit, AfterViewInit {
   canvas: any;
   ctx: any;
   ngAfterViewInit() {
-    this.canvas = document.getElementById('myChart');
+   /* this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
     let myChart = new Chart(this.ctx, {
       type: 'pie',
@@ -78,7 +78,7 @@ export class ToutLeProjetComponent implements OnInit, AfterViewInit {
         responsive: false,
         display:true
       }
-    });
+    });*/
   }
 
   ngOnInit() {
@@ -92,7 +92,12 @@ export class ToutLeProjetComponent implements OnInit, AfterViewInit {
         this.finished = data.nbrTacesTerminees;
         this.late = data.nbrTachesEnRetards;
         this.avenir = data.nbrTachesAvenir;
-       
+        console.log("loading....."+this.loading)
+        console.log("finished....."+this.finished)
+        console.log("late....."+this.late)
+        console.log("avenir....."+this.avenir)
+
+        this.chargerAnalyseProjet();
       }
     })
     /*
@@ -141,10 +146,35 @@ export class ToutLeProjetComponent implements OnInit, AfterViewInit {
     });
     */
     
+
    
   }
   
-
+    public chargerAnalyseProjet(){
+      this.canvas = document.getElementById('myChart');
+    this.ctx = this.canvas.getContext('2d');
+    let myChart = new Chart(this.ctx, {
+      type: 'doughnut',
+      data: {
+          labels: ["Tâches à venir","Tâches en cours", "Tâches terminées", "Tâches en retards "],
+          datasets: [{
+              label: {position: 'bottom', }, 
+              data: [ this.avenir,this.loading,this.finished, this.late],
+              backgroundColor: [
+                   'rgb(0,0,139)',
+                   'rgb(65,105,225)',
+                   'rgb(60,179,113)',
+                   'rgb(220,20,60)',
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive: false,
+        display:true
+      }
+    });
+    }
   
 
 }

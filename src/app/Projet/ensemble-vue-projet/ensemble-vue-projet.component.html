@@ -1,6 +1,6 @@
 <div class="eprojet">
     <br>
-    <h5 *ngIf="projet">{{ projet.nomProjet }}</h5>
+    <h5 *ngIf="projet">{{ projet.nomProjet |  titlecase}}</h5>
     <app-projet-liens [idProjet]="projetId"></app-projet-liens>
 </div>
 <br>
@@ -25,7 +25,8 @@
             <mat-icon class="maticon">add</mat-icon>Ajouter
         </button></p> 
         
-        
+        <br>
+        <br>
         <app-tout-le-projet [projetId]="projetId"></app-tout-le-projet>
         </div>
        
