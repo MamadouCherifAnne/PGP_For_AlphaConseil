@@ -3,8 +3,8 @@
         <br>
         <div  *ngIf="projets != null; else vide">
 
-        <div  *ngFor="let projet of projets">
-            <div class="col-3 card">
+        <div class="row">
+            <div class="col-3 card" *ngFor="let projet of projets">
                     <div class="card-body">
                         <div class="thebt">
                             <button mat-icon-button *ngIf="isAdmin" (click)="edit(projet)"><mat-icon>launch</mat-icon></button>
