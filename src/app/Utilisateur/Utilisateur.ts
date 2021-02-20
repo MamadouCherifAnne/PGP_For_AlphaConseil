@@ -8,12 +8,13 @@ export class Utilisateur{
         nom:string;
         prenom:string;
         email:string;
-        password:string;
-        confirmPassword:string;
+        password:String;
+        confirmPassword:String;
         adresse:string;
         actif:boolean;
         role:String[];
         telephone:string;
+        company:string;
         projets:any[];
         entreprise: object;
         professions:any[];

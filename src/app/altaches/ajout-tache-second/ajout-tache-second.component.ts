@@ -1,11 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+
 import { Tache } from 'src/app/Tache/Tache';
 import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from 'src/app/services/projet.service';
 import {PhaseService} from 'src/app/services/phase.service';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+
+//import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
+
 import {NotificationsService} from 'angular2-notifications';
 
 @Component({
@@ -29,7 +35,9 @@ export class AjoutTacheSecondComponent implements OnInit {
   constructor(private tacheService: TacheService, private projetService: ProjetService,
      private formBuilder: FormBuilder, private phaseService: PhaseService ,
      public userService:UtilisateurService,
+     private  router: Router,
      public authService:AuthentificationService, private notifService: NotificationsService ) { }
+
 
   ngOnInit() {
     let username = this.authService.getCurrentUser();
@@ -106,8 +114,10 @@ export class AjoutTacheSecondComponent implements OnInit {
     let val = this.tacheService.ajoutTache(this.tache);
     val.subscribe((data)=>{
       if(data){
-        this.AjoutMessage = data
-        this.projetService.refreshIfTaskAdded(this.idProjet);
+
+        this.AjoutMessage = data;
+        this.refreshPage();
+
       }
     });
 
@@ -116,6 +126,18 @@ export class AjoutTacheSecondComponent implements OnInit {
     this.testToast();
   }
 
+
+
+  refreshPage() {
+    //this._document.defaultView.location.reload();
+    let currentUrl = this.router.url;
+    console.log("voici le current URL ADD SECOND TACHE"+ currentUrl)
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+  }
+
+
   testToast(){
     this.notifService.success('Confirmation', "Créee avec succés",  {
       
@@ -123,4 +145,5 @@ export class AjoutTacheSecondComponent implements OnInit {
       showProgressBar : true,
     })
   }
+
 }

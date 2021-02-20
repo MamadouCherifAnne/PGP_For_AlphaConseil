@@ -14,6 +14,7 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 export class ListeUtilisateurComponent implements OnInit {
 
   public users: IUtilisateur[]= [];
+  public nombreUsers: number = 0;
   public rechercheKey:string;
   public message:any;
   userDataSource =new MatTableDataSource<any>();
@@ -42,7 +43,7 @@ export class ListeUtilisateurComponent implements OnInit {
       (data => {
         if(data){
           console.log(data)
-      this.refresh();
+          this.refresh();
         }
   });
 }
@@ -81,6 +82,8 @@ export class ListeUtilisateurComponent implements OnInit {
   refresh() {
     this.userService.getUsers().subscribe((allUsers:IUtilisateur[])=>{
       this.userDataSource.data=allUsers;
+      this.users = allUsers;
+      this.nombreUsers = this.users.length;
       this.userDataSource.sort=this.sort;
       this.paginator._intl.itemsPerPageLabel="élements par page";
       this.paginator._intl.nextPageLabel="suivant";

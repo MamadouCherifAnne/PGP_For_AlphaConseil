@@ -68,6 +68,10 @@ public static isowner:boolean=false;
   public getProjectJalons(idProjet): Observable<ITache[]>{
     return this.http.get<ITache[]>(this.host+"/projet/projectJalons/"+idProjet,{headers:this.entete});
   }
+  //Afficher les jalons et les jalons enr etard en meme temps
+  public getProjectJalonInfos(idProjet): Observable<any>{
+    return this.http.get(this.host+"/projet/jalonsOfProject/"+idProjet,{headers:this.entete});
+  }
 
   // AFFICHER LES PROJET LIER A UN UTILISATEUR
   public allProjectOfUser(username): Observable<any>{
@@ -153,6 +157,21 @@ public static isowner:boolean=false;
   public getFileExportExcel(idProjet){
     return this.http.get(this.host+"/projet/download/Excel/"+idProjet, {responseType  : 'blob' });
   }
+
+    // affiche le nombre de projets actifs
+    public getprojetsActifsAdmin(): Observable<any>{
+      return this.http.get<any>(this.host+"/projet/getprojetsActifsAdmin");
+    }
+   // le nombre de projets en retard
+   public getprojetsEnretardAdmin(): Observable<any>{
+    return this.http.get<any>(this.host+"/projet/getprojetsEnretardAdmin");
+  }
+
+  //Affiche le nombre de projet termines
+  public getProjetsTerminesAdmin(): Observable<any>{
+    return this.http.get<any>(this.host+"/projet/getprojetTerminesAdmin");
+  }
+
 
 
   // refresh la liste des phases d'un projet si une tache vient detre ajouter

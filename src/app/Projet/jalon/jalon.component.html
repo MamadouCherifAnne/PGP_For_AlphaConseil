@@ -33,7 +33,7 @@
                 
                     
                 <div class="container" *ngIf="jalons" >
-                <div class="card" *ngFor="let jalon of jalons">
+                <div class="card" *ngFor="let jalon of jalons.jalons">
                     <div class="card-body">
                       <h5 class="card-title">{{jalon.nomTache}}</h5>
                       <br>
@@ -47,8 +47,8 @@
                   </div>
             </mat-tab>
             <mat-tab label="En Retard">
-                <div class="container" *ngIf="lateJalon" >
-                    <div class="card" *ngFor="let jalon of lateJalon">
+                <div class="container" *ngIf="jalons" >
+                    <div class="card" *ngFor="let jalon of jalons.jalonRetards">
                         <div class="card-body">
                           <h5 class="card-title">{{jalon.nomTache}}</h5>
                           <br>

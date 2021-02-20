@@ -39,14 +39,20 @@ export class ActifsprojetsComponent implements OnInit {
   }
 
   refresh() {
-    this.userService.getUserByUsername(this.currentUser).subscribe(result=>{
+    /*this.userService.getUserByUsername(this.currentUser).subscribe(result=>{
       if(result){
         this.userConnected = result;
       }
     })
-    
+    */
+   if(this.authService.isAdmin || this.authService.isSuperAdmin){
+    let resp = this.userService.getProjetsEncoursAdmin()
+    resp.subscribe((data)=>this.projets=data);
+
+   }else{
     let resp = this.userService.getProjetsEncours(this.currentUser)
     resp.subscribe((data)=>this.projets=data);
+   }
     
   }
   

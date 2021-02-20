@@ -5,6 +5,9 @@ import { Utilisateur } from '../Utilisateur';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Message } from 'src/app/Message/Message';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import { UpdateUtilisateurComponent } from '../update-utilisateur/update-utilisateur.component';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-detail-utilisateur',
@@ -25,7 +28,9 @@ export class DetailUtilisateurComponent implements OnInit {
   constructor(private userService:UtilisateurService,
                private route:ActivatedRoute,
                private formBuilder:FormBuilder,
-               private authService: AuthentificationService
+               private authService: AuthentificationService,
+               public fenetre:MatDialog,
+               private notifService: NotificationsService,
     ) { }
 
   ngOnInit() {
@@ -36,8 +41,9 @@ export class DetailUtilisateurComponent implements OnInit {
      
     // Recuperer l'identifiant de l'utilisateur sollicite
       let idUser =parseInt(this.route.snapshot.paramMap.get('iduser'));
+      
        // Getter lutilisateur en cours 
-       this.userService.getUserByIdUser(idUser).subscribe((data)=>{
+       this.userService.getUserByUsername(this.authService.getCurrentUser()).subscribe((data)=>{
           if(data){
             this.currentUser =data;
            for(let p of this.currentUser.professions){
@@ -77,6 +83,9 @@ export class DetailUtilisateurComponent implements OnInit {
               this.userService.sendMessageToUser(this.message).subscribe(done=>{
                 if(done){
                   console.log("Message envoye");
+                  this.modifSuccess();
+                }else{
+                  this.modifEchec();
                 }
               });
               this.messageForm.reset();
@@ -84,4 +93,50 @@ export class DetailUtilisateurComponent implements OnInit {
       });
     }
   }
+
+    // Navigation vers la page update utilisateur
+    public goToUpdateUser(){
+
+      //this.router.navigate(["update"],{relativeTo: this.route});
+      const fenetreConfig= new MatDialogConfig();
+      fenetreConfig.disableClose =true;
+      fenetreConfig.autoFocus = true;
+      fenetreConfig.width="65%";
+      fenetreConfig.data={user : this.currentUser};
+      this.fenetre.open(UpdateUtilisateurComponent, fenetreConfig
+      ).afterClosed().subscribe(result => {
+        this.refresh();
+      });
+  
+    }
+
+
+    refresh(){
+      // Getter lutilisateur en cours 
+      this.userService.getUserByUsername(this.authService.getCurrentUser()).subscribe((data)=>{
+        if(data){
+          this.currentUser =data;
+         for(let p of this.currentUser.professions){
+           this.userProfessions.push(p.titreProfession)
+         }
+          console.log(this.currentUser);
+        }
+     });
+    }
+
+
+      
+modifSuccess(){
+  this.notifService.success('Confirmation', "Le message a été envoyé", {
+    timeOut : 3000,
+    showProgressBar : true,
+  });
+}
+  modifEchec(){
+    this.notifService.alert('Echec', "l'envoi a échoué", {
+      timeOut : 3000,
+      showProgressBar : true,
+    });
+}
+
 }

@@ -45,9 +45,17 @@ export class FinishedprojectsComponent implements OnInit {
         this.userConnected = result;
       }
     })
+
     
-    let resp = this.userService.getProjetTermines(this.currentUser )
-    resp.subscribe((data)=>this.projets=data);
+    if(this.authService.isAdmin || this.authService.isSuperAdmin){
+      let resp = this.userService.getProjetTerminesAdmin();
+      resp.subscribe((data)=>this.projets=data);
+  
+     }else{
+      let resp = this.userService.getProjetTermines(this.currentUser)
+      resp.subscribe((data)=>this.projets=data);
+     }
+      
     
   }
 

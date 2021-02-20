@@ -11,7 +11,7 @@
               <mat-label>Ajouter une ressource</mat-label>
               <mat-select formControlName="ressources"  >
                   <ng-container *ngFor="let user of allUsers">
-                  <mat-option  [value]="user.idUser">{{user.nom}}</mat-option>
+                  <mat-option *ngIf ="user.projectRole !='client'" [value]="user.idUser">{{user.nom}}</mat-option>
                   </ng-container> 
               </mat-select>  
           </mat-form-field>

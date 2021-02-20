@@ -20,8 +20,8 @@ export class UserProfilComponent implements OnInit {
   public messageForm:FormGroup;
   public message: Message = new Message();
   destinataire:any;
-  public firstLetterNom: any;
-  public firstLetterPrenom: any;
+  public firstLetterNom: String;
+  public firstLetterPrenom: String;
   public pageChanged:PageEvent;
 
   constructor(
@@ -39,14 +39,14 @@ export class UserProfilComponent implements OnInit {
       'destinataire':["",[Validators.required,Validators.maxLength(50)]]
     });
 
-    let id = this.actRoute.snapshot.paramMap.get('id');
+    //let id = this.actRoute.snapshot.paramMap.get('id');
     let username = this.authService.getCurrentUser();
    
     this.userService.getUserByUsername(username).subscribe(data=>{
       if(data){
         this.currentUser = data;
-        this.firstLetterNom = this.currentUser.nom.charAt(0);
-        this.firstLetterPrenom = this.currentUser.prenom.charAt(0);
+        this.firstLetterNom = this.currentUser.nom.charAt(0).toUpperCase();
+        this.firstLetterPrenom = this.currentUser.prenom.charAt(0).toUpperCase();
         this.userService.getMessageRecieved(this.currentUser.idUser).subscribe(result=>{
           if(result){
             this.messages = result;

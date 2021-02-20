@@ -17,6 +17,7 @@ export class AuthentificationService {
   public entete  = new HttpHeaders().set('Content-Type','application/json');
   public jwtToken :string;
   public currentUser ={};
+  public userConnected:string ;
   public entrepriseName:string;
   public tokenSubscription = new Subscription()
   public timeout;
@@ -41,14 +42,16 @@ export class AuthentificationService {
           const userBody =jwtHelper.decodeToken(this.getToken())
           console.log(userBody.sub);
           let username =  userBody.sub
+          this.userConnected = username;
           this.entrepriseName = userBody.tenantID;
           console.log(userBody.tenantID);
+          this.router.navigate(['tableaudebord']);
            
-         this.getUserProfile(username).subscribe((res) => {
+         /*this.getUserProfile(username).subscribe((res) => {
           this.currentUser = res;
           console.log(res);
-          this.router.navigate(['user/profil/'+ res.idUser]);
-        });
+          this.router.navigate(['tableaudebord']);
+        });*/
           
 
          
@@ -105,10 +108,17 @@ export class AuthentificationService {
       }
       return null;
 
-      
-
-
     }
+
+    public get getCurrentCompany(): string {
+      let authenticateUser = this.decodeJwtToken();
+      if(authenticateUser != null){
+        console.log(authenticateUser.tenantID);
+        return authenticateUser.tenantID;
+      }
+      return null; 
+    }
+    
 
     // Service de Registration d'un nouveau utilisateur
     public registrer(user:Utilisateur):Observable<any>{

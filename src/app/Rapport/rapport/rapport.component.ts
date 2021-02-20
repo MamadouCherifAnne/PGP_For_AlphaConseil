@@ -51,24 +51,7 @@ export class RapportComponent implements OnInit {
  
 
   // Open pdf avec HTML2PDF
-  public imprimerFacturePDF(){
-    const options = {
-      name: 'factureTache.pdf',
-      image :{type:'jpeg'},
-      html2canvas:{},
-      jsPDF:{orientation:'landscape'}
-    }
-
-    const element: Element = document.getElementById('htmlFacture')
-
-    // Appel de la librairies pour la sauvegarde
-    html2pdf()
-      .from(element)
-      .set(options)
-      .save()
-  }
   
-
     
   //////////////////////////////////////////
   convertToPdf() {
@@ -90,52 +73,34 @@ export class RapportComponent implements OnInit {
     
  /////////////////////////////////////////////
 
-
- 
- /*
- getPDF(){
- 
-
- 
- 
-  html2canvas(document.querySelector(".printformClass")).then(function(canvas) {
-  canvas.getContext('2d');
-   var HTML_Width = canvas.width;
-  var HTML_Height = canvas.height;
-  var top_left_margin = 15;
-  var PDF_Width = pdf.internal.pageSize.getWidth();
-  var PDF_Height = pdf.internal.pageSize.getHeight();
-  var canvas_image_width = HTML_Width;
-  var canvas_image_height = HTML_Height;
-  
-  var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
-  console.log(canvas.height+"  "+canvas.width);
-  
-  
-  var imgData = canvas.toDataURL("image/jpeg", 1.0);
-  var pdf = new jspdf('p', 'pt');
-      pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
-  
-  
-  for (var i = 1; i <= totalPDFPages; i++) { 
-  pdf.addPage(PDF_Width, PDF_Height);
-  let margin=-(PDF_Height*i)+(top_left_margin*4);
-  if(i>1)
-  {
-  margin=margin+i*8;
+ public imprimerFacturePDF(){
+  const options = {
+    filename: 'factureTache.pdf',
+    /*image :{type:'jpeg'},*/
+    html2canvas:{
+      dpi: 192,
+      letterRendering: true, 
+      allowTaint: true, 
+      useCORS: true, 
+      logging: false, 
+      scrollX: 0,
+      scrollY: 0 
+    },
+    jsPDF:{orientation:'portrait',
+    unit: 'cm',
+    format: 'a4'
+    }
   }
-  console.log(top_left_margin);
-  console.log(top_left_margin);
-  console.log(-(PDF_Height*i)+(top_left_margin*4));
-  pdf.addImage(imgData, 'JPG', top_left_margin, margin,canvas_image_width,canvas_image_height);
-  
-  }
-  
-      pdf.save("HTML-Document.pdf");
-         });
-  };
- */
- 
+
+  const element: Element = document.getElementById('printIt')
+
+  // Appel de la librairies pour la sauvegarde
+  html2pdf()
+    .from(element)
+    .set(options)
+    .save()
+} 
+
  
 }
  

@@ -45,9 +45,17 @@ export class LateprojetsComponent implements OnInit {
         this.userConnected = result;
       }
     })
+    if(this.authService.isAdmin || this.authService.isSuperAdmin){
+      let resp = this.userService.getProjetEnretardAdmin()
+      resp.subscribe((data)=>this.projets=data);
+  
+     }else{
+     
+        let resp = this.userService.getProjetEnretard(this.currentUser )
+        resp.subscribe((data)=>this.projets=data);
+     }
+      
     
-    let resp = this.userService.getProjetEnretard(this.currentUser )
-    resp.subscribe((data)=>this.projets=data);
   }
   
   onSelect(projet){

@@ -112,7 +112,7 @@ export class AjoutProjetComponent implements OnInit {
     this.notifService.success('Confirmation', "Projet crée avec succés", {
       timeOut : 3000,
       showProgressBar : true,
-    })
+    });
   }
 
   onClear(){

@@ -28,7 +28,7 @@ export class AjoutUtilisateurComponent implements OnInit {
   public professions =[];
 
   constructor(private userService: UtilisateurService,
-    
+    public authService:AuthentificationService,
     private professionService: ProfessionService,
      private formBuilder: FormBuilder,
      public fenetreReference: MatDialogRef<AjoutUtilisateurComponent>
@@ -39,14 +39,14 @@ export class AjoutUtilisateurComponent implements OnInit {
     //Preparaion du formulaire d'ajout
     this.addUserForm=this.formBuilder.group({
       'username':[this.user.username, [Validators.required,Validators.maxLength(20)]],
-      'nom':[this.user.nom, [Validators.required,Validators.maxLength(20)]],
-      'prenom':[this.user.prenom, [Validators.required,Validators.maxLength(20),Validators.pattern( '[a-zA-Z ]*')]],
+      'nom':[this.user.nom, [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
+      'prenom':[this.user.prenom, [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'email':[this.user.email, [Validators.required, Validators.email]],
       'password':[this.user.password, [Validators.required]],
 
       'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8),Validators.pattern('[0-9]*')]],
 
-      'confirmPassword':[[Validators.required]],
+      'confirmPassword':[this.user.confirmPassword,[Validators.required]],
 
       'adresse':[this.user.adresse, [Validators.required]],
       
@@ -61,17 +61,22 @@ export class AjoutUtilisateurComponent implements OnInit {
 
   }
 
+  // checker les erreurs dans les formulaires
+  public checkError = (controlName: string, errorName: string) => {
+    return this.addUserForm.controls[controlName].hasError(errorName);
+  }
   /** APPEL DU SERVICE DE L'AJOUT DES UTILISATEUR................................*/
   public addNewUser(){
   //  console.log(this.user)
     this.user.actif=true;
-    
+    this.user.company = this.authService.entrepriseName;
     this.user.projets=null
     this.user.professions= this.idProfession;
-    
-    let res=this.userService.addUser(this.user);
-    res.subscribe((data)=>this.message=data);
-    this.onFermer();
+    if(this.user.password == this.addUserForm.get('confirmPassword').value){
+      let res=this.userService.addUser(this.user);
+      res.subscribe((data)=>this.message=data);
+      this.onFermer();
+    }
     
   }
   /* FIN DE PROCESSS D'AJOUT --------------*/
