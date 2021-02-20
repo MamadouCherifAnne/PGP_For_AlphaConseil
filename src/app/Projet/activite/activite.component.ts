@@ -28,7 +28,7 @@ export class ActiviteComponent implements OnInit {
       // console.log(data)
      })
 
-     this.getPhaseDuneTache(4);
+     //this.getPhaseDuneTache(4);
   }
 
   compareDate(element){
@@ -43,19 +43,17 @@ export class ActiviteComponent implements OnInit {
     return res;
   }
 
-  getPhaseDuneTache(idtache){
+ /* getPhaseDuneTache(idtache){
     let phase = new Phase();
     let name: String = "";
     this.tacheService.getPhaseDuneTache(idtache).subscribe(data=>{
       if(data){
        phase = data;
        name = phase.nomTache
-       console.log("1111111111111111111111111111111111111111")
       }
-      console.log("1111111111111111111111111111111111111111"+name)
       return name;
     });
-  }
+  }*/
 
   //
 

@@ -1,21 +1,34 @@
 <mat-sidenav-container>
     <mat-sidenav opened mode="side">
         <mat-list>
-            <a mat-list-item routerLink="montravail" routerLinkActive="active"><i class="fa fa-tasks" aria-hidden="true"></i>Mon Travail</a>
+            <a mat-list-item style="font-size: 18px;" routerLink="montravail" routerLinkActive="active"><i style="margin-right: 15px;" class="fa fa-tasks" aria-hidden="true"></i>Mon Travail</a>
             
             
-            <a mat-list-item routerLink="projet" routerLinkActive="active"><i class="far fa-folder-open"></i>Mes Projets</a>
+            <a mat-list-item style="font-size: 18px;" routerLink="projet" routerLinkActive="active"><i style="margin-right: 15px;" class="far fa-folder-open"></i>Mes Projets</a>
             
-            <a mat-list-item routerLink="activite" routerLinkActive="active"><i class="fas fa-bolt"></i>Activité</a>
+            <a mat-list-item style="font-size: 18px;" routerLink="activite" routerLinkActive="active"><i style="margin-right: 15px;" class="fas fa-bolt"></i>Activité</a>
            
-         
-            <!--<a mat-list-item routerLink="#" routerLinkActive="active"><i class="far fa-comment-alt"></i>Commentaires non lus
-                <span class="badge badge-notify" style="font-size:10px;"></span>
-            </a>-->
+            <a mat-list-item style="font-size: 18px;" routerLink="user/profil" routerLinkActive="active"><i style="margin-right: 15px;" class="far fa-envelope fa-lg"></i>Messages</a>
+            
             
 
         </mat-list>
     </mat-sidenav>
     <router-outlet></router-outlet>
   </mat-sidenav-container> 
+
+ <!--  <mat-sidenav-container>
+    <mat-sidenav opened mode="side">
+        <div class="list-group">
+         <a  class="list-group-item" style="border: none">kModfie</a>
+        </div>
+       <ul class="list-group">
+           <li ><a  routerLink="montravail" routerLinkActive="active"><i style="margin-right: 10px;" class="fa fa-tasks" aria-hidden="true"></i>Mon Travail</a></li>
+           <li ><a  routerLink="projet" routerLinkActive="active"><i style="margin-right: 10px;" class="far fa-folder-open"></i>Mes Projets</a></li>
+           <li ><a routerLink="activite" routerLinkActive="active"><i style="margin-right: 10px;" class="fas fa-bolt"></i>Activités</a></li>
+           <li ><a routerLink="user/profil" routerLinkActive="active"><i style="margin-right: 10px;" class="far fa-envelope fa-lg"></i>Messages</a></li>
+       </ul>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>  -->
 

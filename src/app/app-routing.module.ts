@@ -54,6 +54,7 @@ const routes: Routes = [
     {path: 'projet', component: AllProjetsComponent,canActivate:[AuthGuard]},
     {path: 'montravail', component:MonTravailComponent,canActivate:[AuthGuard]},
     {path: 'activite', component: ActiviteComponent,canActivate:[AuthGuard]},
+    {path: 'user/profil',component: UserProfilComponent, canActivate:[AuthGuard]},
   ]},
 
   {path: 'utilisateur', component: ListeUtilisateurComponent},

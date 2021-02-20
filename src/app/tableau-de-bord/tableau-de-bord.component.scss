@@ -11,15 +11,35 @@ mat-sidenav{
 }
 
 i{
-    margin-right: 10px;
+    margin-right: 0 0 0 5px;
 }
+
+
 
 a.active{
     background: white;
 }
+
 .badge-notify{
     background:#27afd8;
     position:relative;
     top: -9px;
     left: -5px;
    }
+
+   a{
+    text-decoration: none;
+    font-size: 30px;
+ } 
+
+   ul {
+        a{
+            text-decoration: none;
+            color :  black;
+            font-size: 20px;
+         } 
+         li {
+            margin: 7px;     
+    
+  }
+}
