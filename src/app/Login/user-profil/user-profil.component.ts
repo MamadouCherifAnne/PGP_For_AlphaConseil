@@ -23,6 +23,7 @@ export class UserProfilComponent implements OnInit {
   public firstLetterNom: String;
   public firstLetterPrenom: String;
   public pageChanged:PageEvent;
+  public allUsers:any;
 
   constructor(
     public authService: AuthentificationService,
@@ -30,13 +31,17 @@ export class UserProfilComponent implements OnInit {
     private actRoute: ActivatedRoute,
     private formBuilder:FormBuilder,
   ) {
-   
+     this.userService.getUsers().subscribe(result=>{
+       if(result){
+         this.allUsers = result;
+       }
+     })
   }
 
   ngOnInit() { 
     this.messageForm=this.formBuilder.group({
       'messageContent':["",[Validators.required,Validators.maxLength(100)]],
-      'destinataire':["",[Validators.required,Validators.maxLength(50)]]
+      'destinataire':[this.destinataire,[Validators.required]]
     });
 
     //let id = this.actRoute.snapshot.paramMap.get('id');
@@ -73,13 +78,14 @@ export class UserProfilComponent implements OnInit {
       let username = this.messageForm.get('destinataire').value;
         //Recuperation de l'objet editeur du message
          // this.userService.getUserByIdUser(this.expediteur).subscribe(data=>{
-            this.userService.getUserByUsername(username).subscribe(data=>{
+            /*this.userService.getUserByUsername(username).subscribe(data=>{
               console.log(data);
           if(data){
             this.destinataire = data;
             console.log(data);
             //Recuperation de l'objet destinataire du message
-                
+                */
+               
                 this.message.editUser=this.currentUser;
                 this.message.destinataire = this.destinataire;
                 this.message.dateEnvoie =new Date();
@@ -87,13 +93,15 @@ export class UserProfilComponent implements OnInit {
                   if(done){
                     console.log("Message envoye");
                   }
+                    else{
+                  window.alert("Impossible de trouver un utilisateur avec ce username! assuerz vous des vos données");
+                  this.messageForm.get('destinataire').setValue('')
+                }
+
+                
                 });
                 this.messageForm.reset();
-          }else{
-            window.alert("Impossible de trouver un utilisateur avec ce username! assuerz vous des vos données");
-            this.messageForm.get('destinataire').setValue('')
-          }
-        });
+          
 
     }
     

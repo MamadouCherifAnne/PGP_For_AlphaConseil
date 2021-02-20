@@ -1,45 +1,64 @@
-
-<div class="container">
-    <br>
-    <span class="rounded-circle">{{firstLetterPrenom}}{{firstLetterNom}}</span>
-    <div class="headline">
-    <h5>Message</h5>
-    
-        <div>
-            <form [formGroup]="messageForm" class="normal-form">
-                
-                <mat-form-field>
-                    <input type="text" class="form-control" formControlName="destinataire" matInput placeholder="Envoyer à ???" >
-                </mat-form-field>
-                <textarea type="text" class="form-control" formControlName="messageContent" placeholder="Envoyer un message"></textarea>
-                <button class="btn-success" type="submit" [disabled]="messageForm.invalid" (click)="onSendMessage()">Envoyer</button>
-      
-            </form>
-        </div>
-    </div>
-    <br>
-    <hr>
+<mat-sidenav-container>
+    <mat-sidenav-content>
     <div class="container">
-            <mat-list *ngIf="messages">
-              <div mat-subheader> Messages</div>
-                <mat-list-item style="height: auto;"   *ngFor="let msg of messages | paginate:config">
-                
-                <mat-icon mat-list-icon>account_circle</mat-icon>
-                <button class="btn-danger" (click)="deleteMessage(msg.idMessage)" ><mat-icon mat-list-icon>delete</mat-icon></button>
-                <div mat-line style="white-space: normal;"><b>{{msg.editUser.username}}</b> : {{msg.dateEnvoie | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
-                <br>
-                <br>
-                <div mat-line style="white-space: normal;"> {{msg.messageContent}}</div>
-                
-                <mat-divider></mat-divider>
-            </mat-list-item>
-            
-          </mat-list>
+        <br>
         
-        <pagination-controls previousLabel="précédent "
-        nextLabel="suivant"
-        responsive="true"
-        (pageChange)="pageChanged = $event"></pagination-controls>
-    </div>
+            <h3 class="col-sm-10">Message</h3>
+            
+        <hr>
     
-</div>
+    
+        <br>
+        <div class="headline col-sm-10">
+            <h6>Choisissez un utilisateur et envoyer un messsage</h6>
+        
+            <div>
+                <form [formGroup]="messageForm" class="normal-form">
+                    
+                    <mat-form-field>
+                        <input type="text" class="form-control" formControlName="destinataire" matInput placeholder="Envoyer à " >
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Utilisateurs</mat-label>
+                        <mat-select formControlName="destinataire" [(ngModel)]="destinataire" >
+                            <ng-container *ngFor="let user of allUsers">
+                          <mat-option  [value]="user">{{user.username}}</mat-option>
+                        </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <textarea type="text" class="form-control" formControlName="messageContent" placeholder="Envoyer un message"></textarea>
+                    <button class="btn-success" type="submit" [disabled]="messageForm.invalid" (click)="onSendMessage()">Envoyer</button>
+        
+                </form>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="container">
+                <mat-list *ngIf="messages">
+                <div mat-subheader> Messages reçus</div>
+                    <mat-list-item style="height: auto;"   *ngFor="let msg of messages | paginate:config">
+                    
+                    <mat-icon mat-list-icon>account_circle</mat-icon>
+                    <button class="btn-danger" (click)="deleteMessage(msg.idMessage)" ><mat-icon mat-list-icon>delete</mat-icon></button>
+                    <div mat-line style="white-space: normal;"><b>{{msg.editUser.username}}</b> : {{msg.dateEnvoie | date: 'd MMMM y, HH:mm:' : '' : 'fr-FR'}}</div>
+                    <br>
+                    <br>
+                    <div mat-line style="white-space: normal;"> {{msg.messageContent}}</div>
+                    
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+                
+            </mat-list>
+            
+            <pagination-controls previousLabel="précédent "
+            nextLabel="suivant"
+            responsive="true"
+            (pageChange)="pageChanged = $event"></pagination-controls>
+        </div>
+        
+    </div>
+</mat-sidenav-content>
+</mat-sidenav-container>
