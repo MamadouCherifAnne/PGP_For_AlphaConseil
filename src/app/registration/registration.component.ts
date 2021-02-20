@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 import { Utilisateur } from 'src/app/Utilisateur/Utilisateur';
 import { UtilisateurService } from '../services/utilisateur.service';
 import { DataSourceconfig } from './DataSourceConfig';
@@ -17,12 +18,13 @@ export class RegistrationComponent implements OnInit {
   public  hide:boolean = true;
   constructor(
     private formbuilder: FormBuilder,
-    public userService:UtilisateurService
+    public userService:UtilisateurService,
+    public notifService:NotificationsService,
   ) { }
 
   ngOnInit() {
     this.registrationForm = this.formbuilder.group({
-      'username':["", [Validators.required,Validators.maxLength(10)]],
+      'username':["", [Validators.required,Validators.maxLength(20)]],
       'nom':["", [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'prenom':["", [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'email':["", [Validators.required, Validators.email]],
@@ -69,13 +71,15 @@ export class RegistrationComponent implements OnInit {
           if(data){
             if(data == 1){
                 console.log("abonnement creer veuillez patientez")
-                // faire le message sur un toast;
+                this.RegistreSuccess();
             }else if(data == -1){
               console.log("ce username existe deja  veuillez la changer")
                 // faire le message sur un toast;
+                this.RegistreHasSameName()
             }else{
               console.log("un company du meme nom existe deja")
               // faire le message sur un toast;
+              this.ModifEchec()
             }
             // faire le message sur un toast;
           }
@@ -83,9 +87,37 @@ export class RegistrationComponent implements OnInit {
       }else{
         //toast password non conforme
         console.log("password non conforme")
+        this.RegistrationMdpError();
+        
       }
 
      
   }
 
+
+  RegistreSuccess(){
+    this.notifService.success('Confirmation', "Votre espace va être configurer, Veuillez patienter!", {
+      timeOut : 3000,
+      showProgressBar : true,
+    });
+  }
+    ModifEchec(){
+      this.notifService.alert('Echec', "L'inscription a échoué, Réessayez à nouveau!", {
+        timeOut : 3000,
+        showProgressBar : true,
+      });
+  }
+
+  RegistreHasSameName(){
+    this.notifService.alert('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
+      timeOut : 3000,
+      showProgressBar : true,
+    });
+}
+  RegistrationMdpError(){
+  this.notifService.alert('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
+    timeOut : 3000,
+    showProgressBar : true,
+  });
+}
 }

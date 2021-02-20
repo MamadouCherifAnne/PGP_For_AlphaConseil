@@ -16,7 +16,7 @@
             <h5 style=" padding: 0 0 0 80px;"><mat-icon class="matclacss">check_circle</mat-icon>Gestion de projets collaboratifs</h5><br>
             <h5  style=" padding: 0 0 0 80px;"><mat-icon class="matclacss">check_circle</mat-icon>Gestion de plusieurs projets</h5 ><br>
             <h5  style="padding: 0 0 0 80px;"><mat-icon class="matclacss">check_circle</mat-icon>Simple d’utilisation</h5><br>
-            <p style="padding: 0 0 0 100px;"><button *ngIf="this.authService.isLoggedIn"  type="button" class="btn btn-primary btn-lg" (click)="gotORegesitrer()">Essayer Maintenant</button></p>
+            <p style="padding: 0 0 0 100px;"><button *ngIf="!this.authService.isLoggedIn"  type="button" class="btn btn-primary btn-lg" (click)="gotORegesitrer()">Essayer Maintenant</button></p>
         </div> 
     </div>   
 </div>
