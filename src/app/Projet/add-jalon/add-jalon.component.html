@@ -26,7 +26,7 @@
 
                 <mat-form-field>
                   
-                    <mat-select formControlName="tachePrecedente" [(ngModel)]="tache.tachePrecedente" multiple>
+                    <mat-select formControlName="phase" [(ngModel)]="tache.phase" >
                     <ng-container *ngFor="let tache of listTache">
                         <mat-option  [value]="tache">{{tache.nomTache}}:<small>debute:({{tache.finTache}})</small></mat-option>
                     </ng-container> 

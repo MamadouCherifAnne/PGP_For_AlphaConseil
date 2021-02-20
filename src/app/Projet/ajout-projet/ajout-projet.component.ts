@@ -8,7 +8,8 @@ import {EndDateValidation} from "src/app/ValidationsFunctions/EndDateValidation"
 import {DateValidation} from "src/app/ValidationsFunctions/DateValidation";
 
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
-
+import {NotificationsService} from 'angular2-notifications';
+import { title } from 'process';
 
 @Component({
   selector: 'app-ajout-projet',
@@ -25,7 +26,8 @@ export class AjoutProjetComponent implements OnInit {
   constructor(private projetService: ProjetService, private formBuilder: FormBuilder,
     public userService:UtilisateurService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef : MatDialogRef<AjoutProjetComponent>) { }
+    public dialogRef : MatDialogRef<AjoutProjetComponent>,
+    private notifService: NotificationsService) { }
 
  
 
@@ -41,7 +43,7 @@ export class AjoutProjetComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(100),
       Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
-    'description': [this.projet.description], 
+    'description': [this.projet.description,  Validators.maxLength(100)], 
     'debutProjet': [this.projet.debutProjet, [Validators.required, this.dateValidator]],
     'finProjet': [this.projet.finProjet, [Validators.required, this.dateValidator]],
     'zoneRealisation': [this.projet.zoneRealisation,[Validators.maxLength(100)]], 
@@ -95,11 +97,23 @@ export class AjoutProjetComponent implements OnInit {
       this.projet.responsable = this.data.defaultProjectOwner;
     }
     console.log(this.projet.zoneRealisation);
-    let val = this.projetService.add(this.projet); 
-    val.subscribe((data)=>this.message=data);
-    this.onClose();
+    this.projetService.add(this.projet).subscribe((data)=>{
+      if(data){
+        this.message=data
+        
+      }
+     })
+     this.testToast();
+     this.onClose();
+    
   }
   
+  testToast(){
+    this.notifService.success('Confirmation', "Projet crée avec succés", {
+      timeOut : 3000,
+      showProgressBar : true,
+    });
+  }
 
   onClear(){
     this.dialogRef.close();

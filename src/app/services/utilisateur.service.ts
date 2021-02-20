@@ -100,6 +100,19 @@ export class UtilisateurService {
       return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetTermines/"+username)
     }
 
+    // etat des projets en ce qui concerne les administrateurs
+    public getProjetsEncoursAdmin(): Observable<any>{
+      return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetEncoursAdmin");
+    }
+
+    public getProjetEnretardAdmin(): Observable<any>{
+      return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetEnRetardAdmin")
+    }
+
+    public getProjetTerminesAdmin(): Observable<any>{
+      return this.http.get(environment.alfaApiUrl+"/utilisateur/listOfprojetTerminesAdmin")
+    }
+
 
    public nombreMessageNonLu:number =0;
    

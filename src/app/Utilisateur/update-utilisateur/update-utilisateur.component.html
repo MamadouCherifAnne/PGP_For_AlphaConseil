@@ -25,19 +25,22 @@
     <mat-grid-tile>
         <div class="controles-container">
                 
-            <mat-form-field>
-                <input formControlName="password" matInput placeholder="Mot de Passe">
-            </mat-form-field>
-                    
-            <mat-form-field>
-                <input formControlName="adresse"  matInput placeholder="Adresse" >
-            </mat-form-field>
-            
+  
+
             <mat-form-field>
                 <input formControlName="telephone"  matInput placeholder="Téléphone" >
                 <mat-error *ngIf="checkError('telephone', 'minLength')">Minimum est de 8 chiffres </mat-error>
                 <mat-error *ngIf="checkError('telephone', 'pattern')">N'accepte pas les lettres </mat-error>
             </mat-form-field>
+
+            <mat-form-field>
+                <input formControlName="password" matInput placeholder="Mot de Passe">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input formControlName="confirmPassword"  matInput placeholder="Confirmation du mot de passe" >
+            </mat-form-field>
+                    
     </div>
 </mat-grid-tile>
 <mat-grid-tile>
@@ -45,8 +48,9 @@
 
 
         <mat-form-field>
-            <input formControlName="confirmPassword"  matInput placeholder="Confirmation du mot de passe" >
+            <input formControlName="adresse"  matInput placeholder="Adresse" >
         </mat-form-field>
+        
 
         <mat-form-field>
             <mat-label>Professions</mat-label>
@@ -61,8 +65,8 @@
     </div>
 </mat-grid-tile>
 <mat-grid-tile>
-    <div class="controles-container">
-        <mat-form-field *ngIf="authService.isSuperAdmin">
+    <div class="controles-container" *ngIf="authService.isSuperAdmin">
+        <mat-form-field >
             <mat-select formControlName="role"  matInput placeholder="Role" multiple>
                 <ng-container *ngFor="let rol of roles">
                 <mat-option [value]="rol.role">

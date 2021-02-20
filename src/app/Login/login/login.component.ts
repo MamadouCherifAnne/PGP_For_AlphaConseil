@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  get username(){ return this.signinForm.get('username')}
+
   ngOnInit() {
     // on login avec le token
   

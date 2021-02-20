@@ -7,8 +7,10 @@
             <div class="controles-container">
            
                 <mat-form-field>
-                    <input formControlName="nomProjet"  matInput placeholder="Nom du Projet">
-                    <mat-error>Le nom du projet est obligatoire.</mat-error>
+                    <input formControlName="nomProjet"  matInput placeholder="Nom du Projet" required>
+                    <mat-error *ngIf="checkError('nomProjet', 'maxLength')">Le nom ne doit pas déppasser 100 caractères !</mat-error>
+                    <mat-error *ngIf="checkError('nomProjet', 'required')">Le nom est obligatoire</mat-error>
+                    <mat-error *ngIf="checkError('nomProjet', 'pattern')">N'accepte pas les caractère spéciaux !</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <textarea class="textarea" formControlName="description"   matInput  placeholder="Description"></textarea>
@@ -22,22 +24,25 @@
         <mat-grid-tile>
              <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="debutProjet"   matInput [matDatepicker]="picker1" placeholder="Date de debut du projet">
+                    <input formControlName="debutProjet"   matInput [matDatepicker]="picker1" placeholder="Date de debut du projet" required>
                     <mat-datepicker-toggle  [for]="picker1" matSuffix></mat-datepicker-toggle>
                     <mat-datepicker #picker1 ></mat-datepicker>
-                    <mat-error>Mentionnez la date de debut</mat-error>
+                    <mat-error *ngIf="checkError('debutProjet', 'required')">La date du debut est obligatoire</mat-error>
+                    <mat-error *ngIf="checkError('debutProjet', 'dateInvalid')">Le format de la date est: dd/mm/yyyy</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input formControlName="finProjet"  matInput [matDatepicker]="picker2" placeholder="Date de fin du projet">
+                    <input formControlName="finProjet"  matInput [matDatepicker]="picker2" placeholder="Date de fin du projet" required>
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 ></mat-datepicker>
-                    <mat-error>Mentionnez la date de fin</mat-error>
+                    <mat-error *ngIf="checkError('finProjet', 'required')">La date de fin est obligatoire</mat-error>
+                    <mat-error *ngIf="checkError('finProjet', 'dateInvalid')">Le format de la date est: dd/mm/yyyy</mat-error>
                 </mat-form-field>
                 <div class="button-row">
                     <!--<button mat-raised-button color="primary" type="submit" (click)="updateProjet()">Modifier</button>
                     <button mat-raised-button color="warn" type="submit" (click)="Clear()">Clear</button> -->
 
-                    <button class="btn btn-success btn-sm" type="submit" (click)="updateProjet()">Modifier</button>
+                    <button class="btn btn-success btn-sm" type="submit" (click)="updateProjet()"
+                    [disabled]="editProjetForm.invalid">Modifier</button>
                     <button class="btn btn-light btn-sm" type="submit" (click)="Clear()">Annuler</button>
     
                 </div>

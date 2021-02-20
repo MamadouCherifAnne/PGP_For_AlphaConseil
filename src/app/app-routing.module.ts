@@ -51,15 +51,15 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path : 'tableaudebord', component: TableauDeBordComponent, children:[
     {path: '', redirectTo: 'projet', pathMatch: 'full'},
-    {path: 'projet', component: AllProjetsComponent},
-    {path: 'montravail', component:MonTravailComponent},
-    {path: 'activite', component: ActiviteComponent},
+    {path: 'projet', component: AllProjetsComponent,canActivate:[AuthGuard]},
+    {path: 'montravail', component:MonTravailComponent,canActivate:[AuthGuard]},
+    {path: 'activite', component: ActiviteComponent,canActivate:[AuthGuard]},
   ]},
 
   {path: 'utilisateur', component: ListeUtilisateurComponent},
   {path: 'add', component: AjoutUtilisateurComponent},
   {path: 'update',component: UpdateUtilisateurComponent},
-  {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent},
+  {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent,canActivate:[AuthGuard]},
 
     
 
@@ -68,7 +68,7 @@ const routes: Routes = [
   {path: 'add', component: AjoutUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'update',component: UpdateUtilisateurComponent,canActivate:[AuthGuard]},
   {path: 'utilisateur/details/:iduser',component: DetailUtilisateurComponent,canActivate:[AuthGuard]},
-  {path: 'user/profil/:id',component: UserProfilComponent, canActivate:[AuthGuard]},
+  {path: 'user/profil',component: UserProfilComponent, canActivate:[AuthGuard]},
 
   
 
@@ -101,11 +101,11 @@ const routes: Routes = [
   // les liens concernant entreprise
  // {path: 'workspace/new', component:AddEntrepriseComponent},
 
-  {path: 'Taches/:id', component: AltachesComponent},
-  {path:'jalon/:id', component:JalonComponent},
+  {path: 'Taches/:id', component: AltachesComponent,canActivate:[AuthGuard]},
+  {path:'jalon/:id', component:JalonComponent,canActivate:[AuthGuard]},
 
   {path:'depense/:idTache', component:DepensesComponent},
-  {path:'tache/facture/:idTache', component:FactureTacheComponent},
+  {path:'tache/facture/:idTache', component:FactureTacheComponent,canActivate:[AuthGuard]},
 
   {path: 'commentaire/:numProjet', component: CommentComponent},
   {path:'seConnecter', component:LoginComponent},
@@ -117,7 +117,7 @@ const routes: Routes = [
     {path: 'actifs', component: ActifsprojetsComponent},
     {path: 'termines', component: FinishedprojectsComponent},
     {path: 'enretards', component: LateprojetsComponent}
-  ]},
+  ],canActivate:[AuthGuard]},
   {path: 'registration', component: RegistrationComponent},
   
 

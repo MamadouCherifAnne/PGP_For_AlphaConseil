@@ -2,18 +2,8 @@
       width: 100px;
   }
   
-  .headline h2, 
-.headline p {
-    display: inline-block;
-    padding: 25px;
 
-}
 
-.headline p{
-    
-    float:right;
-    
-}
 .hide{
     display: none;
 }
@@ -58,11 +48,11 @@ mat-sidenav-content{
 }
 }
 
- 
-
-.fa-tasks{
-  margin-right: 8px;
+.fa-info-circle{
+  margin-right: 5px;
 }
+
+
 
 
 .list-group-item{
@@ -168,4 +158,40 @@ mat-footer-row mat-footer-cell{
 }
 .search-form-field div.mat-form-field-underline{
   display: none;
+}
+
+.strike {
+  display: block;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap; 
+}
+
+.strike > h5 {
+  position: relative;
+  display: inline-block;
+}
+
+.strike > h5:before,
+.strike > h5:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9999px;
+  height: 1px;
+  background: gray;
+}
+
+.strike > h5:before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.strike > h5:after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+h6{
+  margin-bottom: 10px;
 }

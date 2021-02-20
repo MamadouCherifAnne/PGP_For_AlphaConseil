@@ -1,3 +1,39 @@
 .mat-form-field + .mat-form-field {
     margin-left: 8px;
   }
+
+  .strike {
+    display: block;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap; 
+  }
+  
+  .strike > h5 {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .strike > h5:before,
+  .strike > h5:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: gray;
+  }
+  
+  .strike > h5:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  
+  .strike > h5:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+  
+  h6{
+    margin-bottom: 10px;
+  }

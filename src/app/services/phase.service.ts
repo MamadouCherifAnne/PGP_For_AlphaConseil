@@ -8,7 +8,7 @@ import {environment} from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PhaseService {
-
+  
   public host = environment.alfaApiUrl;
   entete:any ;
   jeton:string;
@@ -37,4 +37,8 @@ export class PhaseService {
   public getProjetOfPhase (idPhase){
     return this.http.get(this.host+"/phase/getProjet/"+idPhase);
   }
+
+
+
+ 
 }

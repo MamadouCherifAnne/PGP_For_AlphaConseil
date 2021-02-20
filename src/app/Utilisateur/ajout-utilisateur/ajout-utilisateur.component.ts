@@ -46,7 +46,7 @@ export class AjoutUtilisateurComponent implements OnInit {
 
       'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8),Validators.pattern('[0-9]*')]],
 
-      'confirmPassword':["",[Validators.required]],
+      'confirmPassword':[this.user.confirmPassword,[Validators.required]],
 
       'adresse':[this.user.adresse, [Validators.required]],
       
@@ -72,7 +72,7 @@ export class AjoutUtilisateurComponent implements OnInit {
     this.user.company = this.authService.entrepriseName;
     this.user.projets=null
     this.user.professions= this.idProfession;
-    if(this.user.password == this.addUserForm.get('confirPassword').value){
+    if(this.user.password == this.addUserForm.get('confirmPassword').value){
       let res=this.userService.addUser(this.user);
       res.subscribe((data)=>this.message=data);
       this.onFermer();

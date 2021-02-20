@@ -36,17 +36,23 @@
                     <mat-error *ngIf="checkError('email', 'email')">doit avoir le format(aaaa@bbb.cc) </mat-error>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <input formControlName="adresse" [(ngModel)]="user.adresse" matInput placeholder="Addresse">
-                </mat-form-field>
-
+               
                 <mat-form-field>
                     <input formControlName="password" [(ngModel)]="user.password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>>
+                    </button>
                 </mat-form-field>
-                        
+
+                <mat-form-field>
+                    <input formControlName="confirmPassword" [(ngModel)]="user.confirmPassword" matInput placeholder="confirmPassword" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+
+            
                 
             
         </div>
@@ -57,6 +63,11 @@
                     <input formControlName="telephone" [(ngModel)]="user.telephone" matInput placeholder="Telephone">
                     <mat-error *ngIf="checkError('telephone', 'minLength')">Minimum est de 8 chiffres</mat-error>
                 </mat-form-field>
+
+                <mat-form-field>
+                    <input formControlName="adresse" [(ngModel)]="user.adresse" matInput placeholder="Addresse">
+                </mat-form-field>
+
 
                 <mat-form-field>
                     <mat-label>Professions</mat-label>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 import { ProjetService } from 'src/app/services/projet.service';
 import { ProjectUserID } from '../UserProjectID';
 import { AddMembreComponent } from './add-membre/add-membre.component';
@@ -16,6 +17,7 @@ export class MembreProjetComponent implements OnInit {
   public idProjet:number;
   public listofMembres:[];
   public rechercheKey:string;
+  public nombreMembre : number = 0;
 
   // La dataSource pour le tableau des membres 
   public userDataSource : MatTableDataSource<any>;
@@ -25,6 +27,7 @@ export class MembreProjetComponent implements OnInit {
   displayedColumns: string [] = ['username', 'Role',  'telephone','Action'];
   affectations: any[];
   constructor(public projetService:ProjetService, public route:ActivatedRoute,
+    public authService:AuthentificationService,
     public fenetre:MatDialog, public router:Router) { }
 
   ngOnInit() {
@@ -44,6 +47,7 @@ export class MembreProjetComponent implements OnInit {
     this.projetService.getProjectMembre(this.idProjet).subscribe(data=>{
       if(data){
         this.listofMembres = data;
+        this.nombreMembre =  this.listofMembres.length;
         console.log("Voici le nombre des membres du projet"+this.listofMembres.length);
 
         this.userDataSource = new MatTableDataSource(this.listofMembres);

@@ -69,6 +69,7 @@ export class FileComentComponent implements OnInit {
     this.tacheService.getTache(this.idTache).subscribe((data)=>{
       if(data){
         this.currentTache=data;
+        console.log("VOIci la Tache "+data)
         this.tacheToComment=this.currentTache;
         // calcul du retard de la tache
          let val = ((this.today.getTime() - new Date(this.currentTache.finTache).getTime())/(1000*3600*24));

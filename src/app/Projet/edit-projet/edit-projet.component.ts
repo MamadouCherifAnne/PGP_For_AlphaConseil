@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Projet } from '../Projet';
 import {ProjetService} from "src/app/services/projet.service";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -21,12 +21,15 @@ export class EditProjetComponent implements OnInit {
 
   ngOnInit() {
     this.editProjetForm= this.formBuilder.group({
-      'nomProjet': [this.projet.nomProjet, Validators.required],
-      'description': [this.projet.description],
-      'debutProjet': [this.projet.debutProjet, Validators.required],
-      'finProjet': [this.projet.finProjet,Validators.required],
-      'zoneRealisation': [this.projet.zoneRealisation],
-      'responsable':[this.projet.responsable, Validators.required]
+      'nomProjet': [this.projet.nomProjet, [Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(100),
+        Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
+      'description': [this.projet.description, Validators.maxLength(100)],
+      'debutProjet': [this.projet.debutProjet, [Validators.required, this.dateValidator]],
+      'finProjet': [this.projet.finProjet,[Validators.required, this.dateValidator]],
+      'zoneRealisation': [this.projet.zoneRealisation, [Validators.maxLength(100)]],
+      'responsable':[this.projet.responsable]
   
       });
 
@@ -36,6 +39,24 @@ export class EditProjetComponent implements OnInit {
       
 
       this.currentForm();
+    }
+
+    public checkError = (controlName: string, errorName: string) => {
+      return this.editProjetForm.controls[controlName].hasError(errorName);
+    }
+   
+   //Verification du date format 
+    dateValidator(c: AbstractControl): { [key: string]: boolean } {
+      let value = c.value;
+      if (value && typeof value === "string") {
+        let match = value.match(/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
+        if (!match) {
+          return { 'dateInvalid': true };
+        } else if (match && match[0] !== value) {
+          return { 'dateInvalid': true };
+        }
+      }
+      return null;
     }
   
   public updateProjet(){

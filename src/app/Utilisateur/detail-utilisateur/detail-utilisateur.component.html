@@ -1,11 +1,20 @@
+<br>
+
+<div class="container-fluid strike">
+    <h5>Details de L'utilisateur</h5>
+ </div>  
+
+<br>
 <div class="container">
-    <h4>Details Utilisateur </h4>
 
     
 <div class="container">
 <div class="card" *ngIf="currentUser">
     <div class="card-body">
-      <h5 class="card-title">Information de l'Utilisateur</h5>
+      <h5 class="card-title">Information de l'Utilisateur <button class="btn btn-success btn-sm " (click)="goToUpdateUser()">
+         <i class="icon-edit"></i> 
+         <span>Editer</span>
+      </button> </h5>
       <br>
       <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
       <mat-icon>account_circle</mat-icon> <b>Nom de L'utilisateur </b> :{{currentUser.nom}}<br><br>
@@ -14,9 +23,9 @@
       <mat-icon>call</mat-icon> <b>Telephone</b>: {{currentUser.telephone}}<br><br>
       <mat-icon>place</mat-icon> <b>Adresse</b>: {{currentUser.adresse}}<br><br>
       <h6 class="card-subtitle mb-2 text-muted">Information Personnelle</h6>
-      <mat-icon>group</mat-icon><b>Role</b> : {{currentUser.role}}<br><br>
+      <!-- <mat-icon>group</mat-icon><b>Role</b> : {{currentUser.role}}<br><br> -->
       <mat-icon>domain</mat-icon> <b>Profession</b> : {{userProfessions}}<br><br>
-      <a  class="card-link">Accorder nouvel Status</a>
+      <!-- <a  class="card-link">Accorder nouvel Status</a>-->
       <br><br>
       <span><b>Envoyer un Message à {{currentUser.prenom}}</b> </span>
       <div>

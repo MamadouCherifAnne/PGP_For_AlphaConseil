@@ -11,6 +11,7 @@ import { IUtilisateur } from '../IUtilisateur';
 import {MatDialogRef}  from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'app-update-utilisateur',
@@ -19,6 +20,7 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 })
 export class UpdateUtilisateurComponent implements OnInit {
 
+  
   user:Utilisateur = new Utilisateur()
   oldUser:any;
   idRol:IRole;
@@ -32,6 +34,7 @@ export class UpdateUtilisateurComponent implements OnInit {
   constructor(private userService: UtilisateurService, private roleService: RoleService,
     private professionService: ProfessionService,
       public authService:AuthentificationService,
+      private notifService: NotificationsService,
      private formBuilder: FormBuilder,
      public fenetereRef: MatDialogRef<UpdateUtilisateurComponent>,
      @Inject(MAT_DIALOG_DATA) public data:any) {
@@ -54,7 +57,7 @@ export class UpdateUtilisateurComponent implements OnInit {
       'nom':[this.user.nom, [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'prenom':[this.user.prenom, [Validators.required,Validators.maxLength(20),Validators.pattern('^[a-zA-Z \u00C0-\u00FF]*$')]],
       'email':[this.user.email, [Validators.required, Validators.email]],
-      'password':[this.user.password, [Validators.required]],
+      'password':[this.user.password, []],
 
       'telephone':[this.user.telephone, [Validators.required,Validators.minLength(8),Validators.pattern('[0-9]*')]],
 
@@ -63,7 +66,7 @@ export class UpdateUtilisateurComponent implements OnInit {
       'adresse':[this.user.adresse, [Validators.required]],
       
       'profession':[this.idProfession],
-      'role':[this.user.role, [Validators.required]],
+      'role':[this.user.role, []],
       
   });
   
@@ -94,16 +97,21 @@ public userUpdate(){
   this.user.company = this.authService.entrepriseName;
   let id=Number.parseFloat(this.updatingUser.user.idUser);
   console.log("les role choisit"+this.user.role+ "ou "+this.updateUserForm.get("role").value)
-  this.user.role = this.user.role;
+  //this.user.role = this.user.role;
   //this.user.ptojet=null
   this.user.professions=this.updateUserForm.get("profession").value
   this.user.role=this.updateUserForm.get("role").value
+  if(this.user.password == this.updateUserForm.get('confirmPassword').value){
   
   let res=this.userService.updateUser(this.user,id);
-  res.subscribe((data)=>this.message=data)
+  res.subscribe((data)=>this.modifEchec()/*this.message=data*/);
+  
+  
+  }
+  this.onFermer();
   
 
-  this.onFermer();
+  
 }
 
 
@@ -122,6 +130,20 @@ public chargerFormulaire(){
   this.updateUserForm.get("profession").setValue(this.updatingUser.user.professions);
   this.updateUserForm.get("role").setValue(this.updatingUser.user.role) ;
 
+}
+
+  
+modifSuccess(){
+  this.notifService.success('Confirmation', "Modifié  avec succés", {
+    timeOut : 3000,
+    showProgressBar : true,
+  });
+}
+  modifEchec(){
+    this.notifService.info('Info', "La modification a échoué", {
+      timeOut : 3000,
+      showProgressBar : true,
+    });
 }
 
 

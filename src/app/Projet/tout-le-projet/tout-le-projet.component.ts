@@ -32,7 +32,7 @@ export class ToutLeProjetComponent implements OnInit {
   loading: any = 0;
   late: any = 0;
   finished: any = 0; 
-  avenir: any; 
+  avenir: any = 0; 
   nombresdetaches : any;
   pourcenloading: any;
   pourcenlate: any;

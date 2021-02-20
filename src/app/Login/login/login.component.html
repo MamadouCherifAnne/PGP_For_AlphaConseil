@@ -29,7 +29,7 @@
                     <form [formGroup]="signinForm" >
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" formControlName="username" placeholder="nom d'utilisateur">
                         </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Vous n'avez de compte?<a href="#">Céer un compte</a>
+                        Vous n'avez de compte?<a routerLink="/registration">Céer un compte</a>
                     </div>
                     <div class="d-flex justify-content-center">
                         <a routerLink="/registration">Mot de passe oublié?</a>

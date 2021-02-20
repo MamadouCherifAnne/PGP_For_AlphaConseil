@@ -12,6 +12,12 @@
         <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Informations:</h6>
         <br>
         <ul class="list-group" >
+
+            <li class="list-group-item  breadcrumb" style="border: none">
+                <dl class="bg-light">Nombre de Membres : <span class="badge">{{nombreMembre}}</span></dl>
+ 
+            </li>
+
             <li class="list-group-item  breadcrumb" style="border: none">
                 Débute: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
             </li>
@@ -65,7 +71,7 @@
             </ng-container>
 
             <!-- ACTION  SUR LE MEMBRE -->
-            <ng-container matColumnDef="Action" >
+            <ng-container *ngIf="this.authService.isAdmin" matColumnDef="Action" >
                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <button  mat-icon-button [matMenuTriggerFor]="menu"  aria-label="Example icon-button with a menu">
