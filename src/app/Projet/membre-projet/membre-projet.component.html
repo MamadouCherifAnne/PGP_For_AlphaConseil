@@ -6,7 +6,7 @@
 
 <mat-sidenav-container  >
    
-    <mat-sidenav mode="side" opened *ngIf="currentProject">
+    <mat-sidenav mode="side" opened >
         <div class="container-flud">
         <br>
         <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Informations:</h6>
@@ -14,16 +14,8 @@
         <ul class="list-group" >
 
             <li class="list-group-item  breadcrumb" style="border: none">
-                <dl class="bg-light">Nombre de Membres : <span class="badge">{{nombreMembre}}</span></dl>
+                <dl class="bg-light">Nombre de Membres : <span class="badge badge-pill badge-primary">{{nombreMembre}}</span></dl>
  
-            </li>
-
-            <li class="list-group-item  breadcrumb" style="border: none">
-                Débute: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
-            </li>
-
-            <li class="list-group-item  breadcrumb" style="border: none">
-                Fin: {{ currentProject.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}
             </li>
         </ul>
     </div>

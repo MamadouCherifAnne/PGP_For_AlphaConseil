@@ -36,8 +36,10 @@ export class JalonComponent implements OnInit {
   public jalons:ITache[]
   public lateJalon:ITache[]=[]
   public nombreJalon:number
-  public projectId:number
+  public projectId:number;
+  public chefProjet : String ;
   public projectOwner:Utilisateur;
+  public currentUser:any;
   public isOwner : boolean = false;
   constructor(public userService:UtilisateurService,
     public formBuilder:FormBuilder,
@@ -51,32 +53,20 @@ export class JalonComponent implements OnInit {
     ngOnInit(){
       this.projectId = parseInt(this.route.snapshot.paramMap.get('id'));
       // recuperer le chef de ce projet 
-      this.projetService.getProjectOwner(this.projectId).subscribe(result=>{
+     /* this.projetService.getProjectOwner(this.projectId).subscribe(result=>{
       if(result){
         this.projectOwner =result;
         console.log(this.projectOwner.username +" :::: ===   ")
         if( this.projectOwner.username == this.authService.getCurrentUser()){
           this.isOwner = true;
-        }
-        this.refresh();
-      }
-    });
-    
-   /*   // Recuperer tout les jalons
-      this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
-        if(data){
-          this.jalons=data;
-          this.nombreJalon=this.jalons.length
-          
-          for(let j of this.jalons){
-            if(new Date(j.debutTache ) < new Date()){
-              this.lateJalon.push(j);
-              console.log(j.nomTache+"#   #"+j.debutTache)
-            }
-            }
-            
-        } 
-      });*/
+        }*/
+        this.userService.getUserByUsername(this.authService.getCurrentUser()).subscribe(data=>{
+          if(data){
+            this.currentUser = data;
+            this.refresh();
+          }
+        });
+  
       }
     
 
@@ -98,7 +88,7 @@ export class JalonComponent implements OnInit {
     }
   
     refresh() {
-
+      this.isChefDeProjectOwner(this.projectId,this.currentUser.idUser);
       this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
         if(data){
           this.jalons=data;
@@ -113,6 +103,9 @@ export class JalonComponent implements OnInit {
     }
 
     //verification si il s'agit du chef du projet
+    isChefDeProjectOwner(idProjet,idUser){
+      this.chefProjet = this.projetService.HasActionInProject(idProjet,idUser);
+    }
 
     
   }
