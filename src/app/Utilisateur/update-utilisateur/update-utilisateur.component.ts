@@ -89,7 +89,8 @@ public userUpdate(){
   //console.log(this.oldUser)
 
  this.user.actif=true;
-  this.user.nom =this.updateUserForm.get("username").value;
+ this.user.username = this.updateUserForm.get("username").value;
+  this.user.nom =this.updateUserForm.get("nom").value;
   this.user.prenom =this.updateUserForm.get("prenom").value;
   this.user.email=this.updateUserForm.get("email").value;
   this.user.adresse =this.updateUserForm.get("adresse").value;
@@ -122,7 +123,8 @@ public onFermer(){
 
 public chargerFormulaire(){
   
-  this.updateUserForm.get("username").setValue(this.updatingUser.user.nom);
+  this.updateUserForm.get("username").setValue(this.updatingUser.user.username);
+  this.updateUserForm.get("nom").setValue(this.updatingUser.user.nom);
   this.updateUserForm.get("prenom").setValue(this.updatingUser.user.prenom);
   this.updateUserForm.get("email").setValue(this.updatingUser.user.email);
   this.updateUserForm.get("telephone").setValue(this.updatingUser.user.telephone);

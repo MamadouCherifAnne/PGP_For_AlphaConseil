@@ -164,7 +164,7 @@ public static isowner:boolean=false;
     }
    // le nombre de projets en retard
    public getprojetsEnretardAdmin(): Observable<any>{
-    return this.http.get<any>(this.host+"/projet/getprojetsEnretardAdmin");
+    return this.http.get<any>(this.host+"/projet/getprojetsEnretardsAdmin");
   }
 
   //Affiche le nombre de projet termines

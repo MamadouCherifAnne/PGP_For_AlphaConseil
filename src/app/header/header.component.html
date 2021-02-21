@@ -55,10 +55,10 @@
           Login
         </a>
        </li>
-      <li class="nav-item">
-       <a class="nav-link" *ngIf="this.authService.isLoggedIn"  routerLink="/registration"  routerLinkActive="active">
+      <li  class="nav-item amessage">
+       <a class="nav-link" *ngIf="this.authService.isLoggedIn"  routerLink="tableaudebord/montravail"  routerLinkActive="active">
           <i class="far fa-user "></i>
-          {{authService.userConnected}}  
+          {{authService.getCurrentUser()}}  
         </a>
       </li>
       

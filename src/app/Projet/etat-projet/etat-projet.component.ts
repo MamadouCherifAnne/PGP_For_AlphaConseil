@@ -38,24 +38,24 @@ export class EtatProjetComponent implements OnInit {
 
   refresh() {
       // Sinon on affiche pour lui que les projets dont il affecte comme membre;
-      if(this.authService.isAdmin || this.authService.isSuperAdmin){
-      this.projetService.getprojetsActifs(this.currentUser).subscribe((data)=>{
-        if(data){
-          this.nbrdeprojetactif=data
-        }
-      });
+      if(this.authService.isAdmin == false && this.authService.isSuperAdmin==false){
+        this.projetService.getprojetsActifs(this.currentUser).subscribe((data)=>{
+          if(data){
+            this.nbrdeprojetactif=data
+          }
+        });
 
-      this.projetService.getprojetsEnretard(this.currentUser).subscribe((data)=>{
-        if(data){
-          this.nbrdeprojetenretard=data
-        }
-      });
+        this.projetService.getprojetsEnretard(this.currentUser).subscribe((data)=>{
+          if(data){
+            this.nbrdeprojetenretard=data
+          }
+        });
 
-      this.projetService.getProjetsTermines(this.currentUser).subscribe((data)=>{
-        if(data){
-          this.nbrdeprojettermine=data
-        }
-      });
+        this.projetService.getProjetsTermines(this.currentUser).subscribe((data)=>{
+          if(data){
+            this.nbrdeprojettermine=data
+          }
+        });
       }else{
 
         this.projetService.getprojetsActifsAdmin().subscribe((data)=>{

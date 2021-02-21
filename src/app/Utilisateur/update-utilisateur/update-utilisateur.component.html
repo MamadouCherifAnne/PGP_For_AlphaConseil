@@ -4,18 +4,18 @@
         <mat-grid-tile>
             <div class="controles-container">
                 <mat-form-field>
-                    <input formControlName="username"  matInput placeholder="Nom" >
+                    <input formControlName="username"  matInput placeholder="Nom d'utilisateur" >
                 </mat-form-field>
 
+                <mat-form-field>
+                    <input formControlName="nom"  matInput placeholder="Nom" >
+                </mat-form-field>
         
                 <mat-form-field>
                     <input formControlName="prenom"  matInput placeholder="Prénom" >
                 </mat-form-field>
                 
-                <mat-form-field>
-                    <input formControlName="email"   matInput placeholder="Email">
-                    <mat-error *ngIf="checkError('email', 'email')">doit avoir le format(aaaa@bbb.cc) </mat-error>
-                </mat-form-field>
+
 
                 
                     
@@ -46,6 +46,13 @@
 <mat-grid-tile>
     <div class="controles-container">
 
+
+
+        <mat-form-field>
+            <input formControlName="email"   matInput placeholder="Email">
+            <mat-error *ngIf="checkError('email', 'email')">doit avoir le format(aaaa@bbb.cc) </mat-error>
+        </mat-form-field>
+        
 
         <mat-form-field>
             <input formControlName="adresse"  matInput placeholder="Adresse" >
