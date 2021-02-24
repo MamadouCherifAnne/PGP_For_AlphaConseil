@@ -31,8 +31,7 @@
                         <mat-icon>more_horiz</mat-icon>
                     </button> </p>
                     <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="exportDailyOrdersToPdf()"><i class="far fa-file-pdf"></i><span>Rapport des tâches</span></button>
-                    <button mat-menu-item (click)="exprotExel()"><i class="fas fa-file-excel"></i><span>Rapport des tâches</span></button>
+                    <button mat-menu-item (click)="exportDailyOrdersToPdf()"><span>Rapport des tâches</span></button>
                     </mat-menu>
                 
 
@@ -54,7 +53,7 @@
                     <mat-icon>more_horiz</mat-icon>  </button>
                 <mat-menu #menu="matMenu">
                 <button mat-menu-item ><span>Supprimer cette phase</span></button>
-                
+                <button mat-menu-item (click)="goToRapportTaches(phase.numTache)"><span>Rapport des tâches</span></button>
                 </mat-menu>
                 <button class="btn btn-link " 
                     data-toggle="collapse"
@@ -109,7 +108,7 @@
                     <p ><button class="btn btn-success btn-sm btAjtache" typep="button" (click)="cacher[i] = !cacher[i]">Ajouter une tache</button>
                     <small class="sapantache">{{finTache(phase.taches)}} Terminé</small></p>
                     <div [hidden] = "!cacher[i]">
-                        <app-ajout-tache-second [idProjet]="idProjet" [idPhase]="phase.numTache"></app-ajout-tache-second>
+                        <app-ajout-tache-second [idProjet]="idProjet" [idPhase]="phase.numTache" ()></app-ajout-tache-second>
                     </div>   
                     
                 </ul>

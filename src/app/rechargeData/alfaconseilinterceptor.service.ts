@@ -22,7 +22,7 @@ export class AlfaconseilinterceptorService implements HttpInterceptor {
     // La methode de gestion des exception et des redirection en cas derreur
     handleError(erreur:HttpErrorResponse){
       console.log("une erreur sest produite le jwt es expire")
-      //this.router.navigate(['seConnecter']);
+     // this.router.navigate(['seConnecter']);
       return throwError(erreur);
     }
 

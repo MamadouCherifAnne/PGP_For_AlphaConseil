@@ -10,10 +10,11 @@
         <div class="container">
         <p *ngIf="projet"><strong>Desciption</strong><br>
            {{ projet.description }}</p>
-        <p><i class='far fa-calendar-alt'></i><strong>Dattes</strong></p>
+        <p><i style="margin-right: 8px;" class='far fa-calendar-alt'></i><strong>Dattes</strong></p>
         <div *ngIf="projet" class="divdate">
-             <span class="bg-light">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span><br>
-             <span class="bg-light">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>
+             
+             <dl class="bg-light">Début: {{projet.debutProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</dl>
+             <dl class="bg-light">Fin: {{projet.finProjet | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</dl>
         </div>
         </div>
     </mat-sidenav>

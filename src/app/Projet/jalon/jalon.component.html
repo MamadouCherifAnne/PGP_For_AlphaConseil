@@ -9,8 +9,8 @@
         <br>
         <h6> <i class="fa fa-tasks" aria-hidden="true"></i>Liste des Jalons</h6>
         <br>
-        <ul class="list-group" >
-            <li class="list-group-item  breadcrumb" style="border: none">
+        <ul class="list-group" *ngIf="jalons" >
+            <li *ngFor="let jalon of jalons.jalons" class="list-group-item  breadcrumb" style="border: none">
                
                
             </li>
@@ -18,10 +18,10 @@
     </div>
     </mat-sidenav>
     <mat-sidenav-content> 
-       <div class="container-flud headline" *ngIf="projectOwner">
+       <div class="container-flud headline" >
             <h5>Jalon</h5>
          
-            <p><button class="btn btn-success btn-sm btnAjout" *ngIf="isOwner" (click)="goToAddJalon()" type="submit">Ajouter Jalon</button></p>
+            <p><button class="btn btn-success btn-sm btnAjout" *ngIf="chefProjet =='responsable'" (click)="goToAddJalon()" type="submit">Ajouter Jalon</button></p>
             <br>
             <br>
         </div>
@@ -31,7 +31,7 @@
                 <div class="container" >
                     <h4>liste des Evenements</h4>
                 
-                    
+                <br>    
                 <div class="container" *ngIf="jalons" >
                 <div class="card" *ngFor="let jalon of jalons.jalons">
                     <div class="card-body">
@@ -39,7 +39,7 @@
                       <br>
                       <h6 class="card-subtitle mb-2 text-muted">
                           <mat-icon>calendar</mat-icon>
-                           <b>Attendu le </b>  <small style="color: brown;">{{jalon.debutTache}}</small>
+                           <b>Attendu le </b>  <small style="color: rgb(33, 135, 231);">{{jalon.debutTache}}</small>
                       </h6>
                     </div>
                   </div>
@@ -48,6 +48,7 @@
             </mat-tab>
             <mat-tab label="En Retard">
                 <div class="container" *ngIf="jalons" >
+                    <br>
                     <div class="card" *ngFor="let jalon of jalons.jalonRetards">
                         <div class="card-body">
                           <h5 class="card-title">{{jalon.nomTache}}</h5>

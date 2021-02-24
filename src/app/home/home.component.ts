@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   
  imageVar: String = "assets/images/alfaconseil1.jpg";
  constructor(private notifService: NotificationsService,
-  private authService:AuthentificationService,
+  public authService:AuthentificationService,
   private route:Router) { }
 
   ngOnInit() {

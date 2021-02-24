@@ -39,7 +39,7 @@ import { AllProjetsComponent } from './Projet/all-projets/all-projets.component'
 import { AffectationUserComponent } from './Utilisateur/affectation-user/affectation-user.component';
 // Importation de la librairies de visualisation du diagramm de Gantt
 import {GanttModule} from '@syncfusion/ej2-angular-gantt';
-import {AccumulationChartModule, PieSeriesService, AccumulationDataLabelService, AccumulationLegendService ,AccumulationTooltipService} from '@syncfusion/ej2-angular-charts';
+//import {AccumulationChartModule, PieSeriesService, AccumulationDataLabelService, AccumulationLegendService ,AccumulationTooltipService} from '@syncfusion/ej2-angular-charts';
 import {jsPDF} from 'jspdf';
 import { UtilisateurGanttComponent } from './Utilisateur/utilisateur-gantt/utilisateur-gantt.component';
 
@@ -83,7 +83,7 @@ import { UserProfilComponent } from './Login/user-profil/user-profil.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ToutLeProjetComponent } from './Projet/tout-le-projet/tout-le-projet.component';
-import {NgApexchartsModule}from "ng-apexcharts"; 
+//import {NgApexchartsModule}from "ng-apexcharts"; 
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NotificationComponent } from './notification/notification.component';
 
@@ -107,6 +107,7 @@ import { EtatProjetComponent } from './Projet/etat-projet/etat-projet.component'
 import { ActifsprojetsComponent } from './Projet/actifsprojets/actifsprojets.component';
 import { LateprojetsComponent } from './Projet/lateprojets/lateprojets.component';
 import { FinishedprojectsComponent } from './Projet/finishedprojects/finishedprojects.component';
+import { ExceptionPageComponent } from './exception-page/exception-page.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -206,7 +207,9 @@ registerLocaleData(localeFr, 'fr');
 
     LateprojetsComponent,
 
-    FinishedprojectsComponent
+    FinishedprojectsComponent,
+
+    ExceptionPageComponent
   ],
   imports: [
     BrowserModule,
@@ -218,18 +221,16 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     GanttModule,
     FieldsetModule,
-    AccumulationChartModule,
+    //AccumulationChartModule,
     NgxPaginationModule,
     NgxPaginationModule,
     Ng2GoogleChartsModule,
-    NgApexchartsModule,
+    //NgApexchartsModule,
     SimpleNotificationsModule . forRoot (),
 
   ],
 
-  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService,PieSeriesService,
-        
-    AccumulationDataLabelService, AccumulationLegendService, AccumulationTooltipService, {provide: HTTP_INTERCEPTORS, useClass: AlfaconseilinterceptorService, multi: true},
+  providers: [UtilisateurService,RoleService, ProfessionService,  PhaseService, ProjetService, TacheService, FichierService, {provide: HTTP_INTERCEPTORS, useClass: AlfaconseilinterceptorService, multi: true},
      
     
   ],

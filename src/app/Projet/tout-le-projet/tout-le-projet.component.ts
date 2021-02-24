@@ -1,5 +1,4 @@
 import { Component,ViewChild, ElementRef, OnInit,AfterViewInit, Input,  } from '@angular/core';
-import { ChartComponent } from "ng-apexcharts";
 import {GoogleChartInterface} from 'ng2-google-charts';
 import {TacheService} from "src/app/services/tache.service";
 import {ProjetService} from "src/app/services/projet.service";
@@ -7,19 +6,10 @@ import * as Chart from 'chart.js'
 
 declare var google: any;
 
-import {
-  ApexNonAxisChartSeries,
-  ApexResponsive,
-  ApexChart
-} from "ng-apexcharts";
+
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
-};
+
 @Component({
   selector: 'app-tout-le-projet',
   templateUrl: './tout-le-projet.component.html',

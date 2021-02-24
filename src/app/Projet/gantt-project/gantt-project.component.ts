@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Projet } from '../Projet';
 import { Iphase } from 'src/app/Phase/Iphase';
 import { L10n, loadCldr, setCulture } from '@syncfusion/ej2-base';
+import  * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-gantt-project',
@@ -159,7 +160,7 @@ export class GanttProjectComponent implements OnInit {
     
     
     projectStartDate:this.projet.debutProjet,
-    projectEndDate:this.projet.finProjet,
+    //projectEndDate:this.projet.finProjet,
     timelineSettings:{
       timelineViewMode:'Year',
       timelineUnitSize:30,
@@ -184,6 +185,33 @@ export class GanttProjectComponent implements OnInit {
   
 }
 
+public imprimerGanttPDF(){
+  const options = {
+    filename: 'factureTache.pdf',
+    /*image :{type:'jpeg'},*/
+    html2canvas:{
+      dpi: 192,
+      letterRendering: true, 
+      allowTaint: true, 
+      useCORS: true, 
+      logging: false, 
+      scrollX: 0,
+      scrollY: 0 
+    },
+    jsPDF:{orientation:'portrait',
+    unit: 'cm',
+    format: 'a4'
+    }
+  }
+
+  const element: Element = document.getElementById('GanttContainer')
+
+  // Appel de la librairies pour la sauvegarde
+  html2pdf()
+    .from(element)
+    .set(options)
+    .save()
+}
 
 
 }

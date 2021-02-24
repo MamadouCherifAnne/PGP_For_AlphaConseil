@@ -33,7 +33,9 @@ export class JalonComponent implements OnInit {
   public preced:object[] =[];
   public taskfield: object;
   public ajoutJalon:FormGroup;
-  public jalons:ITache[]
+  public jalons:any
+  public currentUser:any;
+  public chefProjet:String
   public lateJalon:ITache[]=[]
   public nombreJalon:number
   public projectId:number
@@ -51,32 +53,13 @@ export class JalonComponent implements OnInit {
     ngOnInit(){
       this.projectId = parseInt(this.route.snapshot.paramMap.get('id'));
       // recuperer le chef de ce projet 
-      this.projetService.getProjectOwner(this.projectId).subscribe(result=>{
-      if(result){
-        this.projectOwner =result;
-        console.log(this.projectOwner.username +" :::: ===   ")
-        if( this.projectOwner.username == this.authService.getCurrentUser()){
-          this.isOwner = true;
-        }
-        this.refresh();
-      }
-    });
-    
-   /*   // Recuperer tout les jalons
-      this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
-        if(data){
-          this.jalons=data;
-          this.nombreJalon=this.jalons.length
-          
-          for(let j of this.jalons){
-            if(new Date(j.debutTache ) < new Date()){
-              this.lateJalon.push(j);
-              console.log(j.nomTache+"#   #"+j.debutTache)
-            }
-            }
-            
-        } 
-      });*/
+  
+        this.userService.getUserByUsername(this.authService.getCurrentUser()).subscribe(data=>{
+          if(data){
+            this.currentUser = data;
+            this.refresh();
+          }
+        });
       }
     
 
@@ -98,15 +81,15 @@ export class JalonComponent implements OnInit {
     }
   
     refresh() {
-
-      this.projetService.getProjectJalons(this.projectId).subscribe((data)=>{
+      this.isChefDeProjectOwner(this.projectId,this.currentUser.idUser);
+      this.projetService.getProjectJalonInfos(this.projectId).subscribe((data)=>{
         if(data){
           this.jalons=data;
-          for(let j of this.jalons){
+         /* for(let j of this.jalons){
             if(j.debutTache < new Date()){
               this.lateJalon.push(j);
             }
-            }
+            }*/
             console.log(this.lateJalon)
         } 
       });
@@ -114,5 +97,7 @@ export class JalonComponent implements OnInit {
 
     //verification si il s'agit du chef du projet
 
-    
+    isChefDeProjectOwner(idProjet,idUser){
+      this.chefProjet = this.projetService.HasActionInProject(idProjet,idUser);
+    }
   }

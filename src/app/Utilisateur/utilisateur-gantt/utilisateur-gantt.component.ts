@@ -18,7 +18,7 @@ import { L10n, loadCldr, setCulture } from '@syncfusion/ej2-base';
   styleUrls: ['./utilisateur-gantt.component.scss']
 })
 export class UtilisateurGanttComponent implements OnInit {
-  tacheRealisable: ITache[] ;
+  tacheRealisable: ITache[] = [] ;
   allTask:any;
   ressources:IUtilisateur[]= [];
   tasks:Tache

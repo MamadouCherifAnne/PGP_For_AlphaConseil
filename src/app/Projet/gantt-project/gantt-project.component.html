@@ -1,5 +1,9 @@
-<p ><span *ngIf="projet"> Gantt  du Projet :<h3> {{projet.nomProjet}} </h3></span> </p>
+<br>
+<mat-toolbar>
+    <h4 class="display-4 text-secondary" ><span *ngIf="projet">Diagramme de Gantt du Projet :  </span>{{projet.nomProjet}}</h4>
+</mat-toolbar>
 
+<button class="btn btn-light "  (click)="imprimerGanttPDF()">Imprimer </button>
 <div>
     <div   id="GanttContainer"></div>
 </div>
