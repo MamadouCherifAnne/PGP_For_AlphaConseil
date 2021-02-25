@@ -31,20 +31,20 @@ export class AuthentificationService {
       return this.http.post(this.host+"/authenticate/login",user,{observe:'response'})
       .subscribe((data)=>{
         let bodyToken:any;
-        console.log(data.body.valueOf())
+        //console.log(data.body.valueOf())
         bodyToken = data.body.valueOf();
        
         let jwtToken = bodyToken["token"];
-        console.log(jwtToken);
+       // console.log(jwtToken);
         if(jwtToken!== null){
           let use =this.saveJWT(jwtToken);
           const jwtHelper = new JwtHelperService();
           const userBody =jwtHelper.decodeToken(this.getToken())
-          console.log(userBody.sub);
+         // console.log(userBody.sub);
           let username =  userBody.sub
           this.userConnected = username;
           this.entrepriseName = userBody.tenantID;
-          console.log(userBody.tenantID);
+          //console.log(userBody.tenantID);
           this.router.navigate(['tableaudebord']);
            
          /*this.getUserProfile(username).subscribe((res) => {
@@ -67,10 +67,10 @@ export class AuthentificationService {
     public get getEntrepriseName():String{
       let company:string ="";
       let keys =this.decodeJwtToken()
-      console.log(keys);
+      
       
       company = keys.tenantID;
-      console.log("company "+ company);
+      //console.log("company "+ company);
       return company;
 
     }
@@ -83,8 +83,8 @@ export class AuthentificationService {
       const userBody =jwtHelper.decodeToken(this.jwtToken);
       //recuperer la date de lexipiration du cle jwt 
       this.timeout = jwtHelper.getTokenExpirationDate(this.jwtToken).valueOf() - new Date().valueOf();
-      console.log(this.timeout);
-      console.log(userBody)
+      //console.log(this.timeout);
+      //console.log(userBody)
       //console.log("Voici le utilisateur connecte:"+userBody.sub+" avec les roles :"+userBody.roles)
       //on gette l'expiration de la jwt de user courrant
       this.expirationCounter(this.timeout);
@@ -103,7 +103,7 @@ export class AuthentificationService {
     public getCurrentUser(){
       let authenticateUser = this.decodeJwtToken();
       if(authenticateUser != null){
-        console.log(authenticateUser.sub);
+        //console.log(authenticateUser.sub);
         return authenticateUser.sub;
       }
       return null;
@@ -113,7 +113,7 @@ export class AuthentificationService {
     public get getCurrentCompany(): string {
       let authenticateUser = this.decodeJwtToken();
       if(authenticateUser != null){
-        console.log(authenticateUser.tenantID);
+        //console.log(authenticateUser.tenantID);
         return authenticateUser.tenantID;
       }
       return null; 
@@ -131,12 +131,12 @@ export class AuthentificationService {
     }
 
     // Service de L'authentification
-    seConnecter(user:Utilisateur){
+   /* seConnecter(user:Utilisateur){
 
       let service = this.host+'/authenticate/login';
       return this.http.post<any>(service,user,{observe:'response'})
       .subscribe((resp:any)=>{
-        console.log(resp)
+        //console.log(resp)
        
         localStorage.setItem("token",resp.token);
         console.log(resp.token)
@@ -146,7 +146,7 @@ export class AuthentificationService {
         });
       });
     }
-
+*/
 
     // Recuperer le profil de l'utilisateur en cours
     getUserProfile(username):Observable<any>{
@@ -209,13 +209,13 @@ export class AuthentificationService {
       if(this.isLoggedIn && this.getToken()!==null){
        const  verifUser=jwtHelper.decodeToken(this.getToken());
        let roles:any[] = verifUser.roles;
-       console.log(roles)
+      // console.log(roles)
        
        for(let v=0;v<roles.length; v++){
          if(roles[v] =="ADMIN"){
            return true;
          }
-         console.log(roles[v]);
+         //console.log(roles[v]);
         }
        }
      
@@ -234,13 +234,13 @@ export class AuthentificationService {
           if(this.isLoggedIn && this.getToken()!==null){
            const  verifUser=jwtHelper.decodeToken(this.getToken());
            let roles:any[] = verifUser.roles;
-           console.log(roles)
+           //console.log(roles)
            
            for(let v=0;v<roles.length; v++){
              if(roles[v] =="SUPERADMIN"){
                return true;
              }
-             console.log(roles[v]);
+             //console.log(roles[v]);
             }
            }
          
@@ -283,8 +283,8 @@ export class AuthentificationService {
           let now = new Date();
           if(date < now){
             verif = true;
-            console.log(expired)
-            console.log("La date de expiration"+date);
+           // console.log(expired)
+            //console.log("La date de expiration"+date);
             // la cles est expirer on supprime la session demande d'une nouvelle connexion
             //this.doLogout();
           }
@@ -300,7 +300,7 @@ export class AuthentificationService {
       this.tokenSubscription.unsubscribe();
       
       this.tokenSubscription = of(null).pipe(delay(expiredTime)).subscribe((expired) => {
-        console.log('Votre connecxion a expire veuillez vous reconnecter a nouveau!!');
+        //console.log('Votre connecxion a expire veuillez vous reconnecter a nouveau!!');
         this.jwtToken = null
         this.doLogout();
         

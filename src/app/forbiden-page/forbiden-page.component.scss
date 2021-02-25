@@ -77,7 +77,7 @@ html, body, head, style {
   }
   
   html {
-    background: #f9f9f9;
+    background: #b39c9c;
     font-family: system-ui, Helvetica, Roboto, sans-serif;
     text-align: center;
     
@@ -85,16 +85,16 @@ html, body, head, style {
       line-height: 0;
       height: 0;
       transform: translatex(1rem);
-      content: '4 O 4';
+      content: '4 O 3';
       font-size: 7rem;
-      color: #4a4c4e;
+      color: #bd1c44;
       letter-spacing: 2rem;
       font-weight: bold;
       @extend %center;
     }
     
     &::before {
-      content: "Une s'est produite au cours de l'execution";
+      content: "Votre Session a expirée ; veuillez vous connecter de nouveau";
       font-family: 'Merriweather', serif;
       color: var(--main-color);
       font-weight: bolder;

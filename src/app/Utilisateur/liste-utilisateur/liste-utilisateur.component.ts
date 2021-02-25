@@ -21,7 +21,7 @@ export class ListeUtilisateurComponent implements OnInit {
   @ViewChild(MatSort,{static:true}) sort: MatSort;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator
 
-  displayedColumns: string [] = ['icon','username', 'prenom', 'email', 'adresse', 'telephone','Action'];
+  displayedColumns: string [] = ['icon','username', 'prenom', 'email', 'telephone','Action'];
     
   constructor(private userService:UtilisateurService,
     public authService:AuthentificationService, 

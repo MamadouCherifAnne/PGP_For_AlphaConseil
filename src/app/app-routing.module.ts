@@ -46,6 +46,9 @@ import {EtatProjetComponent} from './Projet/etat-projet/etat-projet.component';
 import {ActifsprojetsComponent} from './Projet/actifsprojets/actifsprojets.component';
 import {LateprojetsComponent} from './Projet/lateprojets/lateprojets.component';
 import {FinishedprojectsComponent} from './Projet/finishedprojects/finishedprojects.component';
+import { ExceptionPageComponent } from './exception-page/exception-page.component';
+import { ForbidenPageComponent } from './forbiden-page/forbiden-page.component';
+import { ServeurExceptionComponent } from './serveur-exception/serveur-exception.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -120,6 +123,10 @@ const routes: Routes = [
     {path: 'enretards', component: LateprojetsComponent}
   ],canActivate:[AuthGuard]},
   {path: 'registration', component: RegistrationComponent},
+  {path: 'notFound', component: ExceptionPageComponent},
+  {path: 'forbiden', component: ForbidenPageComponent},
+  {path: 'serverproblem', component: ServeurExceptionComponent},
+
   
 
 ];

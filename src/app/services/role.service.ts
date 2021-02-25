@@ -27,7 +27,7 @@ export class RoleService {
      }
      // La liste Des role
      public getRoles() : Observable<IRole[]>{
-       return this.http.get<IRole[]>("/role/all");
+       return this.http.get<IRole[]>(environment.alfaApiUrl+"/role/all");
      }
      // update role
      public updateRole(role,idRole){

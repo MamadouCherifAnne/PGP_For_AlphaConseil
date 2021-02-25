@@ -108,6 +108,8 @@ import { ActifsprojetsComponent } from './Projet/actifsprojets/actifsprojets.com
 import { LateprojetsComponent } from './Projet/lateprojets/lateprojets.component';
 import { FinishedprojectsComponent } from './Projet/finishedprojects/finishedprojects.component';
 import { ExceptionPageComponent } from './exception-page/exception-page.component';
+import { ForbidenPageComponent } from './forbiden-page/forbiden-page.component';
+import { ServeurExceptionComponent } from './serveur-exception/serveur-exception.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -209,7 +211,11 @@ registerLocaleData(localeFr, 'fr');
 
     FinishedprojectsComponent,
 
-    ExceptionPageComponent
+    ExceptionPageComponent,
+
+    ForbidenPageComponent,
+
+    ServeurExceptionComponent
   ],
   imports: [
     BrowserModule,

@@ -66,7 +66,7 @@ export class UpdateUtilisateurComponent implements OnInit {
       'adresse':[this.user.adresse, [Validators.required]],
       
       'profession':[this.idProfession],
-      'role':[this.user.role, []],
+      'role':[this.user.roles, []],
       
   });
   
@@ -97,15 +97,15 @@ public userUpdate(){
   this.user.telephone =this.updateUserForm.get("telephone").value;
   this.user.company = this.authService.entrepriseName;
   let id=Number.parseFloat(this.updatingUser.user.idUser);
-  console.log("les role choisit"+this.user.role+ "ou "+this.updateUserForm.get("role").value)
+  console.log("les role choisit"+this.user.roles+ "ou "+this.updateUserForm.get("role").value)
   //this.user.role = this.user.role;
   //this.user.ptojet=null
   this.user.professions=this.updateUserForm.get("profession").value
-  this.user.role=this.updateUserForm.get("role").value
+  this.user.roles=this.updateUserForm.get("role").value
   if(this.user.password == this.updateUserForm.get('confirmPassword').value){
   
   let res=this.userService.updateUser(this.user,id);
-  res.subscribe((data)=>this.modifEchec()/*this.message=data*/);
+  res.subscribe((data)=>this.modifSuccess()/*this.message=data*/);
   
   
   }

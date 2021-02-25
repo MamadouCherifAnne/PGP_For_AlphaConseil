@@ -54,7 +54,18 @@ export class AlfaconseilinterceptorService implements HttpInterceptor {
       return next.handle(clone)
         .pipe(
           
-          catchError(this.handleError),
+          catchError((error: HttpErrorResponse)=>{
+            if (error.status === 403) {
+              // some logic
+              this.router.navigate(['notFound']);
+           }else if(error.status === 404) {
+            this.router.navigate(['forbiden']);
+           }else{
+            this.router.navigate(['serverproblem']);
+           }
+           
+            return throwError(error)
+          }),
           finalize(
             () =>{
               

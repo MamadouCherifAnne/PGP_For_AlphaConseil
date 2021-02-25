@@ -31,7 +31,8 @@
                         <mat-icon>more_horiz</mat-icon>
                     </button> </p>
                     <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="exportDailyOrdersToPdf()"><span>Rapport des tâches</span></button>
+                    <button mat-menu-item (click)="exportDailyOrdersToPdf()"><i class="far fa-file-pdf"></i><span>Rapport des tâches</span></button>
+                    <button *ngIf=" isSuperAdmin == true || isChefProjet == true || this.authService.isAdmin == true" mat-menu-item (click)="exprotExel()"><i class="far fa-file-excel"></i><span>Exporter</span></button>
                     </mat-menu>
                 
 
