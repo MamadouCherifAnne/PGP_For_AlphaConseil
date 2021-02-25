@@ -109,13 +109,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   RegistreHasSameName(){
-    this.notifService.alert('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
+    this.notifService.info('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
       timeOut : 3000,
       showProgressBar : true,
     });
 }
   RegistrationMdpError(){
-  this.notifService.alert('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
+  this.notifService.warn('Echec', "Les deux mots de passe ne sont pas conforme", {
     timeOut : 3000,
     showProgressBar : true,
   });
