@@ -94,6 +94,7 @@ public onCreate(){
      this.tacheService.deleteDepense(element).subscribe(data=>{
         if(data == true){
           console.log("c4est supprimer ");
+          this.refreshlistOfDepense();
         }else{
           console.log("Not supprimed");
         }

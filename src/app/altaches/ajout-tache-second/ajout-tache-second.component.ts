@@ -50,15 +50,16 @@ export class AjoutTacheSecondComponent implements OnInit {
       "nomTache": [this.tache.nomTache,[Validators.required,
         Validators.minLength(3),
         Validators.maxLength(100),
-        Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')]],
-      "description": [this.tache.description,Validators.maxLength(100)],
-      "chargeTache": this.tache.chargeTache,
-      "niveauPriorite": this.tache.niveauPriorite,
-      "duree": [this.tache.duree, Validators.required],
-      "debutTache": [this.tache.debutTache,Validators.required, this.dateValidator],
-      "finTache": [this.tache.finTache,Validators.required, this.dateValidator],
+        /*Validators.pattern( '^[a-zA-Z \u00C0-\u00FF]*$')*/]],
+      "description": [this.tache.description, [Validators.maxLength(100)]],
+      "chargeTache": [this.tache.chargeTache],
+      "niveauPriorite": [this.tache.niveauPriorite],
+      "duree": [this.tache.duree, [Validators.required]],
+      "debutTache": [this.tache.debutTache,[Validators.required, this.dateValidator]],
+      "finTache": [this.tache.finTache,[Validators.required, this.dateValidator]],
       "tauxAvancement" : [this.tache.tauxAvancement],
-      "tachePrecedente" : [this.tache.tachePrecedente],
+      "phase": [this.tache.phase],
+      "tachePrecedente": [this.tache.tachePrecedente]
     })  
 
       //......................Recuperation du projet par son id.....................

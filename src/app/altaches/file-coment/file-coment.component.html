@@ -8,7 +8,7 @@
         </div>
         
         <div *ngIf="currentTache" class="desClass ">
-             <span><strong>Dates</strong></span><br>
+            <i style="margin-right: 8px;" class='far fa-calendar-alt'></i><span><strong>Dates</strong></span><br>
              <span>Début: {{currentTache.debutTache | date: 'EEEE d MMMM, y' : '' : 'fr-FR'}}</span>
              <br>
              <span class="spandate">Fin: {{currentTache.finTache | date: 'EEEE d MMMM y' : '' : 'fr-FR'}}</span>

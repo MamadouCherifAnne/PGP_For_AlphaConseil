@@ -159,7 +159,7 @@ export class GanttProjectComponent implements OnInit {
     },
     
     
-    projectStartDate:this.projet.debutProjet,
+    //projectStartDate:this.projet.debutProjet,
     //projectEndDate:this.projet.finProjet,
     timelineSettings:{
       timelineViewMode:'Year',

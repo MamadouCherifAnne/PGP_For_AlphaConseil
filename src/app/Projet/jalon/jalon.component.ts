@@ -98,6 +98,24 @@ export class JalonComponent implements OnInit {
     //verification si il s'agit du chef du projet
 
     isChefDeProjectOwner(idProjet,idUser){
-      this.chefProjet = this.projetService.HasActionInProject(idProjet,idUser);
+      //this.chefProjet = this.projetService.HasActionInProject(idProjet,idUser);
+      this.projetService.getRoleInProject(idProjet,idUser).subscribe(data=>{
+        if(data){
+         let verif = data;
+          if(verif == 1){
+            this.chefProjet ="acteur"
+            
+          }
+          
+        else if(2){
+          this.chefProjet="responsable" ;
+          
+        }else{
+          this.chefProjet = "client"
+        }
+        console.log(this.chefProjet)
+      }
+      });
+      
     }
   }

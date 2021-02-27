@@ -2,9 +2,8 @@
     <span>Nouveau Membre</span>
 </mat-toolbar>
 <br>
-<div *ngIf="users">
-    <form [formGroup]="membreForm" class="normal-form">
-        <mat-grid-list cols="2" rorHeight="50px">
+
+       <!--- <mat-grid-list cols="2" rorHeight="300px">
             <mat-grid-tile>
               <div class="controles-container">
       
@@ -25,9 +24,33 @@
               </mat-radio-group>
               </div>
             </mat-grid-tile>
-            </mat-grid-list> 
+            </mat-grid-list> -->
+            <form [formGroup]="membreForm" class="normal-form">
+                <mat-grid-list cols="2" rorHeight="300px">
             
-            <button mat-button color="primary" (click)="addMembreToProject()" [disabled]="membreForm.invalid">Valider</button>
-            <button mat-button color="" (click)="onFermer()">Fermer</button>
-    </form>
-</div>
+                    <div class="controles-container">
+                        <mat-form-field>
+                            <mat-label>Ajouter un membre</mat-label>
+                            <mat-select formControlName="activiste"  >
+                                <ng-container *ngFor="let user of users">
+                                <mat-option  [value]="user.idUser">{{user.nom}}</mat-option>
+                                </ng-container> 
+                            </mat-select>  
+                            
+                        </mat-form-field>
+            
+                        
+                            <label id="matgp"> Staut dans le Projet: </label>
+                                <mat-radio-group class="matgp" aria-labelledby="matgp" formControlName="role">
+                                    <mat-radio-button value="client">Client</mat-radio-button>
+                                    <mat-radio-button value="acteur">Acteur</mat-radio-button>
+                                    <mat-radio-button value="responsable">Responsable</mat-radio-button>
+                                </mat-radio-group>
+            
+                    </div>
+                </mat-grid-list>
+                <div class="bton">
+                    <button class="btn btn-success btn-sm" type="submit" (click)="addMembreToProject()">Ajouter</button>
+                    <button class="btn btn-light btn-sm" type="submit" (click)="onFermer()">Annuler</button>
+                </div>
+            </form>

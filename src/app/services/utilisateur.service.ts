@@ -79,6 +79,10 @@ export class UtilisateurService {
     return this.http.post(environment.alfaApiUrl+"/message/modifEatMessage/"+idmessage,{responseType:'text'});
   }
 
+  public deleTeMessage(idmessage){
+    return this.http.post(environment.alfaApiUrl+"/message/deleteMessage/"+idmessage,{});
+  }
+
   // recuperer mes messages
   public getMessageRecieved(idUser): Observable<any>{
     return this.http.get(environment.alfaApiUrl+"/utilisateur/boiteReception/"+idUser);

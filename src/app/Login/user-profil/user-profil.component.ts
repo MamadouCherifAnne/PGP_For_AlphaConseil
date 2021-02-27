@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { Message } from 'src/app/Message/Message';
 import { PageEvent } from '@angular/material';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-user-profil',
@@ -30,6 +31,7 @@ export class UserProfilComponent implements OnInit {
     public userService:UtilisateurService,
     private actRoute: ActivatedRoute,
     private formBuilder:FormBuilder,
+    public notifService:NotificationsService
   ) {
      this.userService.getUsers().subscribe(result=>{
        if(result){
@@ -39,6 +41,9 @@ export class UserProfilComponent implements OnInit {
   }
 
   ngOnInit() { 
+
+    // reinitialiser le nombre des messages non lu a 0
+    this.userService.nombreMessageNonLu=0;
     this.messageForm=this.formBuilder.group({
       'messageContent':["",[Validators.required,Validators.maxLength(100)]],
       'destinataire':[this.destinataire,[Validators.required]]
@@ -92,10 +97,12 @@ export class UserProfilComponent implements OnInit {
                 this.userService.sendMessageToUser(this.message).subscribe(done=>{
                   if(done){
                     console.log("Message envoye");
+                    this.modifSuccess("le message a été envoyé avec succés")
                   }
                     else{
                   window.alert("Impossible de trouver un utilisateur avec ce username! assuerz vous des vos données");
                   this.messageForm.get('destinataire').setValue('')
+                  this.modifEchec("le message n'est pas envoyé, verifier vos informations");
                 }
 
                 
@@ -106,6 +113,7 @@ export class UserProfilComponent implements OnInit {
     }
     
     refresh(){
+      this.userService.nombreMessageNonLu=0;
       let username = this.authService.getCurrentUser();
       this.userService.getUserByUsername(username).subscribe(data=>{
         if(data){
@@ -117,6 +125,22 @@ export class UserProfilComponent implements OnInit {
 
     public deleteMessage(idmess){
       // a faire
-      return "supprimer message";
+      this.userService.deleTeMessage(idmess).subscribe(result=>{
+        this.modifSuccess(result);
+      })
+    }
+
+
+    modifSuccess(message){
+      this.notifService.success('Confirmation', message, {
+        timeOut : 3000,
+        showProgressBar : true,
+      });
+    }
+      modifEchec(message){
+        this.notifService.warn('Echec', message, {
+          timeOut : 3000,
+          showProgressBar : true,
+        });
     }
 }

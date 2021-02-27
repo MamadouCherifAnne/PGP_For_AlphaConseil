@@ -10,7 +10,7 @@
         <br>
         <ul class="list-group" *ngFor="let phase of allphase">
             <li class="list-group-item  breadcrumb " style="border: none">
-                <dl class="bg-light">{{phase.nomTache | titlecase}}  <span class="badge badge-pill badge-light">{{phase.taches.length}}</span></dl>
+                <dl class="bg-light">{{phase.nomTache | titlecase}}  <span class="badge badge-pill badge-light">{{countLengthOfPhase(phase)}}</span></dl>
             </li>
         </ul>
     </div>
@@ -19,7 +19,7 @@
        <div class="container-flud headline">
            <div class="row"> 
             <div class="col-sm-4">
-                <h5>Taches</h5>
+                <h5>Tâches</h5>
             </div> 
           
          
@@ -64,7 +64,7 @@
                 {{ phase.nomTache | titlecase }}
                 <i aria-hidden="true" class="fa fa-angle-up ">&nbsp;</i>
                 </button>
-                <span class="badge badge-pill badge-info">{{countLengthOfPhase(phase)}} Taches</span>
+                <span class="badge badge-pill badge-info">{{countLengthOfPhase(phase)}} Tâches</span>
             </h5>
         </div>
         <div [attr.id]="'collapse'+i" class="collapse"
@@ -106,10 +106,10 @@
                             
                     </li>
                     
-                    <p ><button class="btn btn-success btn-sm btAjtache" typep="button" (click)="cacher[i] = !cacher[i]">Ajouter une tache</button>
+                    <p ><button class="btn btn-success btn-sm btAjtache" typep="button" (click)="cacher[i] = !cacher[i]">Ajouter une tâche</button>
                     <small class="sapantache">{{finTache(phase.taches)}} Terminé</small></p>
                     <div [hidden] = "!cacher[i]">
-                        <app-ajout-tache-second [idProjet]="idProjet" [idPhase]="phase.numTache" ()></app-ajout-tache-second>
+                        <app-ajout-tache-second [idProjet]="idProjet" [idPhase]="phase.numTache" ></app-ajout-tache-second>
                     </div>   
                     
                 </ul>

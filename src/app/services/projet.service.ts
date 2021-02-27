@@ -120,15 +120,20 @@ public static isowner:boolean=false;
     this.getRoleInProject(idProjet,idUser).subscribe(data=>{
       if(data){
         verif = data;
-        if(verif = 1){
+        console.log("statur role dans le projet //"+verif)
+        if(verif == 1){
           projectRole ="acteur"
+          return projectRole;
         }
         
-      }else if(2){
+      else if( verif ==2){
          projectRole="responsable" ;
+         return projectRole;
       }else{
         projectRole="client"
+        return projectRole;
       }
+    } 
     });
     return projectRole;
     

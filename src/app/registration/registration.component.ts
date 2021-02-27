@@ -102,20 +102,20 @@ export class RegistrationComponent implements OnInit {
     });
   }
     ModifEchec(){
-      this.notifService.alert('Echec', "L'inscription a échoué, Réessayez à nouveau!", {
+      this.notifService.error('Echec', "L'inscription a échoué, Réessayez à nouveau!", {
         timeOut : 3000,
         showProgressBar : true,
       });
   }
 
   RegistreHasSameName(){
-    this.notifService.info('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
+    this.notifService.error('Echec', "Cet espace de travail existe déja, changer le nom de l'entreprise", {
       timeOut : 3000,
       showProgressBar : true,
     });
 }
   RegistrationMdpError(){
-  this.notifService.warn('Echec', "Les deux mots de passe ne sont pas conforme", {
+  this.notifService.error('Echec', "Les deux mots de passe ne sont pas conforme", {
     timeOut : 3000,
     showProgressBar : true,
   });

@@ -21,7 +21,7 @@
        <div class="container-flud headline" >
             <h5>Jalon</h5>
          
-            <p><button class="btn btn-success btn-sm btnAjout" *ngIf="chefProjet =='responsable'" (click)="goToAddJalon()" type="submit">Ajouter Jalon</button></p>
+            <p *ngIf="currentUser"><button class="btn btn-success btn-sm btnAjout" *ngIf="chefProjet =='responsable'" (click)="goToAddJalon()" type="submit">Ajouter Jalon</button></p>
             <br>
             <br>
         </div>

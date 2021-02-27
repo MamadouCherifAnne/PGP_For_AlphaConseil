@@ -23,6 +23,7 @@ export class DetailUtilisateurComponent implements OnInit {
   controlForm: number= 1;
   expediteur:number;
   destinataire:Utilisateur;
+  public idUser:number;
   
 
   constructor(private userService:UtilisateurService,
@@ -40,7 +41,7 @@ export class DetailUtilisateurComponent implements OnInit {
     });
      
     // Recuperer l'identifiant de l'utilisateur sollicite
-      let idUser =parseInt(this.route.snapshot.paramMap.get('iduser'));
+      this.idUser =parseInt(this.route.snapshot.paramMap.get('iduser'));
       
        // Getter lutilisateur en cours 
        this.userService.getUserByUsername(this.authService.getCurrentUser()).subscribe((data)=>{
@@ -67,18 +68,18 @@ export class DetailUtilisateurComponent implements OnInit {
     let exped = this.authService.getCurrentUser();
     
     this.expediteur = 14;
-    this.destinataire=this.currentUser;
+    //this.destinataire=this.currentUser;
     this.message.messageContent=this.messageForm.get('messageContent').value;
     if(exped != null){
       //Recuperation de l'objet editeur du message
        // this.userService.getUserByIdUser(this.expediteur).subscribe(data=>{
-          this.userService.getUserByUsername(exped).subscribe(data=>{
+          this.userService.getUserByIdUser(this.idUser).subscribe(data=>{
         if(data){
-          let userEDit = data;
+          let userToRecieve = data;
           //Recuperation de l'objet destinataire du message
               
-              this.message.editUser=userEDit;
-              this.message.destinataire = this.destinataire;
+              this.message.destinataire=userToRecieve;
+              this.message.editUser = this.destinataire;
               this.message.dateEnvoie =new Date();
               this.userService.sendMessageToUser(this.message).subscribe(done=>{
                 if(done){
@@ -133,7 +134,7 @@ modifSuccess(){
   });
 }
   modifEchec(){
-    this.notifService.alert('Echec', "l'envoi a échoué", {
+    this.notifService.warn('Echec', "l'envoi a échoué", {
       timeOut : 3000,
       showProgressBar : true,
     });

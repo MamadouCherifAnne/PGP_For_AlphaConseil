@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { ProjetService } from 'src/app/services/projet.service';
 import { ProjectUserID } from '../UserProjectID';
@@ -28,6 +29,7 @@ export class MembreProjetComponent implements OnInit {
   affectations: any[];
   constructor(public projetService:ProjetService, public route:ActivatedRoute,
     public authService:AuthentificationService,
+    public notifService:NotificationsService,
     public fenetre:MatDialog, public router:Router) { }
 
   ngOnInit() {
@@ -105,13 +107,14 @@ export class MembreProjetComponent implements OnInit {
 
     // passer a la suppression
     this.projetService.deleteMembreOfProject(idMembre).subscribe(data=>{
-      if(data == true){
-        window.alert("l'utilisateur a ete supprimer du projet "+this.currentProject.nomProjet)
+      if(data){
+        this.modifSuccess()
         this.refreshListMembre()
       }else{
         window.alert(
           "L'utilisateur est affecte quelque part dans le projet veuiller verifier vos tache"
         );
+        this.modifEchec()
       }
     });
   }
@@ -129,5 +132,19 @@ export class MembreProjetComponent implements OnInit {
         console.log("Voici le nombre des membres du projet"+this.listofMembres.length);
       }
   });
+  }
+
+
+  modifSuccess(){
+    this.notifService.success('Confirmation', "L'uilisateur a été supprimé !", {
+      timeOut : 3000,
+      showProgressBar : true,
+    });
+  }
+    modifEchec(){
+      this.notifService.error('Echec', "L'utilisateur est affecté quelque part dans le projet veuiller verifier vos tâches", {
+        timeOut : 3000,
+        showProgressBar : true,
+      });
   }
 }

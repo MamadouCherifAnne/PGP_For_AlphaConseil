@@ -60,7 +60,7 @@ export class AlfaconseilinterceptorService implements HttpInterceptor {
               this.router.navigate(['notFound']);
            }else if(error.status === 404) {
             this.router.navigate(['forbiden']);
-           }else{
+           }else if(error.status === 500){
             this.router.navigate(['serverproblem']);
            }
            
